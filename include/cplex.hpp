@@ -31,16 +31,7 @@ struct CplexResult {
 // CPLEX Solver Function
 // ============================================================================
 
-#ifdef USE_CPLEX
 CplexResult solve_cplex(const Matrices& matrices, int time_limit = 60);
-#else
-// Dummy implementation when CPLEX is not available
-inline CplexResult solve_cplex(const Matrices& matrices, int time_limit = 60) {
-    CplexResult result;
-    result.status = "CPLEX not available";
-    result.wall_time_sec = 0.0;
-    return result;
-}
-#endif
+
 
 #endif // MDSSP_CPLEX_HPP

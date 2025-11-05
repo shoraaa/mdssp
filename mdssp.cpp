@@ -19,11 +19,16 @@
 #include "genetic.hpp"
 #include "cplex.hpp"
 #include "verifier.hpp"
+#include "dataset.hpp"
+#include "json.hpp"
 #include <iostream>
 #include <iomanip>
+#include <fstream>
 #include <chrono>
 #include <string>
 #include <vector>
+
+using json = nlohmann::json;
 
 // ============================================================================
 // Result Display
@@ -115,6 +120,8 @@ int main(int argc, char* argv[]) {
         options.add_options()
             ("a,algorithm", "Algorithm to use: greedy, genetic, cplex, all", 
              cxxopts::value<std::string>()->default_value("greedy"))
+            ("d,dataset", "Dataset file (JSON format)", 
+             cxxopts::value<std::string>()->default_value(""))
             ("T,tiles", "Number of tiles", 
              cxxopts::value<int>()->default_value("10"))
             ("n,height", "Tile height", 
@@ -139,6 +146,8 @@ int main(int argc, char* argv[]) {
              cxxopts::value<bool>()->default_value("false"))
             ("render", "Render the solution canvas", 
              cxxopts::value<bool>()->default_value("false"))
+            ("o,output", "Output solution to file (JSON format)", 
+             cxxopts::value<std::string>()->default_value(""))
             ("h,help", "Print usage");
         
         auto result = options.parse(argc, argv);
@@ -151,11 +160,15 @@ int main(int argc, char* argv[]) {
             std::cout << "  ./mdssp -a genetic -T 10 -n 3 -m 3 --pop-size 20 --generations 50\n";
             std::cout << "  ./mdssp -a all -T 10 -n 3 -m 3 --compare\n";
             std::cout << "  ./mdssp -a greedy -T 5 -n 2 -m 2 --render\n";
+            std::cout << "  ./mdssp -a cplex --dataset dataset.json\n";
+            std::cout << "  ./mdssp -a greedy --dataset dataset.json --output solution.json\n";
             return 0;
         }
         
         // Parse options
         std::string algorithm = result["algorithm"].as<std::string>();
+        std::string dataset_file = result["dataset"].as<std::string>();
+        std::string output_file = result["output"].as<std::string>();
         int T = result["tiles"].as<int>();
         int n = result["height"].as<int>();
         int m = result["width"].as<int>();
@@ -170,7 +183,9 @@ int main(int argc, char* argv[]) {
         bool render = result["render"].as<bool>();
         
         // Validate parameters
-        if (T <= 0 || n <= 0 || m <= 0) {
+        if (!dataset_file.empty()) {
+            // Using dataset file - skip other validations
+        } else if (T <= 0 || n <= 0 || m <= 0) {
             std::cerr << "Error: T, n, and m must be positive integers\n";
             return 1;
         }
@@ -183,18 +198,29 @@ int main(int argc, char* argv[]) {
         // Print configuration
         std::cout << "MDSSP Solver Configuration\n";
         std::cout << std::string(70, '=') << "\n";
-        std::cout << "Instance:          T=" << T << ", n=" << n << ", m=" << m << "\n";
-        std::cout << "Seed:              " << seed << "\n";
-        std::cout << "Probability:       " << p << "\n";
+        if (!dataset_file.empty()) {
+            std::cout << "Dataset file:      " << dataset_file << "\n";
+        } else {
+            std::cout << "Instance:          T=" << T << ", n=" << n << ", m=" << m << "\n";
+            std::cout << "Seed:              " << seed << "\n";
+            std::cout << "Probability:       " << p << "\n";
+        }
         std::cout << "Algorithm:         " << algorithm << "\n";
         std::cout << std::string(70, '=') << "\n";
         
-        // Generate instance
-        if (verbose) {
-            std::cout << "\nGenerating instance...\n";
+        // Generate or load instance
+        std::vector<Tile> tiles;
+        if (!dataset_file.empty()) {
+            if (verbose) {
+                std::cout << "\nLoading instance from dataset...\n";
+            }
+            tiles = read_dataset(dataset_file);
+        } else {
+            if (verbose) {
+                std::cout << "\nGenerating instance...\n";
+            }
+            tiles = generate_instance(T, n, m, p, seed);
         }
-        
-        auto tiles = generate_instance(T, n, m, p, seed);
         
         if (verbose) {
             std::cout << "Generated " << tiles.size() << " tiles\n";
@@ -367,6 +393,74 @@ int main(int argc, char* argv[]) {
                 std::cout << "Fastest:           " << fastest_algo << " (" << std::fixed 
                           << std::setprecision(6) << best_time << "s)\n";
             }
+        }
+        
+        // Output solution to file if requested
+        if (!output_file.empty() && !results.empty()) {
+            std::ofstream out(output_file);
+            if (!out.is_open()) {
+                std::cerr << "Error: Cannot open output file: " << output_file << "\n";
+                return 1;
+            }
+            
+            json output_json;
+            json results_array = json::array();
+            
+            for (const auto& [algo_name, algo_result] : results) {
+                json result_obj;
+                result_obj["algorithm"] = algo_name;
+                result_obj["status"] = algo_result.status;
+                
+                if (algo_result.status == "success" || algo_result.status == "optimal") {
+                    result_obj["objective"] = algo_result.best_obj;
+                    result_obj["bbox_width"] = algo_result.bbox_width;
+                    result_obj["bbox_height"] = algo_result.bbox_height;
+                    result_obj["bbox_area"] = algo_result.bbox_area;
+                    result_obj["runtime_seconds"] = algo_result.wall_time_sec;
+                    result_obj["num_tiles_placed"] = algo_result.placements.size();
+                    
+                    json placements_array = json::array();
+                    for (const auto& p : algo_result.placements) {
+                        placements_array.push_back({
+                            {"tile_id", p[0]},
+                            {"x", p[1]},
+                            {"y", p[2]}
+                        });
+                    }
+                    result_obj["placements"] = placements_array;
+                    
+                    // Construct and output the canvas
+                    std::vector<std::tuple<int, int, int>> placements;
+                    for (const auto& p : algo_result.placements) {
+                        placements.push_back({p[0], p[1], p[2]});
+                    }
+                    SolutionVerifier verifier(tiles);
+                    auto vr = verifier.verify(placements);
+                    
+                    if (vr.is_valid) {
+                        // Get canvas as string (nlohmann::json handles escaping automatically)
+                        std::string canvas_str = verifier.render_solution(placements);
+                        result_obj["canvas"] = canvas_str;
+                        result_obj["verified"] = true;
+                    } else {
+                        result_obj["canvas"] = nullptr;
+                        result_obj["verified"] = false;
+                        result_obj["verification_error"] = vr.error_message;
+                    }
+                } else {
+                    result_obj["error"] = algo_result.status;
+                }
+                
+                results_array.push_back(result_obj);
+            }
+            
+            output_json["results"] = results_array;
+            
+            // Write JSON with pretty formatting (2-space indent)
+            out << output_json.dump(2) << "\n";
+            
+            out.close();
+            std::cout << "\nSolution written to: " << output_file << "\n";
         }
         
         return 0;

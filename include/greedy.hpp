@@ -51,7 +51,6 @@ public:
     
     explicit GreedySolver(std::vector<Tile> tiles_);
     
-    std::optional<PlacementChoice> best_placement_for_tile(int idx);
     Canvas solve(int start_index = 0);
 };
 

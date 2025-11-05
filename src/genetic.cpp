@@ -4,6 +4,8 @@
 #include <algorithm>
 #include <cmath>
 #include <unordered_set>
+#include <iostream>
+#include <iomanip>
 
 // ============================================================================
 // Helper Functions
@@ -111,51 +113,279 @@ static void evaluate_solution(Solution& sol, const std::vector<Tile>& tiles) {
     }
 }
 
+// Build adjacency tree from a solution based on tile contact relationships
+static Tree build_tree_from_solution(const Solution& sol, const std::vector<Tile>& tiles) {
+    Tree tree;
+    if (sol.placements.empty()) return tree;
+    
+    std::unordered_set<int> placed;
+    std::vector<int> order;
+    
+    // Find root (first tile, or any tile)
+    tree.root = sol.placements.begin()->first;
+    placed.insert(tree.root);
+    order.push_back(tree.root);
+    
+    // BFS-like traversal to build tree based on contact
+    size_t idx = 0;
+    while (idx < order.size() && placed.size() < sol.placements.size()) {
+        int u = order[idx++];
+        auto pos_u = sol.placements.at(u);
+        
+        // Find all tiles that contact u and haven't been placed yet
+        for (const auto& [v, pos_v] : sol.placements) {
+            if (placed.count(v)) continue;
+            
+            if (tiles_contact(tiles[u], pos_u, tiles[v], pos_v)) {
+                tree.edges.push_back(Edge(u, v));
+                placed.insert(v);
+                order.push_back(v);
+            }
+        }
+    }
+    
+    return tree;
+}
+
 static Solution crossover_solutions(const Solution& parent1, const Solution& parent2, 
                                     const std::vector<Tile>& tiles, std::mt19937& rng) {
     Solution child;
     
-    // Simple crossover: take placements from parent1, fill missing with parent2
-    child.placements = parent1.placements;
+    // Build trees from both parents
+    Tree tree1 = build_tree_from_solution(parent1, tiles);
+    Tree tree2 = build_tree_from_solution(parent2, tiles);
     
-    for (const auto& [idx, pos] : parent2.placements) {
-        if (!child.placements.count(idx)) {
-            child.placements[idx] = pos;
+    // Create maps for quick edge lookup: parent_node -> list of child nodes
+    std::unordered_map<int, std::vector<int>> edges1, edges2;
+    for (const auto& e : tree1.edges) {
+        edges1[e.u].push_back(e.v);
+    }
+    for (const auto& e : tree2.edges) {
+        edges2[e.u].push_back(e.v);
+    }
+    
+    // Start with root from parent1
+    std::unordered_set<int> placed;
+    std::vector<int> frontier;  // Nodes that have been placed and can grow
+    
+    int root = tree1.root;
+    if (parent1.placements.count(root)) {
+        child.placements[root] = parent1.placements.at(root);
+        placed.insert(root);
+        frontier.push_back(root);
+    }
+    
+    // Alternately grow from both parents
+    bool use_parent1 = false;  // Start with parent2 next (since we used parent1's root)
+    std::vector<int> tried_frontier_nodes;
+    
+    while (placed.size() < tiles.size() && !frontier.empty()) {
+        // Choose which parent's edges to use
+        auto& current_edges = use_parent1 ? edges1 : edges2;
+        auto& current_parent = use_parent1 ? parent1 : parent2;
+        
+        bool found = false;
+        tried_frontier_nodes.clear();
+        
+        // Try to find a valid edge from current parent
+        while (!frontier.empty() && !found) {
+            // Pick a random frontier node
+            std::uniform_int_distribution<size_t> dist(0, frontier.size() - 1);
+            size_t pick_idx = dist(rng);
+            int u = frontier[pick_idx];
+            
+            // Try all edges from this node
+            if (current_edges.count(u)) {
+                for (int v : current_edges[u]) {
+                    if (placed.count(v)) continue;
+                    
+                    // Try to place v using position from current parent
+                    if (!current_parent.placements.count(v)) continue;
+                    
+                    auto pos_v = current_parent.placements.at(v);
+                    CellMap placement_v = tiles[v].translate(pos_v.first, pos_v.second);
+                    
+                    // Check if placement is valid (no conflicts with already placed tiles)
+                    bool valid = true;
+                    for (const auto& [coord, label] : placement_v) {
+                        for (const auto& [placed_idx, placed_pos] : child.placements) {
+                            CellMap placed_placement = tiles[placed_idx].translate(placed_pos.first, placed_pos.second);
+                            auto it = placed_placement.find(coord);
+                            if (it != placed_placement.end() && it->second != label) {
+                                valid = false;
+                                break;
+                            }
+                        }
+                        if (!valid) break;
+                    }
+                    
+                    if (valid) {
+                        child.placements[v] = pos_v;
+                        placed.insert(v);
+                        frontier.push_back(v);
+                        found = true;
+                        break;
+                    }
+                }
+            }
+            
+            // If no valid edge from this node, remove it from frontier and try another
+            if (!found) {
+                tried_frontier_nodes.push_back(u);
+                frontier.erase(frontier.begin() + pick_idx);
+            }
+        }
+        
+        // Restore tried nodes if we found something
+        if (found) {
+            frontier.insert(frontier.end(), tried_frontier_nodes.begin(), tried_frontier_nodes.end());
+        }
+        
+        // Alternate to other parent
+        use_parent1 = !use_parent1;
+    }
+    
+    // If one parent runs out of edges, use edges from the other parent
+    for (int pass = 0; pass < 2 && placed.size() < tiles.size(); ++pass) {
+        auto& remaining_edges = pass == 0 ? edges1 : edges2;
+        auto& remaining_parent = pass == 0 ? parent1 : parent2;
+        
+        bool found_any = true;
+        while (found_any && placed.size() < tiles.size()) {
+            found_any = false;
+            
+            for (const auto& [u, children] : remaining_edges) {
+                if (!placed.count(u)) continue;
+                
+                for (int v : children) {
+                    if (placed.count(v)) continue;
+                    if (!remaining_parent.placements.count(v)) continue;
+                    
+                    auto pos_v = remaining_parent.placements.at(v);
+                    CellMap placement_v = tiles[v].translate(pos_v.first, pos_v.second);
+                    
+                    bool valid = true;
+                    for (const auto& [coord, label] : placement_v) {
+                        for (const auto& [placed_idx, placed_pos] : child.placements) {
+                            CellMap placed_placement = tiles[placed_idx].translate(placed_pos.first, placed_pos.second);
+                            auto it = placed_placement.find(coord);
+                            if (it != placed_placement.end() && it->second != label) {
+                                valid = false;
+                                break;
+                            }
+                        }
+                        if (!valid) break;
+                    }
+                    
+                    if (valid) {
+                        child.placements[v] = pos_v;
+                        placed.insert(v);
+                        found_any = true;
+                    }
+                }
+            }
         }
     }
     
-    // If still incomplete, use greedy to fill
-    if (child.placements.size() < tiles.size()) {
-        auto greedy_sol = create_greedy_solution(tiles);
+    // Greedily add remaining unplaced tiles
+    if (placed.size() < tiles.size()) {
+        std::vector<int> unplaced;
         for (size_t i = 0; i < tiles.size(); ++i) {
-            if (!child.placements.count(i)) {
-                child.placements[i] = greedy_sol.placements[i];
+            if (!placed.count(i)) {
+                unplaced.push_back(i);
+            }
+        }
+        
+        // Use greedy solver to place remaining tiles
+        std::vector<Tile> remaining_tiles;
+        std::unordered_map<int, int> remaining_idx_map;  // new_idx -> original_idx
+        
+        for (int idx : unplaced) {
+            remaining_idx_map[remaining_tiles.size()] = idx;
+            remaining_tiles.push_back(tiles[idx]);
+        }
+        
+        if (!remaining_tiles.empty()) {
+            GreedySolver greedy_solver(remaining_tiles);
+            
+            // Build initial canvas from already placed tiles
+            for (const auto& [placed_idx, placed_pos] : child.placements) {
+                CellMap pm = tiles[placed_idx].translate(placed_pos.first, placed_pos.second);
+                greedy_solver.canvas.add_placement(pm);
+            }
+            
+            // Place remaining tiles one by one using greedy logic
+            for (size_t i = 0; i < remaining_tiles.size(); ++i) {
+                const Tile& tile = remaining_tiles[i];
+                int original_idx = remaining_idx_map[i];
+                
+                int current_size = greedy_solver.canvas.is_empty() ? 0 : 
+                                   std::max(greedy_solver.canvas.xmax - greedy_solver.canvas.xmin + 1, 
+                                           greedy_solver.canvas.ymax - greedy_solver.canvas.ymin + 1);
+                int max_tile_size = std::max(tile.width(), tile.height());
+                
+                std::optional<PlacementChoice> best_placement;
+                
+                // Try increasing sizes until we find a valid placement
+                for (int target_size = std::max(current_size, max_tile_size); 
+                     target_size <= current_size + max_tile_size * 2; 
+                     ++target_size) {
+                    
+                    // Generate candidate positions for this size
+                    std::vector<Coord> positions;
+                    
+                    if (greedy_solver.canvas.is_empty()) {
+                        if (std::max(tile.width(), tile.height()) <= target_size) {
+                            positions.push_back({0, 0});
+                        }
+                    } else {
+                        // Try positions around the current bounding box
+                        int search_range = target_size;
+                        for (int dx = greedy_solver.canvas.xmin - search_range; 
+                             dx <= greedy_solver.canvas.xmax + search_range; ++dx) {
+                            for (int dy = greedy_solver.canvas.ymin - search_range; 
+                                 dy <= greedy_solver.canvas.ymax + search_range; ++dy) {
+                                positions.push_back({dx, dy});
+                            }
+                        }
+                    }
+                    
+                    for (const auto& [dx, dy] : positions) {
+                        CellMap placement = tile.translate(dx, dy);
+                        auto [ok, overlap] = greedy_solver.canvas.overlap_check(placement);
+                        
+                        if (ok) {
+                            int new_size = std::max(tile.width(), tile.height());
+                            if (!greedy_solver.canvas.is_empty()) {
+                                int nxmin = std::min(greedy_solver.canvas.xmin, tile.min_x() + dx);
+                                int nxmax = std::max(greedy_solver.canvas.xmax, tile.max_x() + dx);
+                                int nymin = std::min(greedy_solver.canvas.ymin, tile.min_y() + dy);
+                                int nymax = std::max(greedy_solver.canvas.ymax, tile.max_y() + dy);
+                                new_size = std::max(nxmax - nxmin + 1, nymax - nymin + 1);
+                            }
+                            
+                            if (new_size <= target_size) {
+                                if (!best_placement.has_value() || overlap > best_placement->overlap) {
+                                    best_placement = PlacementChoice(i, dx, dy, new_size - current_size, 
+                                                                     overlap, std::move(placement));
+                                }
+                            }
+                        }
+                    }
+                    
+                    if (best_placement.has_value()) break;
+                }
+                
+                if (best_placement.has_value()) {
+                    child.placements[original_idx] = {best_placement->dx, best_placement->dy};
+                    greedy_solver.canvas.add_placement(best_placement->placement);
+                }
             }
         }
     }
     
     evaluate_solution(child, tiles);
     return child;
-}
-
-static Solution mutate_solution(const Solution& sol, const std::vector<Tile>& tiles, 
-                                std::mt19937& rng) {
-    Solution mutated = sol;
-    
-    // Small mutation: shift a random tile
-    if (!mutated.placements.empty()) {
-        std::uniform_int_distribution<int> tile_dist(0, tiles.size() - 1);
-        int tile_idx = tile_dist(rng);
-        
-        std::uniform_int_distribution<int> shift_dist(-2, 2);
-        auto& pos = mutated.placements[tile_idx];
-        pos.first += shift_dist(rng);
-        pos.second += shift_dist(rng);
-        
-        evaluate_solution(mutated, tiles);
-    }
-    
-    return mutated;
 }
 
 // ============================================================================
@@ -168,9 +398,15 @@ GeneticResult solve_genetic(const std::vector<Tile>& tiles,
                             int start_index) {
     auto start_time = std::chrono::high_resolution_clock::now();
     
+    std::cout << "\n=== Genetic Algorithm Started ===\n";
+    std::cout << "Population size: " << population_size << "\n";
+    std::cout << "Generations: " << num_generations << "\n";
+    std::cout << "Tiles: " << tiles.size() << "\n\n";
+    
     std::mt19937 rng(std::random_device{}());
     
     // Initialize population with greedy solutions from different starting points
+    std::cout << "Initializing population...\n";
     std::vector<Solution> population;
     population.reserve(population_size);
     
@@ -178,6 +414,9 @@ GeneticResult solve_genetic(const std::vector<Tile>& tiles,
         int start = i % tiles.size();
         auto sol = create_greedy_solution(tiles, start);
         population.push_back(sol);
+        if ((i + 1) % 10 == 0 || i == population_size - 1) {
+            std::cout << "  Created " << (i + 1) << "/" << population_size << " solutions\n";
+        }
     }
     
     Solution best_solution = population[0];
@@ -187,7 +426,11 @@ GeneticResult solve_genetic(const std::vector<Tile>& tiles,
         }
     }
     
+    std::cout << "Initial best objective: " << best_solution.objective << "\n";
+    std::cout << "Initial best bounding box: " << best_solution.bbox_width << " × " << best_solution.bbox_height << "\n\n";
+    
     // Evolution loop
+    std::cout << "Starting evolution...\n";
     for (int gen = 0; gen < num_generations; ++gen) {
         // Sort population by objective
         std::sort(population.begin(), population.end(), 
@@ -196,8 +439,32 @@ GeneticResult solve_genetic(const std::vector<Tile>& tiles,
                  });
         
         // Update best
+        bool improved = false;
         if (population[0].objective < best_solution.objective) {
             best_solution = population[0];
+            improved = true;
+        }
+        
+        // Log generation progress
+        if (true) {
+            auto current_time = std::chrono::high_resolution_clock::now();
+            std::chrono::duration<double> elapsed = current_time - start_time;
+            
+            std::cout << "Generation " << (gen + 1) << "/" << num_generations;
+            std::cout << " | Best: " << best_solution.objective;
+            std::cout << " (" << best_solution.bbox_width << "×" << best_solution.bbox_height << ")";
+            std::cout << " | Pop avg: " << std::fixed << std::setprecision(2);
+            
+            double avg_obj = 0.0;
+            for (const auto& sol : population) {
+                avg_obj += sol.objective;
+            }
+            avg_obj /= population.size();
+            std::cout << avg_obj;
+            
+            std::cout << " | Time: " << std::fixed << std::setprecision(2) << elapsed.count() << "s";
+            if (improved) std::cout << " [IMPROVED]";
+            std::cout << "\n";
         }
         
         // Create new generation
@@ -219,6 +486,7 @@ GeneticResult solve_genetic(const std::vector<Tile>& tiles,
     }
     
     // Final evaluation
+    std::cout << "\nFinal evaluation...\n";
     std::sort(population.begin(), population.end(), 
              [](const Solution& a, const Solution& b) {
                  return a.objective < b.objective;
@@ -226,10 +494,16 @@ GeneticResult solve_genetic(const std::vector<Tile>& tiles,
     
     if (population[0].objective < best_solution.objective) {
         best_solution = population[0];
+        std::cout << "Final improvement found!\n";
     }
     
     auto end_time = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = end_time - start_time;
+    
+    std::cout << "\n=== Genetic Algorithm Completed ===\n";
+    std::cout << "Final best objective: " << best_solution.objective << "\n";
+    std::cout << "Final bounding box: " << best_solution.bbox_width << " × " << best_solution.bbox_height << "\n";
+    std::cout << "Total runtime: " << std::fixed << std::setprecision(3) << elapsed.count() << " seconds\n\n";
     
     // Convert to result format
     GeneticResult result;

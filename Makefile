@@ -7,6 +7,15 @@ LDFLAGS =
 SRC_DIR = src
 OBJ_DIR = obj
 
+# Enable parallel compilation by default
+MAKEFLAGS += -j$(shell nproc 2>/dev/null || echo 4)
+
+# Try to use ccache if available for faster recompilation
+CCACHE := $(shell command -v ccache 2> /dev/null)
+ifdef CCACHE
+    CXX := ccache $(CXX)
+endif
+
 # Optional CPLEX support
 ifdef USE_CPLEX
     ifndef CPLEX_ROOT
@@ -34,35 +43,52 @@ else
 endif
 
 # Object files
-ALL_OBJS = $(OBJ_DIR)/common.o $(OBJ_DIR)/greedy.o $(OBJ_DIR)/genetic.o $(OBJ_DIR)/verifier.o $(CPLEX_OBJ)
+ALL_OBJS = $(OBJ_DIR)/common.o $(OBJ_DIR)/greedy.o $(OBJ_DIR)/genetic.o $(OBJ_DIR)/verifier.o $(OBJ_DIR)/dataset.o $(CPLEX_OBJ)
+MAIN_OBJ = $(OBJ_DIR)/mdssp.o
 
 .PHONY: all clean run test demo help
 
 all: mdssp
 
-mdssp: mdssp.cpp $(ALL_OBJS)
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -o $@ $^ $(LDFLAGS)
+mdssp: $(MAIN_OBJ) $(ALL_OBJS)
+	@echo "Linking mdssp..."
+	@$(CXX) $(CXXFLAGS) $(INCLUDES) -o $@ $^ $(LDFLAGS)
+
+$(MAIN_OBJ): mdssp.cpp include/common.hpp include/greedy.hpp include/genetic.hpp include/cplex.hpp include/verifier.hpp include/dataset.hpp
+	@mkdir -p $(OBJ_DIR)
+	@echo "Compiling mdssp.cpp..."
+	@$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
 $(OBJ_DIR)/common.o: $(SRC_DIR)/common.cpp include/common.hpp
 	@mkdir -p $(OBJ_DIR)
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+	@echo "Compiling common.cpp..."
+	@$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
 $(OBJ_DIR)/greedy.o: $(SRC_DIR)/greedy.cpp include/greedy.hpp include/common.hpp
 	@mkdir -p $(OBJ_DIR)
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+	@echo "Compiling greedy.cpp..."
+	@$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
-$(OBJ_DIR)/genetic.o: $(SRC_DIR)/genetic.cpp include/genetic.hpp include/common.hpp
+$(OBJ_DIR)/genetic.o: $(SRC_DIR)/genetic.cpp include/genetic.hpp include/common.hpp include/greedy.hpp
 	@mkdir -p $(OBJ_DIR)
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+	@echo "Compiling genetic.cpp..."
+	@$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
 $(OBJ_DIR)/verifier.o: $(SRC_DIR)/verifier.cpp include/verifier.hpp include/common.hpp
 	@mkdir -p $(OBJ_DIR)
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+	@echo "Compiling verifier.cpp..."
+	@$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+
+$(OBJ_DIR)/dataset.o: $(SRC_DIR)/dataset.cpp include/dataset.hpp include/common.hpp
+	@mkdir -p $(OBJ_DIR)
+	@echo "Compiling dataset.cpp..."
+	@$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
 ifdef USE_CPLEX
 $(OBJ_DIR)/cplex.o: $(SRC_DIR)/cplex.cpp include/cplex.hpp include/common.hpp
 	@mkdir -p $(OBJ_DIR)
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+	@echo "Compiling cplex.cpp..."
+	@$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 endif
 
 run: mdssp

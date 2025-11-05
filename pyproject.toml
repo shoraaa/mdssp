@@ -1,0 +1,11 @@
+[project]
+name = "mdssp"
+version = "0.1.0"
+description = "MDSSP Solver - 2D Shortest Superarray Problem"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
+
+[project.scripts]
+generate-dataset = "generate_dataset:main"
+visualize-solution = "visualize_solution:main"
