@@ -4,6 +4,7 @@
 #include "common.hpp"
 #include <optional>
 #include <sstream>
+#include <random>
 
 // ============================================================================
 // Canvas Class
@@ -55,6 +56,24 @@ public:
 };
 
 // ============================================================================
+// Stochastic Greedy Solver
+// ============================================================================
+
+class StochasticGreedySolver {
+public:
+    std::vector<Tile> tiles;
+    int n;
+    Canvas canvas;
+    std::vector<std::optional<std::pair<int, int>>> placed;
+    std::vector<int> order;
+    std::mt19937 rng;
+    
+    explicit StochasticGreedySolver(std::vector<Tile> tiles_, unsigned int seed);
+    
+    Canvas solve(int start_index = 0);
+};
+
+// ============================================================================
 // Solve Result
 // ============================================================================
 
@@ -70,5 +89,11 @@ struct GreedyResult {
 };
 
 GreedyResult solve_greedy(const std::vector<Tile>& tiles, int start_index = 0);
+GreedyResult solve_greedy_stochastic(const std::vector<Tile>& tiles, int start_index = 0, unsigned int seed = 0);
+GreedyResult solve_greedy_merge(const std::vector<Tile>& tiles);
+
+// Partial greedy solver (places only a subset of tiles)
+GreedyResult solve_greedy_partial(const std::vector<Tile>& tiles, int start_index, int max_tiles);
+GreedyResult solve_greedy_stochastic_partial(const std::vector<Tile>& tiles, int start_index, unsigned int seed, int max_tiles);
 
 #endif // MDSSP_GREEDY_HPP

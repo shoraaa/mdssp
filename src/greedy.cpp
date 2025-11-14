@@ -4,6 +4,10 @@
 #include <sstream>
 #include <cassert>
 #include <iostream>
+#include <random>
+#include <algorithm>
+#include <numeric>
+#include <omp.h>
 
 // ============================================================================
 // Canvas Implementation
@@ -315,33 +319,54 @@ Canvas GreedySolver::solve(int start_index) {
             
             // Suppose all tile have the same size, we can precompute candidate positions
             auto positions = enumerate_positions_for_size(tiles[0], canvas, target_size);
-            // For this target_size, check all remaining tiles
-            for (int idx : remaining) {
-                const Tile& tile = tiles[idx];
+            int delta = target_size - current_size;
+            
+            // Parallel search through remaining tiles
+            #pragma omp parallel
+            {
+                std::optional<PlacementChoice> thread_best;
                 
-                for (const auto& [dx, dy] : positions) {
+                #pragma omp for schedule(dynamic)
+                for (size_t i = 0; i < remaining.size(); ++i) {
+                    int idx = remaining[i];
+                    const Tile& tile = tiles[idx];
                     
-                    CellMap placement = tile.translate(dx, dy);
-                    auto [ok, overlap] = canvas.overlap_check(placement);
-                    if (!ok) continue;
+                    // Check if any thread has already found a solution
+                    #pragma omp flush(found)
+                    if (found) continue;
                     
-                    int delta = target_size - current_size;
-                    PlacementChoice cand(idx, dx, dy, delta, overlap, std::move(placement));
-                    
-                    if (!best_global.has_value() || cand.overlap > best_global->overlap) {
-                        best_global = std::move(cand);
+                    for (const auto& [dx, dy] : positions) {
+                        CellMap placement = tile.translate(dx, dy);
+                        auto [ok, overlap] = canvas.overlap_check(placement);
+                        if (!ok) continue;
+                        
+                        PlacementChoice cand(idx, dx, dy, delta, overlap, std::move(placement));
+                        
+                        if (!thread_best.has_value() || cand.overlap > thread_best->overlap) {
+                            thread_best = std::move(cand);
+                            break; // Found a placement for this tile
+                        }
                     }
                 }
-            }
-            
-            // If we found any valid placement for this target_size, stop searching
-            if (best_global.has_value()) {
-                found = true;
+                
+                // Update global best with critical section
+                if (thread_best.has_value()) {
+                    #pragma omp critical
+                    {
+                        if (!best_global.has_value() || thread_best->overlap > best_global->overlap) {
+                            best_global = std::move(thread_best);
+                        }
+                        found = true;
+                    }
+                }
             }
         }
 
         assert(best_global.has_value());
-
+        printf("Remaining: %d, placed with delta_area=%d, overlap=%d, current bbox size=%d\n",
+               remaining.size(),
+               best_global->delta_area, best_global->overlap,
+               std::max(canvas.xmax - canvas.xmin + 1, canvas.ymax - canvas.ymin + 1));
 
         canvas.add_placement(best_global->placement);
         placed[best_global->tile_idx] = {best_global->dx, best_global->dy};
@@ -401,3 +426,729 @@ GreedyResult solve_greedy(const std::vector<Tile>& tiles, int start_index) {
     
     return result;
 }
+
+// ============================================================================
+// StochasticGreedySolver Implementation
+// ============================================================================
+
+StochasticGreedySolver::StochasticGreedySolver(std::vector<Tile> tiles_, unsigned int seed) 
+    : tiles(std::move(tiles_)), rng(seed) {
+    n = tiles.size();
+    for (auto& tile : tiles) {
+        tile = tile.normalized();
+    }
+    placed.resize(n);
+}
+
+Canvas StochasticGreedySolver::solve(int start_index) {
+    if (n == 0) return canvas;
+    
+    CellMap start_placement = tiles[start_index].translate(0, 0);
+    canvas.add_placement(start_placement);
+    placed[start_index] = {0, 0};
+    order.push_back(start_index);
+    
+    std::vector<int> remaining;
+    remaining.reserve(n - 1);
+    for (int i = 0; i < n; ++i) {
+        if (i != start_index) {
+            remaining.push_back(i);
+        }
+    }
+    
+    while (!remaining.empty()) {
+        int current_size = std::max(canvas.xmax - canvas.xmin + 1, canvas.ymax - canvas.ymin + 1);
+        
+        // Iterate through delta_area from 0 upward across all remaining tiles
+        // This allows early termination as soon as we find any valid placement
+        int max_tile_size = 0;
+        for (int idx : remaining) {
+            max_tile_size = std::max(max_tile_size, std::max(tiles[idx].width(), tiles[idx].height()));
+        }
+        
+        int max_search_delta = current_size + max_tile_size;
+        std::vector<PlacementChoice> candidates_at_min_bbox;
+        int min_bbox_increase = 10000000;
+        
+        for (int target_size = std::max(current_size, max_tile_size); 
+             target_size <= min_bbox_increase; 
+             ++target_size) {
+            
+            int delta = target_size - current_size;    
+            // Precompute candidate positions for this target size
+            auto positions = enumerate_positions_for_size(tiles[0], canvas, target_size);
+            
+            // Parallel search through remaining tiles
+            #pragma omp parallel
+            {
+                std::vector<PlacementChoice> thread_candidates;
+                
+                #pragma omp for schedule(dynamic)
+                for (size_t i = 0; i < remaining.size(); ++i) {
+                    int idx = remaining[i];
+                    const Tile& tile = tiles[idx];
+                    
+                    for (const auto& [dx, dy] : positions) {
+                        CellMap placement = tile.translate(dx, dy);
+                        auto [ok, overlap] = canvas.overlap_check(placement);
+                        if (!ok) continue;
+                        
+                        PlacementChoice cand(idx, dx, dy, delta, overlap, std::move(placement));
+                        thread_candidates.push_back(std::move(cand));
+                    }
+                }
+                
+                // Merge thread candidates into global list
+                #pragma omp critical
+                {
+                    for (auto& cand : thread_candidates) {
+                        // First valid placement sets the min_bbox_increase
+                        if (cand.delta_area < min_bbox_increase) {
+                            min_bbox_increase = cand.delta_area;
+                            candidates_at_min_bbox.clear();
+                        }
+                        
+                        // Only keep candidates with the minimum bbox increase
+                        if (cand.delta_area == min_bbox_increase) {
+                            candidates_at_min_bbox.push_back(std::move(cand));
+                        }
+                    }
+                }
+            }
+            
+            // If we found any candidates with this bbox increase, we're done searching
+            if (!candidates_at_min_bbox.empty()) {
+                break;
+            }
+        }
+        
+        assert(!candidates_at_min_bbox.empty());
+        
+        // Sample from candidates weighted by overlap count
+        // Build cumulative weights
+        std::vector<int> weights;
+        weights.reserve(candidates_at_min_bbox.size());
+        for (const auto& cand : candidates_at_min_bbox) {
+            weights.push_back(cand.overlap + 1); // +1 to ensure non-zero weight
+        }
+        
+        std::discrete_distribution<int> dist(weights.begin(), weights.end());
+        int chosen_idx = dist(rng);
+        
+        PlacementChoice& chosen = candidates_at_min_bbox[chosen_idx];
+        
+        canvas.add_placement(chosen.placement);
+        placed[chosen.tile_idx] = {chosen.dx, chosen.dy};
+        order.push_back(chosen.tile_idx);
+        
+        remaining.erase(
+            std::remove(remaining.begin(), remaining.end(), chosen.tile_idx),
+            remaining.end()
+        );
+    }
+    
+    return canvas;
+}
+
+GreedyResult solve_greedy_stochastic(const std::vector<Tile>& tiles, int start_index, unsigned int seed) {
+    auto start = std::chrono::high_resolution_clock::now();
+    
+    // If seed is 0, use random_device to generate a random seed
+    if (seed == 0) {
+        seed = std::random_device{}();
+    }
+    
+    StochasticGreedySolver solver(tiles, seed);
+    Canvas final_canvas = solver.solve(start_index);
+    
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = end - start;
+    
+    GreedyResult result;
+    result.wall_time_sec = elapsed.count();
+    
+    if (final_canvas.is_empty()) {
+        result.best_obj = 0;
+        result.bbox_width = 0;
+        result.bbox_height = 0;
+        result.bbox_area = 0;
+    } else {
+        int width = final_canvas.xmax - final_canvas.xmin + 1;
+        int height = final_canvas.ymax - final_canvas.ymin + 1;
+        result.best_obj = std::max(width, height);
+        result.bbox_width = width;
+        result.bbox_height = height;
+        result.bbox_area = final_canvas.bbox_area();
+    }
+    
+    result.order = solver.order;
+    for (int idx : solver.order) {
+        if (solver.placed[idx].has_value()) {
+            auto [dx, dy] = *solver.placed[idx];
+            result.placements.push_back({idx, dx, dy});
+        }
+    }
+    
+    result.canvas_xmin = final_canvas.xmin;
+    result.canvas_xmax = final_canvas.xmax;
+    result.canvas_ymin = final_canvas.ymin;
+    result.canvas_ymax = final_canvas.ymax;
+    
+    return result;
+}
+
+// ============================================================================
+// Merge-based Greedy Algorithm
+// ============================================================================
+
+struct MergedTile {
+    CellMap cells;
+    std::vector<std::tuple<int, int, int>> placements; // original_tile_idx, dx, dy
+    
+    MergedTile() = default;
+    
+    explicit MergedTile(const Tile& tile, int original_idx) {
+        cells = tile.cells;
+        placements.push_back({original_idx, 0, 0});
+    }
+    
+    int min_x() const {
+        if (cells.empty()) return 0;
+        int minx = std::numeric_limits<int>::max();
+        for (const auto& [coord, _] : cells) {
+            minx = std::min(minx, coord.first);
+        }
+        return minx;
+    }
+    
+    int min_y() const {
+        if (cells.empty()) return 0;
+        int miny = std::numeric_limits<int>::max();
+        for (const auto& [coord, _] : cells) {
+            miny = std::min(miny, coord.second);
+        }
+        return miny;
+    }
+    
+    int max_x() const {
+        if (cells.empty()) return -1;
+        int maxx = std::numeric_limits<int>::min();
+        for (const auto& [coord, _] : cells) {
+            maxx = std::max(maxx, coord.first);
+        }
+        return maxx;
+    }
+    
+    int max_y() const {
+        if (cells.empty()) return -1;
+        int maxy = std::numeric_limits<int>::min();
+        for (const auto& [coord, _] : cells) {
+            maxy = std::max(maxy, coord.second);
+        }
+        return maxy;
+    }
+    
+    int width() const {
+        return cells.empty() ? 0 : max_x() - min_x() + 1;
+    }
+    
+    int height() const {
+        return cells.empty() ? 0 : max_y() - min_y() + 1;
+    }
+};
+
+struct MergeOption {
+    int tile1_idx;
+    int tile2_idx;
+    int dx, dy; // offset for tile2 relative to tile1
+    int overlap_count;
+    int bbox_size; // max(width, height) of merged tile
+    CellMap merged_cells;
+    std::vector<std::tuple<int, int, int>> merged_placements;
+    
+    MergeOption() : tile1_idx(-1), tile2_idx(-1), dx(0), dy(0), 
+                    overlap_count(0), bbox_size(0) {}
+};
+
+// Find the best merge between two tiles, considering all possible relative positions
+static MergeOption find_best_merge(const MergedTile& tile1, int idx1, 
+                                   const MergedTile& tile2, int idx2) {
+    MergeOption best;
+    
+    // Try different offsets for tile2 relative to tile1
+    int search_range = std::max({tile1.width(), tile1.height(), tile2.width(), tile2.height()}) + 2;
+    
+    for (int dx = -search_range; dx <= search_range; ++dx) {
+        for (int dy = -search_range; dy <= search_range; ++dy) {
+            // Create translated tile2
+            CellMap tile2_translated;
+            for (const auto& [coord, label] : tile2.cells) {
+                tile2_translated[{coord.first + dx, coord.second + dy}] = label;
+            }
+            
+            // Check if merge is valid and count overlaps
+            CellMap merged = tile1.cells;
+            int overlap_count = 0;
+            bool valid = true;
+            
+            for (const auto& [coord, label] : tile2_translated) {
+                auto it = merged.find(coord);
+                if (it != merged.end()) {
+                    if (it->second != label) {
+                        valid = false;
+                        break;
+                    }
+                    overlap_count++;
+                } else {
+                    merged[coord] = label;
+                }
+            }
+            
+            if (!valid) continue;
+            
+            // Calculate bounding box
+            int xmin = std::numeric_limits<int>::max();
+            int xmax = std::numeric_limits<int>::min();
+            int ymin = std::numeric_limits<int>::max();
+            int ymax = std::numeric_limits<int>::min();
+            
+            for (const auto& [coord, _] : merged) {
+                xmin = std::min(xmin, coord.first);
+                xmax = std::max(xmax, coord.first);
+                ymin = std::min(ymin, coord.second);
+                ymax = std::max(ymax, coord.second);
+            }
+            
+            int width = xmax - xmin + 1;
+            int height = ymax - ymin + 1;
+            int bbox_size = std::max(width, height);
+            
+            // Check if this is the best merge so far
+            // Prioritize: 1) maximum overlap, 2) minimum bbox_size
+            bool is_better = false;
+            if (best.tile1_idx == -1) {
+                is_better = true;
+            } else if (overlap_count > best.overlap_count) {
+                is_better = true;
+            } else if (overlap_count == best.overlap_count && bbox_size < best.bbox_size) {
+                is_better = true;
+            }
+            
+            if (is_better) {
+                best.tile1_idx = idx1;
+                best.tile2_idx = idx2;
+                best.dx = dx;
+                best.dy = dy;
+                best.overlap_count = overlap_count;
+                best.bbox_size = bbox_size;
+                best.merged_cells = merged;
+                
+                // Merge placement lists
+                best.merged_placements = tile1.placements;
+                for (const auto& [orig_idx, orig_dx, orig_dy] : tile2.placements) {
+                    best.merged_placements.push_back({orig_idx, orig_dx + dx, orig_dy + dy});
+                }
+            }
+        }
+    }
+    
+    return best;
+}
+
+GreedyResult solve_greedy_merge(const std::vector<Tile>& tiles) {
+    auto start = std::chrono::high_resolution_clock::now();
+    
+    // Initialize with all tiles as separate MergedTiles
+    std::vector<MergedTile> merged_tiles;
+    merged_tiles.reserve(tiles.size());
+    
+    for (size_t i = 0; i < tiles.size(); ++i) {
+        merged_tiles.emplace_back(tiles[i], (int)i);
+    }
+    
+    // Repeatedly merge tiles until only one remains
+    while (merged_tiles.size() > 1) {
+        MergeOption best_merge;
+        
+        // Find the best merge among all pairs
+        for (size_t i = 0; i < merged_tiles.size(); ++i) {
+            for (size_t j = i + 1; j < merged_tiles.size(); ++j) {
+                MergeOption candidate = find_best_merge(merged_tiles[i], (int)i, 
+                                                      merged_tiles[j], (int)j);
+                
+                if (candidate.tile1_idx != -1) {
+                    bool is_better = false;
+                    if (best_merge.tile1_idx == -1) {
+                        is_better = true;
+                    } else if (candidate.overlap_count > best_merge.overlap_count) {
+                        is_better = true;
+                    } else if (candidate.overlap_count == best_merge.overlap_count && 
+                             candidate.bbox_size < best_merge.bbox_size) {
+                        is_better = true;
+                    }
+                    
+                    if (is_better) {
+                        best_merge = candidate;
+                    }
+                }
+            }
+        }
+        
+        if (best_merge.tile1_idx == -1) {
+            // No valid merge found - this shouldn't happen with valid tiles
+            break;
+        }
+        
+        // Apply the best merge
+        MergedTile new_tile;
+        new_tile.cells = best_merge.merged_cells;
+        new_tile.placements = best_merge.merged_placements;
+        
+        // Remove the two merged tiles and add the new one
+        std::vector<MergedTile> new_merged_tiles;
+        new_merged_tiles.reserve(merged_tiles.size() - 1);
+        
+        for (size_t i = 0; i < merged_tiles.size(); ++i) {
+            if ((int)i != best_merge.tile1_idx && (int)i != best_merge.tile2_idx) {
+                new_merged_tiles.push_back(std::move(merged_tiles[i]));
+            }
+        }
+        new_merged_tiles.push_back(std::move(new_tile));
+        
+        merged_tiles = std::move(new_merged_tiles);
+    }
+    
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = end - start;
+    
+    GreedyResult result;
+    result.wall_time_sec = elapsed.count();
+    
+    if (merged_tiles.empty() || merged_tiles[0].cells.empty()) {
+        result.best_obj = 0;
+        result.bbox_width = 0;
+        result.bbox_height = 0;
+        result.bbox_area = 0;
+    } else {
+        const MergedTile& final_tile = merged_tiles[0];
+        int width = final_tile.width();
+        int height = final_tile.height();
+        result.best_obj = std::max(width, height);
+        result.bbox_width = width;
+        result.bbox_height = height;
+        result.bbox_area = width * height;
+        
+        // Convert placements from tuple format to vector format
+        for (const auto& [tile_idx, dx, dy] : final_tile.placements) {
+            result.placements.push_back({tile_idx, dx, dy});
+            result.order.push_back(tile_idx);
+        }
+    }
+    
+    return result;
+}
+
+// ============================================================================
+// Partial Greedy Solver Implementation
+// ============================================================================
+
+GreedyResult solve_greedy_partial(const std::vector<Tile>& tiles, int start_index, int max_tiles) {
+    auto start = std::chrono::high_resolution_clock::now();
+    
+    GreedySolver solver(tiles);
+    
+    if (solver.n == 0) {
+        GreedyResult result;
+        result.wall_time_sec = 0.0;
+        result.best_obj = 0;
+        result.bbox_width = 0;
+        result.bbox_height = 0;
+        result.bbox_area = 0;
+        return result;
+    }
+    
+    // Place the start tile
+    CellMap start_placement = solver.tiles[start_index].translate(0, 0);
+    solver.canvas.add_placement(start_placement);
+    solver.placed[start_index] = {0, 0};
+    solver.order.push_back(start_index);
+    
+    std::vector<int> remaining;
+    remaining.reserve(solver.n - 1);
+    for (int i = 0; i < solver.n; ++i) {
+        if (i != start_index) {
+            remaining.push_back(i);
+        }
+    }
+    
+    // Place tiles up to max_tiles (including the start tile)
+    int tiles_placed = 1;
+    while (!remaining.empty() && tiles_placed < max_tiles) {
+        std::optional<PlacementChoice> best_global;
+        int current_size = std::max(solver.canvas.xmax - solver.canvas.xmin + 1, 
+                                    solver.canvas.ymax - solver.canvas.ymin + 1);
+        
+        int max_tile_size = 0;
+        for (int idx : remaining) {
+            max_tile_size = std::max(max_tile_size, 
+                std::max(solver.tiles[idx].width(), solver.tiles[idx].height()));
+        }
+        
+        int max_search_delta = current_size + max_tile_size;
+        bool found = false;
+        
+        for (int target_size = std::max(current_size, max_tile_size); 
+             target_size <= current_size + max_search_delta && !found; 
+             ++target_size) {
+            
+            auto positions = enumerate_positions_for_size(solver.tiles[0], solver.canvas, target_size);
+            int delta = target_size - current_size;
+            
+            #pragma omp parallel
+            {
+                std::optional<PlacementChoice> thread_best;
+                
+                #pragma omp for schedule(dynamic)
+                for (size_t i = 0; i < remaining.size(); ++i) {
+                    int idx = remaining[i];
+                    const Tile& tile = solver.tiles[idx];
+                    
+                    #pragma omp flush(found)
+                    if (found) continue;
+                    
+                    for (const auto& [dx, dy] : positions) {
+                        CellMap placement = tile.translate(dx, dy);
+                        auto [ok, overlap] = solver.canvas.overlap_check(placement);
+                        if (!ok) continue;
+                        
+                        PlacementChoice cand(idx, dx, dy, delta, overlap, std::move(placement));
+                        
+                        if (!thread_best.has_value() || cand.overlap > thread_best->overlap) {
+                            thread_best = std::move(cand);
+                            break;
+                        }
+                    }
+                }
+                
+                if (thread_best.has_value()) {
+                    #pragma omp critical
+                    {
+                        if (!best_global.has_value() || thread_best->overlap > best_global->overlap) {
+                            best_global = std::move(thread_best);
+                        }
+                        found = true;
+                    }
+                }
+            }
+        }
+
+        if (best_global.has_value()) {
+            solver.canvas.add_placement(best_global->placement);
+            solver.placed[best_global->tile_idx] = {best_global->dx, best_global->dy};
+            solver.order.push_back(best_global->tile_idx);
+            
+            remaining.erase(
+                std::remove(remaining.begin(), remaining.end(), best_global->tile_idx),
+                remaining.end()
+            );
+            tiles_placed++;
+        } else {
+            break; // No valid placement found
+        }
+    }
+    
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = end - start;
+    
+    GreedyResult result;
+    result.wall_time_sec = elapsed.count();
+    
+    if (solver.canvas.is_empty()) {
+        result.best_obj = 0;
+        result.bbox_width = 0;
+        result.bbox_height = 0;
+        result.bbox_area = 0;
+    } else {
+        int width = solver.canvas.xmax - solver.canvas.xmin + 1;
+        int height = solver.canvas.ymax - solver.canvas.ymin + 1;
+        result.best_obj = std::max(width, height);
+        result.bbox_width = width;
+        result.bbox_height = height;
+        result.bbox_area = solver.canvas.bbox_area();
+    }
+    
+    result.order = solver.order;
+    for (int idx : solver.order) {
+        if (solver.placed[idx].has_value()) {
+            auto [dx, dy] = *solver.placed[idx];
+            result.placements.push_back({idx, dx, dy});
+        }
+    }
+    
+    result.canvas_xmin = solver.canvas.xmin;
+    result.canvas_xmax = solver.canvas.xmax;
+    result.canvas_ymin = solver.canvas.ymin;
+    result.canvas_ymax = solver.canvas.ymax;
+    
+    return result;
+}
+
+GreedyResult solve_greedy_stochastic_partial(const std::vector<Tile>& tiles, int start_index, 
+                                             unsigned int seed, int max_tiles) {
+    auto start = std::chrono::high_resolution_clock::now();
+    
+    if (seed == 0) {
+        seed = std::random_device{}();
+    }
+    
+    StochasticGreedySolver solver(tiles, seed);
+    
+    if (solver.n == 0) {
+        GreedyResult result;
+        result.wall_time_sec = 0.0;
+        result.best_obj = 0;
+        result.bbox_width = 0;
+        result.bbox_height = 0;
+        result.bbox_area = 0;
+        return result;
+    }
+    
+    // Place the start tile
+    CellMap start_placement = solver.tiles[start_index].translate(0, 0);
+    solver.canvas.add_placement(start_placement);
+    solver.placed[start_index] = {0, 0};
+    solver.order.push_back(start_index);
+    
+    std::vector<int> remaining;
+    remaining.reserve(solver.n - 1);
+    for (int i = 0; i < solver.n; ++i) {
+        if (i != start_index) {
+            remaining.push_back(i);
+        }
+    }
+    
+    // Place tiles up to max_tiles (including the start tile)
+    int tiles_placed = 1;
+    while (!remaining.empty() && tiles_placed < max_tiles) {
+        int current_size = std::max(solver.canvas.xmax - solver.canvas.xmin + 1, 
+                                    solver.canvas.ymax - solver.canvas.ymin + 1);
+        
+        int max_tile_size = 0;
+        for (int idx : remaining) {
+            max_tile_size = std::max(max_tile_size, 
+                std::max(solver.tiles[idx].width(), solver.tiles[idx].height()));
+        }
+        
+        int max_search_delta = current_size + max_tile_size;
+        std::vector<PlacementChoice> candidates_at_min_bbox;
+        int min_bbox_increase = 10000000;
+        
+        for (int target_size = std::max(current_size, max_tile_size); 
+             target_size <= min_bbox_increase; 
+             ++target_size) {
+            
+            int delta = target_size - current_size;    
+            auto positions = enumerate_positions_for_size(solver.tiles[0], solver.canvas, target_size);
+            
+            #pragma omp parallel
+            {
+                std::vector<PlacementChoice> thread_candidates;
+                
+                #pragma omp for schedule(dynamic)
+                for (size_t i = 0; i < remaining.size(); ++i) {
+                    int idx = remaining[i];
+                    const Tile& tile = solver.tiles[idx];
+                    
+                    for (const auto& [dx, dy] : positions) {
+                        CellMap placement = tile.translate(dx, dy);
+                        auto [ok, overlap] = solver.canvas.overlap_check(placement);
+                        if (!ok) continue;
+                        
+                        PlacementChoice cand(idx, dx, dy, delta, overlap, std::move(placement));
+                        thread_candidates.push_back(std::move(cand));
+                    }
+                }
+                
+                #pragma omp critical
+                {
+                    for (auto& cand : thread_candidates) {
+                        if (cand.delta_area < min_bbox_increase) {
+                            min_bbox_increase = cand.delta_area;
+                            candidates_at_min_bbox.clear();
+                        }
+                        
+                        if (cand.delta_area == min_bbox_increase) {
+                            candidates_at_min_bbox.push_back(std::move(cand));
+                        }
+                    }
+                }
+            }
+            
+            if (!candidates_at_min_bbox.empty()) {
+                break;
+            }
+        }
+        
+        if (candidates_at_min_bbox.empty()) {
+            break; // No valid placement found
+        }
+        
+        // Sample from candidates weighted by overlap count
+        std::vector<int> weights;
+        weights.reserve(candidates_at_min_bbox.size());
+        for (const auto& cand : candidates_at_min_bbox) {
+            weights.push_back(cand.overlap + 1);
+        }
+        
+        std::discrete_distribution<int> dist(weights.begin(), weights.end());
+        int chosen_idx = dist(solver.rng);
+        
+        PlacementChoice& chosen = candidates_at_min_bbox[chosen_idx];
+        
+        solver.canvas.add_placement(chosen.placement);
+        solver.placed[chosen.tile_idx] = {chosen.dx, chosen.dy};
+        solver.order.push_back(chosen.tile_idx);
+        
+        remaining.erase(
+            std::remove(remaining.begin(), remaining.end(), chosen.tile_idx),
+            remaining.end()
+        );
+        tiles_placed++;
+    }
+    
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = end - start;
+    
+    GreedyResult result;
+    result.wall_time_sec = elapsed.count();
+    
+    if (solver.canvas.is_empty()) {
+        result.best_obj = 0;
+        result.bbox_width = 0;
+        result.bbox_height = 0;
+        result.bbox_area = 0;
+    } else {
+        int width = solver.canvas.xmax - solver.canvas.xmin + 1;
+        int height = solver.canvas.ymax - solver.canvas.ymin + 1;
+        result.best_obj = std::max(width, height);
+        result.bbox_width = width;
+        result.bbox_height = height;
+        result.bbox_area = solver.canvas.bbox_area();
+    }
+    
+    result.order = solver.order;
+    for (int idx : solver.order) {
+        if (solver.placed[idx].has_value()) {
+            auto [dx, dy] = *solver.placed[idx];
+            result.placements.push_back({idx, dx, dy});
+        }
+    }
+    
+    result.canvas_xmin = solver.canvas.xmin;
+    result.canvas_xmax = solver.canvas.xmax;
+    result.canvas_ymin = solver.canvas.ymin;
+    result.canvas_ymax = solver.canvas.ymax;
+    
+    return result;
+}
+
