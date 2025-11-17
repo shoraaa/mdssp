@@ -1,0 +1,79 @@
+{
+  "timestamp": "2025-11-17T16:22:41.781597",
+  "scales": [
+    "small",
+    "medium",
+    "large"
+  ],
+  "base_seed": 42,
+  "configurations": {
+    "small": {
+      "tiles": [
+        6,
+        8,
+        10
+      ],
+      "tile_size": [
+        [
+          3,
+          3
+        ]
+      ],
+      "runs": 30,
+      "algorithms": [
+        "greedy",
+        "stochastic_greedy",
+        "genetic_greedy",
+        "genetic_stochastic",
+        "cplex"
+      ],
+      "pop_size": 50,
+      "generations": 100,
+      "description": "Small scale with CPLEX baseline"
+    },
+    "medium": {
+      "tiles": [
+        20,
+        30
+      ],
+      "tile_size": [
+        [
+          3,
+          3
+        ]
+      ],
+      "runs": 30,
+      "algorithms": [
+        "greedy",
+        "stochastic_greedy",
+        "genetic_greedy",
+        "genetic_stochastic"
+      ],
+      "pop_size": 100,
+      "generations": 200,
+      "description": "Medium scale without CPLEX"
+    },
+    "large": {
+      "tiles": [
+        50,
+        60
+      ],
+      "tile_size": [
+        [
+          3,
+          3
+        ]
+      ],
+      "runs": 20,
+      "algorithms": [
+        "greedy",
+        "stochastic_greedy",
+        "genetic_greedy",
+        "genetic_stochastic"
+      ],
+      "pop_size": 150,
+      "generations": 300,
+      "description": "Large scale scalability testing"
+    }
+  }
+}

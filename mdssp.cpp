@@ -42,9 +42,15 @@ struct UnifiedResult {
     double wall_time_sec;
     std::vector<std::vector<int>> placements;
     std::string status;
+    // Genetic algorithm specific stats
+    int total_crossovers;
+    int crossovers_needing_completion;
+    int total_tiles_completed;
     
     UnifiedResult() : best_obj(0), bbox_width(0), bbox_height(0), 
-                      bbox_area(0), wall_time_sec(0.0), status("success") {}
+                      bbox_area(0), wall_time_sec(0.0), status("success"),
+                      total_crossovers(0), crossovers_needing_completion(0),
+                      total_tiles_completed(0) {}
 };
 
 void print_result(const std::string& algorithm, const UnifiedResult& result) {
@@ -118,7 +124,7 @@ int main(int argc, char* argv[]) {
         cxxopts::Options options("mdssp", "2D Shortest Superarray Problem Solver");
         
         options.add_options()
-            ("a,algorithm", "Algorithm to use: greedy, genetic, cplex, all", 
+            ("a,algorithm", "Algorithm to use: greedy, stochastic_greedy, genetic, genetic_greedy, genetic_stochastic, cplex, all", 
              cxxopts::value<std::string>()->default_value("greedy"))
             ("d,dataset", "Dataset file (JSON format)", 
              cxxopts::value<std::string>()->default_value(""))
@@ -136,7 +142,9 @@ int main(int argc, char* argv[]) {
              cxxopts::value<int>()->default_value("10"))
             ("generations", "Genetic algorithm generations",
              cxxopts::value<int>()->default_value("20"))
-            ("time-limit", "CPLEX time limit in seconds",
+            ("init-mode", "Genetic algorithm initialization mode: greedy, stochastic, random",
+             cxxopts::value<std::string>()->default_value("stochastic"))
+            ("time-limit", "CPLEX/BnB time limit in seconds",
              cxxopts::value<int>()->default_value("60"))
             ("verify", "Verify the solution", 
              cxxopts::value<bool>()->default_value("false"))
@@ -157,8 +165,12 @@ int main(int argc, char* argv[]) {
             std::cout << "\nExamples:\n";
             std::cout << "  ./mdssp -a greedy -T 10 -n 3 -m 3\n";
             std::cout << "  ./mdssp -a greedy -T 10 -n 3 -m 3 --verify\n";
-            std::cout << "  ./mdssp -a genetic -T 10 -n 3 -m 3 --pop-size 20 --generations 50\n";
+            std::cout << "  ./mdssp -a stochastic_greedy -T 10 -n 3 -m 3\n";
+            std::cout << "  ./mdssp -a genetic_greedy -T 10 -n 3 -m 3 --pop-size 20 --generations 50\n";
+            std::cout << "  ./mdssp -a genetic_stochastic -T 10 -n 3 -m 3 --pop-size 20 --generations 50\n";
+            std::cout << "  ./mdssp -a genetic -T 10 -n 3 -m 3 --init-mode greedy\n";
             std::cout << "  ./mdssp -a all -T 10 -n 3 -m 3 --compare\n";
+            std::cout << "  ./mdssp -a all -T 10 -n 3 -m 3 --output results.json\n";
             std::cout << "  ./mdssp -a greedy -T 5 -n 2 -m 2 --render\n";
             std::cout << "  ./mdssp -a cplex --dataset dataset.json\n";
             std::cout << "  ./mdssp -a greedy --dataset dataset.json --output solution.json\n";
@@ -176,11 +188,26 @@ int main(int argc, char* argv[]) {
         double p = result["probability"].as<double>();
         int pop_size = result["pop-size"].as<int>();
         int generations = result["generations"].as<int>();
+        std::string init_mode_str = result["init-mode"].as<std::string>();
         int time_limit = result["time-limit"].as<int>();
         bool verify = result["verify"].as<bool>();
         bool compare = result["compare"].as<bool>();
         bool verbose = result["verbose"].as<bool>();
         bool render = result["render"].as<bool>();
+        
+        // Parse initialization mode
+        InitMode init_mode = InitMode::STOCHASTIC_GREEDY;
+        if (init_mode_str == "greedy") {
+            init_mode = InitMode::GREEDY;
+        } else if (init_mode_str == "stochastic") {
+            init_mode = InitMode::STOCHASTIC_GREEDY;
+        } else if (init_mode_str == "random") {
+            init_mode = InitMode::RANDOM;
+        } else {
+            std::cerr << "Warning: Unknown init-mode '" << init_mode_str 
+                      << "', using default (stochastic)\n";
+            init_mode = InitMode::STOCHASTIC_GREEDY;
+        }
         
         // Validate parameters
         if (!dataset_file.empty()) {
@@ -242,7 +269,7 @@ int main(int argc, char* argv[]) {
             unified.placements = greedy_result.placements;
             unified.status = "success";
             
-            results.push_back({"Greedy", unified});
+            results.push_back({"greedy", unified});
             
             if (!compare) {
                 print_result("Greedy", unified);
@@ -264,9 +291,44 @@ int main(int argc, char* argv[]) {
             }
         }
         
-        if (algorithm == "genetic" || algorithm == "all") {
-            if (verbose) std::cout << "\nRunning Genetic algorithm...\n";
-            auto genetic_result = solve_genetic(tiles, pop_size, generations);
+        if (algorithm == "stochastic_greedy" || algorithm == "all") {
+            if (verbose) std::cout << "\nRunning Stochastic Greedy algorithm...\n";
+            auto stochastic_result = solve_greedy_stochastic(tiles, 0, seed);
+            
+            UnifiedResult unified;
+            unified.best_obj = stochastic_result.best_obj;
+            unified.bbox_width = stochastic_result.bbox_width;
+            unified.bbox_height = stochastic_result.bbox_height;
+            unified.bbox_area = stochastic_result.bbox_area;
+            unified.wall_time_sec = stochastic_result.wall_time_sec;
+            unified.placements = stochastic_result.placements;
+            unified.status = "success";
+            
+            results.push_back({"stochastic_greedy", unified});
+            
+            if (!compare) {
+                print_result("Stochastic Greedy", unified);
+                
+                if (verify) {
+                    std::vector<std::tuple<int, int, int>> placements;
+                    for (const auto& p : stochastic_result.placements) {
+                        placements.push_back({p[0], p[1], p[2]});
+                    }
+                    SolutionVerifier verifier(tiles);
+                    auto vr = verifier.verify(placements);
+                    print_verification(vr);
+                    
+                    if (render && vr.is_valid) {
+                        std::cout << "\nSolution Canvas:\n";
+                        std::cout << verifier.render_solution(placements) << "\n";
+                    }
+                }
+            }
+        }
+        
+        if (algorithm == "genetic_greedy" || (algorithm == "all")) {
+            if (verbose) std::cout << "\nRunning Genetic algorithm (Greedy Init)...\n";
+            auto genetic_result = solve_genetic(tiles, pop_size, generations, 0, InitMode::GREEDY);
             
             UnifiedResult unified;
             unified.best_obj = genetic_result.best_obj;
@@ -275,9 +337,88 @@ int main(int argc, char* argv[]) {
             unified.bbox_area = genetic_result.bbox_area;
             unified.wall_time_sec = genetic_result.wall_time_sec;
             unified.placements = genetic_result.placements;
+            unified.total_crossovers = genetic_result.total_crossovers;
+            unified.crossovers_needing_completion = genetic_result.crossovers_needing_completion;
+            unified.total_tiles_completed = genetic_result.total_tiles_completed;
             unified.status = "success";
             
-            results.push_back({"Genetic", unified});
+            results.push_back({"genetic_greedy", unified});
+            
+            if (!compare) {
+                print_result("Genetic (Greedy Init)", unified);
+                
+                if (verify) {
+                    std::vector<std::tuple<int, int, int>> placements;
+                    for (const auto& p : genetic_result.placements) {
+                        placements.push_back({p[0], p[1], p[2]});
+                    }
+                    SolutionVerifier verifier(tiles);
+                    auto vr = verifier.verify(placements);
+                    print_verification(vr);
+                    
+                    if (render && vr.is_valid) {
+                        std::cout << "\nSolution Canvas:\n";
+                        std::cout << verifier.render_solution(placements) << "\n";
+                    }
+                }
+            }
+        }
+        
+        if (algorithm == "genetic_stochastic" || (algorithm == "all")) {
+            if (verbose) std::cout << "\nRunning Genetic algorithm (Stochastic Init)...\n";
+            auto genetic_result = solve_genetic(tiles, pop_size, generations, 0, InitMode::STOCHASTIC_GREEDY);
+            
+            UnifiedResult unified;
+            unified.best_obj = genetic_result.best_obj;
+            unified.bbox_width = genetic_result.bbox_width;
+            unified.bbox_height = genetic_result.bbox_height;
+            unified.bbox_area = genetic_result.bbox_area;
+            unified.wall_time_sec = genetic_result.wall_time_sec;
+            unified.placements = genetic_result.placements;
+            unified.total_crossovers = genetic_result.total_crossovers;
+            unified.crossovers_needing_completion = genetic_result.crossovers_needing_completion;
+            unified.total_tiles_completed = genetic_result.total_tiles_completed;
+            unified.status = "success";
+            
+            results.push_back({"genetic_stochastic", unified});
+            
+            if (!compare) {
+                print_result("Genetic (Stochastic Init)", unified);
+                
+                if (verify) {
+                    std::vector<std::tuple<int, int, int>> placements;
+                    for (const auto& p : genetic_result.placements) {
+                        placements.push_back({p[0], p[1], p[2]});
+                    }
+                    SolutionVerifier verifier(tiles);
+                    auto vr = verifier.verify(placements);
+                    print_verification(vr);
+                    
+                    if (render && vr.is_valid) {
+                        std::cout << "\nSolution Canvas:\n";
+                        std::cout << verifier.render_solution(placements) << "\n";
+                    }
+                }
+            }
+        }
+        
+        if (algorithm == "genetic") {
+            if (verbose) std::cout << "\nRunning Genetic algorithm...\n";
+            auto genetic_result = solve_genetic(tiles, pop_size, generations, 0, init_mode);
+            
+            UnifiedResult unified;
+            unified.best_obj = genetic_result.best_obj;
+            unified.bbox_width = genetic_result.bbox_width;
+            unified.bbox_height = genetic_result.bbox_height;
+            unified.bbox_area = genetic_result.bbox_area;
+            unified.wall_time_sec = genetic_result.wall_time_sec;
+            unified.placements = genetic_result.placements;
+            unified.total_crossovers = genetic_result.total_crossovers;
+            unified.crossovers_needing_completion = genetic_result.crossovers_needing_completion;
+            unified.total_tiles_completed = genetic_result.total_tiles_completed;
+            unified.status = "success";
+            
+            results.push_back({"genetic", unified});
             
             if (!compare) {
                 print_result("Genetic", unified);
@@ -323,7 +464,7 @@ int main(int argc, char* argv[]) {
                     unified.placements.push_back({idx, x, y});
                 }
                 
-                results.push_back({"CPLEX", unified});
+                results.push_back({"cplex", unified});
                 
                 if (!compare) {
                     print_result("CPLEX", unified);
@@ -418,6 +559,15 @@ int main(int argc, char* argv[]) {
                     result_obj["bbox_area"] = algo_result.bbox_area;
                     result_obj["runtime_seconds"] = algo_result.wall_time_sec;
                     result_obj["num_tiles_placed"] = algo_result.placements.size();
+                    
+                    // Add genetic algorithm specific statistics if available
+                    if (algo_result.total_crossovers > 0) {
+                        result_obj["total_crossovers"] = algo_result.total_crossovers;
+                        result_obj["crossovers_needing_completion"] = algo_result.crossovers_needing_completion;
+                        result_obj["total_tiles_completed"] = algo_result.total_tiles_completed;
+                        result_obj["completion_rate"] = 
+                            (double)algo_result.crossovers_needing_completion / algo_result.total_crossovers;
+                    }
                     
                     json placements_array = json::array();
                     for (const auto& p : algo_result.placements) {

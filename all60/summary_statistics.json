@@ -1,0 +1,71 @@
+{
+  "GA (Greedy Init)": {
+    "num_runs": 10,
+    "objective": {
+      "mean": 15.3,
+      "min": 15,
+      "max": 16,
+      "std": 0.45825756949558405
+    },
+    "runtime": {
+      "mean": 25.1546896,
+      "min": 8.799353,
+      "max": 52.488818,
+      "std": 13.09717574953118
+    },
+    "bbox_width": {
+      "mean": 15.2,
+      "std": 0.4
+    },
+    "bbox_height": {
+      "mean": 15.3,
+      "std": 0.45825756949558405
+    }
+  },
+  "Greedy": {
+    "num_runs": 10,
+    "objective": {
+      "mean": 15.9,
+      "min": 15,
+      "max": 16,
+      "std": 0.3
+    },
+    "runtime": {
+      "mean": 1.970193,
+      "min": 1.861755,
+      "max": 2.164511,
+      "std": 0.0907985825781438
+    },
+    "bbox_width": {
+      "mean": 15.4,
+      "std": 0.66332495807108
+    },
+    "bbox_height": {
+      "mean": 15.9,
+      "std": 0.3
+    }
+  },
+  "GA (Stochastic Init)": {
+    "num_runs": 10,
+    "objective": {
+      "mean": 15.4,
+      "min": 15,
+      "max": 16,
+      "std": 0.4898979485566356
+    },
+    "runtime": {
+      "mean": 31.010979900000002,
+      "min": 9.120486,
+      "max": 56.178534,
+      "std": 16.730757553346127
+    },
+    "bbox_width": {
+      "mean": 15.3,
+      "std": 0.45825756949558405
+    },
+    "bbox_height": {
+      "mean": 15.3,
+      "std": 0.45825756949558405
+    }
+  }
+}

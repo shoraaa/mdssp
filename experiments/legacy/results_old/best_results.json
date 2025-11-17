@@ -1,0 +1,34 @@
+{
+  "Greedy": {
+    "objective": 6,
+    "runtime": 0.391319,
+    "bbox_width": 6,
+    "bbox_height": 6,
+    "run": 54,
+    "seed": 5342
+  },
+  "Stochastic Greedy": {
+    "objective": 7,
+    "runtime": 0.323513,
+    "bbox_width": 7,
+    "bbox_height": 7,
+    "run": 1,
+    "seed": 43
+  },
+  "Genetic": {
+    "objective": 6,
+    "runtime": 2.451242,
+    "bbox_width": 6,
+    "bbox_height": 6,
+    "run": 3,
+    "seed": 242
+  },
+  "CPLEX": {
+    "objective": 6,
+    "runtime": 11.721413,
+    "bbox_width": 6,
+    "bbox_height": 5,
+    "run": 3,
+    "seed": 242
+  }
+}

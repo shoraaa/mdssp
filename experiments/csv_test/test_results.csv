@@ -1,0 +1,2 @@
+algorithm,objective,bbox_width,bbox_height,runtime_seconds,num_tiles_placed,total_crossovers,crossovers_needing_completion,total_tiles_completed,completion_rate
+genetic_greedy,7,7,7,0.23338195,6,25,12,23,0.48

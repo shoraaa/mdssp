@@ -1,0 +1,26 @@
+{
+  "Greedy": {
+    "objective": 10,
+    "runtime": 0.696801,
+    "bbox_width": 10,
+    "bbox_height": 10,
+    "run": 10,
+    "seed": 942
+  },
+  "Stochastic Greedy": {
+    "objective": 10,
+    "runtime": 0.542921,
+    "bbox_width": 10,
+    "bbox_height": 9,
+    "run": 15,
+    "seed": 1443
+  },
+  "Genetic": {
+    "objective": 9,
+    "runtime": 2.87081,
+    "bbox_width": 9,
+    "bbox_height": 9,
+    "run": 17,
+    "seed": 1642
+  }
+}

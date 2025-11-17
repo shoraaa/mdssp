@@ -1,0 +1,22 @@
+MDSSP Algorithm Comparison Summary
+================================================================================
+
+Configuration:
+  Tiles: 60
+  Tile size: 3 × 3
+  Number of runs: 10
+
+Average Statistics:
+--------------------------------------------------------------------------------
+
+Greedy:
+  Avg Objective: 15.70 ± 0.46
+  Avg Runtime: 1.9770s ± 0.2228s
+
+GA (Stochastic Init):
+  Avg Objective: 15.50 ± 0.50
+  Avg Runtime: 30.3530s ± 13.7506s
+
+GA (Greedy Init):
+  Avg Objective: 15.20 ± 0.40
+  Avg Runtime: 22.9717s ± 14.3545s

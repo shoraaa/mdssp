@@ -1,0 +1,15 @@
+{
+  "tiles": 6,
+  "n": 3,
+  "m": 3,
+  "runs": 2,
+  "seed": 42,
+  "algorithms": [
+    "genetic",
+    "genetic_greedy",
+    "genetic_stochastic"
+  ],
+  "pop_size": 128,
+  "generations": 64,
+  "bnb_time_limit": 10
+}

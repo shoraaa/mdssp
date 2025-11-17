@@ -8,9 +8,9 @@ converts them to 3x3 tiles, and outputs them in JSON format compatible with mdss
 
 import json
 
-L = 11
-H = 2
-W = 5
+L = 9
+H = 3
+W = 3
 
 # Source binary strings
 sources = [
@@ -24,7 +24,7 @@ sources = [
     "0111010000",
 ]
 
-sources = [
+sources2 = [
     "00001010000", 
     "00101001011", 
     "10100101111", 

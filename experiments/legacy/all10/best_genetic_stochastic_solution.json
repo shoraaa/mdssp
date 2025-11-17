@@ -1,0 +1,68 @@
+{
+  "results": [
+    {
+      "algorithm": "Genetic",
+      "bbox_area": 64,
+      "bbox_height": 8,
+      "bbox_width": 8,
+      "canvas": ". . 1 1 1 0 0 1\n0 0 1 0 0 0 0 1\n0 0 1 1 1 1 1 0\n1 1 1 0 0 0 1 .\n. 0 1 1 0 0 1 1\n0 1 1 0 1 0 1 1\n0 0 0 0 0 0 0 1\n1 0 1 . 1 1 1 .",
+      "num_tiles_placed": 10,
+      "objective": 8,
+      "placements": [
+        {
+          "tile_id": 1,
+          "x": -4,
+          "y": 0
+        },
+        {
+          "tile_id": 2,
+          "x": -4,
+          "y": -4
+        },
+        {
+          "tile_id": 9,
+          "x": 1,
+          "y": -5
+        },
+        {
+          "tile_id": 3,
+          "x": -2,
+          "y": -5
+        },
+        {
+          "tile_id": 0,
+          "x": -3,
+          "y": -2
+        },
+        {
+          "tile_id": 6,
+          "x": -2,
+          "y": -3
+        },
+        {
+          "tile_id": 8,
+          "x": 0,
+          "y": -2
+        },
+        {
+          "tile_id": 7,
+          "x": -1,
+          "y": -1
+        },
+        {
+          "tile_id": 4,
+          "x": 1,
+          "y": -1
+        },
+        {
+          "tile_id": 5,
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "runtime_seconds": 2.837536244,
+      "status": "success",
+      "verified": true
+    }
+  ]
+}

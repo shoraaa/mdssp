@@ -1,0 +1,3602 @@
+[
+  {
+    "run": 1,
+    "algorithm": "Greedy",
+    "seed": 42,
+    "objective": 8,
+    "runtime": 0.303581,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 1,
+    "algorithm": "Stochastic Greedy",
+    "seed": 43,
+    "objective": 7,
+    "runtime": 0.323513,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 1,
+    "algorithm": "Genetic",
+    "seed": 42,
+    "objective": 7,
+    "runtime": 2.676442,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 1,
+    "algorithm": "CPLEX",
+    "seed": 42,
+    "objective": 7,
+    "runtime": 11.193643,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 2,
+    "algorithm": "Greedy",
+    "seed": 142,
+    "objective": 8,
+    "runtime": 0.342903,
+    "bbox_width": 8,
+    "bbox_height": 6
+  },
+  {
+    "run": 2,
+    "algorithm": "Stochastic Greedy",
+    "seed": 143,
+    "objective": 7,
+    "runtime": 0.317632,
+    "bbox_width": 6,
+    "bbox_height": 7
+  },
+  {
+    "run": 2,
+    "algorithm": "Genetic",
+    "seed": 142,
+    "objective": 7,
+    "runtime": 2.497766,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 2,
+    "algorithm": "CPLEX",
+    "seed": 142,
+    "objective": 7,
+    "runtime": 12.005908,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 3,
+    "algorithm": "Greedy",
+    "seed": 242,
+    "objective": 9,
+    "runtime": 0.364274,
+    "bbox_width": 7,
+    "bbox_height": 9
+  },
+  {
+    "run": 3,
+    "algorithm": "Stochastic Greedy",
+    "seed": 243,
+    "objective": 8,
+    "runtime": 0.389954,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 3,
+    "algorithm": "Genetic",
+    "seed": 242,
+    "objective": 6,
+    "runtime": 2.451242,
+    "bbox_width": 6,
+    "bbox_height": 6
+  },
+  {
+    "run": 3,
+    "algorithm": "CPLEX",
+    "seed": 242,
+    "objective": 6,
+    "runtime": 11.721413,
+    "bbox_width": 6,
+    "bbox_height": 5
+  },
+  {
+    "run": 4,
+    "algorithm": "Greedy",
+    "seed": 342,
+    "objective": 7,
+    "runtime": 0.3627,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 4,
+    "algorithm": "Stochastic Greedy",
+    "seed": 343,
+    "objective": 7,
+    "runtime": 0.378447,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 4,
+    "algorithm": "Genetic",
+    "seed": 342,
+    "objective": 8,
+    "runtime": 2.541879,
+    "bbox_width": 8,
+    "bbox_height": 6
+  },
+  {
+    "run": 4,
+    "algorithm": "CPLEX",
+    "seed": 342,
+    "objective": 7,
+    "runtime": 12.228661,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 5,
+    "algorithm": "Greedy",
+    "seed": 442,
+    "objective": 8,
+    "runtime": 0.382485,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 5,
+    "algorithm": "Stochastic Greedy",
+    "seed": 443,
+    "objective": 8,
+    "runtime": 0.31731,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 5,
+    "algorithm": "Genetic",
+    "seed": 442,
+    "objective": 8,
+    "runtime": 2.608311,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 5,
+    "algorithm": "CPLEX",
+    "seed": 442,
+    "objective": 7,
+    "runtime": 12.108082,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 6,
+    "algorithm": "Greedy",
+    "seed": 542,
+    "objective": 9,
+    "runtime": 0.382092,
+    "bbox_width": 6,
+    "bbox_height": 9
+  },
+  {
+    "run": 6,
+    "algorithm": "Stochastic Greedy",
+    "seed": 543,
+    "objective": 8,
+    "runtime": 0.34516,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 6,
+    "algorithm": "Genetic",
+    "seed": 542,
+    "objective": 7,
+    "runtime": 2.423058,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 6,
+    "algorithm": "CPLEX",
+    "seed": 542,
+    "objective": 8,
+    "runtime": 12.737262,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 7,
+    "algorithm": "Greedy",
+    "seed": 642,
+    "objective": 8,
+    "runtime": 0.322396,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 7,
+    "algorithm": "Stochastic Greedy",
+    "seed": 643,
+    "objective": 8,
+    "runtime": 0.352207,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 7,
+    "algorithm": "Genetic",
+    "seed": 642,
+    "objective": 6,
+    "runtime": 2.654647,
+    "bbox_width": 6,
+    "bbox_height": 6
+  },
+  {
+    "run": 7,
+    "algorithm": "CPLEX",
+    "seed": 642,
+    "objective": 6,
+    "runtime": 11.098908,
+    "bbox_width": 6,
+    "bbox_height": 6
+  },
+  {
+    "run": 8,
+    "algorithm": "Greedy",
+    "seed": 742,
+    "objective": 7,
+    "runtime": 0.350165,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 8,
+    "algorithm": "Stochastic Greedy",
+    "seed": 743,
+    "objective": 7,
+    "runtime": 0.366888,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 8,
+    "algorithm": "Genetic",
+    "seed": 742,
+    "objective": 6,
+    "runtime": 2.199114,
+    "bbox_width": 6,
+    "bbox_height": 5
+  },
+  {
+    "run": 8,
+    "algorithm": "CPLEX",
+    "seed": 742,
+    "objective": 7,
+    "runtime": 13.677919,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 9,
+    "algorithm": "Greedy",
+    "seed": 842,
+    "objective": 9,
+    "runtime": 0.392777,
+    "bbox_width": 7,
+    "bbox_height": 9
+  },
+  {
+    "run": 9,
+    "algorithm": "Stochastic Greedy",
+    "seed": 843,
+    "objective": 8,
+    "runtime": 0.304749,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 9,
+    "algorithm": "Genetic",
+    "seed": 842,
+    "objective": 7,
+    "runtime": 2.426447,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 9,
+    "algorithm": "CPLEX",
+    "seed": 842,
+    "objective": 7,
+    "runtime": 12.131471,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 10,
+    "algorithm": "Greedy",
+    "seed": 942,
+    "objective": 8,
+    "runtime": 0.395095,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 10,
+    "algorithm": "Stochastic Greedy",
+    "seed": 943,
+    "objective": 8,
+    "runtime": 0.344536,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 10,
+    "algorithm": "Genetic",
+    "seed": 942,
+    "objective": 8,
+    "runtime": 2.683778,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 10,
+    "algorithm": "CPLEX",
+    "seed": 942,
+    "objective": 8,
+    "runtime": 11.43986,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 11,
+    "algorithm": "Greedy",
+    "seed": 1042,
+    "objective": 7,
+    "runtime": 0.335401,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 11,
+    "algorithm": "Stochastic Greedy",
+    "seed": 1043,
+    "objective": 8,
+    "runtime": 0.314871,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 11,
+    "algorithm": "Genetic",
+    "seed": 1042,
+    "objective": 7,
+    "runtime": 2.275149,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 11,
+    "algorithm": "CPLEX",
+    "seed": 1042,
+    "objective": 7,
+    "runtime": 12.655876,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 12,
+    "algorithm": "Greedy",
+    "seed": 1142,
+    "objective": 8,
+    "runtime": 0.355965,
+    "bbox_width": 8,
+    "bbox_height": 6
+  },
+  {
+    "run": 12,
+    "algorithm": "Stochastic Greedy",
+    "seed": 1143,
+    "objective": 7,
+    "runtime": 0.361577,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 12,
+    "algorithm": "Genetic",
+    "seed": 1142,
+    "objective": 7,
+    "runtime": 2.618435,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 12,
+    "algorithm": "CPLEX",
+    "seed": 1142,
+    "objective": 7,
+    "runtime": 12.641791,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 13,
+    "algorithm": "Greedy",
+    "seed": 1242,
+    "objective": 7,
+    "runtime": 0.364618,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 13,
+    "algorithm": "Stochastic Greedy",
+    "seed": 1243,
+    "objective": 9,
+    "runtime": 0.429325,
+    "bbox_width": 8,
+    "bbox_height": 9
+  },
+  {
+    "run": 13,
+    "algorithm": "Genetic",
+    "seed": 1242,
+    "objective": 7,
+    "runtime": 2.557107,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 13,
+    "algorithm": "CPLEX",
+    "seed": 1242,
+    "objective": 7,
+    "runtime": 12.478595,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 14,
+    "algorithm": "Greedy",
+    "seed": 1342,
+    "objective": 7,
+    "runtime": 0.348863,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 14,
+    "algorithm": "Stochastic Greedy",
+    "seed": 1343,
+    "objective": 7,
+    "runtime": 0.296375,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 14,
+    "algorithm": "Genetic",
+    "seed": 1342,
+    "objective": 7,
+    "runtime": 2.353677,
+    "bbox_width": 6,
+    "bbox_height": 7
+  },
+  {
+    "run": 14,
+    "algorithm": "CPLEX",
+    "seed": 1342,
+    "objective": 7,
+    "runtime": 13.571932,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 15,
+    "algorithm": "Greedy",
+    "seed": 1442,
+    "objective": 9,
+    "runtime": 0.350362,
+    "bbox_width": 8,
+    "bbox_height": 9
+  },
+  {
+    "run": 15,
+    "algorithm": "Stochastic Greedy",
+    "seed": 1443,
+    "objective": 8,
+    "runtime": 0.378251,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 15,
+    "algorithm": "Genetic",
+    "seed": 1442,
+    "objective": 7,
+    "runtime": 2.550976,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 15,
+    "algorithm": "CPLEX",
+    "seed": 1442,
+    "objective": 8,
+    "runtime": 12.24296,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 16,
+    "algorithm": "Greedy",
+    "seed": 1542,
+    "objective": 7,
+    "runtime": 0.268608,
+    "bbox_width": 6,
+    "bbox_height": 7
+  },
+  {
+    "run": 16,
+    "algorithm": "Stochastic Greedy",
+    "seed": 1543,
+    "objective": 8,
+    "runtime": 0.372683,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 16,
+    "algorithm": "Genetic",
+    "seed": 1542,
+    "objective": 6,
+    "runtime": 2.523161,
+    "bbox_width": 6,
+    "bbox_height": 6
+  },
+  {
+    "run": 16,
+    "algorithm": "CPLEX",
+    "seed": 1542,
+    "objective": 7,
+    "runtime": 12.619064,
+    "bbox_width": 6,
+    "bbox_height": 7
+  },
+  {
+    "run": 17,
+    "algorithm": "Greedy",
+    "seed": 1642,
+    "objective": 8,
+    "runtime": 0.360713,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 17,
+    "algorithm": "Stochastic Greedy",
+    "seed": 1643,
+    "objective": 8,
+    "runtime": 0.362744,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 17,
+    "algorithm": "Genetic",
+    "seed": 1642,
+    "objective": 7,
+    "runtime": 2.538904,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 17,
+    "algorithm": "CPLEX",
+    "seed": 1642,
+    "objective": 7,
+    "runtime": 13.302693,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 18,
+    "algorithm": "Greedy",
+    "seed": 1742,
+    "objective": 8,
+    "runtime": 0.424975,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 18,
+    "algorithm": "Stochastic Greedy",
+    "seed": 1743,
+    "objective": 8,
+    "runtime": 0.323537,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 18,
+    "algorithm": "Genetic",
+    "seed": 1742,
+    "objective": 7,
+    "runtime": 2.345025,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 18,
+    "algorithm": "CPLEX",
+    "seed": 1742,
+    "objective": 7,
+    "runtime": 11.780942,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 19,
+    "algorithm": "Greedy",
+    "seed": 1842,
+    "objective": 7,
+    "runtime": 0.301007,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 19,
+    "algorithm": "Stochastic Greedy",
+    "seed": 1843,
+    "objective": 7,
+    "runtime": 0.333898,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 19,
+    "algorithm": "Genetic",
+    "seed": 1842,
+    "objective": 7,
+    "runtime": 2.375002,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 19,
+    "algorithm": "CPLEX",
+    "seed": 1842,
+    "objective": 7,
+    "runtime": 12.26275,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 20,
+    "algorithm": "Greedy",
+    "seed": 1942,
+    "objective": 7,
+    "runtime": 0.398793,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 20,
+    "algorithm": "Stochastic Greedy",
+    "seed": 1943,
+    "objective": 7,
+    "runtime": 0.240812,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 20,
+    "algorithm": "Genetic",
+    "seed": 1942,
+    "objective": 7,
+    "runtime": 2.272482,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 20,
+    "algorithm": "CPLEX",
+    "seed": 1942,
+    "objective": 7,
+    "runtime": 13.073483,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 21,
+    "algorithm": "Greedy",
+    "seed": 2042,
+    "objective": 7,
+    "runtime": 0.307095,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 21,
+    "algorithm": "Stochastic Greedy",
+    "seed": 2043,
+    "objective": 8,
+    "runtime": 0.406055,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 21,
+    "algorithm": "Genetic",
+    "seed": 2042,
+    "objective": 7,
+    "runtime": 2.439213,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 21,
+    "algorithm": "CPLEX",
+    "seed": 2042,
+    "objective": 7,
+    "runtime": 11.869861,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 22,
+    "algorithm": "Greedy",
+    "seed": 2142,
+    "objective": 9,
+    "runtime": 0.391589,
+    "bbox_width": 9,
+    "bbox_height": 8
+  },
+  {
+    "run": 22,
+    "algorithm": "Stochastic Greedy",
+    "seed": 2143,
+    "objective": 9,
+    "runtime": 0.415795,
+    "bbox_width": 8,
+    "bbox_height": 9
+  },
+  {
+    "run": 22,
+    "algorithm": "Genetic",
+    "seed": 2142,
+    "objective": 8,
+    "runtime": 2.602927,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 22,
+    "algorithm": "CPLEX",
+    "seed": 2142,
+    "objective": 7,
+    "runtime": 11.680175,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 23,
+    "algorithm": "Greedy",
+    "seed": 2242,
+    "objective": 7,
+    "runtime": 0.358538,
+    "bbox_width": 6,
+    "bbox_height": 7
+  },
+  {
+    "run": 23,
+    "algorithm": "Stochastic Greedy",
+    "seed": 2243,
+    "objective": 8,
+    "runtime": 0.351373,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 23,
+    "algorithm": "Genetic",
+    "seed": 2242,
+    "objective": 7,
+    "runtime": 2.450551,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 23,
+    "algorithm": "CPLEX",
+    "seed": 2242,
+    "objective": 7,
+    "runtime": 12.033702,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 24,
+    "algorithm": "Greedy",
+    "seed": 2342,
+    "objective": 8,
+    "runtime": 0.247879,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 24,
+    "algorithm": "Stochastic Greedy",
+    "seed": 2343,
+    "objective": 7,
+    "runtime": 0.379252,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 24,
+    "algorithm": "Genetic",
+    "seed": 2342,
+    "objective": 8,
+    "runtime": 2.659832,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 24,
+    "algorithm": "CPLEX",
+    "seed": 2342,
+    "objective": 8,
+    "runtime": 11.572022,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 25,
+    "algorithm": "Greedy",
+    "seed": 2442,
+    "objective": 8,
+    "runtime": 0.338506,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 25,
+    "algorithm": "Stochastic Greedy",
+    "seed": 2443,
+    "objective": 7,
+    "runtime": 0.330136,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 25,
+    "algorithm": "Genetic",
+    "seed": 2442,
+    "objective": 7,
+    "runtime": 2.361981,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 25,
+    "algorithm": "CPLEX",
+    "seed": 2442,
+    "objective": 8,
+    "runtime": 12.539581,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 26,
+    "algorithm": "Greedy",
+    "seed": 2542,
+    "objective": 8,
+    "runtime": 0.35788,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 26,
+    "algorithm": "Stochastic Greedy",
+    "seed": 2543,
+    "objective": 8,
+    "runtime": 0.355475,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 26,
+    "algorithm": "Genetic",
+    "seed": 2542,
+    "objective": 7,
+    "runtime": 2.434229,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 26,
+    "algorithm": "CPLEX",
+    "seed": 2542,
+    "objective": 7,
+    "runtime": 12.021636,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 27,
+    "algorithm": "Greedy",
+    "seed": 2642,
+    "objective": 9,
+    "runtime": 0.376565,
+    "bbox_width": 9,
+    "bbox_height": 8
+  },
+  {
+    "run": 27,
+    "algorithm": "Stochastic Greedy",
+    "seed": 2643,
+    "objective": 7,
+    "runtime": 0.36377,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 27,
+    "algorithm": "Genetic",
+    "seed": 2642,
+    "objective": 7,
+    "runtime": 2.350449,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 27,
+    "algorithm": "CPLEX",
+    "seed": 2642,
+    "objective": 7,
+    "runtime": 13.163837,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 28,
+    "algorithm": "Greedy",
+    "seed": 2742,
+    "objective": 8,
+    "runtime": 0.390657,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 28,
+    "algorithm": "Stochastic Greedy",
+    "seed": 2743,
+    "objective": 8,
+    "runtime": 0.366204,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 28,
+    "algorithm": "Genetic",
+    "seed": 2742,
+    "objective": 8,
+    "runtime": 2.529547,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 28,
+    "algorithm": "CPLEX",
+    "seed": 2742,
+    "objective": 7,
+    "runtime": 11.734279,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 29,
+    "algorithm": "Greedy",
+    "seed": 2842,
+    "objective": 8,
+    "runtime": 0.357432,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 29,
+    "algorithm": "Stochastic Greedy",
+    "seed": 2843,
+    "objective": 8,
+    "runtime": 0.398309,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 29,
+    "algorithm": "Genetic",
+    "seed": 2842,
+    "objective": 7,
+    "runtime": 2.391766,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 29,
+    "algorithm": "CPLEX",
+    "seed": 2842,
+    "objective": 7,
+    "runtime": 11.6332,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 30,
+    "algorithm": "Greedy",
+    "seed": 2942,
+    "objective": 7,
+    "runtime": 0.379178,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 30,
+    "algorithm": "Stochastic Greedy",
+    "seed": 2943,
+    "objective": 9,
+    "runtime": 0.419081,
+    "bbox_width": 7,
+    "bbox_height": 9
+  },
+  {
+    "run": 30,
+    "algorithm": "Genetic",
+    "seed": 2942,
+    "objective": 7,
+    "runtime": 2.082599,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 30,
+    "algorithm": "CPLEX",
+    "seed": 2942,
+    "objective": 7,
+    "runtime": 11.797249,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 31,
+    "algorithm": "Greedy",
+    "seed": 3042,
+    "objective": 7,
+    "runtime": 0.290765,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 31,
+    "algorithm": "Stochastic Greedy",
+    "seed": 3043,
+    "objective": 9,
+    "runtime": 0.406026,
+    "bbox_width": 8,
+    "bbox_height": 9
+  },
+  {
+    "run": 31,
+    "algorithm": "Genetic",
+    "seed": 3042,
+    "objective": 7,
+    "runtime": 2.45849,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 31,
+    "algorithm": "CPLEX",
+    "seed": 3042,
+    "objective": 7,
+    "runtime": 11.02507,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 32,
+    "algorithm": "Greedy",
+    "seed": 3142,
+    "objective": 9,
+    "runtime": 0.359615,
+    "bbox_width": 7,
+    "bbox_height": 9
+  },
+  {
+    "run": 32,
+    "algorithm": "Stochastic Greedy",
+    "seed": 3143,
+    "objective": 9,
+    "runtime": 0.370689,
+    "bbox_width": 9,
+    "bbox_height": 9
+  },
+  {
+    "run": 32,
+    "algorithm": "Genetic",
+    "seed": 3142,
+    "objective": 6,
+    "runtime": 2.330619,
+    "bbox_width": 6,
+    "bbox_height": 6
+  },
+  {
+    "run": 32,
+    "algorithm": "CPLEX",
+    "seed": 3142,
+    "objective": 7,
+    "runtime": 13.8816,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 33,
+    "algorithm": "Greedy",
+    "seed": 3242,
+    "objective": 8,
+    "runtime": 0.369161,
+    "bbox_width": 6,
+    "bbox_height": 8
+  },
+  {
+    "run": 33,
+    "algorithm": "Stochastic Greedy",
+    "seed": 3243,
+    "objective": 8,
+    "runtime": 0.290544,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 33,
+    "algorithm": "Genetic",
+    "seed": 3242,
+    "objective": 6,
+    "runtime": 2.341803,
+    "bbox_width": 6,
+    "bbox_height": 6
+  },
+  {
+    "run": 33,
+    "algorithm": "CPLEX",
+    "seed": 3242,
+    "objective": 7,
+    "runtime": 12.822877,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 34,
+    "algorithm": "Greedy",
+    "seed": 3342,
+    "objective": 8,
+    "runtime": 0.352229,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 34,
+    "algorithm": "Stochastic Greedy",
+    "seed": 3343,
+    "objective": 7,
+    "runtime": 0.338867,
+    "bbox_width": 6,
+    "bbox_height": 7
+  },
+  {
+    "run": 34,
+    "algorithm": "Genetic",
+    "seed": 3342,
+    "objective": 8,
+    "runtime": 2.566099,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 34,
+    "algorithm": "CPLEX",
+    "seed": 3342,
+    "objective": 8,
+    "runtime": 12.920556,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 35,
+    "algorithm": "Greedy",
+    "seed": 3442,
+    "objective": 7,
+    "runtime": 0.302532,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 35,
+    "algorithm": "Stochastic Greedy",
+    "seed": 3443,
+    "objective": 9,
+    "runtime": 0.385626,
+    "bbox_width": 7,
+    "bbox_height": 9
+  },
+  {
+    "run": 35,
+    "algorithm": "Genetic",
+    "seed": 3442,
+    "objective": 6,
+    "runtime": 2.602933,
+    "bbox_width": 6,
+    "bbox_height": 6
+  },
+  {
+    "run": 35,
+    "algorithm": "CPLEX",
+    "seed": 3442,
+    "objective": 7,
+    "runtime": 11.168921,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 36,
+    "algorithm": "Greedy",
+    "seed": 3542,
+    "objective": 8,
+    "runtime": 0.386878,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 36,
+    "algorithm": "Stochastic Greedy",
+    "seed": 3543,
+    "objective": 9,
+    "runtime": 0.409453,
+    "bbox_width": 9,
+    "bbox_height": 8
+  },
+  {
+    "run": 36,
+    "algorithm": "Genetic",
+    "seed": 3542,
+    "objective": 8,
+    "runtime": 2.534886,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 36,
+    "algorithm": "CPLEX",
+    "seed": 3542,
+    "objective": 7,
+    "runtime": 11.815728,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 37,
+    "algorithm": "Greedy",
+    "seed": 3642,
+    "objective": 8,
+    "runtime": 0.374209,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 37,
+    "algorithm": "Stochastic Greedy",
+    "seed": 3643,
+    "objective": 9,
+    "runtime": 0.382607,
+    "bbox_width": 9,
+    "bbox_height": 7
+  },
+  {
+    "run": 37,
+    "algorithm": "Genetic",
+    "seed": 3642,
+    "objective": 8,
+    "runtime": 2.607953,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 37,
+    "algorithm": "CPLEX",
+    "seed": 3642,
+    "objective": 7,
+    "runtime": 12.892345,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 38,
+    "algorithm": "Greedy",
+    "seed": 3742,
+    "objective": 7,
+    "runtime": 0.33999,
+    "bbox_width": 6,
+    "bbox_height": 7
+  },
+  {
+    "run": 38,
+    "algorithm": "Stochastic Greedy",
+    "seed": 3743,
+    "objective": 8,
+    "runtime": 0.382687,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 38,
+    "algorithm": "Genetic",
+    "seed": 3742,
+    "objective": 7,
+    "runtime": 2.359123,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 38,
+    "algorithm": "CPLEX",
+    "seed": 3742,
+    "objective": 7,
+    "runtime": 11.424722,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 39,
+    "algorithm": "Greedy",
+    "seed": 3842,
+    "objective": 8,
+    "runtime": 0.33275,
+    "bbox_width": 6,
+    "bbox_height": 8
+  },
+  {
+    "run": 39,
+    "algorithm": "Stochastic Greedy",
+    "seed": 3843,
+    "objective": 8,
+    "runtime": 0.370452,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 39,
+    "algorithm": "Genetic",
+    "seed": 3842,
+    "objective": 7,
+    "runtime": 2.679714,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 39,
+    "algorithm": "CPLEX",
+    "seed": 3842,
+    "objective": 7,
+    "runtime": 13.372321,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 40,
+    "algorithm": "Greedy",
+    "seed": 3942,
+    "objective": 8,
+    "runtime": 0.332226,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 40,
+    "algorithm": "Stochastic Greedy",
+    "seed": 3943,
+    "objective": 8,
+    "runtime": 0.381947,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 40,
+    "algorithm": "Genetic",
+    "seed": 3942,
+    "objective": 7,
+    "runtime": 2.510562,
+    "bbox_width": 6,
+    "bbox_height": 7
+  },
+  {
+    "run": 40,
+    "algorithm": "CPLEX",
+    "seed": 3942,
+    "objective": 7,
+    "runtime": 10.979021,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 41,
+    "algorithm": "Greedy",
+    "seed": 4042,
+    "objective": 8,
+    "runtime": 0.367808,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 41,
+    "algorithm": "Stochastic Greedy",
+    "seed": 4043,
+    "objective": 7,
+    "runtime": 0.332202,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 41,
+    "algorithm": "Genetic",
+    "seed": 4042,
+    "objective": 7,
+    "runtime": 2.597724,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 41,
+    "algorithm": "CPLEX",
+    "seed": 4042,
+    "objective": 7,
+    "runtime": 12.307986,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 42,
+    "algorithm": "Greedy",
+    "seed": 4142,
+    "objective": 8,
+    "runtime": 0.263654,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 42,
+    "algorithm": "Stochastic Greedy",
+    "seed": 4143,
+    "objective": 7,
+    "runtime": 0.353406,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 42,
+    "algorithm": "Genetic",
+    "seed": 4142,
+    "objective": 8,
+    "runtime": 2.66845,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 42,
+    "algorithm": "CPLEX",
+    "seed": 4142,
+    "objective": 8,
+    "runtime": 11.722648,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 43,
+    "algorithm": "Greedy",
+    "seed": 4242,
+    "objective": 8,
+    "runtime": 0.353343,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 43,
+    "algorithm": "Stochastic Greedy",
+    "seed": 4243,
+    "objective": 7,
+    "runtime": 0.271012,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 43,
+    "algorithm": "Genetic",
+    "seed": 4242,
+    "objective": 7,
+    "runtime": 2.401207,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 43,
+    "algorithm": "CPLEX",
+    "seed": 4242,
+    "objective": 7,
+    "runtime": 12.115226,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 44,
+    "algorithm": "Greedy",
+    "seed": 4342,
+    "objective": 7,
+    "runtime": 0.353371,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 44,
+    "algorithm": "Stochastic Greedy",
+    "seed": 4343,
+    "objective": 7,
+    "runtime": 0.384144,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 44,
+    "algorithm": "Genetic",
+    "seed": 4342,
+    "objective": 7,
+    "runtime": 2.423628,
+    "bbox_width": 6,
+    "bbox_height": 7
+  },
+  {
+    "run": 44,
+    "algorithm": "CPLEX",
+    "seed": 4342,
+    "objective": 7,
+    "runtime": 12.197972,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 45,
+    "algorithm": "Greedy",
+    "seed": 4442,
+    "objective": 8,
+    "runtime": 0.396453,
+    "bbox_width": 8,
+    "bbox_height": 6
+  },
+  {
+    "run": 45,
+    "algorithm": "Stochastic Greedy",
+    "seed": 4443,
+    "objective": 8,
+    "runtime": 0.323591,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 45,
+    "algorithm": "Genetic",
+    "seed": 4442,
+    "objective": 6,
+    "runtime": 2.357917,
+    "bbox_width": 6,
+    "bbox_height": 6
+  },
+  {
+    "run": 45,
+    "algorithm": "CPLEX",
+    "seed": 4442,
+    "objective": 6,
+    "runtime": 12.010982,
+    "bbox_width": 6,
+    "bbox_height": 6
+  },
+  {
+    "run": 46,
+    "algorithm": "Greedy",
+    "seed": 4542,
+    "objective": 8,
+    "runtime": 0.313704,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 46,
+    "algorithm": "Stochastic Greedy",
+    "seed": 4543,
+    "objective": 9,
+    "runtime": 0.416101,
+    "bbox_width": 9,
+    "bbox_height": 8
+  },
+  {
+    "run": 46,
+    "algorithm": "Genetic",
+    "seed": 4542,
+    "objective": 6,
+    "runtime": 2.469958,
+    "bbox_width": 6,
+    "bbox_height": 6
+  },
+  {
+    "run": 46,
+    "algorithm": "CPLEX",
+    "seed": 4542,
+    "objective": 6,
+    "runtime": 12.115098,
+    "bbox_width": 6,
+    "bbox_height": 6
+  },
+  {
+    "run": 47,
+    "algorithm": "Greedy",
+    "seed": 4642,
+    "objective": 7,
+    "runtime": 0.398405,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 47,
+    "algorithm": "Stochastic Greedy",
+    "seed": 4643,
+    "objective": 8,
+    "runtime": 0.386717,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 47,
+    "algorithm": "Genetic",
+    "seed": 4642,
+    "objective": 8,
+    "runtime": 2.644402,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 47,
+    "algorithm": "CPLEX",
+    "seed": 4642,
+    "objective": 7,
+    "runtime": 11.481001,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 48,
+    "algorithm": "Greedy",
+    "seed": 4742,
+    "objective": 8,
+    "runtime": 0.359419,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 48,
+    "algorithm": "Stochastic Greedy",
+    "seed": 4743,
+    "objective": 8,
+    "runtime": 0.345532,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 48,
+    "algorithm": "Genetic",
+    "seed": 4742,
+    "objective": 8,
+    "runtime": 2.57508,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 48,
+    "algorithm": "CPLEX",
+    "seed": 4742,
+    "objective": 6,
+    "runtime": 12.875488,
+    "bbox_width": 6,
+    "bbox_height": 6
+  },
+  {
+    "run": 49,
+    "algorithm": "Greedy",
+    "seed": 4842,
+    "objective": 8,
+    "runtime": 0.348834,
+    "bbox_width": 6,
+    "bbox_height": 8
+  },
+  {
+    "run": 49,
+    "algorithm": "Stochastic Greedy",
+    "seed": 4843,
+    "objective": 8,
+    "runtime": 0.344047,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 49,
+    "algorithm": "Genetic",
+    "seed": 4842,
+    "objective": 7,
+    "runtime": 2.418967,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 49,
+    "algorithm": "CPLEX",
+    "seed": 4842,
+    "objective": 7,
+    "runtime": 11.396984,
+    "bbox_width": 6,
+    "bbox_height": 7
+  },
+  {
+    "run": 50,
+    "algorithm": "Greedy",
+    "seed": 4942,
+    "objective": 8,
+    "runtime": 0.386934,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 50,
+    "algorithm": "Stochastic Greedy",
+    "seed": 4943,
+    "objective": 7,
+    "runtime": 0.285285,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 50,
+    "algorithm": "Genetic",
+    "seed": 4942,
+    "objective": 8,
+    "runtime": 2.519588,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 50,
+    "algorithm": "CPLEX",
+    "seed": 4942,
+    "objective": 7,
+    "runtime": 11.961782,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 51,
+    "algorithm": "Greedy",
+    "seed": 5042,
+    "objective": 7,
+    "runtime": 0.423637,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 51,
+    "algorithm": "Stochastic Greedy",
+    "seed": 5043,
+    "objective": 8,
+    "runtime": 0.357993,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 51,
+    "algorithm": "Genetic",
+    "seed": 5042,
+    "objective": 8,
+    "runtime": 2.215369,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 51,
+    "algorithm": "CPLEX",
+    "seed": 5042,
+    "objective": 7,
+    "runtime": 11.411211,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 52,
+    "algorithm": "Greedy",
+    "seed": 5142,
+    "objective": 8,
+    "runtime": 0.37468,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 52,
+    "algorithm": "Stochastic Greedy",
+    "seed": 5143,
+    "objective": 7,
+    "runtime": 0.356606,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 52,
+    "algorithm": "Genetic",
+    "seed": 5142,
+    "objective": 8,
+    "runtime": 2.474743,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 52,
+    "algorithm": "CPLEX",
+    "seed": 5142,
+    "objective": 8,
+    "runtime": 12.264013,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 53,
+    "algorithm": "Greedy",
+    "seed": 5242,
+    "objective": 9,
+    "runtime": 0.455142,
+    "bbox_width": 9,
+    "bbox_height": 7
+  },
+  {
+    "run": 53,
+    "algorithm": "Stochastic Greedy",
+    "seed": 5243,
+    "objective": 9,
+    "runtime": 0.378186,
+    "bbox_width": 8,
+    "bbox_height": 9
+  },
+  {
+    "run": 53,
+    "algorithm": "Genetic",
+    "seed": 5242,
+    "objective": 7,
+    "runtime": 2.484235,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 53,
+    "algorithm": "CPLEX",
+    "seed": 5242,
+    "objective": 6,
+    "runtime": 12.405481,
+    "bbox_width": 6,
+    "bbox_height": 6
+  },
+  {
+    "run": 54,
+    "algorithm": "Greedy",
+    "seed": 5342,
+    "objective": 6,
+    "runtime": 0.391319,
+    "bbox_width": 6,
+    "bbox_height": 6
+  },
+  {
+    "run": 54,
+    "algorithm": "Stochastic Greedy",
+    "seed": 5343,
+    "objective": 8,
+    "runtime": 0.357207,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 54,
+    "algorithm": "Genetic",
+    "seed": 5342,
+    "objective": 6,
+    "runtime": 2.534322,
+    "bbox_width": 6,
+    "bbox_height": 6
+  },
+  {
+    "run": 54,
+    "algorithm": "CPLEX",
+    "seed": 5342,
+    "objective": 7,
+    "runtime": 11.7779,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 55,
+    "algorithm": "Greedy",
+    "seed": 5442,
+    "objective": 9,
+    "runtime": 0.371408,
+    "bbox_width": 9,
+    "bbox_height": 9
+  },
+  {
+    "run": 55,
+    "algorithm": "Stochastic Greedy",
+    "seed": 5443,
+    "objective": 8,
+    "runtime": 0.461008,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 55,
+    "algorithm": "Genetic",
+    "seed": 5442,
+    "objective": 7,
+    "runtime": 2.549696,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 55,
+    "algorithm": "CPLEX",
+    "seed": 5442,
+    "objective": 7,
+    "runtime": 11.34048,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 56,
+    "algorithm": "Greedy",
+    "seed": 5542,
+    "objective": 8,
+    "runtime": 0.325363,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 56,
+    "algorithm": "Stochastic Greedy",
+    "seed": 5543,
+    "objective": 9,
+    "runtime": 0.434073,
+    "bbox_width": 9,
+    "bbox_height": 8
+  },
+  {
+    "run": 56,
+    "algorithm": "Genetic",
+    "seed": 5542,
+    "objective": 7,
+    "runtime": 2.110678,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 56,
+    "algorithm": "CPLEX",
+    "seed": 5542,
+    "objective": 7,
+    "runtime": 11.029171,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 57,
+    "algorithm": "Greedy",
+    "seed": 5642,
+    "objective": 7,
+    "runtime": 0.304346,
+    "bbox_width": 6,
+    "bbox_height": 7
+  },
+  {
+    "run": 57,
+    "algorithm": "Stochastic Greedy",
+    "seed": 5643,
+    "objective": 8,
+    "runtime": 0.384369,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 57,
+    "algorithm": "Genetic",
+    "seed": 5642,
+    "objective": 7,
+    "runtime": 2.535603,
+    "bbox_width": 6,
+    "bbox_height": 7
+  },
+  {
+    "run": 57,
+    "algorithm": "CPLEX",
+    "seed": 5642,
+    "objective": 7,
+    "runtime": 12.632785,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 58,
+    "algorithm": "Greedy",
+    "seed": 5742,
+    "objective": 6,
+    "runtime": 0.28233,
+    "bbox_width": 6,
+    "bbox_height": 6
+  },
+  {
+    "run": 58,
+    "algorithm": "Stochastic Greedy",
+    "seed": 5743,
+    "objective": 7,
+    "runtime": 0.377843,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 58,
+    "algorithm": "Genetic",
+    "seed": 5742,
+    "objective": 7,
+    "runtime": 2.562533,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 58,
+    "algorithm": "CPLEX",
+    "seed": 5742,
+    "objective": 7,
+    "runtime": 10.400656,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 59,
+    "algorithm": "Greedy",
+    "seed": 5842,
+    "objective": 7,
+    "runtime": 0.296574,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 59,
+    "algorithm": "Stochastic Greedy",
+    "seed": 5843,
+    "objective": 7,
+    "runtime": 0.337304,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 59,
+    "algorithm": "Genetic",
+    "seed": 5842,
+    "objective": 7,
+    "runtime": 2.39077,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 59,
+    "algorithm": "CPLEX",
+    "seed": 5842,
+    "objective": 7,
+    "runtime": 11.639433,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 60,
+    "algorithm": "Greedy",
+    "seed": 5942,
+    "objective": 7,
+    "runtime": 0.342983,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 60,
+    "algorithm": "Stochastic Greedy",
+    "seed": 5943,
+    "objective": 8,
+    "runtime": 0.406381,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 60,
+    "algorithm": "Genetic",
+    "seed": 5942,
+    "objective": 7,
+    "runtime": 2.577547,
+    "bbox_width": 6,
+    "bbox_height": 7
+  },
+  {
+    "run": 60,
+    "algorithm": "CPLEX",
+    "seed": 5942,
+    "objective": 7,
+    "runtime": 12.004584,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 61,
+    "algorithm": "Greedy",
+    "seed": 6042,
+    "objective": 7,
+    "runtime": 0.32311,
+    "bbox_width": 6,
+    "bbox_height": 7
+  },
+  {
+    "run": 61,
+    "algorithm": "Stochastic Greedy",
+    "seed": 6043,
+    "objective": 9,
+    "runtime": 0.439749,
+    "bbox_width": 8,
+    "bbox_height": 9
+  },
+  {
+    "run": 61,
+    "algorithm": "Genetic",
+    "seed": 6042,
+    "objective": 7,
+    "runtime": 2.453053,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 61,
+    "algorithm": "CPLEX",
+    "seed": 6042,
+    "objective": 6,
+    "runtime": 12.122637,
+    "bbox_width": 6,
+    "bbox_height": 6
+  },
+  {
+    "run": 62,
+    "algorithm": "Greedy",
+    "seed": 6142,
+    "objective": 8,
+    "runtime": 0.329151,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 62,
+    "algorithm": "Stochastic Greedy",
+    "seed": 6143,
+    "objective": 7,
+    "runtime": 0.388397,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 62,
+    "algorithm": "Genetic",
+    "seed": 6142,
+    "objective": 7,
+    "runtime": 2.552388,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 62,
+    "algorithm": "CPLEX",
+    "seed": 6142,
+    "objective": 7,
+    "runtime": 12.280057,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 63,
+    "algorithm": "Greedy",
+    "seed": 6242,
+    "objective": 7,
+    "runtime": 0.297568,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 63,
+    "algorithm": "Stochastic Greedy",
+    "seed": 6243,
+    "objective": 8,
+    "runtime": 0.38274,
+    "bbox_width": 6,
+    "bbox_height": 8
+  },
+  {
+    "run": 63,
+    "algorithm": "Genetic",
+    "seed": 6242,
+    "objective": 7,
+    "runtime": 2.213787,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 63,
+    "algorithm": "CPLEX",
+    "seed": 6242,
+    "objective": 7,
+    "runtime": 10.704285,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 64,
+    "algorithm": "Greedy",
+    "seed": 6342,
+    "objective": 8,
+    "runtime": 0.288828,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 64,
+    "algorithm": "Stochastic Greedy",
+    "seed": 6343,
+    "objective": 8,
+    "runtime": 0.33765,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 64,
+    "algorithm": "Genetic",
+    "seed": 6342,
+    "objective": 7,
+    "runtime": 2.557499,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 64,
+    "algorithm": "CPLEX",
+    "seed": 6342,
+    "objective": 7,
+    "runtime": 11.474903,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 65,
+    "algorithm": "Greedy",
+    "seed": 6442,
+    "objective": 8,
+    "runtime": 0.219225,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 65,
+    "algorithm": "Stochastic Greedy",
+    "seed": 6443,
+    "objective": 8,
+    "runtime": 0.40522,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 65,
+    "algorithm": "Genetic",
+    "seed": 6442,
+    "objective": 8,
+    "runtime": 2.207105,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 65,
+    "algorithm": "CPLEX",
+    "seed": 6442,
+    "objective": 7,
+    "runtime": 13.628323,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 66,
+    "algorithm": "Greedy",
+    "seed": 6542,
+    "objective": 7,
+    "runtime": 0.376127,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 66,
+    "algorithm": "Stochastic Greedy",
+    "seed": 6543,
+    "objective": 8,
+    "runtime": 0.308285,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 66,
+    "algorithm": "Genetic",
+    "seed": 6542,
+    "objective": 7,
+    "runtime": 2.280344,
+    "bbox_width": 6,
+    "bbox_height": 7
+  },
+  {
+    "run": 66,
+    "algorithm": "CPLEX",
+    "seed": 6542,
+    "objective": 7,
+    "runtime": 12.390577,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 67,
+    "algorithm": "Greedy",
+    "seed": 6642,
+    "objective": 8,
+    "runtime": 0.377888,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 67,
+    "algorithm": "Stochastic Greedy",
+    "seed": 6643,
+    "objective": 9,
+    "runtime": 0.362845,
+    "bbox_width": 8,
+    "bbox_height": 9
+  },
+  {
+    "run": 67,
+    "algorithm": "Genetic",
+    "seed": 6642,
+    "objective": 8,
+    "runtime": 2.497797,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 67,
+    "algorithm": "CPLEX",
+    "seed": 6642,
+    "objective": 8,
+    "runtime": 11.325486,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 68,
+    "algorithm": "Greedy",
+    "seed": 6742,
+    "objective": 7,
+    "runtime": 0.376786,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 68,
+    "algorithm": "Stochastic Greedy",
+    "seed": 6743,
+    "objective": 7,
+    "runtime": 0.309816,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 68,
+    "algorithm": "Genetic",
+    "seed": 6742,
+    "objective": 7,
+    "runtime": 2.550283,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 68,
+    "algorithm": "CPLEX",
+    "seed": 6742,
+    "objective": 8,
+    "runtime": 12.437888,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 69,
+    "algorithm": "Greedy",
+    "seed": 6842,
+    "objective": 7,
+    "runtime": 0.286947,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 69,
+    "algorithm": "Stochastic Greedy",
+    "seed": 6843,
+    "objective": 8,
+    "runtime": 0.29271,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 69,
+    "algorithm": "Genetic",
+    "seed": 6842,
+    "objective": 6,
+    "runtime": 1.873694,
+    "bbox_width": 6,
+    "bbox_height": 6
+  },
+  {
+    "run": 69,
+    "algorithm": "CPLEX",
+    "seed": 6842,
+    "objective": 7,
+    "runtime": 12.708858,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 70,
+    "algorithm": "Greedy",
+    "seed": 6942,
+    "objective": 7,
+    "runtime": 0.337594,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 70,
+    "algorithm": "Stochastic Greedy",
+    "seed": 6943,
+    "objective": 8,
+    "runtime": 0.319416,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 70,
+    "algorithm": "Genetic",
+    "seed": 6942,
+    "objective": 8,
+    "runtime": 2.271441,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 70,
+    "algorithm": "CPLEX",
+    "seed": 6942,
+    "objective": 7,
+    "runtime": 12.500314,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 71,
+    "algorithm": "Greedy",
+    "seed": 7042,
+    "objective": 8,
+    "runtime": 0.276103,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 71,
+    "algorithm": "Stochastic Greedy",
+    "seed": 7043,
+    "objective": 7,
+    "runtime": 0.281915,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 71,
+    "algorithm": "Genetic",
+    "seed": 7042,
+    "objective": 7,
+    "runtime": 2.145906,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 71,
+    "algorithm": "CPLEX",
+    "seed": 7042,
+    "objective": 8,
+    "runtime": 11.820083,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 72,
+    "algorithm": "Greedy",
+    "seed": 7142,
+    "objective": 7,
+    "runtime": 0.301868,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 72,
+    "algorithm": "Stochastic Greedy",
+    "seed": 7143,
+    "objective": 9,
+    "runtime": 0.296411,
+    "bbox_width": 9,
+    "bbox_height": 8
+  },
+  {
+    "run": 72,
+    "algorithm": "Genetic",
+    "seed": 7142,
+    "objective": 7,
+    "runtime": 1.821253,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 72,
+    "algorithm": "CPLEX",
+    "seed": 7142,
+    "objective": 7,
+    "runtime": 11.590859,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 73,
+    "algorithm": "Greedy",
+    "seed": 7242,
+    "objective": 9,
+    "runtime": 0.373791,
+    "bbox_width": 7,
+    "bbox_height": 9
+  },
+  {
+    "run": 73,
+    "algorithm": "Stochastic Greedy",
+    "seed": 7243,
+    "objective": 9,
+    "runtime": 0.283117,
+    "bbox_width": 7,
+    "bbox_height": 9
+  },
+  {
+    "run": 73,
+    "algorithm": "Genetic",
+    "seed": 7242,
+    "objective": 8,
+    "runtime": 2.062741,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 73,
+    "algorithm": "CPLEX",
+    "seed": 7242,
+    "objective": 8,
+    "runtime": 12.310792,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 74,
+    "algorithm": "Greedy",
+    "seed": 7342,
+    "objective": 8,
+    "runtime": 0.295604,
+    "bbox_width": 6,
+    "bbox_height": 8
+  },
+  {
+    "run": 74,
+    "algorithm": "Stochastic Greedy",
+    "seed": 7343,
+    "objective": 8,
+    "runtime": 0.282721,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 74,
+    "algorithm": "Genetic",
+    "seed": 7342,
+    "objective": 7,
+    "runtime": 2.15364,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 74,
+    "algorithm": "CPLEX",
+    "seed": 7342,
+    "objective": 8,
+    "runtime": 11.932197,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 75,
+    "algorithm": "Greedy",
+    "seed": 7442,
+    "objective": 8,
+    "runtime": 0.305808,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 75,
+    "algorithm": "Stochastic Greedy",
+    "seed": 7443,
+    "objective": 9,
+    "runtime": 0.345922,
+    "bbox_width": 6,
+    "bbox_height": 9
+  },
+  {
+    "run": 75,
+    "algorithm": "Genetic",
+    "seed": 7442,
+    "objective": 7,
+    "runtime": 2.226553,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 75,
+    "algorithm": "CPLEX",
+    "seed": 7442,
+    "objective": 8,
+    "runtime": 12.190037,
+    "bbox_width": 8,
+    "bbox_height": 6
+  },
+  {
+    "run": 76,
+    "algorithm": "Greedy",
+    "seed": 7542,
+    "objective": 8,
+    "runtime": 0.310002,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 76,
+    "algorithm": "Stochastic Greedy",
+    "seed": 7543,
+    "objective": 7,
+    "runtime": 0.290983,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 76,
+    "algorithm": "Genetic",
+    "seed": 7542,
+    "objective": 7,
+    "runtime": 2.098002,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 76,
+    "algorithm": "CPLEX",
+    "seed": 7542,
+    "objective": 7,
+    "runtime": 10.899264,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 77,
+    "algorithm": "Greedy",
+    "seed": 7642,
+    "objective": 8,
+    "runtime": 0.261849,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 77,
+    "algorithm": "Stochastic Greedy",
+    "seed": 7643,
+    "objective": 7,
+    "runtime": 0.25228,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 77,
+    "algorithm": "Genetic",
+    "seed": 7642,
+    "objective": 7,
+    "runtime": 2.101431,
+    "bbox_width": 6,
+    "bbox_height": 7
+  },
+  {
+    "run": 77,
+    "algorithm": "CPLEX",
+    "seed": 7642,
+    "objective": 7,
+    "runtime": 12.590791,
+    "bbox_width": 6,
+    "bbox_height": 7
+  },
+  {
+    "run": 78,
+    "algorithm": "Greedy",
+    "seed": 7742,
+    "objective": 8,
+    "runtime": 0.31727,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 78,
+    "algorithm": "Stochastic Greedy",
+    "seed": 7743,
+    "objective": 8,
+    "runtime": 0.298486,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 78,
+    "algorithm": "Genetic",
+    "seed": 7742,
+    "objective": 8,
+    "runtime": 2.149867,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 78,
+    "algorithm": "CPLEX",
+    "seed": 7742,
+    "objective": 8,
+    "runtime": 12.258906,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 79,
+    "algorithm": "Greedy",
+    "seed": 7842,
+    "objective": 8,
+    "runtime": 0.308937,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 79,
+    "algorithm": "Stochastic Greedy",
+    "seed": 7843,
+    "objective": 9,
+    "runtime": 0.300036,
+    "bbox_width": 7,
+    "bbox_height": 9
+  },
+  {
+    "run": 79,
+    "algorithm": "Genetic",
+    "seed": 7842,
+    "objective": 7,
+    "runtime": 1.977574,
+    "bbox_width": 6,
+    "bbox_height": 7
+  },
+  {
+    "run": 79,
+    "algorithm": "CPLEX",
+    "seed": 7842,
+    "objective": 7,
+    "runtime": 12.710112,
+    "bbox_width": 6,
+    "bbox_height": 7
+  },
+  {
+    "run": 80,
+    "algorithm": "Greedy",
+    "seed": 7942,
+    "objective": 8,
+    "runtime": 0.315294,
+    "bbox_width": 6,
+    "bbox_height": 8
+  },
+  {
+    "run": 80,
+    "algorithm": "Stochastic Greedy",
+    "seed": 7943,
+    "objective": 7,
+    "runtime": 0.332593,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 80,
+    "algorithm": "Genetic",
+    "seed": 7942,
+    "objective": 6,
+    "runtime": 2.09099,
+    "bbox_width": 6,
+    "bbox_height": 6
+  },
+  {
+    "run": 80,
+    "algorithm": "CPLEX",
+    "seed": 7942,
+    "objective": 7,
+    "runtime": 11.318283,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 81,
+    "algorithm": "Greedy",
+    "seed": 8042,
+    "objective": 8,
+    "runtime": 0.310435,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 81,
+    "algorithm": "Stochastic Greedy",
+    "seed": 8043,
+    "objective": 7,
+    "runtime": 0.300506,
+    "bbox_width": 6,
+    "bbox_height": 7
+  },
+  {
+    "run": 81,
+    "algorithm": "Genetic",
+    "seed": 8042,
+    "objective": 7,
+    "runtime": 2.061725,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 81,
+    "algorithm": "CPLEX",
+    "seed": 8042,
+    "objective": 7,
+    "runtime": 12.551006,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 82,
+    "algorithm": "Greedy",
+    "seed": 8142,
+    "objective": 7,
+    "runtime": 0.276637,
+    "bbox_width": 5,
+    "bbox_height": 7
+  },
+  {
+    "run": 82,
+    "algorithm": "Stochastic Greedy",
+    "seed": 8143,
+    "objective": 7,
+    "runtime": 0.317637,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 82,
+    "algorithm": "Genetic",
+    "seed": 8142,
+    "objective": 7,
+    "runtime": 2.159452,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 82,
+    "algorithm": "CPLEX",
+    "seed": 8142,
+    "objective": 7,
+    "runtime": 11.204001,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 83,
+    "algorithm": "Greedy",
+    "seed": 8242,
+    "objective": 8,
+    "runtime": 0.311747,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 83,
+    "algorithm": "Stochastic Greedy",
+    "seed": 8243,
+    "objective": 8,
+    "runtime": 0.270597,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 83,
+    "algorithm": "Genetic",
+    "seed": 8242,
+    "objective": 8,
+    "runtime": 2.197863,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 83,
+    "algorithm": "CPLEX",
+    "seed": 8242,
+    "objective": 8,
+    "runtime": 11.813006,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 84,
+    "algorithm": "Greedy",
+    "seed": 8342,
+    "objective": 8,
+    "runtime": 0.245218,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 84,
+    "algorithm": "Stochastic Greedy",
+    "seed": 8343,
+    "objective": 9,
+    "runtime": 0.313749,
+    "bbox_width": 7,
+    "bbox_height": 9
+  },
+  {
+    "run": 84,
+    "algorithm": "Genetic",
+    "seed": 8342,
+    "objective": 7,
+    "runtime": 2.119478,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 84,
+    "algorithm": "CPLEX",
+    "seed": 8342,
+    "objective": 7,
+    "runtime": 11.556704,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 85,
+    "algorithm": "Greedy",
+    "seed": 8442,
+    "objective": 8,
+    "runtime": 0.323947,
+    "bbox_width": 6,
+    "bbox_height": 8
+  },
+  {
+    "run": 85,
+    "algorithm": "Stochastic Greedy",
+    "seed": 8443,
+    "objective": 8,
+    "runtime": 0.350658,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 85,
+    "algorithm": "Genetic",
+    "seed": 8442,
+    "objective": 7,
+    "runtime": 2.267282,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 85,
+    "algorithm": "CPLEX",
+    "seed": 8442,
+    "objective": 7,
+    "runtime": 11.627002,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 86,
+    "algorithm": "Greedy",
+    "seed": 8542,
+    "objective": 8,
+    "runtime": 0.305481,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 86,
+    "algorithm": "Stochastic Greedy",
+    "seed": 8543,
+    "objective": 8,
+    "runtime": 0.226115,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 86,
+    "algorithm": "Genetic",
+    "seed": 8542,
+    "objective": 8,
+    "runtime": 2.201367,
+    "bbox_width": 8,
+    "bbox_height": 6
+  },
+  {
+    "run": 86,
+    "algorithm": "CPLEX",
+    "seed": 8542,
+    "objective": 8,
+    "runtime": 13.867698,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 87,
+    "algorithm": "Greedy",
+    "seed": 8642,
+    "objective": 7,
+    "runtime": 0.285356,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 87,
+    "algorithm": "Stochastic Greedy",
+    "seed": 8643,
+    "objective": 8,
+    "runtime": 0.299519,
+    "bbox_width": 6,
+    "bbox_height": 8
+  },
+  {
+    "run": 87,
+    "algorithm": "Genetic",
+    "seed": 8642,
+    "objective": 8,
+    "runtime": 2.257351,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 87,
+    "algorithm": "CPLEX",
+    "seed": 8642,
+    "objective": 7,
+    "runtime": 12.445941,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 88,
+    "algorithm": "Greedy",
+    "seed": 8742,
+    "objective": 9,
+    "runtime": 0.335958,
+    "bbox_width": 7,
+    "bbox_height": 9
+  },
+  {
+    "run": 88,
+    "algorithm": "Stochastic Greedy",
+    "seed": 8743,
+    "objective": 8,
+    "runtime": 0.308957,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 88,
+    "algorithm": "Genetic",
+    "seed": 8742,
+    "objective": 8,
+    "runtime": 2.286126,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 88,
+    "algorithm": "CPLEX",
+    "seed": 8742,
+    "objective": 8,
+    "runtime": 12.426183,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 89,
+    "algorithm": "Greedy",
+    "seed": 8842,
+    "objective": 8,
+    "runtime": 0.303821,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 89,
+    "algorithm": "Stochastic Greedy",
+    "seed": 8843,
+    "objective": 8,
+    "runtime": 0.25084,
+    "bbox_width": 8,
+    "bbox_height": 6
+  },
+  {
+    "run": 89,
+    "algorithm": "Genetic",
+    "seed": 8842,
+    "objective": 8,
+    "runtime": 2.257619,
+    "bbox_width": 8,
+    "bbox_height": 6
+  },
+  {
+    "run": 89,
+    "algorithm": "CPLEX",
+    "seed": 8842,
+    "objective": 7,
+    "runtime": 11.722083,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 90,
+    "algorithm": "Greedy",
+    "seed": 8942,
+    "objective": 8,
+    "runtime": 0.281611,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 90,
+    "algorithm": "Stochastic Greedy",
+    "seed": 8943,
+    "objective": 7,
+    "runtime": 0.332871,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 90,
+    "algorithm": "Genetic",
+    "seed": 8942,
+    "objective": 8,
+    "runtime": 2.166066,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 90,
+    "algorithm": "CPLEX",
+    "seed": 8942,
+    "objective": 7,
+    "runtime": 11.13952,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 91,
+    "algorithm": "Greedy",
+    "seed": 9042,
+    "objective": 8,
+    "runtime": 0.284842,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 91,
+    "algorithm": "Stochastic Greedy",
+    "seed": 9043,
+    "objective": 8,
+    "runtime": 0.341171,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 91,
+    "algorithm": "Genetic",
+    "seed": 9042,
+    "objective": 7,
+    "runtime": 2.138826,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 91,
+    "algorithm": "CPLEX",
+    "seed": 9042,
+    "objective": 7,
+    "runtime": 11.749253,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 92,
+    "algorithm": "Greedy",
+    "seed": 9142,
+    "objective": 7,
+    "runtime": 0.323791,
+    "bbox_width": 6,
+    "bbox_height": 7
+  },
+  {
+    "run": 92,
+    "algorithm": "Stochastic Greedy",
+    "seed": 9143,
+    "objective": 8,
+    "runtime": 0.287264,
+    "bbox_width": 6,
+    "bbox_height": 8
+  },
+  {
+    "run": 92,
+    "algorithm": "Genetic",
+    "seed": 9142,
+    "objective": 7,
+    "runtime": 2.103859,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 92,
+    "algorithm": "CPLEX",
+    "seed": 9142,
+    "objective": 7,
+    "runtime": 12.464823,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 93,
+    "algorithm": "Greedy",
+    "seed": 9242,
+    "objective": 6,
+    "runtime": 0.257358,
+    "bbox_width": 6,
+    "bbox_height": 6
+  },
+  {
+    "run": 93,
+    "algorithm": "Stochastic Greedy",
+    "seed": 9243,
+    "objective": 8,
+    "runtime": 0.298303,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 93,
+    "algorithm": "Genetic",
+    "seed": 9242,
+    "objective": 6,
+    "runtime": 2.06154,
+    "bbox_width": 6,
+    "bbox_height": 5
+  },
+  {
+    "run": 93,
+    "algorithm": "CPLEX",
+    "seed": 9242,
+    "objective": 6,
+    "runtime": 11.333075,
+    "bbox_width": 6,
+    "bbox_height": 6
+  },
+  {
+    "run": 94,
+    "algorithm": "Greedy",
+    "seed": 9342,
+    "objective": 8,
+    "runtime": 0.302541,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 94,
+    "algorithm": "Stochastic Greedy",
+    "seed": 9343,
+    "objective": 7,
+    "runtime": 0.321062,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 94,
+    "algorithm": "Genetic",
+    "seed": 9342,
+    "objective": 7,
+    "runtime": 2.240416,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 94,
+    "algorithm": "CPLEX",
+    "seed": 9342,
+    "objective": 7,
+    "runtime": 12.644635,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 95,
+    "algorithm": "Greedy",
+    "seed": 9442,
+    "objective": 8,
+    "runtime": 0.360731,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 95,
+    "algorithm": "Stochastic Greedy",
+    "seed": 9443,
+    "objective": 7,
+    "runtime": 0.310905,
+    "bbox_width": 6,
+    "bbox_height": 7
+  },
+  {
+    "run": 95,
+    "algorithm": "Genetic",
+    "seed": 9442,
+    "objective": 7,
+    "runtime": 2.142884,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 95,
+    "algorithm": "CPLEX",
+    "seed": 9442,
+    "objective": 8,
+    "runtime": 12.681029,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 96,
+    "algorithm": "Greedy",
+    "seed": 9542,
+    "objective": 8,
+    "runtime": 0.301853,
+    "bbox_width": 7,
+    "bbox_height": 8
+  },
+  {
+    "run": 96,
+    "algorithm": "Stochastic Greedy",
+    "seed": 9543,
+    "objective": 7,
+    "runtime": 0.381849,
+    "bbox_width": 6,
+    "bbox_height": 7
+  },
+  {
+    "run": 96,
+    "algorithm": "Genetic",
+    "seed": 9542,
+    "objective": 8,
+    "runtime": 1.9375,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 96,
+    "algorithm": "CPLEX",
+    "seed": 9542,
+    "objective": 7,
+    "runtime": 11.92336,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 97,
+    "algorithm": "Greedy",
+    "seed": 9642,
+    "objective": 7,
+    "runtime": 0.352105,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 97,
+    "algorithm": "Stochastic Greedy",
+    "seed": 9643,
+    "objective": 8,
+    "runtime": 0.366606,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 97,
+    "algorithm": "Genetic",
+    "seed": 9642,
+    "objective": 7,
+    "runtime": 2.190011,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 97,
+    "algorithm": "CPLEX",
+    "seed": 9642,
+    "objective": 7,
+    "runtime": 12.763576,
+    "bbox_width": 7,
+    "bbox_height": 6
+  },
+  {
+    "run": 98,
+    "algorithm": "Greedy",
+    "seed": 9742,
+    "objective": 9,
+    "runtime": 0.292117,
+    "bbox_width": 7,
+    "bbox_height": 9
+  },
+  {
+    "run": 98,
+    "algorithm": "Stochastic Greedy",
+    "seed": 9743,
+    "objective": 8,
+    "runtime": 0.312972,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 98,
+    "algorithm": "Genetic",
+    "seed": 9742,
+    "objective": 7,
+    "runtime": 2.269352,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 98,
+    "algorithm": "CPLEX",
+    "seed": 9742,
+    "objective": 7,
+    "runtime": 11.513842,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 99,
+    "algorithm": "Greedy",
+    "seed": 9842,
+    "objective": 9,
+    "runtime": 0.304256,
+    "bbox_width": 8,
+    "bbox_height": 9
+  },
+  {
+    "run": 99,
+    "algorithm": "Stochastic Greedy",
+    "seed": 9843,
+    "objective": 8,
+    "runtime": 0.286074,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 99,
+    "algorithm": "Genetic",
+    "seed": 9842,
+    "objective": 8,
+    "runtime": 2.073976,
+    "bbox_width": 8,
+    "bbox_height": 7
+  },
+  {
+    "run": 99,
+    "algorithm": "CPLEX",
+    "seed": 9842,
+    "objective": 8,
+    "runtime": 12.51713,
+    "bbox_width": 8,
+    "bbox_height": 8
+  },
+  {
+    "run": 100,
+    "algorithm": "Greedy",
+    "seed": 9942,
+    "objective": 7,
+    "runtime": 0.339855,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 100,
+    "algorithm": "Stochastic Greedy",
+    "seed": 9943,
+    "objective": 9,
+    "runtime": 0.345739,
+    "bbox_width": 9,
+    "bbox_height": 8
+  },
+  {
+    "run": 100,
+    "algorithm": "Genetic",
+    "seed": 9942,
+    "objective": 7,
+    "runtime": 2.062842,
+    "bbox_width": 7,
+    "bbox_height": 7
+  },
+  {
+    "run": 100,
+    "algorithm": "CPLEX",
+    "seed": 9942,
+    "objective": 7,
+    "runtime": 11.690933,
+    "bbox_width": 7,
+    "bbox_height": 7
+  }
+]

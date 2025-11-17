@@ -1,0 +1,28 @@
+{
+  "timestamp": "2025-11-17T16:06:16.441934",
+  "scales": [
+    "small"
+  ],
+  "base_seed": 42,
+  "configurations": {
+    "small": {
+      "tiles": [
+        6
+      ],
+      "tile_size": [
+        [
+          3,
+          3
+        ]
+      ],
+      "runs": 2,
+      "algorithms": [
+        "greedy",
+        "genetic_greedy"
+      ],
+      "pop_size": 50,
+      "generations": 10,
+      "description": "Small scale with CPLEX baseline"
+    }
+  }
+}

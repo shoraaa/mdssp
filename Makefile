@@ -40,7 +40,7 @@ CPLEX_OBJ = $(OBJ_DIR)/cplex.o
 
 
 # Object files
-ALL_OBJS = $(OBJ_DIR)/common.o $(OBJ_DIR)/greedy.o $(OBJ_DIR)/genetic.o $(OBJ_DIR)/verifier.o $(OBJ_DIR)/dataset.o $(CPLEX_OBJ)
+ALL_OBJS = $(OBJ_DIR)/common.o $(OBJ_DIR)/greedy.o $(OBJ_DIR)/genetic.o $(OBJ_DIR)/genetic_tree.o $(OBJ_DIR)/branch_and_bound.o $(OBJ_DIR)/verifier.o $(OBJ_DIR)/dataset.o $(CPLEX_OBJ)
 MAIN_OBJ = $(OBJ_DIR)/mdssp.o
 
 .PHONY: all clean run test demo help
@@ -51,7 +51,7 @@ mdssp: $(MAIN_OBJ) $(ALL_OBJS)
 	@echo "Linking mdssp..."
 	@$(CXX) $(CXXFLAGS) $(INCLUDES) -o $@ $^ $(LDFLAGS)
 
-$(MAIN_OBJ): mdssp.cpp include/common.hpp include/greedy.hpp include/genetic.hpp include/cplex.hpp include/verifier.hpp include/dataset.hpp
+$(MAIN_OBJ): mdssp.cpp include/common.hpp include/greedy.hpp include/genetic.hpp include/branch_and_bound.hpp include/cplex.hpp include/verifier.hpp include/dataset.hpp
 	@mkdir -p $(OBJ_DIR)
 	@echo "Compiling mdssp.cpp..."
 	@$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
@@ -69,6 +69,16 @@ $(OBJ_DIR)/greedy.o: $(SRC_DIR)/greedy.cpp include/greedy.hpp include/common.hpp
 $(OBJ_DIR)/genetic.o: $(SRC_DIR)/genetic.cpp include/genetic.hpp include/common.hpp include/greedy.hpp
 	@mkdir -p $(OBJ_DIR)
 	@echo "Compiling genetic.cpp..."
+	@$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+
+$(OBJ_DIR)/genetic_tree.o: $(SRC_DIR)/genetic_tree.cpp include/genetic.hpp include/common.hpp include/greedy.hpp
+	@mkdir -p $(OBJ_DIR)
+	@echo "Compiling genetic_tree.cpp..."
+	@$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+
+$(OBJ_DIR)/branch_and_bound.o: $(SRC_DIR)/branch_and_bound.cpp include/branch_and_bound.hpp include/common.hpp include/greedy.hpp
+	@mkdir -p $(OBJ_DIR)
+	@echo "Compiling branch_and_bound.cpp..."
 	@$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
 $(OBJ_DIR)/verifier.o: $(SRC_DIR)/verifier.cpp include/verifier.hpp include/common.hpp

@@ -1,0 +1,26 @@
+{
+  "Genetic": {
+    "objective": 6,
+    "runtime": 2.378703,
+    "bbox_width": 6,
+    "bbox_height": 4,
+    "run": 2,
+    "seed": 142
+  },
+  "GA (Greedy Init)": {
+    "objective": 6,
+    "runtime": 2.494439,
+    "bbox_width": 6,
+    "bbox_height": 6,
+    "run": 2,
+    "seed": 142
+  },
+  "GA (Stochastic Init)": {
+    "objective": 6,
+    "runtime": 2.164468,
+    "bbox_width": 6,
+    "bbox_height": 4,
+    "run": 2,
+    "seed": 142
+  }
+}

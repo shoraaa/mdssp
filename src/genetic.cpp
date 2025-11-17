@@ -9,6 +9,13 @@
 #include <iostream>
 #include <iomanip>
 
+// Forward declaration of tree-based GA (defined in genetic_tree.cpp)
+GeneticResult solve_genetic_tree(const std::vector<Tile>& tiles,
+                                 int population_size,
+                                 int num_generations,
+                                 int start_index,
+                                 InitMode init_mode);
+
 // ============================================================================
 // Small helpers (no unordered_*)
 // ============================================================================
@@ -102,6 +109,8 @@ static Solution create_partial_stochastic_greedy_solution(const std::vector<Tile
     return sol;
 }
 
+/* OLD HELPER FUNCTIONS - COMMENTED OUT FOR TREE-BASED GA
+
 static void evaluate_solution(Solution& sol, const std::vector<Tile>& tiles) {
     // Allow partial solutions - don't require all tiles to be placed
     // if (sol.placements.size() != tiles.size()) {
@@ -158,40 +167,15 @@ static void evaluate_solution(Solution& sol, const std::vector<Tile>& tiles) {
 }
 
 // Build adjacency tree from a solution based on tile contact relationships
-static Tree build_tree_from_solution(const Solution& sol, const std::vector<Tile>& tiles) {
-    Tree tree;
+static PlacementTree build_tree_from_solution_OLD_COMMENTED(const Solution& sol, const std::vector<Tile>& tiles) {
+    PlacementTree tree;
     if (sol.placements.empty()) return tree;
 
-    tree.root = sol.placements.begin()->first;
-
-    const int n = (int)tiles.size();
-    std::vector<char> placed(n, 0);
-    std::vector<int>  order;
-
-    if (tree.root >= 0 && tree.root < n) {
-        placed[tree.root] = 1;
-        order.push_back(tree.root);
-    }
-
-    size_t idx = 0;
-    while (idx < order.size() && (int)order.size() < (int)sol.placements.size()) {
-        int u = order[idx++];
-        auto pos_u = sol.placements.at(u);
-
-        for (const auto& pv : sol.placements) {
-            int v = pv.first;
-            if (v == u || placed[v]) continue;
-            if (tiles_contact(tiles[u], pos_u, tiles[v], pv.second)) {
-                tree.edges.emplace_back(u, v);
-                placed[v] = 1;
-                order.push_back(v);
-            }
-        }
-    }
+    // OLD CODE COMMENTED OUT
     return tree;
 }
 
-static Solution crossover_solutions(const Solution& parent1, const Solution& parent2,
+static Solution crossover_solutions_OLD_COMMENTED(const Solution& parent1, const Solution& parent2,
                                     const std::vector<Tile>& tiles, std::mt19937& rng, int max_tiles_to_place = -1) {
     const int n = (int)tiles.size();
     Solution child;
@@ -459,35 +443,48 @@ static Solution crossover_solutions(const Solution& parent1, const Solution& par
     return child;
 }
 
+END OLD HELPER FUNCTIONS COMMENT BLOCK */
+
 // ============================================================================
-// Genetic Algorithm Main Function (unchanged except we didn’t use unordered_*)
+// Genetic Algorithm Main Function (Now redirects to tree-based implementation)
 // ============================================================================
 
 GeneticResult solve_genetic(const std::vector<Tile>& tiles,
                             int population_size,
                             int num_generations,
-                            int start_index) {
+                            int start_index,
+                            InitMode init_mode) {
+    // Redirect to tree-based genetic algorithm
+    return solve_genetic_tree(tiles, population_size, num_generations, start_index, init_mode);
+    
+    /* OLD IMPLEMENTATION BELOW - REPLACED WITH TREE-BASED VERSION
     auto start_time = std::chrono::high_resolution_clock::now();
 
-    std::cout << "\n=== Genetic Algorithm Started (Partial Population Mode) ===\n";
+    std::cout << "\n=== Genetic Algorithm Started ===\n";
     std::cout << "Population size: " << population_size << "\n";
     std::cout << "Generations: " << num_generations << "\n";
-    std::cout << "Tiles: " << tiles.size() << "\n\n";
+    std::cout << "Tiles: " << tiles.size() << "\n";
+    
+    // Display initialization mode
+    std::string init_mode_str;
+    switch (init_mode) {
+        case InitMode::GREEDY:
+            init_mode_str = "Deterministic Greedy";
+            break;
+        case InitMode::STOCHASTIC_GREEDY:
+            init_mode_str = "Stochastic Greedy";
+            break;
+        case InitMode::RANDOM:
+            init_mode_str = "Random (not implemented)";
+            break;
+    }
+    std::cout << "Initialization: " << init_mode_str << "\n\n";
 
     std::mt19937 rng(std::random_device{}());
 
-    // Calculate progressive tile placement schedule
-    // Start with a fraction of tiles and gradually increase to all tiles
     int total_tiles = tiles.size();
-    int initial_tiles = std::max(5, total_tiles / 4);  // Start with 25% of tiles (min 5)
-    
-    std::cout << "Progressive tile placement schedule:\n";
-    std::cout << "  Initial tiles: " << initial_tiles << " / " << total_tiles << "\n";
-    std::cout << "  Gradual linear increase across all generations\n";
-    std::cout << "  Final generation will require all " << total_tiles << " tiles\n\n";
 
-    // Initialize population with partial stochastic greedy solutions
-    std::cout << "Initializing population with partial stochastic greedy (parallel)...\n";
+    // Initialize population based on selected mode
     std::vector<Solution> population(population_size);
     
     // Pre-generate seeds and starting indices
@@ -502,17 +499,51 @@ GeneticResult solve_genetic(const std::vector<Tile>& tiles,
     std::mutex progress_mutex;
     int completed = 0;
     
-    // Generate initial partial solutions in parallel using OpenMP
-    #pragma omp parallel for schedule(static)
-    for (int i = 0; i < population_size; ++i) {
-        population[i] = create_partial_stochastic_greedy_solution(tiles, start_indices[i], seeds[i], initial_tiles);
-        
-        // Thread-safe progress update
-        {
-            std::lock_guard<std::mutex> lock(progress_mutex);
-            completed++;
-            if (completed % 16 == 0 || completed == population_size) {
-                std::cout << "  Created " << completed << "/" << population_size << " partial solutions\n";
+    // Generate initial full solutions in parallel using OpenMP
+    if (init_mode == InitMode::STOCHASTIC_GREEDY) {
+        std::cout << "Initializing population with stochastic greedy (parallel)...\n";
+        #pragma omp parallel for schedule(static)
+        for (int i = 0; i < population_size; ++i) {
+            population[i] = create_stochastic_greedy_solution(tiles, start_indices[i], seeds[i]);
+            
+            // Thread-safe progress update
+            {
+                std::lock_guard<std::mutex> lock(progress_mutex);
+                completed++;
+                if (completed % 16 == 0 || completed == population_size) {
+                    std::cout << "  Created " << completed << "/" << population_size << " solutions\n";
+                }
+            }
+        }
+    } else if (init_mode == InitMode::GREEDY) {
+        std::cout << "Initializing population with deterministic greedy (parallel)...\n";
+        #pragma omp parallel for schedule(static)
+        for (int i = 0; i < population_size; ++i) {
+            population[i] = create_greedy_solution(tiles, start_indices[i]);
+            
+            // Thread-safe progress update
+            {
+                std::lock_guard<std::mutex> lock(progress_mutex);
+                completed++;
+                if (completed % 16 == 0 || completed == population_size) {
+                    std::cout << "  Created " << completed << "/" << population_size << " solutions\n";
+                }
+            }
+        }
+    } else {
+        // InitMode::RANDOM - not yet implemented
+        std::cerr << "Random initialization not yet implemented. Using stochastic greedy instead.\n";
+        #pragma omp parallel for schedule(static)
+        for (int i = 0; i < population_size; ++i) {
+            population[i] = create_stochastic_greedy_solution(tiles, start_indices[i], seeds[i]);
+            
+            // Thread-safe progress update
+            {
+                std::lock_guard<std::mutex> lock(progress_mutex);
+                completed++;
+                if (completed % 16 == 0 || completed == population_size) {
+                    std::cout << "  Created " << completed << "/" << population_size << " solutions\n";
+                }
             }
         }
     }
@@ -524,21 +555,9 @@ GeneticResult solve_genetic(const std::vector<Tile>& tiles,
     std::cout << "Initial best bounding box: " << best_solution.bbox_width << " × " << best_solution.bbox_height << "\n";
     std::cout << "Initial placed tiles: " << best_solution.placements.size() << " / " << total_tiles << "\n\n";
 
-    // Evolution loop with progressive tile placement
-    std::cout << "Starting evolution with progressive tile placement...\n";
+    // Evolution loop
+    std::cout << "Starting evolution...\n";
     for (int gen = 0; gen < num_generations; ++gen) {
-        // Calculate target number of tiles for this generation
-        // Linear progression from initial_tiles to total_tiles across all generations
-        double progress = (double)(gen + 1) / num_generations;
-        int target_tiles = initial_tiles + (int)(progress * (total_tiles - initial_tiles));
-        // make target_tiles multiple of 16
-        target_tiles = ((target_tiles + 15) / 16) * 16;
-        
-        // Ensure we reach all tiles by the final generation
-        if (gen == num_generations - 1) {
-            target_tiles = total_tiles;
-        }
-        
         std::vector<Solution> new_population(population_size);
         
         // Pre-generate parent pairs using stochastic tournament selection
@@ -580,7 +599,7 @@ GeneticResult solve_genetic(const std::vector<Tile>& tiles,
                 std::mt19937 local_rng(rng() + i);
                 int p1 = parent_pairs[i].first;
                 int p2 = parent_pairs[i].second;
-                new_population[i] = crossover_solutions(population[p1], population[p2], tiles, local_rng, target_tiles);
+                new_population[i] = crossover_solutions(population[p1], population[p2], tiles, local_rng);
             } else {
                 // Direct copy from elite parent (no crossover)
                 int p1 = parent_pairs[i].first;
@@ -588,15 +607,12 @@ GeneticResult solve_genetic(const std::vector<Tile>& tiles,
             }
         }
         
-        // Apply greedy completion to ALL solutions to reach target_tiles
-        // In the final generation, ensure all solutions have all tiles
-        bool is_final_generation = (gen == num_generations - 1);
-        int completion_target = is_final_generation ? total_tiles : target_tiles;
+        // Apply greedy completion to ensure all solutions have all tiles
         std::vector<int> tiles_added_per_solution(population_size, 0);
         
         #pragma omp parallel for schedule(static)
         for (int i = 0; i < population_size; ++i) {
-            if ((int)new_population[i].placements.size() < completion_target) {
+            if ((int)new_population[i].placements.size() < total_tiles) {
                 // Build list of unplaced tiles
                 std::vector<int> unplaced;
                 std::vector<char> is_placed(tiles.size(), 0);
@@ -607,7 +623,7 @@ GeneticResult solve_genetic(const std::vector<Tile>& tiles,
                     if (!is_placed[j]) unplaced.push_back(j);
                 }
                 
-                int tiles_to_add = completion_target - new_population[i].placements.size();
+                int tiles_to_add = total_tiles - new_population[i].placements.size();
                 tiles_to_add = std::min(tiles_to_add, (int)unplaced.size());
                 
                 if (tiles_to_add > 0 && !unplaced.empty()) {
@@ -731,11 +747,11 @@ GeneticResult solve_genetic(const std::vector<Tile>& tiles,
         
         if (solutions_needing_tiles > 0) {
             double avg_tiles_added = (double)total_tiles_added / solutions_needing_tiles;
-            double avg_pct_of_target = (completion_target > 0) ? (avg_tiles_added / completion_target * 100.0) : 0.0;
+            double avg_pct_of_total = (total_tiles > 0) ? (avg_tiles_added / total_tiles * 100.0) : 0.0;
             std::cout << "  Greedy completion: " << solutions_needing_tiles << "/" << population_size 
                       << " solutions needed tiles, avg " << std::fixed << std::setprecision(1) 
                       << avg_tiles_added << " tiles/solution"
-                      << " (" << std::fixed << std::setprecision(1) << avg_pct_of_target << "% of target)\n";
+                      << " (" << std::fixed << std::setprecision(1) << avg_pct_of_total << "% of total)\n";
         }
         
         population.swap(new_population);
@@ -761,12 +777,10 @@ GeneticResult solve_genetic(const std::vector<Tile>& tiles,
             const Solution& pop_best = population[0];
 
             std::cout << "Gen " << std::setw(3) << (gen + 1) << "/" << num_generations
-                      << " | Target tiles: " << std::setw(3) << target_tiles << "/" << total_tiles
                       << " | Best: " << pop_best.objective
                       << " (" << pop_best.bbox_width << "×" << pop_best.bbox_height << ")"
                       << " [" << pop_best.placements.size() << " tiles]"
                       << " | Pop avg: " << std::fixed << std::setprecision(1) << avg
-                      << " | Avg placed: " << std::fixed << std::setprecision(1) << avg_placed
                       << " | Time: " << std::fixed << std::setprecision(1) << elapsed.count() << "s"
                       << (improved ? " [IMPROVED]" : "") << "\n";
         }
@@ -803,4 +817,5 @@ GeneticResult solve_genetic(const std::vector<Tile>& tiles,
         result.placements.push_back({kv.first, kv.second.first, kv.second.second});
     }
     return result;
+    */ // END OLD IMPLEMENTATION
 }

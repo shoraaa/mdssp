@@ -1,0 +1,18 @@
+{
+  "timestamp": "2025-11-17T16:06:17.956526",
+  "total_experiments": 4,
+  "by_scale": {
+    "small": {
+      "greedy": {
+        "num_runs": 2,
+        "avg_objective": 8.0,
+        "avg_runtime": 0.312826
+      },
+      "genetic_greedy": {
+        "num_runs": 2,
+        "avg_objective": 7.0,
+        "avg_runtime": 0.430859
+      }
+    }
+  }
+}
