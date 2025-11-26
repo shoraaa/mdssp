@@ -144,8 +144,10 @@ int main(int argc, char* argv[]) {
              cxxopts::value<int>()->default_value("20"))
             ("init-mode", "Genetic algorithm initialization mode: greedy, stochastic, random",
              cxxopts::value<std::string>()->default_value("stochastic"))
+            ("objective-type", "Objective function: square (max(H,W)) or area (H*W)",
+             cxxopts::value<std::string>()->default_value("square"))
             ("time-limit", "CPLEX/BnB time limit in seconds",
-             cxxopts::value<int>()->default_value("60"))
+             cxxopts::value<int>()->default_value("300"))
             ("verify", "Verify the solution", 
              cxxopts::value<bool>()->default_value("false"))
             ("compare", "Compare all available algorithms", 
@@ -165,6 +167,7 @@ int main(int argc, char* argv[]) {
             std::cout << "\nExamples:\n";
             std::cout << "  ./mdssp -a greedy -T 10 -n 3 -m 3\n";
             std::cout << "  ./mdssp -a greedy -T 10 -n 3 -m 3 --verify\n";
+            std::cout << "  ./mdssp -a greedy -T 10 -n 3 -m 3 --objective-type area\n";
             std::cout << "  ./mdssp -a stochastic_greedy -T 10 -n 3 -m 3\n";
             std::cout << "  ./mdssp -a genetic_greedy -T 10 -n 3 -m 3 --pop-size 20 --generations 50\n";
             std::cout << "  ./mdssp -a genetic_stochastic -T 10 -n 3 -m 3 --pop-size 20 --generations 50\n";
@@ -189,6 +192,7 @@ int main(int argc, char* argv[]) {
         int pop_size = result["pop-size"].as<int>();
         int generations = result["generations"].as<int>();
         std::string init_mode_str = result["init-mode"].as<std::string>();
+        std::string objective_type_str = result["objective-type"].as<std::string>();
         int time_limit = result["time-limit"].as<int>();
         bool verify = result["verify"].as<bool>();
         bool compare = result["compare"].as<bool>();
@@ -207,6 +211,18 @@ int main(int argc, char* argv[]) {
             std::cerr << "Warning: Unknown init-mode '" << init_mode_str 
                       << "', using default (stochastic)\n";
             init_mode = InitMode::STOCHASTIC_GREEDY;
+        }
+        
+        // Parse objective type
+        ObjectiveType obj_type = ObjectiveType::BOUNDING_SQUARE;
+        if (objective_type_str == "square") {
+            obj_type = ObjectiveType::BOUNDING_SQUARE;
+        } else if (objective_type_str == "area") {
+            obj_type = ObjectiveType::RECTANGLE_AREA;
+        } else {
+            std::cerr << "Warning: Unknown objective-type '" << objective_type_str 
+                      << "', using default (square)\n";
+            obj_type = ObjectiveType::BOUNDING_SQUARE;
         }
         
         // Validate parameters
@@ -258,7 +274,7 @@ int main(int argc, char* argv[]) {
         
         if (algorithm == "greedy" || algorithm == "all") {
             if (verbose) std::cout << "\nRunning Greedy algorithm...\n";
-            auto greedy_result = solve_greedy(tiles);
+            auto greedy_result = solve_greedy(tiles, 0, obj_type);
             
             UnifiedResult unified;
             unified.best_obj = greedy_result.best_obj;
@@ -293,7 +309,7 @@ int main(int argc, char* argv[]) {
         
         if (algorithm == "stochastic_greedy" || algorithm == "all") {
             if (verbose) std::cout << "\nRunning Stochastic Greedy algorithm...\n";
-            auto stochastic_result = solve_greedy_stochastic(tiles, 0, seed);
+            auto stochastic_result = solve_greedy_stochastic(tiles, 0, seed, obj_type);
             
             UnifiedResult unified;
             unified.best_obj = stochastic_result.best_obj;
@@ -328,7 +344,7 @@ int main(int argc, char* argv[]) {
         
         if (algorithm == "genetic_greedy" || (algorithm == "all")) {
             if (verbose) std::cout << "\nRunning Genetic algorithm (Greedy Init)...\n";
-            auto genetic_result = solve_genetic(tiles, pop_size, generations, 0, InitMode::GREEDY);
+            auto genetic_result = solve_genetic(tiles, pop_size, generations, 0, InitMode::GREEDY, seed, obj_type);
             
             UnifiedResult unified;
             unified.best_obj = genetic_result.best_obj;
@@ -366,7 +382,7 @@ int main(int argc, char* argv[]) {
         
         if (algorithm == "genetic_stochastic" || (algorithm == "all")) {
             if (verbose) std::cout << "\nRunning Genetic algorithm (Stochastic Init)...\n";
-            auto genetic_result = solve_genetic(tiles, pop_size, generations, 0, InitMode::STOCHASTIC_GREEDY);
+            auto genetic_result = solve_genetic(tiles, pop_size, generations, 0, InitMode::STOCHASTIC_GREEDY, seed, obj_type);
             
             UnifiedResult unified;
             unified.best_obj = genetic_result.best_obj;
@@ -404,7 +420,7 @@ int main(int argc, char* argv[]) {
         
         if (algorithm == "genetic") {
             if (verbose) std::cout << "\nRunning Genetic algorithm...\n";
-            auto genetic_result = solve_genetic(tiles, pop_size, generations, 0, init_mode);
+            auto genetic_result = solve_genetic(tiles, pop_size, generations, 0, init_mode, seed, obj_type);
             
             UnifiedResult unified;
             unified.best_obj = genetic_result.best_obj;
@@ -444,7 +460,7 @@ int main(int argc, char* argv[]) {
             if (verbose) std::cout << "\nRunning CPLEX algorithm...\n";
             
             auto matrices = generate_binary_matrices(T, n, m, p, seed);
-            auto cplex_result = solve_cplex(matrices, time_limit);
+            auto cplex_result = solve_cplex(matrices, time_limit, obj_type);
             
             UnifiedResult unified;
             if (cplex_result.status == "CPLEX not available") {

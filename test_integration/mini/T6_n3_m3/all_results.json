@@ -1,0 +1,16 @@
+[
+  {
+    "scale": "mini",
+    "tiles": 6,
+    "n": 3,
+    "m": 3,
+    "run": 1,
+    "seed": 42,
+    "algorithm": "greedy",
+    "objective": 8,
+    "runtime": 0.287241,
+    "bbox_width": 8,
+    "bbox_height": 8,
+    "num_tiles": 6
+  }
+]

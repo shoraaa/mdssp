@@ -6,8 +6,8 @@
       "bbox_height": 7,
       "bbox_width": 7,
       "canvas": ". 0 0 1 . . .\n. 0 0 1 1 1 .\n0 1 1 1 0 0 .\n0 0 0 1 1 1 .\n1 0 1 1 0 1 1\n0 0 0 . 0 1 1\n1 1 1 . 0 0 1",
-      "completion_rate": 0.1536040289581366,
-      "crossovers_needing_completion": 488,
+      "completion_rate": 0.1072094468614046,
+      "crossovers_needing_completion": 345,
       "num_tiles_placed": 6,
       "objective": 7,
       "placements": [
@@ -42,10 +42,10 @@
           "y": 0
         }
       ],
-      "runtime_seconds": 4.136814236,
+      "runtime_seconds": 3.783477362,
       "status": "success",
-      "total_crossovers": 3177,
-      "total_tiles_completed": 1417,
+      "total_crossovers": 3218,
+      "total_tiles_completed": 1008,
       "verified": true
     }
   ]

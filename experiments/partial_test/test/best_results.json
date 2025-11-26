@@ -1,0 +1,33 @@
+{
+  "T6_n3_m3_greedy": {
+    "scale": "test",
+    "tiles": 6,
+    "n": 3,
+    "m": 3,
+    "run": 2,
+    "seed": 142,
+    "algorithm": "greedy",
+    "objective": 7,
+    "runtime": 0.268055,
+    "bbox_width": 7,
+    "bbox_height": 7,
+    "num_tiles": 6
+  },
+  "T6_n3_m3_genetic_greedy": {
+    "scale": "test",
+    "tiles": 6,
+    "n": 3,
+    "m": 3,
+    "run": 1,
+    "seed": 42,
+    "algorithm": "genetic_greedy",
+    "objective": 7,
+    "runtime": 0.254506778,
+    "bbox_width": 7,
+    "bbox_height": 7,
+    "num_tiles": 6,
+    "total_crossovers": 32,
+    "crossovers_needing_completion": 21,
+    "total_tiles_completed": 41
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "greedy_T6_n3_m3": {
+    "algorithm": "greedy",
+    "tiles": 6,
+    "n": 3,
+    "m": 3,
+    "num_runs": 2,
+    "objective": {
+      "mean": 8.5,
+      "min": 8,
+      "max": 9,
+      "std": 0.5
+    },
+    "runtime": {
+      "mean": 0.301751474,
+      "min": 0.266775741,
+      "max": 0.336727207,
+      "std": 0.03497573299999998
+    }
+  },
+  "genetic_greedy_T6_n3_m3": {
+    "algorithm": "genetic_greedy",
+    "tiles": 6,
+    "n": 3,
+    "m": 3,
+    "num_runs": 2,
+    "objective": {
+      "mean": 7.0,
+      "min": 7,
+      "max": 7,
+      "std": 0.0
+    },
+    "runtime": {
+      "mean": 0.30254246100000004,
+      "min": 0.297005454,
+      "max": 0.308079468,
+      "std": 0.0055370070000000104
+    },
+    "crossover_stats": {
+      "avg_total_crossovers": 30.5,
+      "avg_completions": 14.5,
+      "avg_completion_rate": 0.4722222222222222,
+      "avg_tiles_completed": 31.5
+    }
+  }
+}

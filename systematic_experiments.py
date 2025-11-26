@@ -8,6 +8,12 @@ This script runs systematic experiments across different problem scales:
 - Large scale (T=50-60): Scalability testing
 
 All results are organized in the experiments/ directory.
+
+Objective Types:
+- 'square': Minimize max(width, height) - creates square-ish bounding boxes
+- 'area': Minimize width × height - creates compact rectangular arrangements
+
+Use --objective-type to override the default objective for all scales.
 """
 
 import json
@@ -28,29 +34,32 @@ EXPERIMENTS = {
         'algorithms': ['greedy', 'stochastic_greedy', 'genetic_greedy', 'genetic_stochastic', 'cplex'],
         'pop_size': 50,
         'generations': 100,
+        'objective_type': 'square',  # 'square' or 'area'
         'description': 'Small scale with CPLEX baseline'
     },
     'medium': {
-        'tiles': [20, 30],
+        'tiles': [20, 30, 50],
         'tile_size': [(3, 3)],
         'runs': 30,
         'algorithms': ['greedy', 'stochastic_greedy', 'genetic_greedy', 'genetic_stochastic'],
         'pop_size': 100,
         'generations': 200,
+        'objective_type': 'square',  # 'square' or 'area'
         'description': 'Medium scale without CPLEX'
     },
     'large': {
-        'tiles': [50, 60],
+        'tiles': [60, 80, 100],
         'tile_size': [(3, 3)],
         'runs': 20,
         'algorithms': ['greedy', 'stochastic_greedy', 'genetic_greedy', 'genetic_stochastic'],
         'pop_size': 150,
         'generations': 300,
+        'objective_type': 'square',  # 'square' or 'area'
         'description': 'Large scale scalability testing'
     }
 }
 
-def run_single_experiment(algorithm, tiles, n, m, seed, output_file, pop_size=None, generations=None):
+def run_single_experiment(algorithm, tiles, n, m, seed, output_file, pop_size=None, generations=None, objective_type=None):
     """Run a single experiment and return results."""
     cmd = [
         "./mdssp",
@@ -61,6 +70,9 @@ def run_single_experiment(algorithm, tiles, n, m, seed, output_file, pop_size=No
         "-s", str(seed),
         "-o", output_file
     ]
+    
+    if objective_type:
+        cmd.extend(["--objective-type", objective_type])
     
     if algorithm in ['genetic_greedy', 'genetic_stochastic']:
         if pop_size:
@@ -159,23 +171,49 @@ def run_single_experiment(algorithm, tiles, n, m, seed, output_file, pop_size=No
     except Exception as e:
         return {'success': False, 'error': str(e)}
 
-def run_experiment_suite(scale, config, base_seed, output_dir):
+def is_experiment_completed(output_file):
+    """Check if an experiment has already been completed successfully."""
+    if not Path(output_file).exists():
+        return False
+    
+    try:
+        with open(output_file, 'r') as f:
+            data = json.load(f)
+            # Check if the JSON file has valid results
+            if 'results' in data and len(data['results']) > 0:
+                result = data['results'][0]
+                # Verify it has the essential fields
+                return 'objective' in result and 'runtime_seconds' in result
+    except:
+        return False
+    
+    return False
+
+def run_experiment_suite(scale, config, base_seed, output_dir, resume=True):
     """Run all experiments for a given scale."""
     print(f"\n{'='*80}")
     print(f"RUNNING {scale.upper()} SCALE EXPERIMENTS")
     print(f"{'='*80}")
-    print(f"Description: {config['description']}")
+    if 'description' in config:
+        print(f"Description: {config['description']}")
     print(f"Tile counts: {config['tiles']}")
     print(f"Tile sizes: {config['tile_size']}")
     print(f"Algorithms: {config['algorithms']}")
+    print(f"Objective type: {config.get('objective_type', 'square')} ({'max(H,W)' if config.get('objective_type', 'square') == 'square' else 'H×W'})")
     print(f"Runs per configuration: {config['runs']}")
-    print(f"{'='*80}\n")
+    if resume:
+        print(f"Resume mode: ON (will skip completed experiments)")
+    print()
     
     scale_dir = output_dir / scale
     scale_dir.mkdir(exist_ok=True, parents=True)
     
     all_results = []
     best_results = {}
+    
+    # Load existing results if resuming
+    completed_count = 0
+    skipped_count = 0
     
     for tiles in config['tiles']:
         for (n, m) in config['tile_size']:
@@ -191,14 +229,64 @@ def run_experiment_suite(scale, config, base_seed, output_dir):
                 
                 for algo in config['algorithms']:
                     algo_name = algo.replace('_', ' ').title()
-                    print(f"  [{algo}] ", end='', flush=True)
                     
                     output_file = exp_dir / f"run_{run+1}_{algo}.json"
                     
+                    # Check if already completed
+                    if resume and is_experiment_completed(output_file):
+                        print(f"  [{algo}] ⊙ Already completed (skipped)", flush=True)
+                        skipped_count += 1
+                        
+                        # Load the existing result
+                        try:
+                            with open(output_file, 'r') as f:
+                                solution_data = json.load(f)
+                                if 'results' in solution_data and len(solution_data['results']) > 0:
+                                    result_obj = solution_data['results'][0]
+                                    
+                                    result_entry = {
+                                        'scale': scale,
+                                        'tiles': tiles,
+                                        'n': n,
+                                        'm': m,
+                                        'run': run + 1,
+                                        'seed': seed,
+                                        'algorithm': algo,
+                                        'objective_type': config.get('objective_type', 'square'),
+                                        'objective': result_obj.get('objective'),
+                                        'runtime': result_obj.get('runtime_seconds'),
+                                        'bbox_width': result_obj.get('bbox_width'),
+                                        'bbox_height': result_obj.get('bbox_height'),
+                                        'num_tiles': result_obj.get('num_tiles_placed')
+                                    }
+                                    
+                                    # Add genetic algorithm specific stats
+                                    if 'total_crossovers' in result_obj:
+                                        result_entry['total_crossovers'] = result_obj['total_crossovers']
+                                        result_entry['crossovers_needing_completion'] = result_obj.get('crossovers_needing_completion')
+                                        result_entry['total_tiles_completed'] = result_obj.get('total_tiles_completed')
+                                    
+                                    all_results.append(result_entry)
+                                    
+                                    # Track best result
+                                    key = f"{exp_name}_{algo}"
+                                    if key not in best_results or result_entry['objective'] < best_results[key]['objective']:
+                                        best_results[key] = result_entry.copy()
+                                        best_results[key]['solution'] = solution_data
+                        except Exception as e:
+                            print(f" (warning: couldn't load existing result: {e})", end='')
+                        
+                        continue
+                    
+                    print(f"  [{algo}] ", end='', flush=True)
+                    
                     result = run_single_experiment(
                         algo, tiles, n, m, seed, str(output_file),
-                        config.get('pop_size'), config.get('generations')
+                        config.get('pop_size'), config.get('generations'),
+                        config.get('objective_type')
                     )
+                    
+                    completed_count += 1
                     
                     if result['success']:
                         obj = result['objective']
@@ -208,7 +296,7 @@ def run_experiment_suite(scale, config, base_seed, output_dir):
                             print(f"✓ Obj={obj}, Time={runtime:.3f}s", end='')
                             
                             # Add crossover stats if available
-                            if result['total_crossovers']:
+                            if result['total_crossovers'] and result['crossovers_needing_completion'] is not None:
                                 completion_rate = result['crossovers_needing_completion'] / result['total_crossovers'] * 100
                                 print(f", Completion={completion_rate:.1f}%", end='')
                             
@@ -223,6 +311,7 @@ def run_experiment_suite(scale, config, base_seed, output_dir):
                                 'run': run + 1,
                                 'seed': seed,
                                 'algorithm': algo,
+                                'objective_type': config.get('objective_type', 'square'),
                                 'objective': obj,
                                 'runtime': runtime,
                                 'bbox_width': result['bbox_width'],
@@ -231,10 +320,10 @@ def run_experiment_suite(scale, config, base_seed, output_dir):
                             }
                             
                             # Add genetic algorithm specific stats
-                            if result['total_crossovers']:
+                            if result.get('total_crossovers') is not None:
                                 result_entry['total_crossovers'] = result['total_crossovers']
-                                result_entry['crossovers_needing_completion'] = result['crossovers_needing_completion']
-                                result_entry['total_tiles_completed'] = result['total_tiles_completed']
+                                result_entry['crossovers_needing_completion'] = result.get('crossovers_needing_completion')
+                                result_entry['total_tiles_completed'] = result.get('total_tiles_completed')
                             
                             all_results.append(result_entry)
                             
@@ -285,6 +374,9 @@ def run_experiment_suite(scale, config, base_seed, output_dir):
     print(f"\n{'='*80}")
     print(f"✓ {scale.upper()} scale experiments completed")
     print(f"  Total runs: {len(all_results)}")
+    if resume:
+        print(f"  New experiments run: {completed_count}")
+        print(f"  Skipped (already done): {skipped_count}")
     print(f"  Results saved to: {scale_dir}")
     print(f"  CSV files: all_results.csv, summary_statistics.csv")
     print(f"{'='*80}")
@@ -297,7 +389,7 @@ def write_results_to_csv(results, output_file):
         return
     
     # Determine all possible fields
-    fieldnames = ['scale', 'tiles', 'n', 'm', 'run', 'seed', 'algorithm', 
+    fieldnames = ['scale', 'tiles', 'n', 'm', 'run', 'seed', 'algorithm', 'objective_type',
                   'objective', 'runtime', 'bbox_width', 'bbox_height', 'num_tiles',
                   'total_crossovers', 'crossovers_needing_completion', 'total_tiles_completed',
                   'completion_rate', 'avg_tiles_per_incomplete']
@@ -466,9 +558,15 @@ def main():
     parser.add_argument('--seed', type=int, default=42, help='Base random seed (default: 42)')
     parser.add_argument('--output-dir', type=str, default='experiments',
                        help='Output directory for all results (default: experiments)')
+    parser.add_argument('--objective-type', type=str, choices=['square', 'area'],
+                       help='Override objective type for all scales (square=max(H,W), area=H*W)')
     parser.add_argument('--dry-run', action='store_true', help='Print what would be run without executing')
+    parser.add_argument('--no-resume', action='store_true', 
+                       help='Disable resume mode (run all experiments even if already completed)')
     
     args = parser.parse_args()
+    
+    resume_mode = not args.no_resume
     
     # Determine which scales to run
     if 'all' in args.scales:
@@ -479,11 +577,26 @@ def main():
     output_dir = Path(args.output_dir)
     output_dir.mkdir(exist_ok=True)
     
+    # Check if resuming from previous run
+    metadata_file = output_dir / 'experiment_metadata.json'
+    if resume_mode and metadata_file.exists():
+        with open(metadata_file, 'r') as f:
+            prev_metadata = json.load(f)
+        print(f"\n{'='*80}")
+        print(f"RESUMING FROM PREVIOUS RUN")
+        print(f"{'='*80}")
+        print(f"Previous run started: {prev_metadata.get('timestamp', 'unknown')}")
+        print(f"Scales: {prev_metadata.get('scales', [])}")
+        print(f"Base seed: {prev_metadata.get('base_seed', 'unknown')}")
+        print(f"Resume mode: ENABLED - Will skip completed experiments")
+        print(f"{'='*80}\n")
+    
     # Save experiment metadata
     metadata = {
         'timestamp': datetime.now().isoformat(),
         'scales': scales_to_run,
         'base_seed': args.seed,
+        'resume_mode': resume_mode,
         'configurations': {scale: EXPERIMENTS[scale] for scale in scales_to_run}
     }
     with open(output_dir / 'experiment_metadata.json', 'w') as f:
@@ -505,8 +618,11 @@ def main():
     start_time = time.time()
     
     for scale in scales_to_run:
-        config = EXPERIMENTS[scale]
-        results, best, summary = run_experiment_suite(scale, config, args.seed, output_dir)
+        config = EXPERIMENTS[scale].copy()
+        # Override objective type if specified
+        if args.objective_type:
+            config['objective_type'] = args.objective_type
+        results, best, summary = run_experiment_suite(scale, config, args.seed, output_dir, resume=resume_mode)
         all_results.extend(results)
     
     # Write combined CSV

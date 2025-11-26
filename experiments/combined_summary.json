@@ -1,0 +1,77 @@
+{
+  "timestamp": "2025-11-24T15:19:05.687287",
+  "total_experiments": 1047,
+  "by_scale": {
+    "small": {
+      "greedy": {
+        "num_runs": 90,
+        "avg_objective": 8.244444444444444,
+        "avg_runtime": 0.35306963532222224
+      },
+      "stochastic_greedy": {
+        "num_runs": 90,
+        "avg_objective": 8.322222222222223,
+        "avg_runtime": 0.36801975546666665
+      },
+      "genetic_greedy": {
+        "num_runs": 90,
+        "avg_objective": 7.633333333333334,
+        "avg_runtime": 3.9081205532
+      },
+      "genetic_stochastic": {
+        "num_runs": 90,
+        "avg_objective": 7.488888888888889,
+        "avg_runtime": 3.9163686036555556
+      },
+      "cplex": {
+        "num_runs": 90,
+        "avg_objective": 7.322222222222222,
+        "avg_runtime": 19.442805320088887
+      }
+    },
+    "medium": {
+      "greedy": {
+        "num_runs": 90,
+        "avg_objective": 13.166666666666666,
+        "avg_runtime": 1.0296889384333332
+      },
+      "stochastic_greedy": {
+        "num_runs": 90,
+        "avg_objective": 13.555555555555555,
+        "avg_runtime": 1.1268389993555556
+      },
+      "genetic_greedy": {
+        "num_runs": 90,
+        "avg_objective": 12.166666666666666,
+        "avg_runtime": 19.43466420331111
+      },
+      "genetic_stochastic": {
+        "num_runs": 90,
+        "avg_objective": 12.155555555555555,
+        "avg_runtime": 28.14367050198889
+      }
+    },
+    "large": {
+      "greedy": {
+        "num_runs": 60,
+        "avg_objective": 17.283333333333335,
+        "avg_runtime": 2.4337446560999996
+      },
+      "stochastic_greedy": {
+        "num_runs": 60,
+        "avg_objective": 18.116666666666667,
+        "avg_runtime": 2.4847301744666668
+      },
+      "genetic_greedy": {
+        "num_runs": 60,
+        "avg_objective": 16.233333333333334,
+        "avg_runtime": 169.51303339725
+      },
+      "genetic_stochastic": {
+        "num_runs": 57,
+        "avg_objective": 16.54385964912281,
+        "avg_runtime": 226.12084377098245
+      }
+    }
+  }
+}

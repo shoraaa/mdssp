@@ -110,6 +110,8 @@ GeneticResult solve_genetic(const std::vector<Tile>& tiles,
                             int population_size = 10, 
                             int num_generations = 20,
                             int start_index = 0,
-                            InitMode init_mode = InitMode::STOCHASTIC_GREEDY);
+                            InitMode init_mode = InitMode::STOCHASTIC_GREEDY,
+                            unsigned int seed = 0,
+                            ObjectiveType obj_type = ObjectiveType::BOUNDING_SQUARE);
 
 #endif // MDSSP_GENETIC_HPP

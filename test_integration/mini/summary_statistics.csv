@@ -1,0 +1,2 @@
+algorithm,tiles,n,m,num_runs,obj_mean,obj_min,obj_max,obj_std,runtime_mean,runtime_min,runtime_max,runtime_std,crossovers_mean,completion_rate_mean,tiles_completed_mean
+greedy,6,3,3,1,8.0,8,8,0,0.287241,0.287241,0.287241,0,,,

@@ -14,7 +14,9 @@ GeneticResult solve_genetic_tree(const std::vector<Tile>& tiles,
                                  int population_size,
                                  int num_generations,
                                  int start_index,
-                                 InitMode init_mode);
+                                 InitMode init_mode,
+                                 unsigned int seed,
+                                 ObjectiveType obj_type);
 
 // ============================================================================
 // Small helpers (no unordered_*)
@@ -453,9 +455,11 @@ GeneticResult solve_genetic(const std::vector<Tile>& tiles,
                             int population_size,
                             int num_generations,
                             int start_index,
-                            InitMode init_mode) {
+                            InitMode init_mode,
+                            unsigned int seed,
+                            ObjectiveType obj_type) {
     // Redirect to tree-based genetic algorithm
-    return solve_genetic_tree(tiles, population_size, num_generations, start_index, init_mode);
+    return solve_genetic_tree(tiles, population_size, num_generations, start_index, init_mode, seed, obj_type);
     
     /* OLD IMPLEMENTATION BELOW - REPLACED WITH TREE-BASED VERSION
     auto start_time = std::chrono::high_resolution_clock::now();

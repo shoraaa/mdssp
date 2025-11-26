@@ -78,6 +78,37 @@ std::string Canvas::render_ascii(int pad) const {
 // Helper Functions
 // ============================================================================
 
+// Compute the new bounding box objective after placing a tile
+// Returns max(width, height) for BOUNDING_SQUARE or width * height for RECTANGLE_AREA
+static int compute_new_bbox_objective(const Tile& tile, int dx, int dy, const Canvas& canvas, ObjectiveType obj_type) {
+    if (canvas.is_empty()) {
+        if (obj_type == ObjectiveType::BOUNDING_SQUARE) {
+            return std::max(tile.width(), tile.height());
+        } else {
+            return tile.width() * tile.height();
+        }
+    }
+    
+    int tminx = tile.min_x();
+    int tmaxx = tile.max_x();
+    int tminy = tile.min_y();
+    int tmaxy = tile.max_y();
+    
+    int nxmin = std::min(canvas.xmin, tminx + dx);
+    int nxmax = std::max(canvas.xmax, tmaxx + dx);
+    int nymin = std::min(canvas.ymin, tminy + dy);
+    int nymax = std::max(canvas.ymax, tmaxy + dy);
+    
+    int new_width = nxmax - nxmin + 1;
+    int new_height = nymax - nymin + 1;
+    
+    if (obj_type == ObjectiveType::BOUNDING_SQUARE) {
+        return std::max(new_width, new_height);
+    } else {
+        return new_width * new_height;
+    }
+}
+
 // Compute the new bounding box size after placing a tile
 // Returns max(width, height) of the new bounding box
 static int compute_new_bbox_size(const Tile& tile, int dx, int dy, const Canvas& canvas) {
@@ -160,7 +191,103 @@ static void enumerate_positions_right(const Tile& tile, const Canvas& canvas, in
     }
 }
 
+// Generate candidate positions for a tile that would result in approximately target_objective
+// Works for both BOUNDING_SQUARE and RECTANGLE_AREA objectives
+static std::vector<Coord> enumerate_positions_for_objective(const Tile& tile, const Canvas& canvas, 
+                                                             int target_objective, ObjectiveType obj_type) {
+    std::vector<Coord> positions;
+    
+    if (canvas.is_empty()) {
+        int tile_obj = (obj_type == ObjectiveType::BOUNDING_SQUARE) 
+                       ? std::max(tile.width(), tile.height())
+                       : tile.width() * tile.height();
+        if (tile_obj == target_objective) {
+            positions.push_back({0, 0});
+        }
+        return positions;
+    }
+    
+    int tminx = tile.min_x();
+    int tmaxx = tile.max_x();
+    int tminy = tile.min_y();
+    int tmaxy = tile.max_y();
+    
+    int current_width = canvas.xmax - canvas.xmin + 1;
+    int current_height = canvas.ymax - canvas.ymin + 1;
+    int current_area = current_width * current_height;
+    
+    // Optimization for RECTANGLE_AREA: when target area > current area,
+    // only positions that extend the bounding box can increase the area
+    if (obj_type == ObjectiveType::RECTANGLE_AREA && target_objective > current_area) {
+        // Only check positions along the 4 edges and 4 corners
+        int search_range = std::max({tile.width(), tile.height(), current_width, current_height}) + 5;
+        
+        // Define the ranges for dx and dy
+        int dx_min = canvas.xmin - tmaxx - search_range;
+        int dx_max = canvas.xmax - tminx + search_range;
+        int dy_min = canvas.ymin - tmaxy - search_range;
+        int dy_max = canvas.ymax - tminy + search_range;
+        
+        // 1. Top edge (dy = dy_min to canvas.ymin - tminy)
+        for (int dy = dy_min; dy < canvas.ymin - tminy; ++dy) {
+            for (int dx = dx_min; dx <= dx_max; ++dx) {
+                int new_obj = compute_new_bbox_objective(tile, dx, dy, canvas, obj_type);
+                if (new_obj == target_objective) {
+                    positions.push_back({dx, dy});
+                }
+            }
+        }
+        
+        // 2. Bottom edge (dy = canvas.ymax - tmaxy + 1 to dy_max)
+        for (int dy = canvas.ymax - tmaxy + 1; dy <= dy_max; ++dy) {
+            for (int dx = dx_min; dx <= dx_max; ++dx) {
+                int new_obj = compute_new_bbox_objective(tile, dx, dy, canvas, obj_type);
+                if (new_obj == target_objective) {
+                    positions.push_back({dx, dy});
+                }
+            }
+        }
+        
+        // 3. Left edge (dx = dx_min to canvas.xmin - tminx - 1, dy in middle range)
+        for (int dx = dx_min; dx < canvas.xmin - tminx; ++dx) {
+            for (int dy = canvas.ymin - tminy; dy <= canvas.ymax - tmaxy; ++dy) {
+                int new_obj = compute_new_bbox_objective(tile, dx, dy, canvas, obj_type);
+                if (new_obj == target_objective) {
+                    positions.push_back({dx, dy});
+                }
+            }
+        }
+        
+        // 4. Right edge (dx = canvas.xmax - tmaxx + 1 to dx_max, dy in middle range)
+        for (int dx = canvas.xmax - tmaxx + 1; dx <= dx_max; ++dx) {
+            for (int dy = canvas.ymin - tminy; dy <= canvas.ymax - tmaxy; ++dy) {
+                int new_obj = compute_new_bbox_objective(tile, dx, dy, canvas, obj_type);
+                if (new_obj == target_objective) {
+                    positions.push_back({dx, dy});
+                }
+            }
+        }
+    } else {
+        // For target_objective <= current_area, or for BOUNDING_SQUARE,
+        // we need to search the interior as well
+        int search_range = std::max({tile.width(), tile.height(), current_width, current_height}) + 5;
+        
+        // Sample positions around the canvas perimeter and interior
+        for (int dx = canvas.xmin - tmaxx - search_range; dx <= canvas.xmax - tminx + search_range; dx += 1) {
+            for (int dy = canvas.ymin - tmaxy - search_range; dy <= canvas.ymax - tminy + search_range; dy += 1) {
+                int new_obj = compute_new_bbox_objective(tile, dx, dy, canvas, obj_type);
+                if (new_obj == target_objective) {
+                    positions.push_back({dx, dy});
+                }
+            }
+        }
+    }
+    
+    return positions;
+}
+
 // Generate all candidate positions for a tile that would result in exactly target_size
+// This function is optimized for BOUNDING_SQUARE objective
 static std::vector<Coord> enumerate_positions_for_size(const Tile& tile, const Canvas& canvas, int target_size) {
     std::vector<Coord> positions;
     
@@ -275,7 +402,8 @@ PlacementChoice::PlacementChoice(int idx, int dx_, int dy_, int da, int ov, Cell
 // GreedySolver Implementation
 // ============================================================================
 
-GreedySolver::GreedySolver(std::vector<Tile> tiles_) : tiles(std::move(tiles_)) {
+GreedySolver::GreedySolver(std::vector<Tile> tiles_, ObjectiveType obj_type_) 
+    : tiles(std::move(tiles_)), obj_type(obj_type_) {
     n = tiles.size();
     for (auto& tile : tiles) {
         tile = tile.normalized();
@@ -301,25 +429,42 @@ Canvas GreedySolver::solve(int start_index) {
     
     while (!remaining.empty()) {
         std::optional<PlacementChoice> best_global;
-        int current_size = std::max(canvas.xmax - canvas.xmin + 1, canvas.ymax - canvas.ymin + 1);
+        int current_width = canvas.xmax - canvas.xmin + 1;
+        int current_height = canvas.ymax - canvas.ymin + 1;
+        int current_objective = (obj_type == ObjectiveType::BOUNDING_SQUARE) 
+                                ? std::max(current_width, current_height)
+                                : current_width * current_height;
         
-        // Iterate through delta_area from 0 upward across all remaining tiles
+        // Iterate through increasing objective values
         // This allows early termination as soon as we find any valid placement
-        int max_tile_size = 0;
+        int max_tile_obj = 0;
         for (int idx : remaining) {
-            max_tile_size = std::max(max_tile_size, std::max(tiles[idx].width(), tiles[idx].height()));
+            if (obj_type == ObjectiveType::BOUNDING_SQUARE) {
+                max_tile_obj = std::max(max_tile_obj, std::max(tiles[idx].width(), tiles[idx].height()));
+            } else {
+                max_tile_obj = std::max(max_tile_obj, tiles[idx].width() * tiles[idx].height());
+            }
         }
         
-        int max_search_delta = current_size + max_tile_size;
+        int max_search_range = (obj_type == ObjectiveType::BOUNDING_SQUARE) 
+                               ? current_objective + max_tile_obj
+                               : current_objective + max_tile_obj * 10; // Larger range for area
         bool found = false;
         
-        for (int target_size = std::max(current_size, max_tile_size); 
-             target_size <= current_size + max_search_delta && !found; 
-             ++target_size) {
+        for (int target_objective = std::max(current_objective, max_tile_obj); 
+             target_objective <= max_search_range && !found; 
+             ++target_objective) {
             
-            // Suppose all tile have the same size, we can precompute candidate positions
-            auto positions = enumerate_positions_for_size(tiles[0], canvas, target_size);
-            int delta = target_size - current_size;
+            // Get candidate positions for this objective value
+            std::vector<Coord> positions;
+            if (obj_type == ObjectiveType::BOUNDING_SQUARE) {
+                // Use optimized enumeration for bounding square
+                positions = enumerate_positions_for_size(tiles[0], canvas, target_objective);
+            } else {
+                // Use general enumeration for rectangle area
+                positions = enumerate_positions_for_objective(tiles[0], canvas, target_objective, obj_type);
+            }
+            int delta = target_objective - current_objective;
             
             // Parallel search through remaining tiles
             #pragma omp parallel
@@ -385,10 +530,10 @@ Canvas GreedySolver::solve(int start_index) {
 // Solve Function
 // ============================================================================
 
-GreedyResult solve_greedy(const std::vector<Tile>& tiles, int start_index) {
+GreedyResult solve_greedy(const std::vector<Tile>& tiles, int start_index, ObjectiveType obj_type) {
     auto start = std::chrono::high_resolution_clock::now();
     
-    GreedySolver solver(tiles);
+    GreedySolver solver(tiles, obj_type);
     Canvas final_canvas = solver.solve(start_index);
     
     auto end = std::chrono::high_resolution_clock::now();
@@ -405,10 +550,12 @@ GreedyResult solve_greedy(const std::vector<Tile>& tiles, int start_index) {
     } else {
         int width = final_canvas.xmax - final_canvas.xmin + 1;
         int height = final_canvas.ymax - final_canvas.ymin + 1;
-        result.best_obj = std::max(width, height);
         result.bbox_width = width;
         result.bbox_height = height;
         result.bbox_area = final_canvas.bbox_area();
+        result.best_obj = (obj_type == ObjectiveType::BOUNDING_SQUARE) 
+                          ? std::max(width, height) 
+                          : width * height;
     }
     
     result.order = solver.order;
@@ -431,8 +578,8 @@ GreedyResult solve_greedy(const std::vector<Tile>& tiles, int start_index) {
 // StochasticGreedySolver Implementation
 // ============================================================================
 
-StochasticGreedySolver::StochasticGreedySolver(std::vector<Tile> tiles_, unsigned int seed) 
-    : tiles(std::move(tiles_)), rng(seed) {
+StochasticGreedySolver::StochasticGreedySolver(std::vector<Tile> tiles_, unsigned int seed, ObjectiveType obj_type_) 
+    : tiles(std::move(tiles_)), rng(seed), obj_type(obj_type_) {
     n = tiles.size();
     for (auto& tile : tiles) {
         tile = tile.normalized();
@@ -457,26 +604,40 @@ Canvas StochasticGreedySolver::solve(int start_index) {
     }
     
     while (!remaining.empty()) {
-        int current_size = std::max(canvas.xmax - canvas.xmin + 1, canvas.ymax - canvas.ymin + 1);
+        int current_width = canvas.xmax - canvas.xmin + 1;
+        int current_height = canvas.ymax - canvas.ymin + 1;
+        int current_objective = (obj_type == ObjectiveType::BOUNDING_SQUARE) 
+                                ? std::max(current_width, current_height)
+                                : current_width * current_height;
         
-        // Iterate through delta_area from 0 upward across all remaining tiles
-        // This allows early termination as soon as we find any valid placement
-        int max_tile_size = 0;
+        // Iterate through increasing objective values
+        int max_tile_obj = 0;
         for (int idx : remaining) {
-            max_tile_size = std::max(max_tile_size, std::max(tiles[idx].width(), tiles[idx].height()));
+            if (obj_type == ObjectiveType::BOUNDING_SQUARE) {
+                max_tile_obj = std::max(max_tile_obj, std::max(tiles[idx].width(), tiles[idx].height()));
+            } else {
+                max_tile_obj = std::max(max_tile_obj, tiles[idx].width() * tiles[idx].height());
+            }
         }
         
-        int max_search_delta = current_size + max_tile_size;
+        int max_search_range = (obj_type == ObjectiveType::BOUNDING_SQUARE) 
+                               ? current_objective + max_tile_obj
+                               : current_objective + max_tile_obj * 10;
         std::vector<PlacementChoice> candidates_at_min_bbox;
         int min_bbox_increase = 10000000;
         
-        for (int target_size = std::max(current_size, max_tile_size); 
-             target_size <= min_bbox_increase; 
-             ++target_size) {
+        for (int target_objective = std::max(current_objective, max_tile_obj); 
+             target_objective <= min_bbox_increase; 
+             ++target_objective) {
             
-            int delta = target_size - current_size;    
-            // Precompute candidate positions for this target size
-            auto positions = enumerate_positions_for_size(tiles[0], canvas, target_size);
+            int delta = target_objective - current_objective;    
+            // Precompute candidate positions for this objective value
+            std::vector<Coord> positions;
+            if (obj_type == ObjectiveType::BOUNDING_SQUARE) {
+                positions = enumerate_positions_for_size(tiles[0], canvas, target_objective);
+            } else {
+                positions = enumerate_positions_for_objective(tiles[0], canvas, target_objective, obj_type);
+            }
             
             // Parallel search through remaining tiles
             #pragma omp parallel
@@ -550,7 +711,7 @@ Canvas StochasticGreedySolver::solve(int start_index) {
     return canvas;
 }
 
-GreedyResult solve_greedy_stochastic(const std::vector<Tile>& tiles, int start_index, unsigned int seed) {
+GreedyResult solve_greedy_stochastic(const std::vector<Tile>& tiles, int start_index, unsigned int seed, ObjectiveType obj_type) {
     auto start = std::chrono::high_resolution_clock::now();
     
     // If seed is 0, use random_device to generate a random seed
@@ -558,7 +719,7 @@ GreedyResult solve_greedy_stochastic(const std::vector<Tile>& tiles, int start_i
         seed = std::random_device{}();
     }
     
-    StochasticGreedySolver solver(tiles, seed);
+    StochasticGreedySolver solver(tiles, seed, obj_type);
     Canvas final_canvas = solver.solve(start_index);
     
     auto end = std::chrono::high_resolution_clock::now();
@@ -575,10 +736,12 @@ GreedyResult solve_greedy_stochastic(const std::vector<Tile>& tiles, int start_i
     } else {
         int width = final_canvas.xmax - final_canvas.xmin + 1;
         int height = final_canvas.ymax - final_canvas.ymin + 1;
-        result.best_obj = std::max(width, height);
         result.bbox_width = width;
         result.bbox_height = height;
         result.bbox_area = final_canvas.bbox_area();
+        result.best_obj = (obj_type == ObjectiveType::BOUNDING_SQUARE) 
+                          ? std::max(width, height) 
+                          : width * height;
     }
     
     result.order = solver.order;
@@ -755,7 +918,7 @@ static MergeOption find_best_merge(const MergedTile& tile1, int idx1,
     return best;
 }
 
-GreedyResult solve_greedy_merge(const std::vector<Tile>& tiles) {
+GreedyResult solve_greedy_merge(const std::vector<Tile>& tiles, ObjectiveType obj_type) {
     auto start = std::chrono::high_resolution_clock::now();
     
     // Initialize with all tiles as separate MergedTiles
@@ -833,10 +996,12 @@ GreedyResult solve_greedy_merge(const std::vector<Tile>& tiles) {
         const MergedTile& final_tile = merged_tiles[0];
         int width = final_tile.width();
         int height = final_tile.height();
-        result.best_obj = std::max(width, height);
         result.bbox_width = width;
         result.bbox_height = height;
         result.bbox_area = width * height;
+        result.best_obj = (obj_type == ObjectiveType::BOUNDING_SQUARE) 
+                          ? std::max(width, height) 
+                          : width * height;
         
         // Convert placements from tuple format to vector format
         for (const auto& [tile_idx, dx, dy] : final_tile.placements) {
@@ -852,10 +1017,10 @@ GreedyResult solve_greedy_merge(const std::vector<Tile>& tiles) {
 // Partial Greedy Solver Implementation
 // ============================================================================
 
-GreedyResult solve_greedy_partial(const std::vector<Tile>& tiles, int start_index, int max_tiles) {
+GreedyResult solve_greedy_partial(const std::vector<Tile>& tiles, int start_index, int max_tiles, ObjectiveType obj_type) {
     auto start = std::chrono::high_resolution_clock::now();
     
-    GreedySolver solver(tiles);
+    GreedySolver solver(tiles, obj_type);
     
     if (solver.n == 0) {
         GreedyResult result;
@@ -971,10 +1136,12 @@ GreedyResult solve_greedy_partial(const std::vector<Tile>& tiles, int start_inde
     } else {
         int width = solver.canvas.xmax - solver.canvas.xmin + 1;
         int height = solver.canvas.ymax - solver.canvas.ymin + 1;
-        result.best_obj = std::max(width, height);
         result.bbox_width = width;
         result.bbox_height = height;
         result.bbox_area = solver.canvas.bbox_area();
+        result.best_obj = (obj_type == ObjectiveType::BOUNDING_SQUARE) 
+                          ? std::max(width, height) 
+                          : width * height;
     }
     
     result.order = solver.order;
@@ -994,14 +1161,14 @@ GreedyResult solve_greedy_partial(const std::vector<Tile>& tiles, int start_inde
 }
 
 GreedyResult solve_greedy_stochastic_partial(const std::vector<Tile>& tiles, int start_index, 
-                                             unsigned int seed, int max_tiles) {
+                                             unsigned int seed, int max_tiles, ObjectiveType obj_type) {
     auto start = std::chrono::high_resolution_clock::now();
     
     if (seed == 0) {
         seed = std::random_device{}();
     }
     
-    StochasticGreedySolver solver(tiles, seed);
+    StochasticGreedySolver solver(tiles, seed, obj_type);
     
     if (solver.n == 0) {
         GreedyResult result;
@@ -1130,10 +1297,12 @@ GreedyResult solve_greedy_stochastic_partial(const std::vector<Tile>& tiles, int
     } else {
         int width = solver.canvas.xmax - solver.canvas.xmin + 1;
         int height = solver.canvas.ymax - solver.canvas.ymin + 1;
-        result.best_obj = std::max(width, height);
         result.bbox_width = width;
         result.bbox_height = height;
         result.bbox_area = solver.canvas.bbox_area();
+        result.best_obj = (obj_type == ObjectiveType::BOUNDING_SQUARE) 
+                          ? std::max(width, height) 
+                          : width * height;
     }
     
     result.order = solver.order;

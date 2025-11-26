@@ -31,7 +31,7 @@ struct CplexResult {
 // CPLEX Solver Function
 // ============================================================================
 
-CplexResult solve_cplex(const Matrices& matrices, int time_limit = 60);
+CplexResult solve_cplex(const Matrices& matrices, int time_limit = 60, ObjectiveType obj_type = ObjectiveType::BOUNDING_SQUARE);
 
 
 #endif // MDSSP_CPLEX_HPP

@@ -1,0 +1,5 @@
+scale,tiles,n,m,run,seed,algorithm,objective,runtime,bbox_width,bbox_height,num_tiles,total_crossovers,crossovers_needing_completion,total_tiles_completed,completion_rate,avg_tiles_per_incomplete
+test,6,3,3,1,42,greedy,8,0.296629,8,8,6,,,,,
+test,6,3,3,1,42,genetic_greedy,7,0.314213,7,7,6,33,21,43,0.6363636363636364,2.0476190476190474
+test,6,3,3,2,142,greedy,7,0.288499,7,7,6,,,,,
+test,6,3,3,2,142,genetic_greedy,7,0.262725,7,7,6,33,22,43,0.6666666666666666,1.9545454545454546

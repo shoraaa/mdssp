@@ -110,7 +110,7 @@ PlacementGraph build_placement_graph(const std::vector<Tile>& tiles) {
 }
 
 // Decode PlacementTree to Solution
-Solution decode_tree(const PlacementTree& tree, const std::vector<Tile>& tiles) {
+Solution decode_tree(const PlacementTree& tree, const std::vector<Tile>& tiles, ObjectiveType obj_type = ObjectiveType::BOUNDING_SQUARE) {
     Solution sol;
     
     if (tree.edges.empty() && tree.num_tiles == 0) {
@@ -197,7 +197,9 @@ Solution decode_tree(const PlacementTree& tree, const std::vector<Tile>& tiles) 
         sol.bbox_width = xmax - xmin + 1;
         sol.bbox_height = ymax - ymin + 1;
         sol.bbox_area = sol.bbox_width * sol.bbox_height;
-        sol.objective = std::max(sol.bbox_width, sol.bbox_height);
+        sol.objective = (obj_type == ObjectiveType::BOUNDING_SQUARE) 
+                        ? std::max(sol.bbox_width, sol.bbox_height)
+                        : sol.bbox_width * sol.bbox_height;
     } else {
         sol.objective = std::numeric_limits<int>::max();
     }
@@ -209,7 +211,8 @@ Solution decode_tree(const PlacementTree& tree, const std::vector<Tile>& tiles) 
 static PlacementTree build_tree_from_greedy(const std::vector<Tile>& tiles, 
                                            int start_index, 
                                            std::mt19937& rng,
-                                           bool stochastic = false) {
+                                           bool stochastic = false,
+                                           ObjectiveType obj_type = ObjectiveType::BOUNDING_SQUARE) {
     PlacementTree tree;
     tree.num_tiles = tiles.size();
     
@@ -218,7 +221,7 @@ static PlacementTree build_tree_from_greedy(const std::vector<Tile>& tiles,
     if (stochastic) {
         sol = [&]() {
             Solution s;
-            auto greedy_result = solve_greedy_stochastic(tiles, start_index, rng());
+            auto greedy_result = solve_greedy_stochastic(tiles, start_index, rng(), obj_type);
             for (const auto& p : greedy_result.placements) {
                 s.placements[p[0]] = {p[1], p[2]};
             }
@@ -229,7 +232,7 @@ static PlacementTree build_tree_from_greedy(const std::vector<Tile>& tiles,
             return s;
         }();
     } else {
-        auto greedy_result = solve_greedy(tiles, start_index);
+        auto greedy_result = solve_greedy(tiles, start_index, obj_type);
         for (const auto& p : greedy_result.placements) {
             sol.placements[p[0]] = {p[1], p[2]};
         }
@@ -649,14 +652,17 @@ GeneticResult solve_genetic_tree(const std::vector<Tile>& tiles,
                                  int population_size,
                                  int num_generations,
                                  int start_index,
-                                 InitMode init_mode) {
+                                 InitMode init_mode,
+                                 unsigned int seed,
+                                 ObjectiveType obj_type) {
     auto start_time = std::chrono::high_resolution_clock::now();
     
     std::cout << "\n=== Tree-Based Genetic Algorithm Started ===\n";
     std::cout << "Population size: " << population_size << "\n";
     std::cout << "Generations: " << num_generations << "\n";
     std::cout << "Tiles: " << tiles.size() << "\n";
-    std::cout << "Initialization: " << (init_mode == InitMode::GREEDY ? "Greedy" : "Stochastic Greedy") << "\n\n";
+    std::cout << "Initialization: " << (init_mode == InitMode::GREEDY ? "Greedy" : "Stochastic Greedy") << "\n";
+    std::cout << "Seed: " << (seed == 0 ? "random" : std::to_string(seed)) << "\n\n";
     
     // Build placement graph
     PlacementGraph graph = build_placement_graph(tiles);
@@ -664,14 +670,16 @@ GeneticResult solve_genetic_tree(const std::vector<Tile>& tiles,
     // Initialize population
     std::cout << "Initializing population...\n";
     std::vector<PlacementTree> population(population_size);
-    std::mt19937 rng(std::random_device{}());
+    
+    // Use provided seed or random_device if seed is 0
+    std::mt19937 rng(seed == 0 ? std::random_device{}() : seed);
     
     #pragma omp parallel for schedule(static)
     for (int i = 0; i < population_size; ++i) {
         std::mt19937 local_rng(rng() + i);
         int local_start = (start_index + i) % tiles.size();
         population[i] = build_tree_from_greedy(tiles, local_start, local_rng, 
-                                               init_mode == InitMode::STOCHASTIC_GREEDY);
+                                               init_mode == InitMode::STOCHASTIC_GREEDY, obj_type);
     }
     
     // Evaluate initial population
@@ -679,7 +687,7 @@ GeneticResult solve_genetic_tree(const std::vector<Tile>& tiles,
     best_solution.objective = std::numeric_limits<int>::max();
     
     for (const auto& tree : population) {
-        Solution sol = decode_tree(tree, tiles);
+        Solution sol = decode_tree(tree, tiles, obj_type);
         if (sol.objective < best_solution.objective) {
             best_solution = sol;
         }
@@ -714,7 +722,7 @@ GeneticResult solve_genetic_tree(const std::vector<Tile>& tiles,
         
         #pragma omp parallel for schedule(static)
         for (int i = 0; i < population_size; ++i) {
-            evaluated[i] = {i, decode_tree(population[i], tiles)};
+            evaluated[i] = {i, decode_tree(population[i], tiles, obj_type)};
         }
         
         // Sort by fitness

@@ -6,46 +6,46 @@
       "bbox_height": 6,
       "bbox_width": 6,
       "canvas": "1 0 1 1 0 .\n0 0 0 0 1 1\n0 0 0 0 0 1\n0 1 0 0 1 1\n0 1 1 1 1 1\n0 0 0 1 0 0",
-      "completion_rate": 0.027172195892575038,
-      "crossovers_needing_completion": 86,
+      "completion_rate": 0.02236024844720497,
+      "crossovers_needing_completion": 72,
       "num_tiles_placed": 6,
       "objective": 6,
       "placements": [
         {
           "tile_id": 1,
           "x": 3,
-          "y": 3
-        },
-        {
-          "tile_id": 0,
-          "x": 1,
-          "y": 3
-        },
-        {
-          "tile_id": 4,
-          "x": 2,
           "y": 0
         },
         {
           "tile_id": 3,
           "x": 3,
-          "y": 1
-        },
-        {
-          "tile_id": 5,
-          "x": 0,
-          "y": 3
+          "y": -2
         },
         {
           "tile_id": 2,
           "x": 0,
+          "y": -3
+        },
+        {
+          "tile_id": 4,
+          "x": 2,
+          "y": -3
+        },
+        {
+          "tile_id": 0,
+          "x": 1,
+          "y": 0
+        },
+        {
+          "tile_id": 5,
+          "x": 0,
           "y": 0
         }
       ],
-      "runtime_seconds": 3.844630605,
+      "runtime_seconds": 3.924466933,
       "status": "success",
-      "total_crossovers": 3165,
-      "total_tiles_completed": 131,
+      "total_crossovers": 3220,
+      "total_tiles_completed": 123,
       "verified": true
     }
   ]

@@ -18,6 +18,15 @@ using CellMap = std::unordered_map<Coord, Label>;
 using Matrix = std::vector<std::vector<int>>;
 using Matrices = std::vector<Matrix>;
 
+// ============================================================================
+// Objective Function Type
+// ============================================================================
+
+enum class ObjectiveType {
+    BOUNDING_SQUARE,  // Minimize max(width, height) - original objective
+    RECTANGLE_AREA    // Minimize width * height - area objective
+};
+
 // Hash function for Coord (pair<int,int>)
 namespace std {
     template <>

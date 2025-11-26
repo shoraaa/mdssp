@@ -49,8 +49,9 @@ public:
     Canvas canvas;
     std::vector<std::optional<std::pair<int, int>>> placed;
     std::vector<int> order;
+    ObjectiveType obj_type;
     
-    explicit GreedySolver(std::vector<Tile> tiles_);
+    explicit GreedySolver(std::vector<Tile> tiles_, ObjectiveType obj_type_ = ObjectiveType::BOUNDING_SQUARE);
     
     Canvas solve(int start_index = 0);
 };
@@ -67,8 +68,9 @@ public:
     std::vector<std::optional<std::pair<int, int>>> placed;
     std::vector<int> order;
     std::mt19937 rng;
+    ObjectiveType obj_type;
     
-    explicit StochasticGreedySolver(std::vector<Tile> tiles_, unsigned int seed);
+    explicit StochasticGreedySolver(std::vector<Tile> tiles_, unsigned int seed, ObjectiveType obj_type_ = ObjectiveType::BOUNDING_SQUARE);
     
     Canvas solve(int start_index = 0);
 };
@@ -88,12 +90,12 @@ struct GreedyResult {
     int canvas_xmin, canvas_xmax, canvas_ymin, canvas_ymax;
 };
 
-GreedyResult solve_greedy(const std::vector<Tile>& tiles, int start_index = 0);
-GreedyResult solve_greedy_stochastic(const std::vector<Tile>& tiles, int start_index = 0, unsigned int seed = 0);
-GreedyResult solve_greedy_merge(const std::vector<Tile>& tiles);
+GreedyResult solve_greedy(const std::vector<Tile>& tiles, int start_index = 0, ObjectiveType obj_type = ObjectiveType::BOUNDING_SQUARE);
+GreedyResult solve_greedy_stochastic(const std::vector<Tile>& tiles, int start_index = 0, unsigned int seed = 0, ObjectiveType obj_type = ObjectiveType::BOUNDING_SQUARE);
+GreedyResult solve_greedy_merge(const std::vector<Tile>& tiles, ObjectiveType obj_type = ObjectiveType::BOUNDING_SQUARE);
 
 // Partial greedy solver (places only a subset of tiles)
-GreedyResult solve_greedy_partial(const std::vector<Tile>& tiles, int start_index, int max_tiles);
-GreedyResult solve_greedy_stochastic_partial(const std::vector<Tile>& tiles, int start_index, unsigned int seed, int max_tiles);
+GreedyResult solve_greedy_partial(const std::vector<Tile>& tiles, int start_index, int max_tiles, ObjectiveType obj_type = ObjectiveType::BOUNDING_SQUARE);
+GreedyResult solve_greedy_stochastic_partial(const std::vector<Tile>& tiles, int start_index, unsigned int seed, int max_tiles, ObjectiveType obj_type = ObjectiveType::BOUNDING_SQUARE);
 
 #endif // MDSSP_GREEDY_HPP

@@ -1,0 +1,48 @@
+{
+  "results": [
+    {
+      "algorithm": "greedy",
+      "bbox_area": 81,
+      "bbox_height": 9,
+      "bbox_width": 9,
+      "canvas": ". . . 0 1 0 0 1 0\n. . . 1 1 1 0 1 1\n. . . 0 0 0 1 0 1\n. . 1 0 0 1 1 . .\n. . 0 1 1 1 0 1 0\n. . 0 0 0 . 1 0 0\n0 1 1 . . . 0 0 1\n0 1 1 . . . . . .\n0 0 1 . . . . . .",
+      "num_tiles_placed": 6,
+      "objective": 9,
+      "placements": [
+        {
+          "tile_id": 0,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "tile_id": 4,
+          "x": 1,
+          "y": 2
+        },
+        {
+          "tile_id": 5,
+          "x": -1,
+          "y": 3
+        },
+        {
+          "tile_id": 1,
+          "x": 3,
+          "y": 4
+        },
+        {
+          "tile_id": 3,
+          "x": 3,
+          "y": 0
+        },
+        {
+          "tile_id": 2,
+          "x": -3,
+          "y": 6
+        }
+      ],
+      "runtime_seconds": 0.279957167,
+      "status": "success",
+      "verified": true
+    }
+  ]
+}

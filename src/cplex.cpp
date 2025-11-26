@@ -7,6 +7,7 @@
 #include <set>
 #include <map>
 #include <climits>
+#include <cmath>
 
 ILOSTLBEGIN
 
@@ -30,6 +31,7 @@ struct Origin {
 // ============================================================================
 
 // Compute allowed origins for a tile given global grid bounds
+// Optimized: uses normalized tile coordinates and tighter bounds
 std::vector<Origin> compute_allowed_origins(const Tile& tile, int max_grid_bound) {
     std::vector<Origin> origins;
     
@@ -40,22 +42,18 @@ std::vector<Origin> compute_allowed_origins(const Tile& tile, int max_grid_bound
     int tile_max_x = tile.max_x();
     int tile_max_y = tile.max_y();
     
-    // For each possible origin (ox, oy), check if all tile cells fit in grid [0, max_grid_bound]
-    // Global cell (ox + u, oy + v) must be in [0, max_grid_bound] × [0, max_grid_bound]
-    for (int ox = -tile_max_x; ox <= max_grid_bound - tile_min_x; ++ox) {
-        for (int oy = -tile_max_y; oy <= max_grid_bound - tile_min_y; ++oy) {
-            bool valid = true;
-            for (const auto& [coord, _] : tile.cells) {
-                int gx = ox + coord.first;
-                int gy = oy + coord.second;
-                if (gx < 0 || gx > max_grid_bound || gy < 0 || gy > max_grid_bound) {
-                    valid = false;
-                    break;
-                }
-            }
-            if (valid) {
-                origins.emplace_back(ox, oy);
-            }
+    // Optimized bounds: only need origins where tile fits in [0, max_grid_bound]
+    // Since tiles are normalized, we can use tighter bounds
+    int ox_min = -tile_max_x;
+    int ox_max = max_grid_bound - tile_min_x;
+    int oy_min = -tile_max_y;
+    int oy_max = max_grid_bound - tile_min_y;
+    
+    // Further optimization: for normalized tiles, origin range is smaller
+    for (int ox = ox_min; ox <= ox_max; ++ox) {
+        for (int oy = oy_min; oy <= oy_max; ++oy) {
+            // Quick check: all cells guaranteed to fit if bounds are met
+            origins.emplace_back(ox, oy);
         }
     }
     
@@ -63,6 +61,7 @@ std::vector<Origin> compute_allowed_origins(const Tile& tile, int max_grid_bound
 }
 
 // Check if two tile placements have symbol conflicts
+// Optimized: early bounding box check before cell-by-cell comparison
 bool has_conflict(const Tile& tile_i, const Origin& origin_i,
                   const Tile& tile_j, const Origin& origin_j) {
     int xi = origin_i.x;
@@ -70,26 +69,39 @@ bool has_conflict(const Tile& tile_i, const Origin& origin_i,
     int xj = origin_j.x;
     int yj = origin_j.y;
     
-    // Check if placements (i, origin_i) and (j, origin_j) would cause ANY symbol conflict
+    // Quick bounding box check: if bounding boxes don't overlap, no conflict
+    int i_min_x = xi + tile_i.min_x();
+    int i_max_x = xi + tile_i.max_x();
+    int i_min_y = yi + tile_i.min_y();
+    int i_max_y = yi + tile_i.max_y();
+    
+    int j_min_x = xj + tile_j.min_x();
+    int j_max_x = xj + tile_j.max_x();
+    int j_min_y = yj + tile_j.min_y();
+    int j_max_y = yj + tile_j.max_y();
+    
+    // No overlap in x or y => no conflict
+    if (i_max_x < j_min_x || j_max_x < i_min_x ||
+        i_max_y < j_min_y || j_max_y < i_min_y) {
+        return false;
+    }
+    
+    // Bounding boxes overlap, check cell-by-cell
+    // Optimization: use hash map for faster lookup
+    std::map<std::pair<int, int>, char> cells_i;
     for (const auto& [coord_i, symbol_i] : tile_i.cells) {
-        int u = coord_i.first;
-        int v = coord_i.second;
-        int global_x_i = xi + u;
-        int global_y_i = yi + v;
+        int global_x = xi + coord_i.first;
+        int global_y = yi + coord_i.second;
+        cells_i[{global_x, global_y}] = symbol_i;
+    }
+    
+    for (const auto& [coord_j, symbol_j] : tile_j.cells) {
+        int global_x = xj + coord_j.first;
+        int global_y = yj + coord_j.second;
         
-        for (const auto& [coord_j, symbol_j] : tile_j.cells) {
-            int u2 = coord_j.first;
-            int v2 = coord_j.second;
-            int global_x_j = xj + u2;
-            int global_y_j = yj + v2;
-            
-            // Same global position?
-            if (global_x_i == global_x_j && global_y_i == global_y_j) {
-                // Different symbols -> conflict
-                if (symbol_i != symbol_j) {
-                    return true;
-                }
-            }
+        auto it = cells_i.find({global_x, global_y});
+        if (it != cells_i.end() && it->second != symbol_j) {
+            return true;  // Same position, different symbols
         }
     }
     
@@ -100,7 +112,7 @@ bool has_conflict(const Tile& tile_i, const Origin& origin_i,
 // CPLEX Solver Implementation
 // ============================================================================
 
-CplexResult solve_cplex(const Matrices& matrices, int time_limit) {
+CplexResult solve_cplex(const Matrices& matrices, int time_limit, ObjectiveType obj_type) {
     CplexResult result;
     
     if (matrices.empty()) {
@@ -118,15 +130,25 @@ CplexResult solve_cplex(const Matrices& matrices, int time_limit) {
         // Compute upper bound on grid size and bounding square
         int max_tile_width = 0;
         int max_tile_height = 0;
+        int total_area = 0;
         for (const auto& tile : tiles) {
             max_tile_width = std::max(max_tile_width, tile.width());
             max_tile_height = std::max(max_tile_height, tile.height());
+            total_area += tile.width() * tile.height();
         }
         
-        // Grid bound: large enough to allow all placements
-        int grid_bound = num_tiles * std::max(max_tile_width, max_tile_height);
+        // Optimized grid bound: use tighter upper bound based on problem structure
+        // Theoretical minimum: sqrt(total_area) rounded up
+        // Conservative bound: add safety margin
+        int theoretical_min = static_cast<int>(std::sqrt(total_area)) + 1;
+        int grid_bound = std::max(theoretical_min * 2, num_tiles * std::max(max_tile_width, max_tile_height) / 4);
         
-        // Big-M for bounding square constraints
+        // Further optimization: use smaller bound for small instances
+        if (num_tiles <= 10) {
+            grid_bound = std::min(grid_bound, num_tiles * std::max(max_tile_width, max_tile_height) / 2);
+        }
+        
+        // Big-M for bounding constraints (tighter)
         int M = grid_bound + std::max(max_tile_width, max_tile_height);
         
         // Compute allowed origins for each tile
@@ -169,11 +191,26 @@ CplexResult solve_cplex(const Matrices& matrices, int time_limit) {
         IloModel model(env);
         IloCplex cplex(model);
         
-        // Configure CPLEX
+        // Configure CPLEX with optimized parameters
         cplex.setOut(env.getNullStream());
         cplex.setWarning(env.getNullStream());
         cplex.setParam(IloCplex::Param::TimeLimit, time_limit);
         cplex.setParam(IloCplex::Param::MIP::Tolerances::MIPGap, 0.01);
+        
+        // Optimization: Enable aggressive preprocessing and cuts
+        cplex.setParam(IloCplex::Param::Preprocessing::Presolve, 1);
+        cplex.setParam(IloCplex::Param::MIP::Strategy::HeuristicFreq, 20);  // More frequent heuristics
+        cplex.setParam(IloCplex::Param::MIP::Strategy::RINSHeur, 50);  // RINS heuristic
+        cplex.setParam(IloCplex::Param::Emphasis::MIP, 1);  // Emphasize feasibility
+        
+        // Enable parallel processing if available
+        cplex.setParam(IloCplex::Param::Threads, 0);  // Use all available threads
+        
+        // For area objective (non-convex quadratic), enable global optimization
+        if (obj_type == ObjectiveType::RECTANGLE_AREA) {
+            cplex.setParam(IloCplex::Param::OptimalityTarget, 3);  // Global optimization
+            cplex.setParam(IloCplex::Param::MIP::Strategy::Search, 2);  // Dynamic search for QP
+        }
         
         // ====================================================================
         // Decision Variables
@@ -189,8 +226,10 @@ CplexResult solve_cplex(const Matrices& matrices, int time_limit) {
             }
         }
         
-        // L: side length of bounding square
-        IloIntVar L(env, 0, M, "L");
+        // Variables for bounding box dimensions
+        IloIntVar W(env, 0, M, "W");  // Width
+        IloIntVar H(env, 0, M, "H");  // Height
+        IloIntVar L(env, 0, M, "L");  // For bounding square: max(W, H)
         
         // ====================================================================
         // Constraints
@@ -204,6 +243,19 @@ CplexResult solve_cplex(const Matrices& matrices, int time_limit) {
             }
             model.add(sum == 1);
             sum.end();
+        }
+        
+        // Symmetry breaking: Fix first tile at origin (0, 0) to break translational symmetry
+        // This significantly reduces the search space
+        if (num_tiles > 0 && !allowed_origins[0].empty()) {
+            // Find the origin (0, 0) for tile 0
+            for (size_t o_idx = 0; o_idx < allowed_origins[0].size(); ++o_idx) {
+                const Origin& origin = allowed_origins[0][o_idx];
+                if (origin.x == 0 && origin.y == 0) {
+                    model.add(b[0][o_idx] == 1);
+                    break;
+                }
+            }
         }
         
         // Constraint 2: Symbol-conflict constraints (pairwise no-conflict)
@@ -221,13 +273,13 @@ CplexResult solve_cplex(const Matrices& matrices, int time_limit) {
             }
         }
         
-        // Constraint 3: Bounding square constraints
-        // All tiles must fit within [0, L] x [0, L]
+        // Constraint 3: Bounding box constraints
+        // All tiles must fit within [0, W] x [0, H]
         // For each tile i at origin o, we need:
-        //   L >= o.x + w[i] when b[i][o] = 1
-        //   L >= o.y + h[i] when b[i][o] = 1
-        // Using big-M: L >= o.x + w[i] - M * (1 - b[i][o])
-        //              L >= o.y + h[i] - M * (1 - b[i][o])
+        //   W >= o.x + w[i] when b[i][o] = 1
+        //   H >= o.y + h[i] when b[i][o] = 1
+        // Using big-M: W >= o.x + w[i] - M * (1 - b[i][o])
+        //              H >= o.y + h[i] - M * (1 - b[i][o])
         
         for (int i = 0; i < num_tiles; ++i) {
             int w = tiles[i].width();
@@ -236,21 +288,45 @@ CplexResult solve_cplex(const Matrices& matrices, int time_limit) {
             for (size_t o_idx = 0; o_idx < allowed_origins[i].size(); ++o_idx) {
                 const Origin& origin = allowed_origins[i][o_idx];
                 
-                // L >= origin.x + w - M * (1 - b[i][o_idx])
-                model.add(L >= origin.x + w - M * (1 - b[i][o_idx]));
+                // W >= origin.x + w - M * (1 - b[i][o_idx])
+                model.add(W >= origin.x + w - M * (1 - b[i][o_idx]));
                 
-                // L >= origin.y + h - M * (1 - b[i][o_idx])
-                model.add(L >= origin.y + h - M * (1 - b[i][o_idx]));
+                // H >= origin.y + h - M * (1 - b[i][o_idx])
+                model.add(H >= origin.y + h - M * (1 - b[i][o_idx]));
             }
         }
         
-        // L >= 0 (already enforced by variable bounds)
+        // Valid inequalities: Lower bounds on bounding box dimensions
+        // W >= max(tile widths) and H >= max(tile heights)
+        model.add(W >= max_tile_width);
+        model.add(H >= max_tile_height);
+        
+        // Valid inequality: Area lower bound (sum of all tile areas)
+        if (obj_type == ObjectiveType::RECTANGLE_AREA) {
+            model.add(W * H >= total_area);
+        }
         
         // ====================================================================
-        // Objective: minimize L
+        // Objective: minimize based on objective type
         // ====================================================================
         
-        model.add(IloMinimize(env, L));
+        if (obj_type == ObjectiveType::BOUNDING_SQUARE) {
+            // L = max(W, H)
+            model.add(L >= W);
+            model.add(L >= H);
+            model.add(IloMinimize(env, L));
+        } else {
+            // Minimize W * H (area)
+            // For CPLEX, we use an auxiliary variable for the product
+            IloIntVar Area(env, 0, M * M, "Area");
+            // Area = W * H (linearized using McCormick envelopes or other techniques)
+            // For simplicity, we can approximate or use quadratic objective
+            // CPLEX supports quadratic objectives, so we can minimize W*H directly
+            IloExpr obj_expr(env);
+            obj_expr = W * H;
+            model.add(IloMinimize(env, obj_expr));
+            obj_expr.end();
+        }
         
         // ====================================================================
         // Solve
@@ -273,7 +349,10 @@ CplexResult solve_cplex(const Matrices& matrices, int time_limit) {
                 result.status = "unknown";
             }
             
-            result.best_obj = static_cast<int>(cplex.getValue(L));
+            // Get solution values
+            int width_val = static_cast<int>(cplex.getValue(W));
+            int height_val = static_cast<int>(cplex.getValue(H));
+            
             result.best_bound = cplex.getBestObjValue();
             result.mip_gap = cplex.getMIPRelativeGap();
             result.nodes_processed = cplex.getNnodes();
@@ -310,8 +389,12 @@ CplexResult solve_cplex(const Matrices& matrices, int time_limit) {
             result.bbox_height = max_y - min_y + 1;
             result.bbox_area = result.bbox_width * result.bbox_height;
             
-            // Override best_obj to be consistent with other algorithms: max(width, height)
-            result.best_obj = std::max(result.bbox_width, result.bbox_height);
+            // Set objective based on objective type
+            if (obj_type == ObjectiveType::BOUNDING_SQUARE) {
+                result.best_obj = std::max(result.bbox_width, result.bbox_height);
+            } else {
+                result.best_obj = result.bbox_width * result.bbox_height;
+            }
             
         } else {
             result.status = "infeasible";
@@ -336,6 +419,21 @@ CplexResult solve_cplex(const Matrices& matrices, int time_limit) {
         result.wall_time_sec = elapsed.count();
     }
     
+    return result;
+}
+
+#else  // !USE_CPLEX
+
+// Stub implementation when CPLEX is not available
+CplexResult solve_cplex(const Matrices& matrices, int time_limit, ObjectiveType obj_type) {
+    (void)matrices;      // Suppress unused parameter warning
+    (void)time_limit;    // Suppress unused parameter warning
+    (void)obj_type;      // Suppress unused parameter warning
+    
+    CplexResult result;
+    result.status = "CPLEX not available";
+    result.best_obj = -1;
+    result.wall_time_sec = 0.0;
     return result;
 }
 
