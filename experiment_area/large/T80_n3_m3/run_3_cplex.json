@@ -1,0 +1,16 @@
+{
+  "input": {
+    "T": 80,
+    "n": 3,
+    "m": 3,
+    "seed": 242,
+    "objective_type": "area"
+  },
+  "results": [
+    {
+      "algorithm": "cplex",
+      "status": "failed",
+      "error": "Command failed with code -9: CPLEX solver started\nNumber of tiles: 80\nGreedy bound: 76\nEstimated conflict checks: 123082255960\nTotal origin variables: 499280\nComputing conflicts...\nConflict computatio..."
+    }
+  ]
+}

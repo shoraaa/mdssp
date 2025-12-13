@@ -1,0 +1,830 @@
+{
+  "greedy_T6_n3_m3": {
+    "algorithm": "greedy",
+    "tiles": 6,
+    "n": 3,
+    "m": 3,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 43.8,
+      "min": 36,
+      "max": 48,
+      "std": 3.944616584663204
+    },
+    "runtime": {
+      "mean": 0.0023978857,
+      "min": 0.001451497,
+      "max": 0.003833116,
+      "std": 0.0007127116707259746
+    }
+  },
+  "stochastic_greedy_T6_n3_m3": {
+    "algorithm": "stochastic_greedy",
+    "tiles": 6,
+    "n": 3,
+    "m": 3,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 43.8,
+      "min": 36,
+      "max": 52,
+      "std": 4.534313619501853
+    },
+    "runtime": {
+      "mean": 0.0021950704,
+      "min": 0.001661752,
+      "max": 0.003251908,
+      "std": 0.0005358080762631709
+    }
+  },
+  "genetic_greedy_T6_n3_m3": {
+    "algorithm": "genetic_greedy",
+    "tiles": 6,
+    "n": 3,
+    "m": 3,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 41.5,
+      "min": 36,
+      "max": 45,
+      "std": 2.6551836094703507
+    },
+    "runtime": {
+      "mean": 0.1113853383,
+      "min": 0.060508434,
+      "max": 0.159686007,
+      "std": 0.02764348179388541
+    },
+    "crossover_stats": {
+      "avg_total_crossovers": 12594.1,
+      "avg_completions": 72.77777777777777,
+      "avg_completion_rate": 0.005201094091311286,
+      "avg_tiles_completed": 183.0
+    }
+  },
+  "genetic_stochastic_T6_n3_m3": {
+    "algorithm": "genetic_stochastic",
+    "tiles": 6,
+    "n": 3,
+    "m": 3,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 40.6,
+      "min": 36,
+      "max": 44,
+      "std": 2.6907248094147422
+    },
+    "runtime": {
+      "mean": 0.1540763841,
+      "min": 0.048894455,
+      "max": 0.304464244,
+      "std": 0.08308405410927827
+    },
+    "crossover_stats": {
+      "avg_total_crossovers": 12584.9,
+      "avg_completions": 793.0,
+      "avg_completion_rate": 0.0567491841929467,
+      "avg_tiles_completed": 1990.888888888889
+    }
+  },
+  "greedy_T6_n5_m5": {
+    "algorithm": "greedy",
+    "tiles": 6,
+    "n": 5,
+    "m": 5,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 144.0,
+      "min": 140,
+      "max": 150,
+      "std": 3.0
+    },
+    "runtime": {
+      "mean": 0.0252679778,
+      "min": 0.022935,
+      "max": 0.027372713,
+      "std": 0.001645750757607773
+    }
+  },
+  "stochastic_greedy_T6_n5_m5": {
+    "algorithm": "stochastic_greedy",
+    "tiles": 6,
+    "n": 5,
+    "m": 5,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 143.0,
+      "min": 140,
+      "max": 145,
+      "std": 2.449489742783178
+    },
+    "runtime": {
+      "mean": 0.026726999499999998,
+      "min": 0.023194,
+      "max": 0.033321,
+      "std": 0.002814401974861632
+    }
+  },
+  "genetic_greedy_T6_n5_m5": {
+    "algorithm": "genetic_greedy",
+    "tiles": 6,
+    "n": 5,
+    "m": 5,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 143.0,
+      "min": 140,
+      "max": 145,
+      "std": 2.449489742783178
+    },
+    "runtime": {
+      "mean": 0.4914477682,
+      "min": 0.300144,
+      "max": 0.712853,
+      "std": 0.1392077187301175
+    },
+    "crossover_stats": {
+      "avg_total_crossovers": 12619.4,
+      "avg_completions": 121.875,
+      "avg_completion_rate": 0.007721300622714558,
+      "avg_tiles_completed": 337.125
+    }
+  },
+  "genetic_stochastic_T6_n5_m5": {
+    "algorithm": "genetic_stochastic",
+    "tiles": 6,
+    "n": 5,
+    "m": 5,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 142.5,
+      "min": 140,
+      "max": 145,
+      "std": 2.5
+    },
+    "runtime": {
+      "mean": 1.0664006294,
+      "min": 0.683732,
+      "max": 1.899028,
+      "std": 0.3219861789611717
+    },
+    "crossover_stats": {
+      "avg_total_crossovers": 12607.0,
+      "avg_completions": 536.6,
+      "avg_completion_rate": 0.0425082644880493,
+      "avg_tiles_completed": 1770.0
+    }
+  },
+  "greedy_T6_n10_m10": {
+    "algorithm": "greedy",
+    "tiles": 6,
+    "n": 10,
+    "m": 10,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 599.0,
+      "min": 590,
+      "max": 600,
+      "std": 3.0
+    },
+    "runtime": {
+      "mean": 2.7215716999999997,
+      "min": 2.632632,
+      "max": 2.753536,
+      "std": 0.031437464023200065
+    }
+  },
+  "stochastic_greedy_T6_n10_m10": {
+    "algorithm": "stochastic_greedy",
+    "tiles": 6,
+    "n": 10,
+    "m": 10,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 599.0,
+      "min": 590,
+      "max": 600,
+      "std": 3.0
+    },
+    "runtime": {
+      "mean": 2.6965925,
+      "min": 2.595665,
+      "max": 2.723145,
+      "std": 0.034895820988336185
+    }
+  },
+  "genetic_greedy_T6_n10_m10": {
+    "algorithm": "genetic_greedy",
+    "tiles": 6,
+    "n": 10,
+    "m": 10,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 598.0,
+      "min": 590,
+      "max": 600,
+      "std": 4.0
+    },
+    "runtime": {
+      "mean": 25.851394199999998,
+      "min": 19.811177,
+      "max": 30.43363,
+      "std": 3.332982130319777
+    },
+    "crossover_stats": {
+      "avg_total_crossovers": 12595.5,
+      "avg_completions": 197.5,
+      "avg_completion_rate": 0.015678465417932375,
+      "avg_tiles_completed": 464.0
+    }
+  },
+  "genetic_stochastic_T6_n10_m10": {
+    "algorithm": "genetic_stochastic",
+    "tiles": 6,
+    "n": 10,
+    "m": 10,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 598.0,
+      "min": 590,
+      "max": 600,
+      "std": 4.0
+    },
+    "runtime": {
+      "mean": 44.958516700000004,
+      "min": 40.237022,
+      "max": 52.642832,
+      "std": 3.9622702705259276
+    },
+    "crossover_stats": {
+      "avg_total_crossovers": 12624.0,
+      "avg_completions": 642.2,
+      "avg_completion_rate": 0.050876460516343536,
+      "avg_tiles_completed": 1911.7
+    }
+  },
+  "greedy_T8_n3_m3": {
+    "algorithm": "greedy",
+    "tiles": 8,
+    "n": 3,
+    "m": 3,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 57.1,
+      "min": 50,
+      "max": 64,
+      "std": 3.78021163428716
+    },
+    "runtime": {
+      "mean": 0.0031584801000000004,
+      "min": 0.002487362,
+      "max": 0.004038374,
+      "std": 0.0004958036133725631
+    }
+  },
+  "stochastic_greedy_T8_n3_m3": {
+    "algorithm": "stochastic_greedy",
+    "tiles": 8,
+    "n": 3,
+    "m": 3,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 58.1,
+      "min": 52,
+      "max": 64,
+      "std": 4.182104733265297
+    },
+    "runtime": {
+      "mean": 0.0034582106,
+      "min": 0.00216773,
+      "max": 0.008268207,
+      "std": 0.001723467268945378
+    }
+  },
+  "genetic_greedy_T8_n3_m3": {
+    "algorithm": "genetic_greedy",
+    "tiles": 8,
+    "n": 3,
+    "m": 3,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 53.9,
+      "min": 48,
+      "max": 60,
+      "std": 4.182104733265297
+    },
+    "runtime": {
+      "mean": 0.1492262423,
+      "min": 0.124730693,
+      "max": 0.224134045,
+      "std": 0.028142880749426995
+    },
+    "crossover_stats": {
+      "avg_total_crossovers": 12583.2,
+      "avg_completions": 137.5,
+      "avg_completion_rate": 0.010939468466047176,
+      "avg_tiles_completed": 567.9
+    }
+  },
+  "genetic_stochastic_T8_n3_m3": {
+    "algorithm": "genetic_stochastic",
+    "tiles": 8,
+    "n": 3,
+    "m": 3,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 51.8,
+      "min": 48,
+      "max": 56,
+      "std": 3.2802438933713454
+    },
+    "runtime": {
+      "mean": 0.1615873045,
+      "min": 0.096766873,
+      "max": 0.231813237,
+      "std": 0.044604368948829874
+    },
+    "crossover_stats": {
+      "avg_total_crossovers": 12610.6,
+      "avg_completions": 381.1,
+      "avg_completion_rate": 0.03017974524567408,
+      "avg_tiles_completed": 1502.7
+    }
+  },
+  "greedy_T8_n5_m5": {
+    "algorithm": "greedy",
+    "tiles": 8,
+    "n": 5,
+    "m": 5,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 195.2,
+      "min": 185,
+      "max": 222,
+      "std": 10.017983829094554
+    },
+    "runtime": {
+      "mean": 0.0534042,
+      "min": 0.047705,
+      "max": 0.068717,
+      "std": 0.0064390455162236584
+    }
+  },
+  "stochastic_greedy_T8_n5_m5": {
+    "algorithm": "stochastic_greedy",
+    "tiles": 8,
+    "n": 5,
+    "m": 5,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 196.2,
+      "min": 190,
+      "max": 222,
+      "std": 9.431860898041277
+    },
+    "runtime": {
+      "mean": 0.0531523,
+      "min": 0.047574,
+      "max": 0.062419,
+      "std": 0.004226568798682923
+    }
+  },
+  "genetic_greedy_T8_n5_m5": {
+    "algorithm": "genetic_greedy",
+    "tiles": 8,
+    "n": 5,
+    "m": 5,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 190.5,
+      "min": 185,
+      "max": 195,
+      "std": 2.692582403567252
+    },
+    "runtime": {
+      "mean": 0.8473901999999999,
+      "min": 0.689151,
+      "max": 1.203524,
+      "std": 0.15490426579329572
+    },
+    "crossover_stats": {
+      "avg_total_crossovers": 12635.0,
+      "avg_completions": 128.7,
+      "avg_completion_rate": 0.010177865918582354,
+      "avg_tiles_completed": 353.1
+    }
+  },
+  "genetic_stochastic_T8_n5_m5": {
+    "algorithm": "genetic_stochastic",
+    "tiles": 8,
+    "n": 5,
+    "m": 5,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 190.0,
+      "min": 185,
+      "max": 195,
+      "std": 3.1622776601683795
+    },
+    "runtime": {
+      "mean": 2.4724186,
+      "min": 1.74704,
+      "max": 3.424953,
+      "std": 0.5385647376459398
+    },
+    "crossover_stats": {
+      "avg_total_crossovers": 12605.6,
+      "avg_completions": 680.8,
+      "avg_completion_rate": 0.054030285629937815,
+      "avg_tiles_completed": 3090.3
+    }
+  },
+  "greedy_T8_n10_m10": {
+    "algorithm": "greedy",
+    "tiles": 8,
+    "n": 10,
+    "m": 10,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 799.0,
+      "min": 790,
+      "max": 800,
+      "std": 3.0
+    },
+    "runtime": {
+      "mean": 5.9618829,
+      "min": 5.780685,
+      "max": 5.993621,
+      "std": 0.06087691652416372
+    }
+  },
+  "stochastic_greedy_T8_n10_m10": {
+    "algorithm": "stochastic_greedy",
+    "tiles": 8,
+    "n": 10,
+    "m": 10,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 799.0,
+      "min": 790,
+      "max": 800,
+      "std": 3.0
+    },
+    "runtime": {
+      "mean": 5.9526509,
+      "min": 5.780282,
+      "max": 5.984308,
+      "std": 0.058321227002610394
+    }
+  },
+  "genetic_greedy_T8_n10_m10": {
+    "algorithm": "genetic_greedy",
+    "tiles": 8,
+    "n": 10,
+    "m": 10,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 798.0,
+      "min": 790,
+      "max": 800,
+      "std": 4.0
+    },
+    "runtime": {
+      "mean": 64.9853817,
+      "min": 45.672485,
+      "max": 88.528705,
+      "std": 13.823683389678196
+    },
+    "crossover_stats": {
+      "avg_total_crossovers": 12563.0,
+      "avg_completions": 353.6,
+      "avg_completion_rate": 0.02818212084933146,
+      "avg_tiles_completed": 1091.5
+    }
+  },
+  "genetic_stochastic_T8_n10_m10": {
+    "algorithm": "genetic_stochastic",
+    "tiles": 8,
+    "n": 10,
+    "m": 10,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 798.0,
+      "min": 790,
+      "max": 800,
+      "std": 4.0
+    },
+    "runtime": {
+      "mean": 103.96976930000001,
+      "min": 88.617777,
+      "max": 118.465086,
+      "std": 9.493425113399672
+    },
+    "crossover_stats": {
+      "avg_total_crossovers": 12622.0,
+      "avg_completions": 770.3,
+      "avg_completion_rate": 0.06103327755402586,
+      "avg_tiles_completed": 3395.1
+    }
+  },
+  "greedy_T10_n3_m3": {
+    "algorithm": "greedy",
+    "tiles": 10,
+    "n": 3,
+    "m": 3,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 69.2,
+      "min": 60,
+      "max": 75,
+      "std": 5.095095681142799
+    },
+    "runtime": {
+      "mean": 0.0050885088000000005,
+      "min": 0.003215405,
+      "max": 0.008672532,
+      "std": 0.0015629526970484934
+    }
+  },
+  "stochastic_greedy_T10_n3_m3": {
+    "algorithm": "stochastic_greedy",
+    "tiles": 10,
+    "n": 3,
+    "m": 3,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 69.1,
+      "min": 60,
+      "max": 78,
+      "std": 5.717516943569123
+    },
+    "runtime": {
+      "mean": 0.0048104009,
+      "min": 0.002964171,
+      "max": 0.01276087,
+      "std": 0.0027659101558280036
+    }
+  },
+  "genetic_greedy_T10_n3_m3": {
+    "algorithm": "genetic_greedy",
+    "tiles": 10,
+    "n": 3,
+    "m": 3,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 62.3,
+      "min": 54,
+      "max": 70,
+      "std": 4.796873982084582
+    },
+    "runtime": {
+      "mean": 0.1949047373,
+      "min": 0.11761278,
+      "max": 0.35065476,
+      "std": 0.06109334559405327
+    },
+    "crossover_stats": {
+      "avg_total_crossovers": 12609.4,
+      "avg_completions": 256.3,
+      "avg_completion_rate": 0.020440675636654228,
+      "avg_tiles_completed": 768.0
+    }
+  },
+  "genetic_stochastic_T10_n3_m3": {
+    "algorithm": "genetic_stochastic",
+    "tiles": 10,
+    "n": 3,
+    "m": 3,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 59.0,
+      "min": 54,
+      "max": 64,
+      "std": 2.7202941017470885
+    },
+    "runtime": {
+      "mean": 0.26566476629999997,
+      "min": 0.194027557,
+      "max": 0.396925551,
+      "std": 0.0643331727745445
+    },
+    "crossover_stats": {
+      "avg_total_crossovers": 12617.7,
+      "avg_completions": 669.7,
+      "avg_completion_rate": 0.05306732029328749,
+      "avg_tiles_completed": 2495.5
+    }
+  },
+  "greedy_T10_n5_m5": {
+    "algorithm": "greedy",
+    "tiles": 10,
+    "n": 5,
+    "m": 5,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 240.0,
+      "min": 230,
+      "max": 250,
+      "std": 5.916079783099616
+    },
+    "runtime": {
+      "mean": 0.0893459,
+      "min": 0.079031,
+      "max": 0.097917,
+      "std": 0.005532432059230371
+    }
+  },
+  "stochastic_greedy_T10_n5_m5": {
+    "algorithm": "stochastic_greedy",
+    "tiles": 10,
+    "n": 5,
+    "m": 5,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 241.0,
+      "min": 230,
+      "max": 250,
+      "std": 5.830951894845301
+    },
+    "runtime": {
+      "mean": 0.0895237,
+      "min": 0.082965,
+      "max": 0.097924,
+      "std": 0.004902811602539913
+    }
+  },
+  "genetic_greedy_T10_n5_m5": {
+    "algorithm": "genetic_greedy",
+    "tiles": 10,
+    "n": 5,
+    "m": 5,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 237.0,
+      "min": 225,
+      "max": 245,
+      "std": 5.5677643628300215
+    },
+    "runtime": {
+      "mean": 1.5298814,
+      "min": 1.079214,
+      "max": 1.879438,
+      "std": 0.27543771619231816
+    },
+    "crossover_stats": {
+      "avg_total_crossovers": 12594.8,
+      "avg_completions": 107.2,
+      "avg_completion_rate": 0.008511736196211659,
+      "avg_tiles_completed": 394.0
+    }
+  },
+  "genetic_stochastic_T10_n5_m5": {
+    "algorithm": "genetic_stochastic",
+    "tiles": 10,
+    "n": 5,
+    "m": 5,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 236.0,
+      "min": 225,
+      "max": 245,
+      "std": 5.385164807134504
+    },
+    "runtime": {
+      "mean": 4.9757781,
+      "min": 3.053999,
+      "max": 6.551787,
+      "std": 0.9108563156555978
+    },
+    "crossover_stats": {
+      "avg_total_crossovers": 12588.1,
+      "avg_completions": 794.7,
+      "avg_completion_rate": 0.06312542311457295,
+      "avg_tiles_completed": 4682.4
+    }
+  },
+  "greedy_T10_n10_m10": {
+    "algorithm": "greedy",
+    "tiles": 10,
+    "n": 10,
+    "m": 10,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 999.0,
+      "min": 990,
+      "max": 1000,
+      "std": 3.0
+    },
+    "runtime": {
+      "mean": 11.1219228,
+      "min": 10.807275,
+      "max": 11.177696,
+      "std": 0.10586644123781601
+    }
+  },
+  "stochastic_greedy_T10_n10_m10": {
+    "algorithm": "stochastic_greedy",
+    "tiles": 10,
+    "n": 10,
+    "m": 10,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 999.0,
+      "min": 990,
+      "max": 1000,
+      "std": 3.0
+    },
+    "runtime": {
+      "mean": 11.0911212,
+      "min": 10.801275,
+      "max": 11.158696,
+      "std": 0.09989958344537785
+    }
+  },
+  "genetic_greedy_T10_n10_m10": {
+    "algorithm": "genetic_greedy",
+    "tiles": 10,
+    "n": 10,
+    "m": 10,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 998.0,
+      "min": 990,
+      "max": 1000,
+      "std": 4.0
+    },
+    "runtime": {
+      "mean": 114.6928711,
+      "min": 88.070395,
+      "max": 138.637616,
+      "std": 16.11277570072966
+    },
+    "crossover_stats": {
+      "avg_total_crossovers": 12607.5,
+      "avg_completions": 324.8,
+      "avg_completion_rate": 0.025749459702061328,
+      "avg_tiles_completed": 1277.1
+    }
+  },
+  "genetic_stochastic_T10_n10_m10": {
+    "algorithm": "genetic_stochastic",
+    "tiles": 10,
+    "n": 10,
+    "m": 10,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 998.0,
+      "min": 990,
+      "max": 1000,
+      "std": 4.0
+    },
+    "runtime": {
+      "mean": 184.8341987,
+      "min": 145.082443,
+      "max": 217.258616,
+      "std": 21.632249123047227
+    },
+    "crossover_stats": {
+      "avg_total_crossovers": 12589.2,
+      "avg_completions": 669.8,
+      "avg_completion_rate": 0.053211803809522604,
+      "avg_tiles_completed": 3971.5
+    }
+  }
+}

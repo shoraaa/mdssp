@@ -18,7 +18,8 @@ endif
 
 
 ifndef CPLEX_ROOT
-	CPLEX_ROOT = /workspace/ttdat/cplex
+	CPLEX_ROOT = /opt/ibm/ILOG/CPLEX_Studio2211
+# 	/workspace/ttdat/cplex
 endif
 
 UNAME_S := $(shell uname -s)

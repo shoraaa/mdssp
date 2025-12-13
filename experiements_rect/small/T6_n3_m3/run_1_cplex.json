@@ -1,9 +1,0 @@
-{
-  "results": [
-    {
-      "algorithm": "cplex",
-      "error": "CPLEX error: CPLEX Error  5002: objective is not convex.\n",
-      "status": "CPLEX error: CPLEX Error  5002: objective is not convex.\n"
-    }
-  ]
-}

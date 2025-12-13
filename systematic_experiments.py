@@ -29,37 +29,40 @@ import csv
 EXPERIMENTS = {
     'small': {
         'tiles': [6, 8, 10],
-        'tile_size': [(3, 3)],
-        'runs': 30,
-        'algorithms': ['greedy', 'stochastic_greedy', 'genetic_greedy', 'genetic_stochastic', 'cplex'],
-        'pop_size': 50,
-        'generations': 100,
+        'tile_size': [(3, 3), (5, 5), (10, 10)],
+        'runs': 10,
+        'algorithms': ['greedy', 'stochastic_greedy', 'genetic_greedy', 'genetic_stochastic'],
+        'pop_size': 100,
+        'generations': 200,
+        'cplex_time_limit': 300,  # CPLEX time limit in seconds
         'objective_type': 'square',  # 'square' or 'area'
         'description': 'Small scale with CPLEX baseline'
     },
     'medium': {
         'tiles': [20, 30, 50],
-        'tile_size': [(3, 3)],
-        'runs': 30,
-        'algorithms': ['greedy', 'stochastic_greedy', 'genetic_greedy', 'genetic_stochastic'],
-        'pop_size': 100,
-        'generations': 200,
-        'objective_type': 'square',  # 'square' or 'area'
-        'description': 'Medium scale without CPLEX'
-    },
-    'large': {
-        'tiles': [60, 80, 100],
-        'tile_size': [(3, 3)],
-        'runs': 20,
+        'tile_size': [(3, 3), (5, 5), (10, 10)],
+        'runs': 10,
         'algorithms': ['greedy', 'stochastic_greedy', 'genetic_greedy', 'genetic_stochastic'],
         'pop_size': 150,
         'generations': 300,
+        'cplex_time_limit': 2000,  # CPLEX time limit in seconds
+        'objective_type': 'square',  # 'square' or 'area'
+        'description': 'Medium scale with CPLEX baseline'
+    },
+    'large': {
+        'tiles': [60, 80, 100],
+        'tile_size': [(3, 3), (5, 5), (10, 10)],
+        'runs': 10,
+        'algorithms': ['greedy', 'stochastic_greedy', 'genetic_greedy', 'genetic_stochastic'],
+        'pop_size': 200,
+        'generations': 400,
+        'cplex_time_limit': 2000,  # CPLEX time limit in seconds
         'objective_type': 'square',  # 'square' or 'area'
         'description': 'Large scale scalability testing'
     }
 }
 
-def run_single_experiment(algorithm, tiles, n, m, seed, output_file, pop_size=None, generations=None, objective_type=None):
+def run_single_experiment(algorithm, tiles, n, m, seed, output_file, pop_size=None, generations=None, objective_type=None, cplex_time_limit=None):
     """Run a single experiment and return results."""
     cmd = [
         "./mdssp",
@@ -73,6 +76,9 @@ def run_single_experiment(algorithm, tiles, n, m, seed, output_file, pop_size=No
     
     if objective_type:
         cmd.extend(["--objective-type", objective_type])
+     
+    if algorithm == 'cplex' and cplex_time_limit:
+        cmd.extend(["--time-limit", str(cplex_time_limit)])
     
     if algorithm in ['genetic_greedy', 'genetic_stochastic']:
         if pop_size:
@@ -80,8 +86,10 @@ def run_single_experiment(algorithm, tiles, n, m, seed, output_file, pop_size=No
         if generations:
             cmd.extend(["--generations", str(generations)])
     
+    subprocess_timeout = 10000    # Large timeout to let CPLEX run as long as needed
+    
     try:
-        result = subprocess.run(cmd, capture_output=True, text=True, timeout=600)
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=  subprocess_timeout)
         
         # Parse output
         output = result.stdout
@@ -90,12 +98,18 @@ def run_single_experiment(algorithm, tiles, n, m, seed, output_file, pop_size=No
         bbox_width = None
         bbox_height = None
         num_tiles = None
+        status = None
         total_crossovers = None
         crossovers_needing_completion = None
         total_tiles_completed = None
         
         for line in output.split('\n'):
-            if 'Objective (L):' in line:
+            if 'Status:' in line and 'Algorithm Results' not in line:
+                try:
+                    status = line.split(':')[1].strip()
+                except (ValueError, IndexError):
+                    pass
+            elif 'Objective (L):' in line:
                 try:
                     objective = int(line.split(':')[1].strip())
                 except (ValueError, IndexError):
@@ -140,9 +154,16 @@ def run_single_experiment(algorithm, tiles, n, m, seed, output_file, pop_size=No
                 with open(output_file, 'r') as f:
                     solution_data = json.load(f)
                     
-                # Extract crossover stats from JSON if available
+                # Check for error status in JSON (like "Model too large")
                 if solution_data and 'results' in solution_data:
                     result_obj = solution_data['results'][0]
+                    
+                    # If there's an error status, return it immediately
+                    if 'error' in result_obj or result_obj.get('status') in ['Model too large (too many origin variables)']:
+                        error_msg = result_obj.get('error', result_obj.get('status', 'Unknown error'))
+                        return {'success': False, 'error': error_msg}
+                    
+                    # Extract crossover stats from JSON if available
                     if 'total_crossovers' in result_obj:
                         total_crossovers = result_obj['total_crossovers']
                     if 'crossovers_needing_completion' in result_obj:
@@ -153,8 +174,21 @@ def run_single_experiment(algorithm, tiles, n, m, seed, output_file, pop_size=No
             except Exception as e:
                 print(f"    Warning: Could not load solution JSON: {e}")
         
+        # Check if we got valid results
+        if result.returncode != 0:
+            # Command failed, check stderr for error message
+            error_msg = result.stderr.strip() if result.stderr else "Unknown error"
+            return {'success': False, 'error': f'Command failed with code {result.returncode}: {error_msg}'}
+        
+        # Even with returncode 0, check if we parsed essential fields
+        if objective is None or runtime is None:
+            # Try to get error from stderr or stdout
+            error_info = result.stderr.strip() if result.stderr else result.stdout[-500:] if result.stdout else "No output"
+            return {'success': False, 'error': f'Parse failed: {error_info}'}
+        
         return {
             'success': True,
+            'status': status,
             'objective': objective,
             'runtime': runtime,
             'bbox_width': bbox_width,
@@ -167,12 +201,40 @@ def run_single_experiment(algorithm, tiles, n, m, seed, output_file, pop_size=No
         }
     
     except subprocess.TimeoutExpired:
+        # Even on timeout, CPLEX might have written a feasible solution to the file
+        # Check if the JSON file exists and has valid results
+        if Path(output_file).exists():
+            try:
+                with open(output_file, 'r') as f:
+                    solution_data = json.load(f)
+                    
+                if solution_data and 'results' in solution_data and len(solution_data['results']) > 0:
+                    result_obj = solution_data['results'][0]
+                    
+                    # Check if we have a valid solution (even if just feasible)
+                    if 'objective' in result_obj and 'runtime_seconds' in result_obj:
+                        return {
+                            'success': True,
+                            'status': result_obj.get('status', 'timeout'),
+                            'objective': result_obj.get('objective'),
+                            'runtime': result_obj.get('runtime_seconds'),
+                            'bbox_width': result_obj.get('bbox_width'),
+                            'bbox_height': result_obj.get('bbox_height'),
+                            'num_tiles': result_obj.get('num_tiles_placed'),
+                            'total_crossovers': result_obj.get('total_crossovers'),
+                            'crossovers_needing_completion': result_obj.get('crossovers_needing_completion'),
+                            'total_tiles_completed': result_obj.get('total_tiles_completed'),
+                            'solution': solution_data
+                        }
+            except Exception as e:
+                print(f"    Warning: Timeout occurred but couldn't parse output file: {e}")
+        
         return {'success': False, 'error': 'timeout'}
     except Exception as e:
         return {'success': False, 'error': str(e)}
 
 def is_experiment_completed(output_file):
-    """Check if an experiment has already been completed successfully."""
+    """Check if an experiment has already been completed or marked as failed."""
     if not Path(output_file).exists():
         return False
     
@@ -182,8 +244,12 @@ def is_experiment_completed(output_file):
             # Check if the JSON file has valid results
             if 'results' in data and len(data['results']) > 0:
                 result = data['results'][0]
-                # Verify it has the essential fields
-                return 'objective' in result and 'runtime_seconds' in result
+                # Valid completed run has objective and runtime
+                if 'objective' in result and 'runtime_seconds' in result:
+                    return True
+                # Failed/error marker also counts as "completed" (don't retry)
+                if result.get('status') in ['failed', 'parse_failed', 'error']:
+                    return True
     except:
         return False
     
@@ -234,7 +300,6 @@ def run_experiment_suite(scale, config, base_seed, output_dir, resume=True):
                     
                     # Check if already completed
                     if resume and is_experiment_completed(output_file):
-                        print(f"  [{algo}] ⊙ Already completed (skipped)", flush=True)
                         skipped_count += 1
                         
                         # Load the existing result
@@ -243,6 +308,11 @@ def run_experiment_suite(scale, config, base_seed, output_dir, resume=True):
                                 solution_data = json.load(f)
                                 if 'results' in solution_data and len(solution_data['results']) > 0:
                                     result_obj = solution_data['results'][0]
+                                    
+                                    # Check if this was a failed run
+                                    if result_obj.get('status') in ['failed', 'parse_failed', 'error']:
+                                        print(f"  [{algo}] ⊙ Previously failed (skipped)", flush=True)
+                                        continue
                                     
                                     result_entry = {
                                         'scale': scale,
@@ -253,6 +323,7 @@ def run_experiment_suite(scale, config, base_seed, output_dir, resume=True):
                                         'seed': seed,
                                         'algorithm': algo,
                                         'objective_type': config.get('objective_type', 'square'),
+                                        'status': result_obj.get('status'),
                                         'objective': result_obj.get('objective'),
                                         'runtime': result_obj.get('runtime_seconds'),
                                         'bbox_width': result_obj.get('bbox_width'),
@@ -268,13 +339,16 @@ def run_experiment_suite(scale, config, base_seed, output_dir, resume=True):
                                     
                                     all_results.append(result_entry)
                                     
-                                    # Track best result
-                                    key = f"{exp_name}_{algo}"
-                                    if key not in best_results or result_entry['objective'] < best_results[key]['objective']:
-                                        best_results[key] = result_entry.copy()
-                                        best_results[key]['solution'] = solution_data
+                                    print(f"  [{algo}] ⊙ Already completed (skipped)", flush=True)
+                                    
+                                    # Track best result (only if we have a valid objective)
+                                    if result_entry['objective'] is not None:
+                                        key = f"{exp_name}_{algo}"
+                                        if key not in best_results or (best_results[key]['objective'] is not None and result_entry['objective'] < best_results[key]['objective']):
+                                            best_results[key] = result_entry.copy()
+                                            best_results[key]['solution'] = solution_data
                         except Exception as e:
-                            print(f" (warning: couldn't load existing result: {e})", end='')
+                            print(f"  [{algo}] ⊙ Previously completed (warning: couldn't load: {e})", flush=True)
                         
                         continue
                     
@@ -283,7 +357,7 @@ def run_experiment_suite(scale, config, base_seed, output_dir, resume=True):
                     result = run_single_experiment(
                         algo, tiles, n, m, seed, str(output_file),
                         config.get('pop_size'), config.get('generations'),
-                        config.get('objective_type')
+                        config.get('objective_type'), config.get('cplex_time_limit')
                     )
                     
                     completed_count += 1
@@ -291,9 +365,23 @@ def run_experiment_suite(scale, config, base_seed, output_dir, resume=True):
                     if result['success']:
                         obj = result['objective']
                         runtime = result['runtime']
+                        status = result.get('status')
+                        
+                        # Check if parsing failed - handle missing output file gracefully
+                        if obj is None or runtime is None:
+                            if not Path(output_file).exists():
+                                print(f"✗ No output file (process may have been killed before completing)")
+                                result['success'] = False
+                                result['error'] = 'no_output_file'
+                            # Otherwise parsing succeeded but got None values - will be handled below
                         
                         if obj is not None and runtime is not None:
-                            print(f"✓ Obj={obj}, Time={runtime:.3f}s", end='')
+                            # Show status indicator for CPLEX feasible (non-optimal) solutions
+                            status_marker = "✓"
+                            if status == "feasible":
+                                status_marker = "≈"  # Approximate/feasible but not optimal
+                            
+                            print(f"{status_marker} Obj={obj}, Time={runtime:.3f}s", end='')
                             
                             # Add crossover stats if available
                             if result['total_crossovers'] and result['crossovers_needing_completion'] is not None:
@@ -312,6 +400,7 @@ def run_experiment_suite(scale, config, base_seed, output_dir, resume=True):
                                 'seed': seed,
                                 'algorithm': algo,
                                 'objective_type': config.get('objective_type', 'square'),
+                                'status': status,
                                 'objective': obj,
                                 'runtime': runtime,
                                 'bbox_width': result['bbox_width'],
@@ -333,9 +422,48 @@ def run_experiment_suite(scale, config, base_seed, output_dir, resume=True):
                                 best_results[key] = result_entry.copy()
                                 best_results[key]['solution'] = result['solution']
                         else:
-                            print("✗ Parse failed")
+                            # This shouldn't happen now with improved error detection
+                            print("✗ Parse failed (unexpected)")
+                            # Save failure marker so we don't retry this indefinitely
+                            failure_data = {
+                                'input': {
+                                    'T': tiles,
+                                    'n': n,
+                                    'm': m,
+                                    'seed': seed,
+                                    'objective_type': config.get('objective_type', 'square')
+                                },
+                                'results': [{
+                                    'algorithm': algo,
+                                    'status': 'parse_failed',
+                                    'error': 'Failed to parse algorithm output (unexpected)'
+                                }]
+                            }
+                            with open(output_file, 'w') as f:
+                                json.dump(failure_data, f, indent=2)
                     else:
-                        print(f"✗ {result.get('error', 'unknown error')}")
+                        error_msg = result.get('error', 'unknown error')
+                        # Truncate very long error messages for display
+                        if len(error_msg) > 200:
+                            error_msg = error_msg[:200] + "..."
+                        print(f"✗ {error_msg}")
+                        # Save failure marker
+                        failure_data = {
+                            'input': {
+                                'T': tiles,
+                                'n': n,
+                                'm': m,
+                                'seed': seed,
+                                'objective_type': config.get('objective_type', 'square')
+                            },
+                            'results': [{
+                                'algorithm': algo,
+                                'status': 'failed',
+                                'error': error_msg
+                            }]
+                        }
+                        with open(output_file, 'w') as f:
+                            json.dump(failure_data, f, indent=2)
             
             # Save experiment results
             exp_results = [r for r in all_results if r['tiles'] == tiles and r['n'] == n and r['m'] == m]
@@ -390,7 +518,7 @@ def write_results_to_csv(results, output_file):
     
     # Determine all possible fields
     fieldnames = ['scale', 'tiles', 'n', 'm', 'run', 'seed', 'algorithm', 'objective_type',
-                  'objective', 'runtime', 'bbox_width', 'bbox_height', 'num_tiles',
+                  'status', 'objective', 'runtime', 'bbox_width', 'bbox_height', 'num_tiles',
                   'total_crossovers', 'crossovers_needing_completion', 'total_tiles_completed',
                   'completion_rate', 'avg_tiles_per_incomplete']
     
@@ -412,10 +540,11 @@ def write_summary_to_csv(summary, output_file):
     if not summary:
         return
     
-    fieldnames = ['algorithm', 'tiles', 'n', 'm', 'num_runs',
+    fieldnames = ['algorithm', 'tiles', 'n', 'm', 'num_runs', 'successful_runs',
                   'obj_mean', 'obj_min', 'obj_max', 'obj_std',
                   'runtime_mean', 'runtime_min', 'runtime_max', 'runtime_std',
-                  'crossovers_mean', 'completion_rate_mean', 'tiles_completed_mean']
+                  'crossovers_mean', 'completion_rate_mean', 'tiles_completed_mean',
+                  'cplex_optimal', 'cplex_feasible', 'cplex_infeasible', 'cplex_timeout', 'cplex_failed']
     
     with open(output_file, 'w', newline='') as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames, extrasaction='ignore')
@@ -428,6 +557,7 @@ def write_summary_to_csv(summary, output_file):
                 'n': stats['n'],
                 'm': stats['m'],
                 'num_runs': stats['num_runs'],
+                'successful_runs': stats.get('successful_runs', stats['num_runs']),
                 'obj_mean': stats['objective']['mean'],
                 'obj_min': stats['objective']['min'],
                 'obj_max': stats['objective']['max'],
@@ -444,6 +574,14 @@ def write_summary_to_csv(summary, output_file):
                 row['completion_rate_mean'] = stats['crossover_stats']['avg_completion_rate']
                 row['tiles_completed_mean'] = stats['crossover_stats']['avg_tiles_completed']
             
+            # Add CPLEX status counts
+            if 'cplex_status_counts' in stats:
+                row['cplex_optimal'] = stats['cplex_status_counts']['optimal']
+                row['cplex_feasible'] = stats['cplex_status_counts']['feasible']
+                row['cplex_infeasible'] = stats['cplex_status_counts']['infeasible']
+                row['cplex_timeout'] = stats['cplex_status_counts']['timeout']
+                row['cplex_failed'] = stats['cplex_status_counts']['failed']
+            
             writer.writerow(row)
 
 def calculate_summary_statistics(results):
@@ -459,8 +597,13 @@ def calculate_summary_statistics(results):
         groups[key].append(r)
     
     for key, group in groups.items():
-        objectives = [r['objective'] for r in group]
-        runtimes = [r['runtime'] for r in group]
+        # Filter out None values from failed experiments
+        objectives = [r['objective'] for r in group if r['objective'] is not None]
+        runtimes = [r['runtime'] for r in group if r['runtime'] is not None]
+        
+        # Skip if no valid data
+        if not objectives or not runtimes:
+            continue
         
         stats = {
             'algorithm': group[0]['algorithm'],
@@ -468,6 +611,7 @@ def calculate_summary_statistics(results):
             'n': group[0]['n'],
             'm': group[0]['m'],
             'num_runs': len(group),
+            'successful_runs': len(objectives),
             'objective': {
                 'mean': sum(objectives) / len(objectives),
                 'min': min(objectives),
@@ -481,6 +625,17 @@ def calculate_summary_statistics(results):
                 'std': (sum((x - sum(runtimes)/len(runtimes))**2 for x in runtimes) / len(runtimes))**0.5 if len(runtimes) > 1 else 0
             }
         }
+        
+        # Add CPLEX-specific status counts
+        if group[0]['algorithm'] == 'cplex':
+            status_counts = {
+                'optimal': sum(1 for r in group if r.get('status') == 'optimal'),
+                'feasible': sum(1 for r in group if r.get('status') == 'feasible'),
+                'infeasible': sum(1 for r in group if r.get('status') == 'infeasible'),
+                'timeout': sum(1 for r in group if r.get('status') == 'timeout'),
+                'failed': sum(1 for r in group if r.get('status') in ['failed', 'parse_failed', 'error'])
+            }
+            stats['cplex_status_counts'] = status_counts
         
         # Add genetic algorithm specific stats
         if group[0].get('total_crossovers'):

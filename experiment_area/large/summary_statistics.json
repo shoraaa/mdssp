@@ -1,0 +1,278 @@
+{
+  "greedy_T60_n3_m3": {
+    "algorithm": "greedy",
+    "tiles": 60,
+    "n": 3,
+    "m": 3,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 278.7,
+      "min": 250,
+      "max": 312,
+      "std": 21.831399405443527
+    },
+    "runtime": {
+      "mean": 0.1516273,
+      "min": 0.09184,
+      "max": 0.266332,
+      "std": 0.05362839993147288
+    }
+  },
+  "stochastic_greedy_T60_n3_m3": {
+    "algorithm": "stochastic_greedy",
+    "tiles": 60,
+    "n": 3,
+    "m": 3,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 283.6,
+      "min": 234,
+      "max": 327,
+      "std": 28.224811779709
+    },
+    "runtime": {
+      "mean": 0.16378790000000001,
+      "min": 0.061203,
+      "max": 0.316869,
+      "std": 0.08147086213788338
+    }
+  },
+  "genetic_greedy_T60_n3_m3": {
+    "algorithm": "genetic_greedy",
+    "tiles": 60,
+    "n": 3,
+    "m": 3,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 223.3,
+      "min": 210,
+      "max": 240,
+      "std": 10.080178569846865
+    },
+    "runtime": {
+      "mean": 28.947299699999995,
+      "min": 17.131721,
+      "max": 52.07832,
+      "std": 10.158412759379646
+    },
+    "crossover_stats": {
+      "avg_total_crossovers": 50422.6,
+      "avg_completions": 1283.5,
+      "avg_completion_rate": 0.025449830487958576,
+      "avg_tiles_completed": 60173.1
+    }
+  },
+  "genetic_stochastic_T60_n3_m3": {
+    "algorithm": "genetic_stochastic",
+    "tiles": 60,
+    "n": 3,
+    "m": 3,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 220.2,
+      "min": 210,
+      "max": 225,
+      "std": 6.690291473471092
+    },
+    "runtime": {
+      "mean": 35.8599354,
+      "min": 22.77817,
+      "max": 45.444487,
+      "std": 6.694317752184464
+    },
+    "crossover_stats": {
+      "avg_total_crossovers": 50467.5,
+      "avg_completions": 1449.3,
+      "avg_completion_rate": 0.028721698808412233,
+      "avg_tiles_completed": 74490.8
+    }
+  },
+  "greedy_T80_n3_m3": {
+    "algorithm": "greedy",
+    "tiles": 80,
+    "n": 3,
+    "m": 3,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 349.4,
+      "min": 320,
+      "max": 405,
+      "std": 27.532526219001408
+    },
+    "runtime": {
+      "mean": 0.1954728,
+      "min": 0.115643,
+      "max": 0.334272,
+      "std": 0.07858823305788215
+    }
+  },
+  "stochastic_greedy_T80_n3_m3": {
+    "algorithm": "stochastic_greedy",
+    "tiles": 80,
+    "n": 3,
+    "m": 3,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 347.9,
+      "min": 308,
+      "max": 390,
+      "std": 23.93929823532845
+    },
+    "runtime": {
+      "mean": 0.19558910000000002,
+      "min": 0.102783,
+      "max": 0.294752,
+      "std": 0.06932099414528041
+    }
+  },
+  "genetic_greedy_T80_n3_m3": {
+    "algorithm": "genetic_greedy",
+    "tiles": 80,
+    "n": 3,
+    "m": 3,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 268.2,
+      "min": 256,
+      "max": 289,
+      "std": 9.80612053770501
+    },
+    "runtime": {
+      "mean": 54.3563307,
+      "min": 37.067115,
+      "max": 88.452988,
+      "std": 16.12319801462525
+    },
+    "crossover_stats": {
+      "avg_total_crossovers": 50435.5,
+      "avg_completions": 1181.7,
+      "avg_completion_rate": 0.0234250756045286,
+      "avg_tiles_completed": 81352.5
+    }
+  },
+  "genetic_stochastic_T80_n3_m3": {
+    "algorithm": "genetic_stochastic",
+    "tiles": 80,
+    "n": 3,
+    "m": 3,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 270.4,
+      "min": 256,
+      "max": 288,
+      "std": 8.616263691415206
+    },
+    "runtime": {
+      "mean": 57.363463,
+      "min": 36.195842,
+      "max": 77.877832,
+      "std": 11.457356536222688
+    },
+    "crossover_stats": {
+      "avg_total_crossovers": 50382.9,
+      "avg_completions": 1594.0,
+      "avg_completion_rate": 0.03164077829003795,
+      "avg_tiles_completed": 88879.7
+    }
+  },
+  "greedy_T100_n3_m3": {
+    "algorithm": "greedy",
+    "tiles": 100,
+    "n": 3,
+    "m": 3,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 414.3,
+      "min": 360,
+      "max": 450,
+      "std": 26.08083587617544
+    },
+    "runtime": {
+      "mean": 0.3364672,
+      "min": 0.1624,
+      "max": 0.455981,
+      "std": 0.10341591874542333
+    }
+  },
+  "stochastic_greedy_T100_n3_m3": {
+    "algorithm": "stochastic_greedy",
+    "tiles": 100,
+    "n": 3,
+    "m": 3,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 421.7,
+      "min": 384,
+      "max": 444,
+      "std": 20.455072720476945
+    },
+    "runtime": {
+      "mean": 0.3585489,
+      "min": 0.183425,
+      "max": 0.434706,
+      "std": 0.08940992640691524
+    }
+  },
+  "genetic_greedy_T100_n3_m3": {
+    "algorithm": "genetic_greedy",
+    "tiles": 100,
+    "n": 3,
+    "m": 3,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 306.2,
+      "min": 289,
+      "max": 324,
+      "std": 11.070682002478438
+    },
+    "runtime": {
+      "mean": 122.1760889,
+      "min": 89.246972,
+      "max": 196.275429,
+      "std": 34.87409582825959
+    },
+    "crossover_stats": {
+      "avg_total_crossovers": 50425.3,
+      "avg_completions": 1762.2,
+      "avg_completion_rate": 0.03493806366975835,
+      "avg_tiles_completed": 147437.6
+    }
+  },
+  "genetic_stochastic_T100_n3_m3": {
+    "algorithm": "genetic_stochastic",
+    "tiles": 100,
+    "n": 3,
+    "m": 3,
+    "num_runs": 10,
+    "successful_runs": 10,
+    "objective": {
+      "mean": 311.3,
+      "min": 289,
+      "max": 324,
+      "std": 11.109005356016352
+    },
+    "runtime": {
+      "mean": 114.78574470000001,
+      "min": 93.093102,
+      "max": 133.97851,
+      "std": 14.375318438501584
+    },
+    "crossover_stats": {
+      "avg_total_crossovers": 50383.4,
+      "avg_completions": 1505.8,
+      "avg_completion_rate": 0.02988952137819374,
+      "avg_tiles_completed": 134288.6
+    }
+  }
+}

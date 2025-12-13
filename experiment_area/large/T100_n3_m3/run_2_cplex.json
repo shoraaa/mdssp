@@ -1,0 +1,16 @@
+{
+  "input": {
+    "T": 100,
+    "n": 3,
+    "m": 3,
+    "seed": 142,
+    "objective_type": "area"
+  },
+  "results": [
+    {
+      "algorithm": "cplex",
+      "status": "failed",
+      "error": "Command failed with code -9: CPLEX solver started\nNumber of tiles: 100\nGreedy bound: 164"
+    }
+  ]
+}

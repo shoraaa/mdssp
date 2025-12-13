@@ -1,0 +1,16 @@
+{
+  "input": {
+    "T": 50,
+    "n": 3,
+    "m": 3,
+    "seed": 742,
+    "objective_type": "square"
+  },
+  "results": [
+    {
+      "algorithm": "cplex",
+      "status": "parse_failed",
+      "error": "Failed to parse algorithm output"
+    }
+  ]
+}

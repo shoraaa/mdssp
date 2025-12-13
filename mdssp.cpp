@@ -58,12 +58,13 @@ void print_result(const std::string& algorithm, const UnifiedResult& result) {
     std::cout << algorithm << " Algorithm Results\n";
     std::cout << std::string(70, '=') << "\n";
     
-    if (result.status != "success" && result.status != "optimal") {
+    if (result.status != "success" && result.status != "optimal" && result.status != "feasible") {
         std::cout << "Status:            " << result.status << "\n";
         std::cout << std::string(70, '=') << "\n";
         return;
     }
     
+    std::cout << "Status:            " << result.status << "\n";
     std::cout << "Objective (L):     " << result.best_obj << "\n";
     std::cout << "Bounding Box:      " << result.bbox_width << " × " << result.bbox_height << "\n";
     std::cout << "Area:              " << result.bbox_area << "\n";
@@ -147,7 +148,7 @@ int main(int argc, char* argv[]) {
             ("objective-type", "Objective function: square (max(H,W)) or area (H*W)",
              cxxopts::value<std::string>()->default_value("square"))
             ("time-limit", "CPLEX/BnB time limit in seconds",
-             cxxopts::value<int>()->default_value("300"))
+             cxxopts::value<int>()->default_value("2000"))
             ("verify", "Verify the solution", 
              cxxopts::value<bool>()->default_value("false"))
             ("compare", "Compare all available algorithms", 
@@ -253,16 +254,19 @@ int main(int argc, char* argv[]) {
         
         // Generate or load instance
         std::vector<Tile> tiles;
+        Matrices tile_matrices;  // Store the binary matrices for JSON output
         if (!dataset_file.empty()) {
             if (verbose) {
                 std::cout << "\nLoading instance from dataset...\n";
             }
             tiles = read_dataset(dataset_file);
+            // Note: when loading from dataset, we don't have the original matrices
         } else {
             if (verbose) {
                 std::cout << "\nGenerating instance...\n";
             }
-            tiles = generate_instance(T, n, m, p, seed);
+            tile_matrices = generate_binary_matrices(T, n, m, p, seed);
+            tiles = tiles_from_binary_matrices(tile_matrices);
         }
         
         if (verbose) {
@@ -567,8 +571,9 @@ int main(int argc, char* argv[]) {
                 json result_obj;
                 result_obj["algorithm"] = algo_name;
                 result_obj["status"] = algo_result.status;
+                result_obj["objective_type"] = (obj_type == ObjectiveType::BOUNDING_SQUARE) ? "square" : "area";
                 
-                if (algo_result.status == "success" || algo_result.status == "optimal") {
+                if (algo_result.status == "success" || algo_result.status == "optimal" || algo_result.status == "feasible") {
                     result_obj["objective"] = algo_result.best_obj;
                     result_obj["bbox_width"] = algo_result.bbox_width;
                     result_obj["bbox_height"] = algo_result.bbox_height;
@@ -621,6 +626,34 @@ int main(int argc, char* argv[]) {
             }
             
             output_json["results"] = results_array;
+            
+            // Add input data section
+            json input_data;
+            if (!dataset_file.empty()) {
+                input_data["source"] = "dataset";
+                input_data["dataset_file"] = dataset_file;
+            } else {
+                input_data["source"] = "generated";
+                input_data["T"] = T;
+                input_data["n"] = n;
+                input_data["m"] = m;
+                input_data["p"] = p;
+                input_data["seed"] = seed;
+                
+                // Add the tile matrices
+                if (!tile_matrices.empty()) {
+                    json tiles_array = json::array();
+                    for (const auto& matrix : tile_matrices) {
+                        json tile_array = json::array();
+                        for (const auto& row : matrix) {
+                            tile_array.push_back(row);
+                        }
+                        tiles_array.push_back(tile_array);
+                    }
+                    input_data["tiles"] = tiles_array;
+                }
+            }
+            output_json["input"] = input_data;
             
             // Write JSON with pretty formatting (2-space indent)
             out << output_json.dump(2) << "\n";
