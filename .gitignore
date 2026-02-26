@@ -3,3 +3,10 @@ experiment_square
 experiments
 experiments_
 obj
+analyze_csv_results.py
+analyze_solutions.py
+plot_csv_statistics.py
+systematic_experiments.py
+visualize_solutions.py
+visualize_canvas.ipynb
+visualize_results.ipynb
