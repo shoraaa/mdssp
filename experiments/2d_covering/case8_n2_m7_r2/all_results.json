@@ -1,0 +1,26 @@
+[
+  {
+    "scale": "2d_covering",
+    "case_id": 8,
+    "tiles": 488,
+    "n": 2,
+    "m": 7,
+    "r": 2,
+    "L": 525,
+    "total_generated": 525,
+    "duplicates_removed": 37,
+    "run": 1,
+    "seed": 42,
+    "algorithm": "genetic_greedy",
+    "objective_type": "area",
+    "status": "success",
+    "objective": 1120,
+    "runtime": 7425.610490191,
+    "bbox_width": 560,
+    "bbox_height": 2,
+    "num_tiles": 488,
+    "total_crossovers": 82595,
+    "crossovers_needing_completion": 817,
+    "total_tiles_completed": 391657
+  }
+]

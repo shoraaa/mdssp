@@ -1,0 +1,7 @@
+algorithm,tiles,n,m,objective_type,avg_objective,stdev_objective,avg_runtime,stdev_runtime
+beam_search,,,,square,18.64,8.09,89.3682,71.2655
+genetic_greedy,,,,square,20.0,9.11,144.2864,166.6059
+genetic_stochastic,,,,square,18.82,8.36,148.4971,208.8355
+greedy,,,,square,20.5,9.29,0.0273,0.0367
+merge_greedy,,,,square,22.92,10.4,28.5325,41.2905
+stochastic_greedy,,,,square,21.75,9.3,0.0262,0.0307

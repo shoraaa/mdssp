@@ -838,20 +838,49 @@ static MergeOption find_best_merge(const MergedTile& tile1, int idx1,
                                    const MergedTile& tile2, int idx2) {
     MergeOption best;
     
+    // Get tile1 bounding box
+    int t1_xmin = tile1.min_x();
+    int t1_xmax = tile1.max_x();
+    int t1_ymin = tile1.min_y();
+    int t1_ymax = tile1.max_y();
+    
+    // Get tile2 bounding box
+    int t2_xmin = tile2.min_x();
+    int t2_xmax = tile2.max_x();
+    int t2_ymin = tile2.min_y();
+    int t2_ymax = tile2.max_y();
+    
     // Try different offsets for tile2 relative to tile1
     int search_range = std::max({tile1.width(), tile1.height(), tile2.width(), tile2.height()}) + 2;
     
     for (int dx = -search_range; dx <= search_range; ++dx) {
         for (int dy = -search_range; dy <= search_range; ++dy) {
+            // Compute translated tile2 bounding box
+            int t2_xmin_tr = t2_xmin + dx;
+            int t2_xmax_tr = t2_xmax + dx;
+            int t2_ymin_tr = t2_ymin + dy;
+            int t2_ymax_tr = t2_ymax + dy;
+            
+            // Compute bounding box overlap (intersection area)
+            // This is the "overlap" in the original 1D-SSP merge greedy sense
+            int overlap_xmin = std::max(t1_xmin, t2_xmin_tr);
+            int overlap_xmax = std::min(t1_xmax, t2_xmax_tr);
+            int overlap_ymin = std::max(t1_ymin, t2_ymin_tr);
+            int overlap_ymax = std::min(t1_ymax, t2_ymax_tr);
+            
+            int overlap_count = 0;
+            if (overlap_xmax >= overlap_xmin && overlap_ymax >= overlap_ymin) {
+                overlap_count = (overlap_xmax - overlap_xmin + 1) * (overlap_ymax - overlap_ymin + 1);
+            }
+            
             // Create translated tile2
             CellMap tile2_translated;
             for (const auto& [coord, label] : tile2.cells) {
                 tile2_translated[{coord.first + dx, coord.second + dy}] = label;
             }
             
-            // Check if merge is valid and count overlaps
+            // Check if merge is valid (no character conflicts)
             CellMap merged = tile1.cells;
-            int overlap_count = 0;
             bool valid = true;
             
             for (const auto& [coord, label] : tile2_translated) {
@@ -861,7 +890,7 @@ static MergeOption find_best_merge(const MergedTile& tile1, int idx1,
                         valid = false;
                         break;
                     }
-                    overlap_count++;
+                    // Character already exists and matches, no need to add
                 } else {
                     merged[coord] = label;
                 }
@@ -885,16 +914,46 @@ static MergeOption find_best_merge(const MergedTile& tile1, int idx1,
             int width = xmax - xmin + 1;
             int height = ymax - ymin + 1;
             int bbox_size = std::max(width, height);
+            int bbox_area = width * height;
+            
+            // Check if this merge is along one axis (1D-like behavior)
+            // For 1D data (height=1), we want dy=0 to keep everything on one row
+            // For general 2D, prefer axis-aligned merges over diagonal
+            bool is_1d_merge = (dy == 0);  // Horizontal merge (same row)
+            bool best_is_1d = (best.dy == 0);
             
             // Check if this is the best merge so far
-            // Prioritize: 1) maximum overlap, 2) minimum bbox_size
+            // Priority: 1) higher overlap, 2) prefer 1D merges, 3) smaller resulting bbox
             bool is_better = false;
             if (best.tile1_idx == -1) {
                 is_better = true;
             } else if (overlap_count > best.overlap_count) {
                 is_better = true;
-            } else if (overlap_count == best.overlap_count && bbox_size < best.bbox_size) {
-                is_better = true;
+            } else if (overlap_count == best.overlap_count) {
+                // Tie-break by preferring 1D (horizontal) merges
+                if (is_1d_merge && !best_is_1d) {
+                    is_better = true;
+                } else if (is_1d_merge == best_is_1d) {
+                    // Further tie-break by smaller bounding box area
+                    int best_width = best.merged_cells.empty() ? 0 : best.bbox_size;
+                    // Compute best's actual area from merged_cells
+                    if (!best.merged_cells.empty()) {
+                        int bxmin = std::numeric_limits<int>::max();
+                        int bxmax = std::numeric_limits<int>::min();
+                        int bymin = std::numeric_limits<int>::max();
+                        int bymax = std::numeric_limits<int>::min();
+                        for (const auto& [coord, _] : best.merged_cells) {
+                            bxmin = std::min(bxmin, coord.first);
+                            bxmax = std::max(bxmax, coord.first);
+                            bymin = std::min(bymin, coord.second);
+                            bymax = std::max(bymax, coord.second);
+                        }
+                        int best_area = (bxmax - bxmin + 1) * (bymax - bymin + 1);
+                        if (bbox_area < best_area) {
+                            is_better = true;
+                        }
+                    }
+                }
             }
             
             if (is_better) {
@@ -945,10 +1004,7 @@ GreedyResult solve_greedy_merge(const std::vector<Tile>& tiles, ObjectiveType ob
                         is_better = true;
                     } else if (candidate.overlap_count > best_merge.overlap_count) {
                         is_better = true;
-                    } else if (candidate.overlap_count == best_merge.overlap_count && 
-                             candidate.bbox_size < best_merge.bbox_size) {
-                        is_better = true;
-                    }
+                    } 
                     
                     if (is_better) {
                         best_merge = candidate;

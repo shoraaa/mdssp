@@ -1,0 +1,146 @@
+{
+  "input": {
+    "T": 6,
+    "m": 4,
+    "n": 2,
+    "p": 0.5,
+    "seed": 842,
+    "source": "generated",
+    "tiles": [
+      [
+        [
+          1,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          1,
+          0,
+          0
+        ]
+      ],
+      [
+        [
+          1,
+          0,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      [
+        [
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0
+        ]
+      ],
+      [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          0,
+          0
+        ]
+      ],
+      [
+        [
+          1,
+          0,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          0,
+          0
+        ]
+      ],
+      [
+        [
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ]
+      ]
+    ]
+  },
+  "results": [
+    {
+      "algorithm": "beam_search",
+      "bbox_area": 42,
+      "bbox_height": 6,
+      "bbox_width": 7,
+      "canvas": ". . . 0 1 0 0\n. . 1 0 0 1 0\n1 0 1 1 0 0 0\n1 1 0 0 0 0 0\n. 1 0 1 1 0 0\n. 1 1 1 1 . .",
+      "improvements_found": 5,
+      "iterations": 5,
+      "num_tiles_placed": 6,
+      "objective": 7,
+      "objective_type": "square",
+      "placements": [
+        {
+          "tile_id": 4,
+          "x": -3,
+          "y": 1
+        },
+        {
+          "tile_id": 1,
+          "x": -2,
+          "y": 3
+        },
+        {
+          "tile_id": 5,
+          "x": 0,
+          "y": -1
+        },
+        {
+          "tile_id": 0,
+          "x": -1,
+          "y": 0
+        },
+        {
+          "tile_id": 3,
+          "x": 0,
+          "y": 2
+        },
+        {
+          "tile_id": 2,
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "runtime_seconds": 0.01479346,
+      "states_explored": 4876,
+      "status": "success",
+      "verified": true
+    }
+  ]
+}

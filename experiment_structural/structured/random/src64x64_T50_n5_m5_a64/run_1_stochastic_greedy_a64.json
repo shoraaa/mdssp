@@ -1,0 +1,273 @@
+{
+  "input": {
+    "dataset_file": "experiment_structural/structured/random/src64x64_T50_n5_m5_a64/dataset_run1_a64.json",
+    "source": "dataset"
+  },
+  "results": [
+    {
+      "algorithm": "stochastic_greedy",
+      "bbox_area": 1640,
+      "bbox_height": 40,
+      "bbox_width": 41,
+      "canvas": ". . . . . . . . . . . . . . . . . . . . . . e _ ` i ` . . . . . . . . F > 3 @ 1 .\n. . l N L V B . . . . . 4 [ @ ` C . . . . . X e d C V . . . . . . . . 8 ; : ; g .\n. . C I Z M ` . . . . . T l A l i . . . . . 5 L B 2 Q . . . . . . . . n h e R K .\n. . c ` ` l 7 . . . . . I 5 I 5 X h G ` ] 3 j O L V : 6 H ^ o h . . . E 9 > H \\ .\n. . a X ^ = ; B d C 9 l a 4 C i _ 6 L j Z l O 9 : R C C o 4 @ Z . . . [ 6 Z 8 Z .\n. . A V Y I m = N ` ] U i k \\ @ G J U \\ @ F \\ C S H > h \\ V f P . V ; T h ` . . .\n. . . . . . . k V d > A 7 S @ @ O P 0 Z k C i _ ; H 6 Q ` _ = M . X O L g S . . .\n. . . . . . . N Y 2 F Q W M f ; < 3 j Z 4 ; n G 7 4 9 S B @ P F . 5 5 Y = S . . .\n. . l V : b 4 _ @ 7 Z ? o a > N o R T J [ J R 5 9 S 4 E 0 X O L . d B G Q E . . .\n. . < M A V h . . . . . 3 Z f R 8 c Z S 8 S d = 3 ; ] l j 5 5 Y . J d m F _ . . .\n. . F 1 L P W . . . . . 0 d 3 M \\ L I B 3 5 G E h 5 d E L d B G . V f W 7 < . . .\n. . e Z _ Q U . . . . B 7 U J 4 . a 2 ` m 0 : 2 P K C S b J d m . n ; l \\ d . . .\n. . E 8 5 V U . . . . Z Z ^ U K . > D W = 3 b l P 4 H ; T \\ \\ S S e [ R 0 T . . .\n. . . . . . l U 4 M T 9 ] = U V . . . . . . h 9 A ^ b W e Z _ Q 7 U ] _ g B . . .\n. n ; i 7 j X P Y > c X f E 0 X . . . . . . g 7 ? C V W E 8 5 V Y e F I @ ^ . . .\n. 4 i 6 O 5 a M d 5 X ^ a l j 5 j P 1 k T G : ^ 8 2 . o J m Z N N ^ < _ ] . . . .\n. J Z V 1 K P j P 1 k 2 S T 2 g ; b 1 Q ? U Y = : Y . m n > d h : Y B 8 @ . . . .\n. 1 K j _ 7 ^ ; b 1 Q g M 9 [ b 8 J K M Z ; X \\ 8 U . i > < L 0 . . . . . . . . .\n. V D N a Z . . . . . 8 E g S e j c e < X J e 3 o U . . [ j J m \\ . . . . . . . .\n. . . . _ D 0 Y n . . e 4 ^ : = W Y : 6 C T 1 = g A . . > G _ B a D G E h 5 . . .\n. . . . 7 c [ = O . . 3 I i f a . . . ? 3 N D W 1 d ; L \\ f E A J 0 : 2 P K . . .\n. . . . N Q b @ V . . . . . . . . . . C 9 l Q [ b : Z ` h j 0 f I W b l P 4 . . .\n. . . . ] J O = ] h ^ R = @ ] H E c 2 ` ] U U 2 b S 1 6 \\ f X A O _ h 9 A ^ . . .\n. . . . V W d Y c b X U n O 9 < P M j d > A 5 4 V o > < N A . . . @ g 7 ? C . . .\n. . . . . . . . . \\ W [ j J < g O m \\ 2 F Q 6 @ e > 8 l i ^ N B U f 0 . . . . . .\nj c e < X . . . . N W > G _ o A d = P . a 0 4 I _ 6 T W ] = o _ R : f g = O g c .\nW Y : 6 C . . . . N J \\ f E 7 I R D T . A e = ? T b 7 0 J V n I ? A 9 F 5 O h h .\ng = O g c = 1 T l m @ [ F Y 7 . . . . . a m e E > 9 F o k i C E [ 5 3 T i M N W .\nF 5 O h h E W T h ? o ` \\ ` < K I R R A = c d 4 0 L b ^ ; b N K ] 6 6 N V ? 6 N .\nT i M N W n ? 3 N D n Q ; a G Y ; c < G b [ U i A O @ J 8 J e A a O P Z R ? _ g .\n. . . . . d C 9 l Q = < T \\ d k W 2 b P [ 3 o Y G M d [ j c P n n j E G ` : U O .\n. . . . . N ` ] U U b ? 3 N _ 7 A U M X n = 1 T l [ D _ W Y o g Z < 5 = A V 0 b .\n. . . . . . . . h : 5 g Y . . J b N Y T 7 E W T h j ^ ; g = ^ R = @ ; < Q L L i .\n. . . < A 0 D d > k ? C o . 0 d A M 8 . h n ? 3 N o A V N P X U n O Y I j > Q n .\n. . . V 1 Q ^ N X n 4 8 N T X 2 J B b . B d C 9 l O F D Z f Z E 9 > H > > R ^ 5 .\n. . . T d G A e o T M ] L H Y a 1 U d . _ 7 m n 2 i 6 ] 1 n d [ 6 Z 8 . c 4 b Z N\n. . . o 6 \\ ` X N A a j _ e J h U 8 d . a Z a A : S @ @ O B T ` e D I . T 3 a 6 D\n. . . J _ X d 5 . ^ = i L 5 > 2 [ = E . ` E A R V M f ; < 0 2 N B U f . V E G U <\n. . . . . . . . . = K C m L . . . . . . P C f ` 9 . . . . . o o _ R : . I _ 1 Y H\n. . . . . . . . . . . . . . . . . . . . f k M c G . . . . . . . . . . . ? T > = o",
+      "num_tiles_placed": 50,
+      "objective": 41,
+      "objective_type": "square",
+      "placements": [
+        {
+          "tile_id": 0,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "tile_id": 34,
+          "x": -2,
+          "y": -3
+        },
+        {
+          "tile_id": 27,
+          "x": 3,
+          "y": -5
+        },
+        {
+          "tile_id": 26,
+          "x": 5,
+          "y": 1
+        },
+        {
+          "tile_id": 1,
+          "x": -4,
+          "y": -8
+        },
+        {
+          "tile_id": 45,
+          "x": -5,
+          "y": 2
+        },
+        {
+          "tile_id": 38,
+          "x": -6,
+          "y": -3
+        },
+        {
+          "tile_id": 28,
+          "x": 2,
+          "y": -10
+        },
+        {
+          "tile_id": 46,
+          "x": 7,
+          "y": -11
+        },
+        {
+          "tile_id": 22,
+          "x": 8,
+          "y": -4
+        },
+        {
+          "tile_id": 8,
+          "x": -3,
+          "y": -13
+        },
+        {
+          "tile_id": 6,
+          "x": 8,
+          "y": -13
+        },
+        {
+          "tile_id": 5,
+          "x": 10,
+          "y": 2
+        },
+        {
+          "tile_id": 2,
+          "x": 2,
+          "y": -15
+        },
+        {
+          "tile_id": 13,
+          "x": -8,
+          "y": -15
+        },
+        {
+          "tile_id": 18,
+          "x": -9,
+          "y": -8
+        },
+        {
+          "tile_id": 15,
+          "x": -10,
+          "y": 5
+        },
+        {
+          "tile_id": 47,
+          "x": 0,
+          "y": 5
+        },
+        {
+          "tile_id": 40,
+          "x": -11,
+          "y": -1
+        },
+        {
+          "tile_id": 4,
+          "x": 5,
+          "y": 6
+        },
+        {
+          "tile_id": 21,
+          "x": -5,
+          "y": 7
+        },
+        {
+          "tile_id": 24,
+          "x": 10,
+          "y": 7
+        },
+        {
+          "tile_id": 41,
+          "x": -13,
+          "y": -17
+        },
+        {
+          "tile_id": 10,
+          "x": -14,
+          "y": -7
+        },
+        {
+          "tile_id": 3,
+          "x": -14,
+          "y": -12
+        },
+        {
+          "tile_id": 32,
+          "x": 8,
+          "y": -18
+        },
+        {
+          "tile_id": 16,
+          "x": -15,
+          "y": 4
+        },
+        {
+          "tile_id": 17,
+          "x": -3,
+          "y": -18
+        },
+        {
+          "tile_id": 23,
+          "x": -16,
+          "y": -1
+        },
+        {
+          "tile_id": 44,
+          "x": -17,
+          "y": 9
+        },
+        {
+          "tile_id": 36,
+          "x": -18,
+          "y": -19
+        },
+        {
+          "tile_id": 30,
+          "x": 0,
+          "y": 10
+        },
+        {
+          "tile_id": 9,
+          "x": -19,
+          "y": -10
+        },
+        {
+          "tile_id": 33,
+          "x": -11,
+          "y": 10
+        },
+        {
+          "tile_id": 43,
+          "x": 5,
+          "y": 11
+        },
+        {
+          "tile_id": 19,
+          "x": -16,
+          "y": 11
+        },
+        {
+          "tile_id": 49,
+          "x": -20,
+          "y": 4
+        },
+        {
+          "tile_id": 35,
+          "x": 11,
+          "y": 12
+        },
+        {
+          "tile_id": 39,
+          "x": -5,
+          "y": 12
+        },
+        {
+          "tile_id": 25,
+          "x": 2,
+          "y": -20
+        },
+        {
+          "tile_id": 12,
+          "x": -21,
+          "y": -4
+        },
+        {
+          "tile_id": 31,
+          "x": -8,
+          "y": -20
+        },
+        {
+          "tile_id": 20,
+          "x": -22,
+          "y": 10
+        },
+        {
+          "tile_id": 11,
+          "x": -23,
+          "y": -22
+        },
+        {
+          "tile_id": 42,
+          "x": -13,
+          "y": -22
+        },
+        {
+          "tile_id": 29,
+          "x": -23,
+          "y": -15
+        },
+        {
+          "tile_id": 48,
+          "x": 10,
+          "y": -23
+        },
+        {
+          "tile_id": 37,
+          "x": -24,
+          "y": -9
+        },
+        {
+          "tile_id": 7,
+          "x": -3,
+          "y": -23
+        },
+        {
+          "tile_id": 14,
+          "x": -25,
+          "y": 2
+        }
+      ],
+      "runtime_seconds": 0.09120064,
+      "status": "success",
+      "verified": true
+    }
+  ]
+}

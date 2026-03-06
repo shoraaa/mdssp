@@ -1,0 +1,273 @@
+{
+  "input": {
+    "dataset_file": "experiment_structural/structured/random/src64x64_T50_n5_m5_a64/dataset_run1_a64.json",
+    "source": "dataset"
+  },
+  "results": [
+    {
+      "algorithm": "greedy",
+      "bbox_area": 1600,
+      "bbox_height": 40,
+      "bbox_width": 40,
+      "canvas": ". . _ D 0 Y n . . . . . . . . . R T J [ J . . . . . . . . . . . . . . 0 d A M 8\n. . 7 c [ = O . . . . . . . . . c Z S 8 S . . . . . . . . . l V : b 4 X 2 J B b\n. . N Q b @ V . . . . . . . . . L I B 3 5 D G E h 5 . . . . < M A V h Y a 1 U d\n. . ] J O = ] . . . . l N L V B a 2 ` m 0 0 : 2 P K . . . . F 1 L P W J h U 8 d\n. . V W d Y c . . . . C I Z M ` > D W = 3 W b l P 4 . . . W e Z _ Q U > 2 [ = E\n. 6 H ^ o h n ; i 7 j c ` ` l 7 e A a O P _ h 9 A ^ . . . W E 8 5 V U . . . . .\n. C o 4 @ Z 4 i 6 O 5 a X ^ = ; P n n j E @ g 7 ? C . . . o J m Z N . . . . . .\n. h \\ V f P J Z V 1 K A V Y I m o g Z < 5 . L b ^ ; b . . m n > d h . . . . . .\n. Q ` _ = M 1 K j _ 7 . . . . h ^ R = @ ; . O @ J 8 J . . i > < L 0 . . . . . .\n. S B @ P F V D N a Z . . . . b X U n O Y . M d [ j c e < X G ` : U O . . . . .\n. . . . @ [ F Y 7 [ 3 o Y G . \\ W [ j J . . [ D _ W Y : 6 C = A V 0 b . . . . .\n. . . . o ` \\ ` < n = 1 T l m N W > G _ . . j ^ ; g = O g c < Q L L i . . . . .\n. . . . n Q ; a G 7 E W T h ? N J \\ f E h : 5 g Y F 5 O h h I j > Q n . . . . .\n. . . . = < T \\ d h n ? 3 N D W 1 d ; L > k ? C o T i M N W > > R ^ 5 . . . . .\n. . . . b ? 3 N _ B d C 9 l Q [ b : Z ` X n 4 8 N T K I R R A G E h 5 d . . . .\n. . [ j J m \\ . . . N ` ] U U 2 b S 1 6 o T M ] L H Y ; c < G : 2 P K C . . . .\n. . > G _ B a . . . . d > A 5 4 V o > < N A a j _ e k W 2 b P b l P 4 H . . . .\n. . \\ f E A J ] H E c 2 F Q 6 @ e > 8 l i ^ = i L 5 7 A U M X h 9 A ^ b . . . .\n. . h j 0 f I 9 < P M j Z E 9 > H 6 T W ] = K C m L J b N Y T g 7 ? C V . . . .\n. . \\ f X A O < g O m \\ d [ 6 Z 8 b 7 0 J V G : ^ 8 2 V f W 7 < \\ C S H > . . .\n. . . . . . . o A d = P T ` e D I 9 F o k i U Y = : Y n ; l \\ d i _ ; H 6 . . .\n. . . . . . . 7 I R D T 2 N B U f 0 . . . . ; X \\ 8 U e [ R 0 T n G 7 4 9 . . .\n. . . o A V N P . . . . o o _ R : f . . . . J e 3 o U U ] _ g B R 5 9 S 4 . . .\n. . . O F D Z f . . . . . n I ? A 9 l U 4 M T 1 = g A e F I @ ^ d = 3 ; ] . . .\n. . . i 6 ] 1 n B 7 U J 4 C E [ 5 3 X P Y > c . < A 0 D d . . . . . . . . . . .\n. . . S @ @ O B Z Z ^ U K N K ] 6 6 a M d 5 X . V 1 Q ^ N . . . . . . . . . . .\n. . . M f ; < 0 9 ] = U V ; T h ` . P j P 1 k T T d G A e _ ` i ` . . . . . . .\ng = O g c . . . X f E 0 X O L g S . ^ ; b 1 Q ? o 6 \\ ` X e d C V . . . . . . .\nF 5 O h h . . . ^ a l j 5 5 Y = S . . 8 J K M Z J _ X d 5 L B 2 Q h G ` ] 3 . .\nT i M N W a 0 4 I _ E L d B G Q E . . j c e < X . . . . j O L V : 6 L j Z l . .\nN V ? 6 N A e = ? T S b J d m F _ . . W Y : 6 C 7 S @ @ O 9 : R C J U \\ @ F . .\nZ R ? _ g a m e E > ; T \\ \\ S e [ R 0 B d C 9 l W M f ; < . . . . P 0 Z k C . .\n. . . . . = c d 4 0 . . . . 7 U ] _ g = N ` ] U o a > N o . . . . 3 j Z 4 ; . .\n2 S T 2 g b [ U i A . . . . Y e F I @ k V d > A 3 Z f R 8 c 4 b Z N 4 [ @ ` C .\ng M 9 [ b _ 7 m n 2 . . . . N ^ < _ ] N Y 2 F Q 0 d 3 M \\ T 3 a 6 D T l A l i .\n8 E g S e a Z a A : . . . . : Y B 8 @ _ @ 7 Z ? F > 3 @ 1 V E G U < I 5 I 5 X .\ne 4 ^ : = ` E A R V . . . . . . . . . . . . . . 8 ; : ; g I _ 1 Y H a 4 C i _ .\n3 I i f a P C f ` 9 . . . . . . . . . . . . . . n h e R K ? T > = o i k \\ @ G .\n. . . . . f k M c G . . . . . . . . . . . . . . E 9 > H \\ . . . . . . . . . . .\n. . . . . . . . . . . . . . . . . . . . . . . . [ 6 Z 8 Z . . . . . . . . . . .",
+      "num_tiles_placed": 50,
+      "objective": 40,
+      "objective_type": "square",
+      "placements": [
+        {
+          "tile_id": 0,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "tile_id": 34,
+          "x": -2,
+          "y": -3
+        },
+        {
+          "tile_id": 44,
+          "x": 3,
+          "y": -4
+        },
+        {
+          "tile_id": 19,
+          "x": 4,
+          "y": -2
+        },
+        {
+          "tile_id": 1,
+          "x": 5,
+          "y": 3
+        },
+        {
+          "tile_id": 26,
+          "x": -4,
+          "y": 5
+        },
+        {
+          "tile_id": 43,
+          "x": -5,
+          "y": 2
+        },
+        {
+          "tile_id": 38,
+          "x": -6,
+          "y": -3
+        },
+        {
+          "tile_id": 9,
+          "x": 1,
+          "y": 7
+        },
+        {
+          "tile_id": 49,
+          "x": -7,
+          "y": -5
+        },
+        {
+          "tile_id": 21,
+          "x": -8,
+          "y": -6
+        },
+        {
+          "tile_id": 3,
+          "x": -9,
+          "y": 8
+        },
+        {
+          "tile_id": 40,
+          "x": -10,
+          "y": 1
+        },
+        {
+          "tile_id": 32,
+          "x": -5,
+          "y": 10
+        },
+        {
+          "tile_id": 18,
+          "x": 2,
+          "y": 10
+        },
+        {
+          "tile_id": 2,
+          "x": -7,
+          "y": 11
+        },
+        {
+          "tile_id": 20,
+          "x": 7,
+          "y": 8
+        },
+        {
+          "tile_id": 14,
+          "x": 8,
+          "y": -7
+        },
+        {
+          "tile_id": 15,
+          "x": 9,
+          "y": -2
+        },
+        {
+          "tile_id": 23,
+          "x": -2,
+          "y": -8
+        },
+        {
+          "tile_id": 47,
+          "x": 5,
+          "y": -9
+        },
+        {
+          "tile_id": 6,
+          "x": 10,
+          "y": 3
+        },
+        {
+          "tile_id": 7,
+          "x": 11,
+          "y": 10
+        },
+        {
+          "tile_id": 37,
+          "x": -11,
+          "y": -11
+        },
+        {
+          "tile_id": 4,
+          "x": -1,
+          "y": -11
+        },
+        {
+          "tile_id": 28,
+          "x": 12,
+          "y": -12
+        },
+        {
+          "tile_id": 24,
+          "x": 13,
+          "y": -7
+        },
+        {
+          "tile_id": 11,
+          "x": -6,
+          "y": -13
+        },
+        {
+          "tile_id": 8,
+          "x": 14,
+          "y": -2
+        },
+        {
+          "tile_id": 22,
+          "x": 4,
+          "y": -14
+        },
+        {
+          "tile_id": 17,
+          "x": 15,
+          "y": 3
+        },
+        {
+          "tile_id": 29,
+          "x": 13,
+          "y": -15
+        },
+        {
+          "tile_id": 31,
+          "x": 16,
+          "y": 12
+        },
+        {
+          "tile_id": 45,
+          "x": -12,
+          "y": 13
+        },
+        {
+          "tile_id": 41,
+          "x": 7,
+          "y": 14
+        },
+        {
+          "tile_id": 16,
+          "x": -13,
+          "y": -6
+        },
+        {
+          "tile_id": 46,
+          "x": -3,
+          "y": 15
+        },
+        {
+          "tile_id": 36,
+          "x": 2,
+          "y": 15
+        },
+        {
+          "tile_id": 30,
+          "x": -14,
+          "y": 6
+        },
+        {
+          "tile_id": 12,
+          "x": -15,
+          "y": -16
+        },
+        {
+          "tile_id": 27,
+          "x": -15,
+          "y": -1
+        },
+        {
+          "tile_id": 13,
+          "x": -1,
+          "y": -16
+        },
+        {
+          "tile_id": 25,
+          "x": -16,
+          "y": -11
+        },
+        {
+          "tile_id": 10,
+          "x": -17,
+          "y": 17
+        },
+        {
+          "tile_id": 5,
+          "x": -17,
+          "y": 11
+        },
+        {
+          "tile_id": 35,
+          "x": 12,
+          "y": 17
+        },
+        {
+          "tile_id": 39,
+          "x": -12,
+          "y": 18
+        },
+        {
+          "tile_id": 42,
+          "x": 17,
+          "y": 17
+        },
+        {
+          "tile_id": 48,
+          "x": 7,
+          "y": 19
+        },
+        {
+          "tile_id": 33,
+          "x": 18,
+          "y": -16
+        }
+      ],
+      "runtime_seconds": 0.056270033,
+      "status": "success",
+      "verified": true
+    }
+  ]
+}

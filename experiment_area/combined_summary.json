@@ -1,81 +1,133 @@
 {
-  "timestamp": "2025-12-10T22:06:24.246916",
-  "total_experiments": 409,
+  "timestamp": "2025-12-23T14:19:40.615071",
+  "total_experiments": 2739,
   "by_scale": {
     "small": {
+      "cplex": {
+        "num_runs": 40,
+        "avg_objective": 48.25,
+        "avg_runtime": 269.2607377
+      },
+      "merge_greedy": {
+        "num_runs": 120,
+        "avg_objective": 134.25,
+        "avg_runtime": 0.064887000025
+      },
       "greedy": {
-        "num_runs": 30,
-        "avg_objective": 56.7,
-        "avg_runtime": 0.003548291533333333
+        "num_runs": 120,
+        "avg_objective": 119.35833333333333,
+        "avg_runtime": 0.0303863076
       },
       "stochastic_greedy": {
-        "num_runs": 30,
-        "avg_objective": 57.0,
-        "avg_runtime": 0.0034878939666666666
+        "num_runs": 120,
+        "avg_objective": 119.53333333333333,
+        "avg_runtime": 0.03477794705
       },
       "genetic_greedy": {
-        "num_runs": 30,
-        "avg_objective": 52.56666666666667,
-        "avg_runtime": 0.15183877263333334
+        "num_runs": 120,
+        "avg_objective": 116.325,
+        "avg_runtime": 0.5706240752083332
       },
       "genetic_stochastic": {
-        "num_runs": 30,
-        "avg_objective": 50.46666666666667,
-        "avg_runtime": 0.1937761516333333
+        "num_runs": 120,
+        "avg_objective": 114.80833333333334,
+        "avg_runtime": 1.3840222017416666
       },
-      "cplex": {
-        "num_runs": 30,
-        "avg_objective": 48.5,
-        "avg_runtime": 1311.4286350434002
+      "beam_search": {
+        "num_runs": 120,
+        "avg_objective": 115.59166666666667,
+        "avg_runtime": 0.16000594720833333
       }
     },
     "medium": {
+      "merge_greedy": {
+        "num_runs": 120,
+        "avg_objective": 465.8,
+        "avg_runtime": 23.374994218475003
+      },
       "greedy": {
-        "num_runs": 30,
-        "avg_objective": 167.43333333333334,
-        "avg_runtime": 0.03896036063333333
+        "num_runs": 120,
+        "avg_objective": 447.4583333333333,
+        "avg_runtime": 1.4700099679416667
       },
       "stochastic_greedy": {
-        "num_runs": 30,
-        "avg_objective": 174.66666666666666,
-        "avg_runtime": 0.04432222596666667
+        "num_runs": 120,
+        "avg_objective": 448.575,
+        "avg_runtime": 1.4736269867666667
       },
       "genetic_greedy": {
-        "num_runs": 30,
-        "avg_objective": 146.83333333333334,
-        "avg_runtime": 5.6529137480000005
+        "num_runs": 120,
+        "avg_objective": 428.35833333333335,
+        "avg_runtime": 49.61970921795833
       },
       "genetic_stochastic": {
-        "num_runs": 29,
-        "avg_objective": 138.0,
-        "avg_runtime": 7.366344871965517
+        "num_runs": 119,
+        "avg_objective": 424.15966386554624,
+        "avg_runtime": 77.40307687017648
       },
-      "cplex": {
-        "num_runs": 20,
-        "avg_objective": 230.6,
-        "avg_runtime": 2013.6450659410998
+      "beam_search": {
+        "num_runs": 120,
+        "avg_objective": 425.81666666666666,
+        "avg_runtime": 75.50332527461666
       }
     },
     "large": {
+      "merge_greedy": {
+        "num_runs": 60,
+        "avg_objective": 260.71666666666664,
+        "avg_runtime": 10.100756883333334
+      },
       "greedy": {
-        "num_runs": 30,
-        "avg_objective": 347.46666666666664,
-        "avg_runtime": 0.22785576666666665
+        "num_runs": 60,
+        "avg_objective": 295.21666666666664,
+        "avg_runtime": 0.20259439478333335
       },
       "stochastic_greedy": {
-        "num_runs": 30,
-        "avg_objective": 351.06666666666666,
-        "avg_runtime": 0.23930863333333333
+        "num_runs": 60,
+        "avg_objective": 296.81666666666666,
+        "avg_runtime": 0.20854995083333336
       },
       "genetic_greedy": {
-        "num_runs": 30,
-        "avg_objective": 265.9,
-        "avg_runtime": 68.49323976666666
+        "num_runs": 60,
+        "avg_objective": 235.6,
+        "avg_runtime": 51.27110098313334
       },
       "genetic_stochastic": {
-        "num_runs": 30,
-        "avg_objective": 267.3,
-        "avg_runtime": 69.33638103333332
+        "num_runs": 60,
+        "avg_objective": 236.51666666666668,
+        "avg_runtime": 56.94854533131667
+      },
+      "beam_search": {
+        "num_runs": 60,
+        "avg_objective": 245.06666666666666,
+        "avg_runtime": 484.2027308
+      }
+    },
+    "1d": {
+      "merge_greedy_py": {
+        "num_runs": 180,
+        "avg_objective": 149.9,
+        "avg_runtime": 0.676927812633221
+      },
+      "greedy": {
+        "num_runs": 180,
+        "avg_objective": 166.45,
+        "avg_runtime": 0.48749378546666666
+      },
+      "stochastic_greedy": {
+        "num_runs": 180,
+        "avg_objective": 164.96666666666667,
+        "avg_runtime": 0.4760183389222222
+      },
+      "genetic_greedy": {
+        "num_runs": 180,
+        "avg_objective": 156.8,
+        "avg_runtime": 68.95546337602222
+      },
+      "genetic_stochastic": {
+        "num_runs": 180,
+        "avg_objective": 153.83333333333334,
+        "avg_runtime": 82.19828167571112
       }
     }
   }

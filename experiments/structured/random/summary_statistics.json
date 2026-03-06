@@ -1,0 +1,338 @@
+{
+  "simulated_annealing_src20x20_T50_n5_m5": {
+    "algorithm": "simulated_annealing",
+    "source_height": 20,
+    "source_width": 20,
+    "optimal_area": 400,
+    "tiles": 50,
+    "n": 5,
+    "m": 5,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 24.0,
+      "min": 24,
+      "max": 24,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 1.007908,
+      "min": 1.007908,
+      "max": 1.007908,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 16.666666666666668,
+      "min": 16.666666666666668,
+      "max": 16.666666666666668
+    }
+  },
+  "simulated_annealing_src20x20_T100_n5_m5": {
+    "algorithm": "simulated_annealing",
+    "source_height": 20,
+    "source_width": 20,
+    "optimal_area": 400,
+    "tiles": 100,
+    "n": 5,
+    "m": 5,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 20.0,
+      "min": 20,
+      "max": 20,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 2.919021,
+      "min": 2.919021,
+      "max": 2.919021,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 20.0,
+      "min": 20.0,
+      "max": 20.0
+    }
+  },
+  "simulated_annealing_src20x20_T50_n7_m7": {
+    "algorithm": "simulated_annealing",
+    "source_height": 20,
+    "source_width": 20,
+    "optimal_area": 400,
+    "tiles": 50,
+    "n": 7,
+    "m": 7,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 20.0,
+      "min": 20,
+      "max": 20,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 2.529964,
+      "min": 2.529964,
+      "max": 2.529964,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 20.0,
+      "min": 20.0,
+      "max": 20.0
+    }
+  },
+  "simulated_annealing_src20x20_T100_n7_m7": {
+    "algorithm": "simulated_annealing",
+    "source_height": 20,
+    "source_width": 20,
+    "optimal_area": 400,
+    "tiles": 100,
+    "n": 7,
+    "m": 7,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 20.0,
+      "min": 20,
+      "max": 20,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 8.182878,
+      "min": 8.182878,
+      "max": 8.182878,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 20.0,
+      "min": 20.0,
+      "max": 20.0
+    }
+  },
+  "simulated_annealing_src30x30_T50_n5_m5": {
+    "algorithm": "simulated_annealing",
+    "source_height": 30,
+    "source_width": 30,
+    "optimal_area": 900,
+    "tiles": 50,
+    "n": 5,
+    "m": 5,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 32.0,
+      "min": 32,
+      "max": 32,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 1.054621,
+      "min": 1.054621,
+      "max": 1.054621,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 28.125,
+      "min": 28.125,
+      "max": 28.125
+    }
+  },
+  "simulated_annealing_src30x30_T100_n5_m5": {
+    "algorithm": "simulated_annealing",
+    "source_height": 30,
+    "source_width": 30,
+    "optimal_area": 900,
+    "tiles": 100,
+    "n": 5,
+    "m": 5,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 41.0,
+      "min": 41,
+      "max": 41,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 3.228699,
+      "min": 3.228699,
+      "max": 3.228699,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 21.951219512195124,
+      "min": 21.951219512195124,
+      "max": 21.951219512195124
+    }
+  },
+  "simulated_annealing_src30x30_T50_n7_m7": {
+    "algorithm": "simulated_annealing",
+    "source_height": 30,
+    "source_width": 30,
+    "optimal_area": 900,
+    "tiles": 50,
+    "n": 7,
+    "m": 7,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 39.0,
+      "min": 39,
+      "max": 39,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 2.669309,
+      "min": 2.669309,
+      "max": 2.669309,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 23.076923076923077,
+      "min": 23.076923076923077,
+      "max": 23.076923076923077
+    }
+  },
+  "simulated_annealing_src30x30_T100_n7_m7": {
+    "algorithm": "simulated_annealing",
+    "source_height": 30,
+    "source_width": 30,
+    "optimal_area": 900,
+    "tiles": 100,
+    "n": 7,
+    "m": 7,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 38.0,
+      "min": 38,
+      "max": 38,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 8.317961,
+      "min": 8.317961,
+      "max": 8.317961,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 23.68421052631579,
+      "min": 23.68421052631579,
+      "max": 23.68421052631579
+    }
+  },
+  "simulated_annealing_src40x40_T50_n5_m5": {
+    "algorithm": "simulated_annealing",
+    "source_height": 40,
+    "source_width": 40,
+    "optimal_area": 1600,
+    "tiles": 50,
+    "n": 5,
+    "m": 5,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 33.0,
+      "min": 33,
+      "max": 33,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 1.071558,
+      "min": 1.071558,
+      "max": 1.071558,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 48.484848484848484,
+      "min": 48.484848484848484,
+      "max": 48.484848484848484
+    }
+  },
+  "simulated_annealing_src40x40_T100_n5_m5": {
+    "algorithm": "simulated_annealing",
+    "source_height": 40,
+    "source_width": 40,
+    "optimal_area": 1600,
+    "tiles": 100,
+    "n": 5,
+    "m": 5,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 45.0,
+      "min": 45,
+      "max": 45,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 3.339412,
+      "min": 3.339412,
+      "max": 3.339412,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 35.55555555555556,
+      "min": 35.55555555555556,
+      "max": 35.55555555555556
+    }
+  },
+  "simulated_annealing_src40x40_T50_n7_m7": {
+    "algorithm": "simulated_annealing",
+    "source_height": 40,
+    "source_width": 40,
+    "optimal_area": 1600,
+    "tiles": 50,
+    "n": 7,
+    "m": 7,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 47.0,
+      "min": 47,
+      "max": 47,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 2.799564,
+      "min": 2.799564,
+      "max": 2.799564,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 34.04255319148936,
+      "min": 34.04255319148936,
+      "max": 34.04255319148936
+    }
+  },
+  "simulated_annealing_src40x40_T100_n7_m7": {
+    "algorithm": "simulated_annealing",
+    "source_height": 40,
+    "source_width": 40,
+    "optimal_area": 1600,
+    "tiles": 100,
+    "n": 7,
+    "m": 7,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 54.0,
+      "min": 54,
+      "max": 54,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 8.817872,
+      "min": 8.817872,
+      "max": 8.817872,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 29.62962962962963,
+      "min": 29.62962962962963,
+      "max": 29.62962962962963
+    }
+  }
+}

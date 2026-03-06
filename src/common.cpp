@@ -113,7 +113,31 @@ Matrices generate_binary_matrices(int T, int n, int m, double p, unsigned int se
     return matrices;
 }
 
+Matrices generate_matrices(int T, int n, int m, int alphabet_size, unsigned int seed) {
+    std::mt19937 rng(seed);
+    std::uniform_int_distribution<int> dist(0, alphabet_size - 1);
+    Matrices matrices;
+    matrices.reserve(T);
+    
+    for (int t = 0; t < T; ++t) {
+        Matrix mat(n, std::vector<int>(m));
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < m; ++j) {
+                mat[i][j] = dist(rng);
+            }
+        }
+        matrices.push_back(std::move(mat));
+    }
+    
+    return matrices;
+}
+
 std::vector<Tile> generate_instance(int T, int n, int m, double p, unsigned int seed) {
     auto matrices = generate_binary_matrices(T, n, m, p, seed);
+    return tiles_from_binary_matrices(matrices);
+}
+
+std::vector<Tile> generate_instance(int T, int n, int m, int alphabet_size, unsigned int seed) {
+    auto matrices = generate_matrices(T, n, m, alphabet_size, seed);
     return tiles_from_binary_matrices(matrices);
 }

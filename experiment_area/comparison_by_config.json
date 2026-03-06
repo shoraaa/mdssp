@@ -1,0 +1,1672 @@
+{
+  "T100_n1_m8": {
+    "area": {
+      "genetic_greedy": {
+        "num_runs": 30,
+        "avg_cost": 185.1,
+        "stdev_cost": 8.94,
+        "avg_runtime": 25.8462,
+        "stdev_runtime": 8.6618
+      },
+      "genetic_stochastic": {
+        "num_runs": 30,
+        "avg_cost": 183.4,
+        "stdev_cost": 9.32,
+        "avg_runtime": 25.341,
+        "stdev_runtime": 4.3868
+      },
+      "greedy": {
+        "num_runs": 30,
+        "avg_cost": 198.5,
+        "stdev_cost": 11.72,
+        "avg_runtime": 0.3986,
+        "stdev_runtime": 0.0608
+      },
+      "merge_greedy_py": {
+        "num_runs": 30,
+        "avg_cost": 176.5,
+        "stdev_cost": 7.5,
+        "avg_runtime": 0.2755,
+        "stdev_runtime": 0.0263
+      },
+      "stochastic_greedy": {
+        "num_runs": 30,
+        "avg_cost": 196.1,
+        "stdev_cost": 10.15,
+        "avg_runtime": 0.3802,
+        "stdev_runtime": 0.0625
+      }
+    }
+  },
+  "T100_n2_m4": {
+    "area": {
+      "beam_search": {
+        "num_runs": 10,
+        "avg_cost": 267.8,
+        "stdev_cost": 8.65,
+        "avg_runtime": 1227.5206,
+        "stdev_runtime": 71.2926
+      },
+      "genetic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 235.2,
+        "stdev_cost": 9.8,
+        "avg_runtime": 54.9413,
+        "stdev_runtime": 15.5391
+      },
+      "genetic_stochastic": {
+        "num_runs": 10,
+        "avg_cost": 235.4,
+        "stdev_cost": 7.64,
+        "avg_runtime": 73.362,
+        "stdev_runtime": 16.8158
+      },
+      "greedy": {
+        "num_runs": 10,
+        "avg_cost": 285.2,
+        "stdev_cost": 9.93,
+        "avg_runtime": 0.2764,
+        "stdev_runtime": 0.0454
+      },
+      "merge_greedy": {
+        "num_runs": 10,
+        "avg_cost": 252.0,
+        "stdev_cost": 6.2,
+        "avg_runtime": 19.2554,
+        "stdev_runtime": 3.2589
+      },
+      "stochastic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 279.8,
+        "stdev_cost": 13.64,
+        "avg_runtime": 0.2663,
+        "stdev_runtime": 0.0626
+      }
+    }
+  },
+  "T100_n3_m3": {
+    "area": {
+      "beam_search": {
+        "num_runs": 10,
+        "avg_cost": 306.2,
+        "stdev_cost": 38.33,
+        "avg_runtime": 660.4205,
+        "stdev_runtime": 183.9163
+      },
+      "genetic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 306.2,
+        "stdev_cost": 11.07,
+        "avg_runtime": 122.1761,
+        "stdev_runtime": 34.8741
+      },
+      "genetic_stochastic": {
+        "num_runs": 10,
+        "avg_cost": 311.3,
+        "stdev_cost": 11.11,
+        "avg_runtime": 114.7857,
+        "stdev_runtime": 14.3753
+      },
+      "greedy": {
+        "num_runs": 10,
+        "avg_cost": 414.3,
+        "stdev_cost": 26.08,
+        "avg_runtime": 0.3365,
+        "stdev_runtime": 0.1034
+      },
+      "merge_greedy": {
+        "num_runs": 10,
+        "avg_cost": 356.9,
+        "stdev_cost": 19.04,
+        "avg_runtime": 15.5546,
+        "stdev_runtime": 1.1225
+      },
+      "stochastic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 421.7,
+        "stdev_cost": 20.46,
+        "avg_runtime": 0.3585,
+        "stdev_runtime": 0.0894
+      }
+    }
+  },
+  "T10_n1_m8": {
+    "area": {
+      "genetic_greedy": {
+        "num_runs": 30,
+        "avg_cost": 45.3,
+        "stdev_cost": 4.2,
+        "avg_runtime": 0.2877,
+        "stdev_runtime": 0.137
+      },
+      "genetic_stochastic": {
+        "num_runs": 30,
+        "avg_cost": 44.8,
+        "stdev_cost": 4.38,
+        "avg_runtime": 0.3997,
+        "stdev_runtime": 0.1456
+      },
+      "greedy": {
+        "num_runs": 30,
+        "avg_cost": 49.5,
+        "stdev_cost": 3.56,
+        "avg_runtime": 0.0068,
+        "stdev_runtime": 0.0009
+      },
+      "merge_greedy_py": {
+        "num_runs": 30,
+        "avg_cost": 46.1,
+        "stdev_cost": 4.3,
+        "avg_runtime": 0.0006,
+        "stdev_runtime": 0.0001
+      },
+      "stochastic_greedy": {
+        "num_runs": 30,
+        "avg_cost": 48.2,
+        "stdev_cost": 4.98,
+        "avg_runtime": 0.0073,
+        "stdev_runtime": 0.0021
+      }
+    }
+  },
+  "T10_n2_m4": {
+    "area": {
+      "beam_search": {
+        "num_runs": 10,
+        "avg_cost": 50.0,
+        "stdev_cost": 3.66,
+        "avg_runtime": 0.0866,
+        "stdev_runtime": 0.0082
+      },
+      "cplex": {
+        "num_runs": 4,
+        "avg_cost": 51.25,
+        "stdev_cost": 2.17,
+        "avg_runtime": 300.4799,
+        "stdev_runtime": 0.3247
+      },
+      "genetic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 51.3,
+        "stdev_cost": 3.82,
+        "avg_runtime": 0.1643,
+        "stdev_runtime": 0.0234
+      },
+      "genetic_stochastic": {
+        "num_runs": 10,
+        "avg_cost": 47.2,
+        "stdev_cost": 2.68,
+        "avg_runtime": 0.2142,
+        "stdev_runtime": 0.0458
+      },
+      "greedy": {
+        "num_runs": 10,
+        "avg_cost": 55.1,
+        "stdev_cost": 4.81,
+        "avg_runtime": 0.004,
+        "stdev_runtime": 0.0009
+      },
+      "merge_greedy": {
+        "num_runs": 10,
+        "avg_cost": 58.9,
+        "stdev_cost": 5.73,
+        "avg_runtime": 0.0204,
+        "stdev_runtime": 0.003
+      },
+      "stochastic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 54.2,
+        "stdev_cost": 3.49,
+        "avg_runtime": 0.005,
+        "stdev_runtime": 0.002
+      }
+    }
+  },
+  "T10_n3_m3": {
+    "area": {
+      "beam_search": {
+        "num_runs": 10,
+        "avg_cost": 62.4,
+        "stdev_cost": 4.65,
+        "avg_runtime": 0.0857,
+        "stdev_runtime": 0.0047
+      },
+      "cplex": {
+        "num_runs": 2,
+        "avg_cost": 70.5,
+        "stdev_cost": 6.5,
+        "avg_runtime": 300.4491,
+        "stdev_runtime": 0.0154
+      },
+      "genetic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 62.3,
+        "stdev_cost": 4.8,
+        "avg_runtime": 0.1949,
+        "stdev_runtime": 0.0611
+      },
+      "genetic_stochastic": {
+        "num_runs": 10,
+        "avg_cost": 59.0,
+        "stdev_cost": 2.72,
+        "avg_runtime": 0.2657,
+        "stdev_runtime": 0.0643
+      },
+      "greedy": {
+        "num_runs": 10,
+        "avg_cost": 69.2,
+        "stdev_cost": 5.1,
+        "avg_runtime": 0.0051,
+        "stdev_runtime": 0.0016
+      },
+      "merge_greedy": {
+        "num_runs": 10,
+        "avg_cost": 71.8,
+        "stdev_cost": 7.9,
+        "avg_runtime": 0.0186,
+        "stdev_runtime": 0.0026
+      },
+      "stochastic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 69.1,
+        "stdev_cost": 5.72,
+        "avg_runtime": 0.0048,
+        "stdev_runtime": 0.0028
+      }
+    }
+  },
+  "T10_n4_m6": {
+    "area": {
+      "beam_search": {
+        "num_runs": 10,
+        "avg_cost": 221.0,
+        "stdev_cost": 5.6,
+        "avg_runtime": 0.5178,
+        "stdev_runtime": 0.0364
+      },
+      "genetic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 222.2,
+        "stdev_cost": 5.4,
+        "avg_runtime": 1.7729,
+        "stdev_runtime": 0.5829
+      },
+      "genetic_stochastic": {
+        "num_runs": 10,
+        "avg_cost": 221.0,
+        "stdev_cost": 5.6,
+        "avg_runtime": 4.0399,
+        "stdev_runtime": 1.0496
+      },
+      "greedy": {
+        "num_runs": 10,
+        "avg_cost": 225.8,
+        "stdev_cost": 6.95,
+        "avg_runtime": 0.0996,
+        "stdev_runtime": 0.0239
+      },
+      "merge_greedy": {
+        "num_runs": 10,
+        "avg_cost": 249.8,
+        "stdev_cost": 21.8,
+        "avg_runtime": 0.2547,
+        "stdev_runtime": 0.0542
+      },
+      "stochastic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 225.4,
+        "stdev_cost": 4.2,
+        "avg_runtime": 0.1212,
+        "stdev_runtime": 0.0493
+      }
+    }
+  },
+  "T10_n5_m5": {
+    "area": {
+      "beam_search": {
+        "num_runs": 10,
+        "avg_cost": 236.0,
+        "stdev_cost": 5.39,
+        "avg_runtime": 0.5107,
+        "stdev_runtime": 0.0073
+      },
+      "genetic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 237.0,
+        "stdev_cost": 5.57,
+        "avg_runtime": 1.5299,
+        "stdev_runtime": 0.2754
+      },
+      "genetic_stochastic": {
+        "num_runs": 10,
+        "avg_cost": 236.0,
+        "stdev_cost": 5.39,
+        "avg_runtime": 4.9758,
+        "stdev_runtime": 0.9109
+      },
+      "greedy": {
+        "num_runs": 10,
+        "avg_cost": 240.0,
+        "stdev_cost": 5.92,
+        "avg_runtime": 0.0893,
+        "stdev_runtime": 0.0055
+      },
+      "merge_greedy": {
+        "num_runs": 10,
+        "avg_cost": 277.0,
+        "stdev_cost": 19.61,
+        "avg_runtime": 0.2015,
+        "stdev_runtime": 0.0241
+      },
+      "stochastic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 241.0,
+        "stdev_cost": 5.83,
+        "avg_runtime": 0.0895,
+        "stdev_runtime": 0.0049
+      }
+    }
+  },
+  "T200_n1_m8": {
+    "area": {
+      "genetic_greedy": {
+        "num_runs": 30,
+        "avg_cost": 242.3,
+        "stdev_cost": 4.75,
+        "avg_runtime": 100.0146,
+        "stdev_runtime": 14.914
+      },
+      "genetic_stochastic": {
+        "num_runs": 30,
+        "avg_cost": 238.0,
+        "stdev_cost": 5.81,
+        "avg_runtime": 126.5433,
+        "stdev_runtime": 30.6599
+      },
+      "greedy": {
+        "num_runs": 30,
+        "avg_cost": 258.1,
+        "stdev_cost": 9.93,
+        "avg_runtime": 0.9562,
+        "stdev_runtime": 0.1203
+      },
+      "merge_greedy_py": {
+        "num_runs": 30,
+        "avg_cost": 227.8,
+        "stdev_cost": 6.16,
+        "avg_runtime": 1.2007,
+        "stdev_runtime": 0.1036
+      },
+      "stochastic_greedy": {
+        "num_runs": 30,
+        "avg_cost": 252.9,
+        "stdev_cost": 7.23,
+        "avg_runtime": 0.8804,
+        "stdev_runtime": 0.0809
+      }
+    }
+  },
+  "T20_n1_m8": {
+    "area": {
+      "genetic_greedy": {
+        "num_runs": 30,
+        "avg_cost": 74.0,
+        "stdev_cost": 5.67,
+        "avg_runtime": 0.8797,
+        "stdev_runtime": 0.2123
+      },
+      "genetic_stochastic": {
+        "num_runs": 30,
+        "avg_cost": 71.4,
+        "stdev_cost": 6.23,
+        "avg_runtime": 1.4162,
+        "stdev_runtime": 0.2968
+      },
+      "greedy": {
+        "num_runs": 30,
+        "avg_cost": 77.0,
+        "stdev_cost": 7.97,
+        "avg_runtime": 0.0251,
+        "stdev_runtime": 0.0075
+      },
+      "merge_greedy_py": {
+        "num_runs": 30,
+        "avg_cost": 73.8,
+        "stdev_cost": 5.88,
+        "avg_runtime": 0.0041,
+        "stdev_runtime": 0.0004
+      },
+      "stochastic_greedy": {
+        "num_runs": 30,
+        "avg_cost": 77.3,
+        "stdev_cost": 5.92,
+        "avg_runtime": 0.0446,
+        "stdev_runtime": 0.0248
+      }
+    }
+  },
+  "T20_n2_m4": {
+    "area": {
+      "beam_search": {
+        "num_runs": 10,
+        "avg_cost": 81.4,
+        "stdev_cost": 7.85,
+        "avg_runtime": 1.4702,
+        "stdev_runtime": 0.2182
+      },
+      "genetic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 84.6,
+        "stdev_cost": 5.94,
+        "avg_runtime": 1.1963,
+        "stdev_runtime": 0.204
+      },
+      "genetic_stochastic": {
+        "num_runs": 10,
+        "avg_cost": 77.5,
+        "stdev_cost": 4.61,
+        "avg_runtime": 1.427,
+        "stdev_runtime": 0.1299
+      },
+      "greedy": {
+        "num_runs": 10,
+        "avg_cost": 98.9,
+        "stdev_cost": 10.06,
+        "avg_runtime": 0.0125,
+        "stdev_runtime": 0.0026
+      },
+      "merge_greedy": {
+        "num_runs": 10,
+        "avg_cost": 94.3,
+        "stdev_cost": 6.1,
+        "avg_runtime": 0.1472,
+        "stdev_runtime": 0.0075
+      },
+      "stochastic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 100.6,
+        "stdev_cost": 14.7,
+        "avg_runtime": 0.0143,
+        "stdev_runtime": 0.0034
+      }
+    }
+  },
+  "T20_n3_m3": {
+    "area": {
+      "beam_search": {
+        "num_runs": 10,
+        "avg_cost": 98.1,
+        "stdev_cost": 2.7,
+        "avg_runtime": 1.2093,
+        "stdev_runtime": 0.0812
+      },
+      "genetic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 104.2,
+        "stdev_cost": 5.06,
+        "avg_runtime": 1.0411,
+        "stdev_runtime": 0.3768
+      },
+      "genetic_stochastic": {
+        "num_runs": 10,
+        "avg_cost": 96.1,
+        "stdev_cost": 3.81,
+        "avg_runtime": 1.6282,
+        "stdev_runtime": 0.2767
+      },
+      "greedy": {
+        "num_runs": 10,
+        "avg_cost": 120.3,
+        "stdev_cost": 8.26,
+        "avg_runtime": 0.0102,
+        "stdev_runtime": 0.003
+      },
+      "merge_greedy": {
+        "num_runs": 10,
+        "avg_cost": 113.4,
+        "stdev_cost": 8.89,
+        "avg_runtime": 0.1303,
+        "stdev_runtime": 0.0161
+      },
+      "stochastic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 122.6,
+        "stdev_cost": 10.76,
+        "avg_runtime": 0.0125,
+        "stdev_runtime": 0.0051
+      }
+    }
+  },
+  "T20_n4_m6": {
+    "area": {
+      "beam_search": {
+        "num_runs": 10,
+        "avg_cost": 435.8,
+        "stdev_cost": 13.64,
+        "avg_runtime": 10.3854,
+        "stdev_runtime": 0.5631
+      },
+      "genetic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 437.6,
+        "stdev_cost": 5.12,
+        "avg_runtime": 18.3907,
+        "stdev_runtime": 5.0375
+      },
+      "genetic_stochastic": {
+        "num_runs": 10,
+        "avg_cost": 432.4,
+        "stdev_cost": 7.68,
+        "avg_runtime": 34.618,
+        "stdev_runtime": 6.5682
+      },
+      "greedy": {
+        "num_runs": 10,
+        "avg_cost": 444.2,
+        "stdev_cost": 7.61,
+        "avg_runtime": 0.7368,
+        "stdev_runtime": 0.109
+      },
+      "merge_greedy": {
+        "num_runs": 10,
+        "avg_cost": 483.0,
+        "stdev_cost": 31.12,
+        "avg_runtime": 4.0015,
+        "stdev_runtime": 0.7985
+      },
+      "stochastic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 444.2,
+        "stdev_cost": 8.96,
+        "avg_runtime": 0.7402,
+        "stdev_runtime": 0.0938
+      }
+    }
+  },
+  "T20_n5_m5": {
+    "area": {
+      "beam_search": {
+        "num_runs": 10,
+        "avg_cost": 454.0,
+        "stdev_cost": 6.63,
+        "avg_runtime": 10.3273,
+        "stdev_runtime": 0.2305
+      },
+      "genetic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 459.0,
+        "stdev_cost": 8.31,
+        "avg_runtime": 18.0886,
+        "stdev_runtime": 5.1653
+      },
+      "genetic_stochastic": {
+        "num_runs": 10,
+        "avg_cost": 452.0,
+        "stdev_cost": 6.0,
+        "avg_runtime": 32.0163,
+        "stdev_runtime": 4.6878
+      },
+      "greedy": {
+        "num_runs": 10,
+        "avg_cost": 470.0,
+        "stdev_cost": 11.4,
+        "avg_runtime": 0.5622,
+        "stdev_runtime": 0.0347
+      },
+      "merge_greedy": {
+        "num_runs": 10,
+        "avg_cost": 518.4,
+        "stdev_cost": 21.12,
+        "avg_runtime": 3.3902,
+        "stdev_runtime": 0.4476
+      },
+      "stochastic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 467.5,
+        "stdev_cost": 9.01,
+        "avg_runtime": 0.5518,
+        "stdev_runtime": 0.0292
+      }
+    }
+  },
+  "T300_n1_m8": {
+    "area": {
+      "genetic_greedy": {
+        "num_runs": 30,
+        "avg_cost": 262.8,
+        "stdev_cost": 5.6,
+        "avg_runtime": 279.4316,
+        "stdev_runtime": 92.4999
+      },
+      "genetic_stochastic": {
+        "num_runs": 30,
+        "avg_cost": 258.3,
+        "stdev_cost": 2.45,
+        "avg_runtime": 332.6367,
+        "stdev_runtime": 59.3632
+      },
+      "greedy": {
+        "num_runs": 30,
+        "avg_cost": 280.5,
+        "stdev_cost": 8.75,
+        "avg_runtime": 1.3903,
+        "stdev_runtime": 0.0507
+      },
+      "merge_greedy_py": {
+        "num_runs": 30,
+        "avg_cost": 251.7,
+        "stdev_cost": 3.74,
+        "avg_runtime": 2.5326,
+        "stdev_runtime": 0.1742
+      },
+      "stochastic_greedy": {
+        "num_runs": 30,
+        "avg_cost": 278.8,
+        "stdev_cost": 6.11,
+        "avg_runtime": 1.3527,
+        "stdev_runtime": 0.0668
+      }
+    }
+  },
+  "T30_n2_m4": {
+    "area": {
+      "beam_search": {
+        "num_runs": 10,
+        "avg_cost": 116.1,
+        "stdev_cost": 8.6,
+        "avg_runtime": 7.0706,
+        "stdev_runtime": 1.3321
+      },
+      "genetic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 109.9,
+        "stdev_cost": 8.19,
+        "avg_runtime": 2.3295,
+        "stdev_runtime": 0.2462
+      },
+      "genetic_stochastic": {
+        "num_runs": 10,
+        "avg_cost": 109.3,
+        "stdev_cost": 7.93,
+        "avg_runtime": 2.8832,
+        "stdev_runtime": 0.1978
+      },
+      "greedy": {
+        "num_runs": 10,
+        "avg_cost": 134.8,
+        "stdev_cost": 17.28,
+        "avg_runtime": 0.031,
+        "stdev_runtime": 0.0136
+      },
+      "merge_greedy": {
+        "num_runs": 10,
+        "avg_cost": 118.8,
+        "stdev_cost": 10.6,
+        "avg_runtime": 0.5257,
+        "stdev_runtime": 0.069
+      },
+      "stochastic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 132.0,
+        "stdev_cost": 14.83,
+        "avg_runtime": 0.0369,
+        "stdev_runtime": 0.0225
+      }
+    }
+  },
+  "T30_n3_m3": {
+    "area": {
+      "beam_search": {
+        "num_runs": 10,
+        "avg_cost": 131.2,
+        "stdev_cost": 9.18,
+        "avg_runtime": 5.0557,
+        "stdev_runtime": 0.4173
+      },
+      "genetic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 138.4,
+        "stdev_cost": 7.14,
+        "avg_runtime": 2.8212,
+        "stdev_runtime": 1.0363
+      },
+      "genetic_stochastic": {
+        "num_runs": 10,
+        "avg_cost": 131.9,
+        "stdev_cost": 7.02,
+        "avg_runtime": 3.5181,
+        "stdev_runtime": 0.4243
+      },
+      "greedy": {
+        "num_runs": 10,
+        "avg_cost": 154.7,
+        "stdev_cost": 9.95,
+        "avg_runtime": 0.0205,
+        "stdev_runtime": 0.0065
+      },
+      "merge_greedy": {
+        "num_runs": 10,
+        "avg_cost": 143.1,
+        "stdev_cost": 12.51,
+        "avg_runtime": 0.3962,
+        "stdev_runtime": 0.0277
+      },
+      "stochastic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 164.8,
+        "stdev_cost": 11.7,
+        "avg_runtime": 0.0238,
+        "stdev_runtime": 0.0078
+      }
+    }
+  },
+  "T30_n4_m6": {
+    "area": {
+      "beam_search": {
+        "num_runs": 10,
+        "avg_cost": 644.6,
+        "stdev_cost": 19.52,
+        "avg_runtime": 47.4728,
+        "stdev_runtime": 4.0991
+      },
+      "genetic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 638.8,
+        "stdev_cost": 8.4,
+        "avg_runtime": 45.8498,
+        "stdev_runtime": 9.4362
+      },
+      "genetic_stochastic": {
+        "num_runs": 10,
+        "avg_cost": 633.2,
+        "stdev_cost": 8.77,
+        "avg_runtime": 83.7315,
+        "stdev_runtime": 14.0176
+      },
+      "greedy": {
+        "num_runs": 10,
+        "avg_cost": 656.8,
+        "stdev_cost": 16.35,
+        "avg_runtime": 1.7857,
+        "stdev_runtime": 0.4154
+      },
+      "merge_greedy": {
+        "num_runs": 10,
+        "avg_cost": 710.3,
+        "stdev_cost": 30.83,
+        "avg_runtime": 17.2402,
+        "stdev_runtime": 3.6903
+      },
+      "stochastic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 656.0,
+        "stdev_cost": 22.11,
+        "avg_runtime": 1.8395,
+        "stdev_runtime": 0.3871
+      }
+    }
+  },
+  "T30_n5_m5": {
+    "area": {
+      "beam_search": {
+        "num_runs": 10,
+        "avg_cost": 674.7,
+        "stdev_cost": 13.26,
+        "avg_runtime": 47.9717,
+        "stdev_runtime": 4.3828
+      },
+      "genetic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 680.5,
+        "stdev_cost": 9.86,
+        "avg_runtime": 53.5859,
+        "stdev_runtime": 16.0321
+      },
+      "genetic_stochastic": {
+        "num_runs": 10,
+        "avg_cost": 673.0,
+        "stdev_cost": 11.45,
+        "avg_runtime": 89.1036,
+        "stdev_runtime": 8.8448
+      },
+      "greedy": {
+        "num_runs": 10,
+        "avg_cost": 694.0,
+        "stdev_cost": 8.89,
+        "avg_runtime": 1.7016,
+        "stdev_runtime": 0.0499
+      },
+      "merge_greedy": {
+        "num_runs": 10,
+        "avg_cost": 752.1,
+        "stdev_cost": 25.58,
+        "avg_runtime": 15.4631,
+        "stdev_runtime": 3.2287
+      },
+      "stochastic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 690.5,
+        "stdev_cost": 10.83,
+        "avg_runtime": 1.6821,
+        "stdev_runtime": 0.058
+      }
+    }
+  },
+  "T50_n1_m8": {
+    "area": {
+      "genetic_greedy": {
+        "num_runs": 30,
+        "avg_cost": 131.3,
+        "stdev_cost": 13.84,
+        "avg_runtime": 7.273,
+        "stdev_runtime": 3.3862
+      },
+      "genetic_stochastic": {
+        "num_runs": 30,
+        "avg_cost": 127.1,
+        "stdev_cost": 13.4,
+        "avg_runtime": 6.8528,
+        "stdev_runtime": 1.8005
+      },
+      "greedy": {
+        "num_runs": 30,
+        "avg_cost": 135.1,
+        "stdev_cost": 14.82,
+        "avg_runtime": 0.1479,
+        "stdev_runtime": 0.0446
+      },
+      "merge_greedy_py": {
+        "num_runs": 30,
+        "avg_cost": 123.5,
+        "stdev_cost": 7.94,
+        "avg_runtime": 0.0481,
+        "stdev_runtime": 0.0031
+      },
+      "stochastic_greedy": {
+        "num_runs": 30,
+        "avg_cost": 136.5,
+        "stdev_cost": 13.03,
+        "avg_runtime": 0.191,
+        "stdev_runtime": 0.096
+      }
+    }
+  },
+  "T50_n2_m4": {
+    "area": {
+      "beam_search": {
+        "num_runs": 10,
+        "avg_cost": 169.0,
+        "stdev_cost": 13.57,
+        "avg_runtime": 54.2927,
+        "stdev_runtime": 5.8722
+      },
+      "genetic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 156.5,
+        "stdev_cost": 7.34,
+        "avg_runtime": 6.798,
+        "stdev_runtime": 0.6468
+      },
+      "genetic_stochastic": {
+        "num_runs": 10,
+        "avg_cost": 153.1,
+        "stdev_cost": 6.32,
+        "avg_runtime": 8.5551,
+        "stdev_runtime": 0.7365
+      },
+      "greedy": {
+        "num_runs": 10,
+        "avg_cost": 181.4,
+        "stdev_cost": 10.0,
+        "avg_runtime": 0.0781,
+        "stdev_runtime": 0.0243
+      },
+      "merge_greedy": {
+        "num_runs": 10,
+        "avg_cost": 164.5,
+        "stdev_cost": 11.86,
+        "avg_runtime": 2.5929,
+        "stdev_runtime": 0.2232
+      },
+      "stochastic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 181.0,
+        "stdev_cost": 8.64,
+        "avg_runtime": 0.0685,
+        "stdev_runtime": 0.0088
+      }
+    }
+  },
+  "T50_n3_m3": {
+    "area": {
+      "beam_search": {
+        "num_runs": 10,
+        "avg_cost": 187.1,
+        "stdev_cost": 10.4,
+        "avg_runtime": 34.2032,
+        "stdev_runtime": 5.8175
+      },
+      "genetic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 197.9,
+        "stdev_cost": 6.7,
+        "avg_runtime": 13.0965,
+        "stdev_runtime": 6.3745
+      },
+      "genetic_stochastic": {
+        "num_runs": 9,
+        "avg_cost": 191.33,
+        "stdev_cost": 9.01,
+        "avg_runtime": 18.0179,
+        "stdev_runtime": 7.2063
+      },
+      "greedy": {
+        "num_runs": 10,
+        "avg_cost": 227.3,
+        "stdev_cost": 14.45,
+        "avg_runtime": 0.0862,
+        "stdev_runtime": 0.0308
+      },
+      "merge_greedy": {
+        "num_runs": 10,
+        "avg_cost": 211.1,
+        "stdev_cost": 16.83,
+        "avg_runtime": 1.8059,
+        "stdev_runtime": 0.2024
+      },
+      "stochastic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 236.6,
+        "stdev_cost": 15.92,
+        "avg_runtime": 0.0967,
+        "stdev_runtime": 0.0704
+      }
+    }
+  },
+  "T50_n4_m6": {
+    "area": {
+      "beam_search": {
+        "num_runs": 10,
+        "avg_cost": 1023.6,
+        "stdev_cost": 26.42,
+        "avg_runtime": 351.2463,
+        "stdev_runtime": 25.0346
+      },
+      "genetic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 1031.9,
+        "stdev_cost": 21.82,
+        "avg_runtime": 198.0668,
+        "stdev_runtime": 24.5828
+      },
+      "genetic_stochastic": {
+        "num_runs": 10,
+        "avg_cost": 1024.4,
+        "stdev_cost": 21.87,
+        "avg_runtime": 342.5378,
+        "stdev_runtime": 38.311
+      },
+      "greedy": {
+        "num_runs": 10,
+        "avg_cost": 1066.1,
+        "stdev_cost": 35.85,
+        "avg_runtime": 6.1183,
+        "stdev_runtime": 1.7403
+      },
+      "merge_greedy": {
+        "num_runs": 10,
+        "avg_cost": 1113.0,
+        "stdev_cost": 29.2,
+        "avg_runtime": 126.2474,
+        "stdev_runtime": 25.1653
+      },
+      "stochastic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 1058.6,
+        "stdev_cost": 36.35,
+        "avg_runtime": 5.999,
+        "stdev_runtime": 1.7309
+      }
+    }
+  },
+  "T50_n5_m5": {
+    "area": {
+      "beam_search": {
+        "num_runs": 10,
+        "avg_cost": 1094.2,
+        "stdev_cost": 15.99,
+        "avg_runtime": 335.3348,
+        "stdev_runtime": 28.4585
+      },
+      "genetic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 1101.0,
+        "stdev_cost": 11.79,
+        "avg_runtime": 234.1724,
+        "stdev_runtime": 46.3933
+      },
+      "genetic_stochastic": {
+        "num_runs": 10,
+        "avg_cost": 1092.4,
+        "stdev_cost": 8.48,
+        "avg_runtime": 304.8617,
+        "stdev_runtime": 28.4577
+      },
+      "greedy": {
+        "num_runs": 10,
+        "avg_cost": 1121.0,
+        "stdev_cost": 16.7,
+        "avg_runtime": 6.497,
+        "stdev_runtime": 0.2559
+      },
+      "merge_greedy": {
+        "num_runs": 10,
+        "avg_cost": 1167.6,
+        "stdev_cost": 35.32,
+        "avg_runtime": 108.5593,
+        "stdev_runtime": 15.6455
+      },
+      "stochastic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 1128.5,
+        "stdev_cost": 17.61,
+        "avg_runtime": 6.6184,
+        "stdev_runtime": 0.2827
+      }
+    }
+  },
+  "T60_n2_m4": {
+    "area": {
+      "beam_search": {
+        "num_runs": 10,
+        "avg_cost": 186.4,
+        "stdev_cost": 13.88,
+        "avg_runtime": 149.3556,
+        "stdev_runtime": 16.6957
+      },
+      "genetic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 173.3,
+        "stdev_cost": 8.79,
+        "avg_runtime": 14.4618,
+        "stdev_runtime": 1.0147
+      },
+      "genetic_stochastic": {
+        "num_runs": 10,
+        "avg_cost": 171.8,
+        "stdev_cost": 7.97,
+        "avg_runtime": 20.8471,
+        "stdev_runtime": 2.0277
+      },
+      "greedy": {
+        "num_runs": 10,
+        "avg_cost": 202.2,
+        "stdev_cost": 11.29,
+        "avg_runtime": 0.0991,
+        "stdev_runtime": 0.0132
+      },
+      "merge_greedy": {
+        "num_runs": 10,
+        "avg_cost": 181.3,
+        "stdev_cost": 9.82,
+        "avg_runtime": 4.3527,
+        "stdev_runtime": 0.3842
+      },
+      "stochastic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 205.8,
+        "stdev_cost": 13.04,
+        "avg_runtime": 0.1053,
+        "stdev_runtime": 0.0141
+      }
+    }
+  },
+  "T60_n3_m3": {
+    "area": {
+      "beam_search": {
+        "num_runs": 10,
+        "avg_cost": 214.7,
+        "stdev_cost": 10.35,
+        "avg_runtime": 90.373,
+        "stdev_runtime": 13.147
+      },
+      "genetic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 223.3,
+        "stdev_cost": 10.08,
+        "avg_runtime": 28.9473,
+        "stdev_runtime": 10.1584
+      },
+      "genetic_stochastic": {
+        "num_runs": 10,
+        "avg_cost": 220.2,
+        "stdev_cost": 6.69,
+        "avg_runtime": 35.8599,
+        "stdev_runtime": 6.6943
+      },
+      "greedy": {
+        "num_runs": 10,
+        "avg_cost": 278.7,
+        "stdev_cost": 21.83,
+        "avg_runtime": 0.1516,
+        "stdev_runtime": 0.0536
+      },
+      "merge_greedy": {
+        "num_runs": 10,
+        "avg_cost": 249.4,
+        "stdev_cost": 16.34,
+        "avg_runtime": 3.2832,
+        "stdev_runtime": 0.3356
+      },
+      "stochastic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 283.6,
+        "stdev_cost": 28.22,
+        "avg_runtime": 0.1638,
+        "stdev_runtime": 0.0815
+      }
+    }
+  },
+  "T6_n2_m4": {
+    "area": {
+      "beam_search": {
+        "num_runs": 10,
+        "avg_cost": 33.7,
+        "stdev_cost": 3.23,
+        "avg_runtime": 0.0159,
+        "stdev_runtime": 0.0013
+      },
+      "cplex": {
+        "num_runs": 9,
+        "avg_cost": 34.33,
+        "stdev_cost": 4.14,
+        "avg_runtime": 197.8462,
+        "stdev_runtime": 118.7907
+      },
+      "genetic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 34.0,
+        "stdev_cost": 3.32,
+        "avg_runtime": 0.1016,
+        "stdev_runtime": 0.0162
+      },
+      "genetic_stochastic": {
+        "num_runs": 10,
+        "avg_cost": 33.0,
+        "stdev_cost": 2.37,
+        "avg_runtime": 0.0972,
+        "stdev_runtime": 0.0261
+      },
+      "greedy": {
+        "num_runs": 10,
+        "avg_cost": 35.9,
+        "stdev_cost": 4.04,
+        "avg_runtime": 0.002,
+        "stdev_runtime": 0.0005
+      },
+      "merge_greedy": {
+        "num_runs": 10,
+        "avg_cost": 36.6,
+        "stdev_cost": 3.67,
+        "avg_runtime": 0.0041,
+        "stdev_runtime": 0.0007
+      },
+      "stochastic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 35.1,
+        "stdev_cost": 4.44,
+        "avg_runtime": 0.0023,
+        "stdev_runtime": 0.0006
+      }
+    }
+  },
+  "T6_n3_m3": {
+    "area": {
+      "beam_search": {
+        "num_runs": 10,
+        "avg_cost": 41.0,
+        "stdev_cost": 3.0,
+        "avg_runtime": 0.0199,
+        "stdev_runtime": 0.0054
+      },
+      "cplex": {
+        "num_runs": 10,
+        "avg_cost": 39.9,
+        "stdev_cost": 2.98,
+        "avg_runtime": 267.3002,
+        "stdev_runtime": 67.7844
+      },
+      "genetic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 41.5,
+        "stdev_cost": 2.66,
+        "avg_runtime": 0.1114,
+        "stdev_runtime": 0.0276
+      },
+      "genetic_stochastic": {
+        "num_runs": 10,
+        "avg_cost": 40.6,
+        "stdev_cost": 2.69,
+        "avg_runtime": 0.1541,
+        "stdev_runtime": 0.0831
+      },
+      "greedy": {
+        "num_runs": 10,
+        "avg_cost": 43.8,
+        "stdev_cost": 3.94,
+        "avg_runtime": 0.0024,
+        "stdev_runtime": 0.0007
+      },
+      "merge_greedy": {
+        "num_runs": 10,
+        "avg_cost": 48.3,
+        "stdev_cost": 4.5,
+        "avg_runtime": 0.0084,
+        "stdev_runtime": 0.0042
+      },
+      "stochastic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 43.8,
+        "stdev_cost": 4.53,
+        "avg_runtime": 0.0022,
+        "stdev_runtime": 0.0005
+      }
+    }
+  },
+  "T6_n4_m6": {
+    "area": {
+      "beam_search": {
+        "num_runs": 10,
+        "avg_cost": 136.2,
+        "stdev_cost": 4.85,
+        "avg_runtime": 0.0775,
+        "stdev_runtime": 0.0046
+      },
+      "cplex": {
+        "num_runs": 1,
+        "avg_cost": 132.0,
+        "stdev_cost": 0,
+        "avg_runtime": 302.3611,
+        "stdev_runtime": 0
+      },
+      "genetic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 136.2,
+        "stdev_cost": 4.85,
+        "avg_runtime": 0.5054,
+        "stdev_runtime": 0.1773
+      },
+      "genetic_stochastic": {
+        "num_runs": 10,
+        "avg_cost": 136.2,
+        "stdev_cost": 4.85,
+        "avg_runtime": 1.0962,
+        "stdev_runtime": 0.4478
+      },
+      "greedy": {
+        "num_runs": 10,
+        "avg_cost": 136.8,
+        "stdev_cost": 5.38,
+        "avg_runtime": 0.025,
+        "stdev_runtime": 0.0057
+      },
+      "merge_greedy": {
+        "num_runs": 10,
+        "avg_cost": 157.8,
+        "stdev_cost": 9.33,
+        "avg_runtime": 0.0324,
+        "stdev_runtime": 0.0047
+      },
+      "stochastic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 138.2,
+        "stdev_cost": 4.04,
+        "avg_runtime": 0.0374,
+        "stdev_runtime": 0.028
+      }
+    }
+  },
+  "T6_n5_m5": {
+    "area": {
+      "beam_search": {
+        "num_runs": 10,
+        "avg_cost": 142.5,
+        "stdev_cost": 2.5,
+        "avg_runtime": 0.0795,
+        "stdev_runtime": 0.0037
+      },
+      "cplex": {
+        "num_runs": 1,
+        "avg_cost": 140.0,
+        "stdev_cost": 0,
+        "avg_runtime": 304.8188,
+        "stdev_runtime": 0
+      },
+      "genetic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 143.0,
+        "stdev_cost": 2.45,
+        "avg_runtime": 0.4914,
+        "stdev_runtime": 0.1392
+      },
+      "genetic_stochastic": {
+        "num_runs": 10,
+        "avg_cost": 142.5,
+        "stdev_cost": 2.5,
+        "avg_runtime": 1.0664,
+        "stdev_runtime": 0.322
+      },
+      "greedy": {
+        "num_runs": 10,
+        "avg_cost": 144.0,
+        "stdev_cost": 3.0,
+        "avg_runtime": 0.0253,
+        "stdev_runtime": 0.0016
+      },
+      "merge_greedy": {
+        "num_runs": 10,
+        "avg_cost": 172.1,
+        "stdev_cost": 14.19,
+        "avg_runtime": 0.0278,
+        "stdev_runtime": 0.0025
+      },
+      "stochastic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 143.0,
+        "stdev_cost": 2.45,
+        "avg_runtime": 0.0267,
+        "stdev_runtime": 0.0028
+      }
+    }
+  },
+  "T80_n2_m4": {
+    "area": {
+      "beam_search": {
+        "num_runs": 10,
+        "avg_cost": 232.8,
+        "stdev_cost": 14.03,
+        "avg_runtime": 481.9426,
+        "stdev_runtime": 5.7414
+      },
+      "genetic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 207.4,
+        "stdev_cost": 11.47,
+        "avg_runtime": 32.7438,
+        "stdev_runtime": 4.4415
+      },
+      "genetic_stochastic": {
+        "num_runs": 10,
+        "avg_cost": 210.0,
+        "stdev_cost": 8.69,
+        "avg_runtime": 39.4731,
+        "stdev_runtime": 6.7602
+      },
+      "greedy": {
+        "num_runs": 10,
+        "avg_cost": 241.5,
+        "stdev_cost": 12.36,
+        "avg_runtime": 0.1565,
+        "stdev_runtime": 0.0322
+      },
+      "merge_greedy": {
+        "num_runs": 10,
+        "avg_cost": 217.5,
+        "stdev_cost": 12.22,
+        "avg_runtime": 10.3375,
+        "stdev_runtime": 1.0717
+      },
+      "stochastic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 242.1,
+        "stdev_cost": 13.74,
+        "avg_runtime": 0.1617,
+        "stdev_runtime": 0.0342
+      }
+    }
+  },
+  "T80_n3_m3": {
+    "area": {
+      "beam_search": {
+        "num_runs": 10,
+        "avg_cost": 262.5,
+        "stdev_cost": 15.69,
+        "avg_runtime": 295.6041,
+        "stdev_runtime": 42.3939
+      },
+      "genetic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 268.2,
+        "stdev_cost": 9.81,
+        "avg_runtime": 54.3563,
+        "stdev_runtime": 16.1232
+      },
+      "genetic_stochastic": {
+        "num_runs": 10,
+        "avg_cost": 270.4,
+        "stdev_cost": 8.62,
+        "avg_runtime": 57.3635,
+        "stdev_runtime": 11.4574
+      },
+      "greedy": {
+        "num_runs": 10,
+        "avg_cost": 349.4,
+        "stdev_cost": 27.53,
+        "avg_runtime": 0.1955,
+        "stdev_runtime": 0.0786
+      },
+      "merge_greedy": {
+        "num_runs": 10,
+        "avg_cost": 307.2,
+        "stdev_cost": 21.25,
+        "avg_runtime": 7.8212,
+        "stdev_runtime": 0.6077
+      },
+      "stochastic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 347.9,
+        "stdev_cost": 23.94,
+        "avg_runtime": 0.1956,
+        "stdev_runtime": 0.0693
+      }
+    }
+  },
+  "T8_n2_m4": {
+    "area": {
+      "beam_search": {
+        "num_runs": 10,
+        "avg_cost": 42.5,
+        "stdev_cost": 3.07,
+        "avg_runtime": 0.0414,
+        "stdev_runtime": 0.0036
+      },
+      "cplex": {
+        "num_runs": 7,
+        "avg_cost": 42.0,
+        "stdev_cost": 2.62,
+        "avg_runtime": 300.6183,
+        "stdev_runtime": 0.7927
+      },
+      "genetic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 44.8,
+        "stdev_cost": 2.32,
+        "avg_runtime": 0.1278,
+        "stdev_runtime": 0.0245
+      },
+      "genetic_stochastic": {
+        "num_runs": 10,
+        "avg_cost": 41.6,
+        "stdev_cost": 1.2,
+        "avg_runtime": 0.1543,
+        "stdev_runtime": 0.043
+      },
+      "greedy": {
+        "num_runs": 10,
+        "avg_cost": 46.8,
+        "stdev_cost": 1.78,
+        "avg_runtime": 0.004,
+        "stdev_runtime": 0.0018
+      },
+      "merge_greedy": {
+        "num_runs": 10,
+        "avg_cost": 49.4,
+        "stdev_cost": 4.5,
+        "avg_runtime": 0.0132,
+        "stdev_runtime": 0.0049
+      },
+      "stochastic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 46.3,
+        "stdev_cost": 3.23,
+        "avg_runtime": 0.0054,
+        "stdev_runtime": 0.0032
+      }
+    }
+  },
+  "T8_n3_m3": {
+    "area": {
+      "beam_search": {
+        "num_runs": 10,
+        "avg_cost": 52.6,
+        "stdev_cost": 3.5,
+        "avg_runtime": 0.0445,
+        "stdev_runtime": 0.004
+      },
+      "cplex": {
+        "num_runs": 6,
+        "avg_cost": 51.67,
+        "stdev_cost": 3.4,
+        "avg_runtime": 300.4143,
+        "stdev_runtime": 0.3926
+      },
+      "genetic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 53.9,
+        "stdev_cost": 4.18,
+        "avg_runtime": 0.1492,
+        "stdev_runtime": 0.0281
+      },
+      "genetic_stochastic": {
+        "num_runs": 10,
+        "avg_cost": 51.8,
+        "stdev_cost": 3.28,
+        "avg_runtime": 0.1616,
+        "stdev_runtime": 0.0446
+      },
+      "greedy": {
+        "num_runs": 10,
+        "avg_cost": 57.1,
+        "stdev_cost": 3.78,
+        "avg_runtime": 0.0032,
+        "stdev_runtime": 0.0005
+      },
+      "merge_greedy": {
+        "num_runs": 10,
+        "avg_cost": 59.4,
+        "stdev_cost": 6.53,
+        "avg_runtime": 0.0138,
+        "stdev_runtime": 0.0065
+      },
+      "stochastic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 58.1,
+        "stdev_cost": 4.18,
+        "avg_runtime": 0.0035,
+        "stdev_runtime": 0.0017
+      }
+    }
+  },
+  "T8_n4_m6": {
+    "area": {
+      "beam_search": {
+        "num_runs": 10,
+        "avg_cost": 179.2,
+        "stdev_cost": 5.95,
+        "avg_runtime": 0.2208,
+        "stdev_runtime": 0.0105
+      },
+      "genetic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 179.2,
+        "stdev_cost": 6.21,
+        "avg_runtime": 0.8513,
+        "stdev_runtime": 0.1318
+      },
+      "genetic_stochastic": {
+        "num_runs": 10,
+        "avg_cost": 178.8,
+        "stdev_cost": 6.01,
+        "avg_runtime": 1.9106,
+        "stdev_runtime": 0.2485
+      },
+      "greedy": {
+        "num_runs": 10,
+        "avg_cost": 182.6,
+        "stdev_cost": 6.33,
+        "avg_runtime": 0.0513,
+        "stdev_runtime": 0.0106
+      },
+      "merge_greedy": {
+        "num_runs": 10,
+        "avg_cost": 206.4,
+        "stdev_cost": 14.58,
+        "avg_runtime": 0.0998,
+        "stdev_runtime": 0.0146
+      },
+      "stochastic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 184.0,
+        "stdev_cost": 5.59,
+        "avg_runtime": 0.0662,
+        "stdev_runtime": 0.0184
+      }
+    }
+  },
+  "T8_n5_m5": {
+    "area": {
+      "beam_search": {
+        "num_runs": 10,
+        "avg_cost": 190.0,
+        "stdev_cost": 3.16,
+        "avg_runtime": 0.2196,
+        "stdev_runtime": 0.0044
+      },
+      "genetic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 190.5,
+        "stdev_cost": 2.69,
+        "avg_runtime": 0.8474,
+        "stdev_runtime": 0.1549
+      },
+      "genetic_stochastic": {
+        "num_runs": 10,
+        "avg_cost": 190.0,
+        "stdev_cost": 3.16,
+        "avg_runtime": 2.4724,
+        "stdev_runtime": 0.5386
+      },
+      "greedy": {
+        "num_runs": 10,
+        "avg_cost": 195.2,
+        "stdev_cost": 10.02,
+        "avg_runtime": 0.0534,
+        "stdev_runtime": 0.0064
+      },
+      "merge_greedy": {
+        "num_runs": 10,
+        "avg_cost": 223.5,
+        "stdev_cost": 12.34,
+        "avg_runtime": 0.0841,
+        "stdev_runtime": 0.0087
+      },
+      "stochastic_greedy": {
+        "num_runs": 10,
+        "avg_cost": 196.2,
+        "stdev_cost": 9.43,
+        "avg_runtime": 0.0532,
+        "stdev_runtime": 0.0042
+      }
+    }
+  }
+}

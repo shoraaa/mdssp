@@ -17,6 +17,7 @@
 #include "common.hpp"
 #include "greedy.hpp"
 #include "genetic.hpp"
+#include "search.hpp"
 #include "cplex.hpp"
 #include "verifier.hpp"
 #include "dataset.hpp"
@@ -46,11 +47,16 @@ struct UnifiedResult {
     int total_crossovers;
     int crossovers_needing_completion;
     int total_tiles_completed;
+    // Search algorithm specific stats (beam search, simulated annealing)
+    int iterations;
+    int states_explored;
+    int improvements_found;
     
     UnifiedResult() : best_obj(0), bbox_width(0), bbox_height(0), 
                       bbox_area(0), wall_time_sec(0.0), status("success"),
                       total_crossovers(0), crossovers_needing_completion(0),
-                      total_tiles_completed(0) {}
+                      total_tiles_completed(0),
+                      iterations(0), states_explored(0), improvements_found(0) {}
 };
 
 void print_result(const std::string& algorithm, const UnifiedResult& result) {
@@ -125,7 +131,7 @@ int main(int argc, char* argv[]) {
         cxxopts::Options options("mdssp", "2D Shortest Superarray Problem Solver");
         
         options.add_options()
-            ("a,algorithm", "Algorithm to use: greedy, stochastic_greedy, genetic, genetic_greedy, genetic_stochastic, cplex, all", 
+            ("a,algorithm", "Algorithm to use: greedy, stochastic_greedy, genetic, genetic_greedy, genetic_stochastic, beam_search, simulated_annealing, cplex, all", 
              cxxopts::value<std::string>()->default_value("greedy"))
             ("d,dataset", "Dataset file (JSON format)", 
              cxxopts::value<std::string>()->default_value(""))
@@ -139,12 +145,24 @@ int main(int argc, char* argv[]) {
              cxxopts::value<int>()->default_value("42"))
             ("p,probability", "Probability for binary generation", 
              cxxopts::value<double>()->default_value("0.5"))
+            ("alphabet-size", "Alphabet size (2=binary, higher for larger alphabets)", 
+             cxxopts::value<int>()->default_value("2"))
             ("pop-size", "Genetic algorithm population size",
              cxxopts::value<int>()->default_value("10"))
             ("generations", "Genetic algorithm generations",
              cxxopts::value<int>()->default_value("20"))
             ("init-mode", "Genetic algorithm initialization mode: greedy, stochastic, random",
              cxxopts::value<std::string>()->default_value("stochastic"))
+            ("beam-width", "Beam search beam width",
+             cxxopts::value<int>()->default_value("10"))
+            ("sa-initial-temp", "Simulated annealing initial temperature",
+             cxxopts::value<double>()->default_value("100.0"))
+            ("sa-cooling-rate", "Simulated annealing cooling rate",
+             cxxopts::value<double>()->default_value("0.995"))
+            ("sa-min-temp", "Simulated annealing minimum temperature",
+             cxxopts::value<double>()->default_value("0.1"))
+            ("sa-max-iter", "Simulated annealing maximum iterations",
+             cxxopts::value<int>()->default_value("10000"))
             ("objective-type", "Objective function: square (max(H,W)) or area (H*W)",
              cxxopts::value<std::string>()->default_value("square"))
             ("time-limit", "CPLEX/BnB time limit in seconds",
@@ -169,10 +187,13 @@ int main(int argc, char* argv[]) {
             std::cout << "  ./mdssp -a greedy -T 10 -n 3 -m 3\n";
             std::cout << "  ./mdssp -a greedy -T 10 -n 3 -m 3 --verify\n";
             std::cout << "  ./mdssp -a greedy -T 10 -n 3 -m 3 --objective-type area\n";
+            std::cout << "  ./mdssp -a greedy -T 10 -n 3 -m 3 --alphabet-size 4  # Quaternary alphabet\n";
             std::cout << "  ./mdssp -a stochastic_greedy -T 10 -n 3 -m 3\n";
             std::cout << "  ./mdssp -a genetic_greedy -T 10 -n 3 -m 3 --pop-size 20 --generations 50\n";
             std::cout << "  ./mdssp -a genetic_stochastic -T 10 -n 3 -m 3 --pop-size 20 --generations 50\n";
             std::cout << "  ./mdssp -a genetic -T 10 -n 3 -m 3 --init-mode greedy\n";
+            std::cout << "  ./mdssp -a beam_search -T 10 -n 3 -m 3 --beam-width 20\n";
+            std::cout << "  ./mdssp -a simulated_annealing -T 10 -n 3 -m 3 --sa-max-iter 5000\n";
             std::cout << "  ./mdssp -a all -T 10 -n 3 -m 3 --compare\n";
             std::cout << "  ./mdssp -a all -T 10 -n 3 -m 3 --output results.json\n";
             std::cout << "  ./mdssp -a greedy -T 5 -n 2 -m 2 --render\n";
@@ -190,9 +211,15 @@ int main(int argc, char* argv[]) {
         int m = result["width"].as<int>();
         int seed = result["seed"].as<int>();
         double p = result["probability"].as<double>();
+        int alphabet_size = result["alphabet-size"].as<int>();
         int pop_size = result["pop-size"].as<int>();
         int generations = result["generations"].as<int>();
         std::string init_mode_str = result["init-mode"].as<std::string>();
+        int beam_width = result["beam-width"].as<int>();
+        double sa_initial_temp = result["sa-initial-temp"].as<double>();
+        double sa_cooling_rate = result["sa-cooling-rate"].as<double>();
+        double sa_min_temp = result["sa-min-temp"].as<double>();
+        int sa_max_iter = result["sa-max-iter"].as<int>();
         std::string objective_type_str = result["objective-type"].as<std::string>();
         int time_limit = result["time-limit"].as<int>();
         bool verify = result["verify"].as<bool>();
@@ -239,6 +266,11 @@ int main(int argc, char* argv[]) {
             return 1;
         }
         
+        if (alphabet_size < 2) {
+            std::cerr << "Error: alphabet-size must be at least 2\n";
+            return 1;
+        }
+        
         // Print configuration
         std::cout << "MDSSP Solver Configuration\n";
         std::cout << std::string(70, '=') << "\n";
@@ -247,7 +279,10 @@ int main(int argc, char* argv[]) {
         } else {
             std::cout << "Instance:          T=" << T << ", n=" << n << ", m=" << m << "\n";
             std::cout << "Seed:              " << seed << "\n";
-            std::cout << "Probability:       " << p << "\n";
+            if (alphabet_size == 2) {
+                std::cout << "Probability:       " << p << "\n";
+            }
+            std::cout << "Alphabet size:     " << alphabet_size << "\n";
         }
         std::cout << "Algorithm:         " << algorithm << "\n";
         std::cout << std::string(70, '=') << "\n";
@@ -265,7 +300,11 @@ int main(int argc, char* argv[]) {
             if (verbose) {
                 std::cout << "\nGenerating instance...\n";
             }
-            tile_matrices = generate_binary_matrices(T, n, m, p, seed);
+            if (alphabet_size == 2) {
+                tile_matrices = generate_binary_matrices(T, n, m, p, seed);
+            } else {
+                tile_matrices = generate_matrices(T, n, m, alphabet_size, seed);
+            }
             tiles = tiles_from_binary_matrices(tile_matrices);
         }
         
@@ -332,6 +371,41 @@ int main(int argc, char* argv[]) {
                 if (verify) {
                     std::vector<std::tuple<int, int, int>> placements;
                     for (const auto& p : stochastic_result.placements) {
+                        placements.push_back({p[0], p[1], p[2]});
+                    }
+                    SolutionVerifier verifier(tiles);
+                    auto vr = verifier.verify(placements);
+                    print_verification(vr);
+                    
+                    if (render && vr.is_valid) {
+                        std::cout << "\nSolution Canvas:\n";
+                        std::cout << verifier.render_solution(placements) << "\n";
+                    }
+                }
+            }
+        }
+
+        if (algorithm == "merge_greedy" || (algorithm == "all")) {
+            if (verbose) std::cout << "\nRunning Merge-based Greedy algorithm...\n";
+            auto merge_result = solve_greedy_merge(tiles, obj_type);
+            
+            UnifiedResult unified;
+            unified.best_obj = merge_result.best_obj;
+            unified.bbox_width = merge_result.bbox_width;
+            unified.bbox_height = merge_result.bbox_height;
+            unified.bbox_area = merge_result.bbox_area;
+            unified.wall_time_sec = merge_result.wall_time_sec;
+            unified.placements = merge_result.placements;
+            unified.status = "success";
+            
+            results.push_back({"merge_greedy", unified});
+            
+            if (!compare) {
+                print_result("Merge-based Greedy", unified);
+                
+                if (verify) {
+                    std::vector<std::tuple<int, int, int>> placements;
+                    for (const auto& p : merge_result.placements) {
                         placements.push_back({p[0], p[1], p[2]});
                     }
                     SolutionVerifier verifier(tiles);
@@ -422,6 +496,83 @@ int main(int argc, char* argv[]) {
             }
         }
         
+        if (algorithm == "beam_search" || (algorithm == "all")) {
+            if (verbose) std::cout << "\nRunning Beam Search algorithm...\n";
+            auto search_result = solve_beam_search(tiles, beam_width, seed, obj_type);
+            
+            UnifiedResult unified;
+            unified.best_obj = search_result.best_obj;
+            unified.bbox_width = search_result.bbox_width;
+            unified.bbox_height = search_result.bbox_height;
+            unified.bbox_area = search_result.bbox_area;
+            unified.wall_time_sec = search_result.wall_time_sec;
+            unified.placements = search_result.placements;
+            unified.iterations = search_result.iterations;
+            unified.states_explored = search_result.states_explored;
+            unified.improvements_found = search_result.improvements_found;
+            unified.status = "success";
+            
+            results.push_back({"beam_search", unified});
+            
+            if (!compare) {
+                print_result("Beam Search", unified);
+                
+                if (verify) {
+                    std::vector<std::tuple<int, int, int>> placements;
+                    for (const auto& p : search_result.placements) {
+                        placements.push_back({p[0], p[1], p[2]});
+                    }
+                    SolutionVerifier verifier(tiles);
+                    auto vr = verifier.verify(placements);
+                    print_verification(vr);
+                    
+                    if (render && vr.is_valid) {
+                        std::cout << "\nSolution Canvas:\n";
+                        std::cout << verifier.render_solution(placements) << "\n";
+                    }
+                }
+            }
+        }
+        
+        if (algorithm == "simulated_annealing" || (algorithm == "all")) {
+            if (verbose) std::cout << "\nRunning Simulated Annealing algorithm...\n";
+            auto search_result = solve_simulated_annealing(tiles, sa_initial_temp, sa_cooling_rate, 
+                                                           sa_min_temp, sa_max_iter, seed, obj_type);
+            
+            UnifiedResult unified;
+            unified.best_obj = search_result.best_obj;
+            unified.bbox_width = search_result.bbox_width;
+            unified.bbox_height = search_result.bbox_height;
+            unified.bbox_area = search_result.bbox_area;
+            unified.wall_time_sec = search_result.wall_time_sec;
+            unified.placements = search_result.placements;
+            unified.iterations = search_result.iterations;
+            unified.states_explored = search_result.states_explored;
+            unified.improvements_found = search_result.improvements_found;
+            unified.status = "success";
+            
+            results.push_back({"simulated_annealing", unified});
+            
+            if (!compare) {
+                print_result("Simulated Annealing", unified);
+                
+                if (verify) {
+                    std::vector<std::tuple<int, int, int>> placements;
+                    for (const auto& p : search_result.placements) {
+                        placements.push_back({p[0], p[1], p[2]});
+                    }
+                    SolutionVerifier verifier(tiles);
+                    auto vr = verifier.verify(placements);
+                    print_verification(vr);
+                    
+                    if (render && vr.is_valid) {
+                        std::cout << "\nSolution Canvas:\n";
+                        std::cout << verifier.render_solution(placements) << "\n";
+                    }
+                }
+            }
+        }
+        
         if (algorithm == "genetic") {
             if (verbose) std::cout << "\nRunning Genetic algorithm...\n";
             auto genetic_result = solve_genetic(tiles, pop_size, generations, 0, init_mode, seed, obj_type);
@@ -463,7 +614,12 @@ int main(int argc, char* argv[]) {
         if (algorithm == "cplex" || algorithm == "all") {
             if (verbose) std::cout << "\nRunning CPLEX algorithm...\n";
             
-            auto matrices = generate_binary_matrices(T, n, m, p, seed);
+            Matrices matrices;
+            if (alphabet_size == 2) {
+                matrices = generate_binary_matrices(T, n, m, p, seed);
+            } else {
+                matrices = generate_matrices(T, n, m, alphabet_size, seed);
+            }
             auto cplex_result = solve_cplex(matrices, time_limit, obj_type);
             
             UnifiedResult unified;
@@ -588,6 +744,13 @@ int main(int argc, char* argv[]) {
                         result_obj["total_tiles_completed"] = algo_result.total_tiles_completed;
                         result_obj["completion_rate"] = 
                             (double)algo_result.crossovers_needing_completion / algo_result.total_crossovers;
+                    }
+                    
+                    // Add search algorithm specific statistics if available
+                    if (algo_result.states_explored > 0) {
+                        result_obj["iterations"] = algo_result.iterations;
+                        result_obj["states_explored"] = algo_result.states_explored;
+                        result_obj["improvements_found"] = algo_result.improvements_found;
                     }
                     
                     json placements_array = json::array();

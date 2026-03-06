@@ -1,0 +1,123 @@
+{
+  "input": {
+    "T": 20,
+    "n": 1,
+    "m": 8,
+    "seed": 742,
+    "objective_type": "area"
+  },
+  "results": [
+    {
+      "algorithm": "merge_greedy_py",
+      "status": "heuristic",
+      "objective": 61,
+      "runtime_seconds": 0.004305879003368318,
+      "bbox_width": 61,
+      "bbox_height": 1,
+      "num_tiles_placed": 20,
+      "superstring": "1111001010001100010110110000111011010110010001000010011111101",
+      "placements": [
+        {
+          "tile_id": 0,
+          "x": 12,
+          "y": 0
+        },
+        {
+          "tile_id": 1,
+          "x": 6,
+          "y": 0
+        },
+        {
+          "tile_id": 2,
+          "x": 1,
+          "y": 0
+        },
+        {
+          "tile_id": 3,
+          "x": 18,
+          "y": 0
+        },
+        {
+          "tile_id": 4,
+          "x": 24,
+          "y": 0
+        },
+        {
+          "tile_id": 5,
+          "x": 19,
+          "y": 0
+        },
+        {
+          "tile_id": 6,
+          "x": 47,
+          "y": 0
+        },
+        {
+          "tile_id": 7,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "tile_id": 8,
+          "x": 26,
+          "y": 0
+        },
+        {
+          "tile_id": 9,
+          "x": 5,
+          "y": 0
+        },
+        {
+          "tile_id": 10,
+          "x": 20,
+          "y": 0
+        },
+        {
+          "tile_id": 11,
+          "x": 11,
+          "y": 0
+        },
+        {
+          "tile_id": 12,
+          "x": 16,
+          "y": 0
+        },
+        {
+          "tile_id": 13,
+          "x": 30,
+          "y": 0
+        },
+        {
+          "tile_id": 14,
+          "x": 2,
+          "y": 0
+        },
+        {
+          "tile_id": 15,
+          "x": 37,
+          "y": 0
+        },
+        {
+          "tile_id": 16,
+          "x": 42,
+          "y": 0
+        },
+        {
+          "tile_id": 17,
+          "x": 44,
+          "y": 0
+        },
+        {
+          "tile_id": 18,
+          "x": 53,
+          "y": 0
+        },
+        {
+          "tile_id": 19,
+          "x": 17,
+          "y": 0
+        }
+      ]
+    }
+  ]
+}

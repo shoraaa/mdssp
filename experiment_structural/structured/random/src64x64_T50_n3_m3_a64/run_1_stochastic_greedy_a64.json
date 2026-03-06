@@ -1,0 +1,273 @@
+{
+  "input": {
+    "dataset_file": "experiment_structural/structured/random/src64x64_T50_n3_m3_a64/dataset_run1_a64.json",
+    "source": "dataset"
+  },
+  "results": [
+    {
+      "algorithm": "stochastic_greedy",
+      "bbox_area": 576,
+      "bbox_height": 24,
+      "bbox_width": 24,
+      "canvas": ". . . . . . 8 H X . . . . h h K . F N X . . . .\n. . R T J . L n M . g = O C K 8 . N \\ X . . . .\n. . c Z S . E Q G . F 5 O 2 C N . b n C e A a .\n. . L I B . M 9 I . T i M . 9 N S n = F P n n .\n. . . S ; ^ 6 E g . . g X 2 7 6 m L c ] o g Z .\nB 7 U T 3 V ] B H ? ` H X n 0 Z @ 2 I e . . . .\nZ Z ^ D o \\ . . ] H E n M 8 K I R ^ ^ a . . . .\n9 ] = . . _ D 0 9 < P m n \\ Y ; c X 9 i k \\ . .\n. . A k ; 7 c [ o > < Y A D k W 2 N k ? R i . .\n. . > m m N Q b > 8 l 9 [ E 0 X G E h 4 A Z . .\n. . < f A . . . 6 T W D c l j 5 : 2 P . . . . .\n. V : 4 2 S T O Q f ` ` : E L d b l P . . . . .\n. R C ` g M 9 ? O L V ` G : ^ R Y T X l ` e _ `\n. Z h Z 8 E g ` 0 a ] F U Y = 1 E h k T D X e d\n. . . @ [ F Y k h B Z 9 ; X \\ : J C Q ? j 5 L B\nb K j o ` \\ M a C N < 6 > C l N L j c e . . . .\nU J 4 n Q ; O I 2 . . 9 7 M C I Z W Y : _ Z > .\n^ U K E F : K H @ 5 . H U K c ` ` g = O h P m .\nV f W m U [ h K d n . 4 b Z . . ` ` ^ . F c f .\nn ; l ? j ; P K k V . 3 a 6 . . 8 M ` X ^ = . .\ne [ R . . l U 4 0 Q F E G U . . W \\ b V Y I . .\n. . Y 7 U X P Y g ] f 7 7 X f A k . . = U e . .\n. . U Y e a M d 5 : e f S 5 j C g . . . . . . .\n. . h N ^ . . . . . . Q F Q m S T . . . . . . .",
+      "num_tiles_placed": 50,
+      "objective": 24,
+      "objective_type": "square",
+      "placements": [
+        {
+          "tile_id": 0,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "tile_id": 47,
+          "x": 2,
+          "y": 2
+        },
+        {
+          "tile_id": 22,
+          "x": -1,
+          "y": 3
+        },
+        {
+          "tile_id": 31,
+          "x": 3,
+          "y": -1
+        },
+        {
+          "tile_id": 1,
+          "x": 4,
+          "y": 4
+        },
+        {
+          "tile_id": 38,
+          "x": 1,
+          "y": 5
+        },
+        {
+          "tile_id": 2,
+          "x": 5,
+          "y": 1
+        },
+        {
+          "tile_id": 15,
+          "x": 6,
+          "y": -2
+        },
+        {
+          "tile_id": 21,
+          "x": -2,
+          "y": 6
+        },
+        {
+          "tile_id": 12,
+          "x": -3,
+          "y": -1
+        },
+        {
+          "tile_id": 11,
+          "x": 6,
+          "y": 7
+        },
+        {
+          "tile_id": 37,
+          "x": 3,
+          "y": 7
+        },
+        {
+          "tile_id": 36,
+          "x": 0,
+          "y": -3
+        },
+        {
+          "tile_id": 10,
+          "x": -4,
+          "y": 3
+        },
+        {
+          "tile_id": 16,
+          "x": -5,
+          "y": 6
+        },
+        {
+          "tile_id": 23,
+          "x": -5,
+          "y": -4
+        },
+        {
+          "tile_id": 44,
+          "x": 3,
+          "y": -4
+        },
+        {
+          "tile_id": 34,
+          "x": 7,
+          "y": 4
+        },
+        {
+          "tile_id": 30,
+          "x": 6,
+          "y": -5
+        },
+        {
+          "tile_id": 42,
+          "x": -2,
+          "y": -5
+        },
+        {
+          "tile_id": 8,
+          "x": 8,
+          "y": 1
+        },
+        {
+          "tile_id": 13,
+          "x": -6,
+          "y": -7
+        },
+        {
+          "tile_id": 5,
+          "x": 2,
+          "y": -7
+        },
+        {
+          "tile_id": 32,
+          "x": -6,
+          "y": 0
+        },
+        {
+          "tile_id": 27,
+          "x": 9,
+          "y": -5
+        },
+        {
+          "tile_id": 49,
+          "x": -2,
+          "y": -8
+        },
+        {
+          "tile_id": 48,
+          "x": 9,
+          "y": -8
+        },
+        {
+          "tile_id": 25,
+          "x": 5,
+          "y": -8
+        },
+        {
+          "tile_id": 14,
+          "x": 9,
+          "y": 7
+        },
+        {
+          "tile_id": 33,
+          "x": 9,
+          "y": -2
+        },
+        {
+          "tile_id": 18,
+          "x": -7,
+          "y": 3
+        },
+        {
+          "tile_id": 3,
+          "x": -8,
+          "y": -3
+        },
+        {
+          "tile_id": 46,
+          "x": -2,
+          "y": 9
+        },
+        {
+          "tile_id": 26,
+          "x": -8,
+          "y": 7
+        },
+        {
+          "tile_id": 19,
+          "x": -1,
+          "y": 9
+        },
+        {
+          "tile_id": 41,
+          "x": -5,
+          "y": 9
+        },
+        {
+          "tile_id": 40,
+          "x": 3,
+          "y": 10
+        },
+        {
+          "tile_id": 45,
+          "x": 10,
+          "y": 4
+        },
+        {
+          "tile_id": 17,
+          "x": 8,
+          "y": 10
+        },
+        {
+          "tile_id": 6,
+          "x": -8,
+          "y": 10
+        },
+        {
+          "tile_id": 43,
+          "x": 11,
+          "y": 11
+        },
+        {
+          "tile_id": 24,
+          "x": 11,
+          "y": -1
+        },
+        {
+          "tile_id": 4,
+          "x": 12,
+          "y": -6
+        },
+        {
+          "tile_id": 9,
+          "x": -3,
+          "y": 12
+        },
+        {
+          "tile_id": 28,
+          "x": 12,
+          "y": 8
+        },
+        {
+          "tile_id": 29,
+          "x": 0,
+          "y": 12
+        },
+        {
+          "tile_id": 7,
+          "x": 13,
+          "y": 4
+        },
+        {
+          "tile_id": 35,
+          "x": 6,
+          "y": 13
+        },
+        {
+          "tile_id": 20,
+          "x": -6,
+          "y": 13
+        },
+        {
+          "tile_id": 39,
+          "x": 3,
+          "y": 13
+        }
+      ],
+      "runtime_seconds": 0.014118653,
+      "status": "success",
+      "verified": true
+    }
+  ]
+}

@@ -1,0 +1,758 @@
+{
+  "genetic_greedy_2_5_1_175_area": {
+    "algorithm": "genetic_greedy",
+    "case_name": "2_5_1_175",
+    "objective_type": "area",
+    "tiles": 142,
+    "n": 2,
+    "m": 5,
+    "r": 1,
+    "L": 175,
+    "num_input_strings": 14,
+    "total_generated": 154,
+    "duplicates_removed": 12,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 302.0,
+      "min": 302,
+      "max": 302,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 137.370679399,
+      "min": 137.370679399,
+      "max": 137.370679399,
+      "std": 0
+    }
+  },
+  "genetic_stochastic_2_5_1_175_area": {
+    "algorithm": "genetic_stochastic",
+    "case_name": "2_5_1_175",
+    "objective_type": "area",
+    "tiles": 142,
+    "n": 2,
+    "m": 5,
+    "r": 1,
+    "L": 175,
+    "num_input_strings": 14,
+    "total_generated": 154,
+    "duplicates_removed": 12,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 298.0,
+      "min": 298,
+      "max": 298,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 477.465855432,
+      "min": 477.465855432,
+      "max": 477.465855432,
+      "std": 0
+    }
+  },
+  "genetic_greedy_2_5_1_175_square": {
+    "algorithm": "genetic_greedy",
+    "case_name": "2_5_1_175",
+    "objective_type": "square",
+    "tiles": 142,
+    "n": 2,
+    "m": 5,
+    "r": 1,
+    "L": 175,
+    "num_input_strings": 14,
+    "total_generated": 154,
+    "duplicates_removed": 12,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 21.0,
+      "min": 21,
+      "max": 21,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 438.178425,
+      "min": 438.178425,
+      "max": 438.178425,
+      "std": 0
+    }
+  },
+  "genetic_stochastic_2_5_1_175_square": {
+    "algorithm": "genetic_stochastic",
+    "case_name": "2_5_1_175",
+    "objective_type": "square",
+    "tiles": 142,
+    "n": 2,
+    "m": 5,
+    "r": 1,
+    "L": 175,
+    "num_input_strings": 14,
+    "total_generated": 154,
+    "duplicates_removed": 12,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 21.0,
+      "min": 21,
+      "max": 21,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 297.425105,
+      "min": 297.425105,
+      "max": 297.425105,
+      "std": 0
+    }
+  },
+  "genetic_greedy_2_5_1_177_area": {
+    "algorithm": "genetic_greedy",
+    "case_name": "2_5_1_177",
+    "objective_type": "area",
+    "tiles": 143,
+    "n": 2,
+    "m": 5,
+    "r": 1,
+    "L": 177,
+    "num_input_strings": 13,
+    "total_generated": 143,
+    "duplicates_removed": 0,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 306.0,
+      "min": 306,
+      "max": 306,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 311.678749015,
+      "min": 311.678749015,
+      "max": 311.678749015,
+      "std": 0
+    }
+  },
+  "genetic_stochastic_2_5_1_177_area": {
+    "algorithm": "genetic_stochastic",
+    "case_name": "2_5_1_177",
+    "objective_type": "area",
+    "tiles": 143,
+    "n": 2,
+    "m": 5,
+    "r": 1,
+    "L": 177,
+    "num_input_strings": 13,
+    "total_generated": 143,
+    "duplicates_removed": 0,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 302.0,
+      "min": 302,
+      "max": 302,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 333.990479566,
+      "min": 333.990479566,
+      "max": 333.990479566,
+      "std": 0
+    }
+  },
+  "genetic_greedy_2_5_1_177_square": {
+    "algorithm": "genetic_greedy",
+    "case_name": "2_5_1_177",
+    "objective_type": "square",
+    "tiles": 143,
+    "n": 2,
+    "m": 5,
+    "r": 1,
+    "L": 177,
+    "num_input_strings": 13,
+    "total_generated": 143,
+    "duplicates_removed": 0,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 21.0,
+      "min": 21,
+      "max": 21,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 293.086163,
+      "min": 293.086163,
+      "max": 293.086163,
+      "std": 0
+    }
+  },
+  "genetic_stochastic_2_5_1_177_square": {
+    "algorithm": "genetic_stochastic",
+    "case_name": "2_5_1_177",
+    "objective_type": "square",
+    "tiles": 143,
+    "n": 2,
+    "m": 5,
+    "r": 1,
+    "L": 177,
+    "num_input_strings": 13,
+    "total_generated": 143,
+    "duplicates_removed": 0,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 21.0,
+      "min": 21,
+      "max": 21,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 270.028792,
+      "min": 270.028792,
+      "max": 270.028792,
+      "std": 0
+    }
+  },
+  "genetic_greedy_2_6_2_161_area": {
+    "algorithm": "genetic_greedy",
+    "case_name": "2_6_2_161",
+    "objective_type": "area",
+    "tiles": 117,
+    "n": 2,
+    "m": 6,
+    "r": 2,
+    "L": 161,
+    "num_input_strings": 9,
+    "total_generated": 117,
+    "duplicates_removed": 0,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 270.0,
+      "min": 270,
+      "max": 270,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 170.565076827,
+      "min": 170.565076827,
+      "max": 170.565076827,
+      "std": 0
+    }
+  },
+  "genetic_stochastic_2_6_2_161_area": {
+    "algorithm": "genetic_stochastic",
+    "case_name": "2_6_2_161",
+    "objective_type": "area",
+    "tiles": 117,
+    "n": 2,
+    "m": 6,
+    "r": 2,
+    "L": 161,
+    "num_input_strings": 9,
+    "total_generated": 117,
+    "duplicates_removed": 0,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 268.0,
+      "min": 268,
+      "max": 268,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 369.443936935,
+      "min": 369.443936935,
+      "max": 369.443936935,
+      "std": 0
+    }
+  },
+  "genetic_greedy_2_6_2_161_square": {
+    "algorithm": "genetic_greedy",
+    "case_name": "2_6_2_161",
+    "objective_type": "square",
+    "tiles": 117,
+    "n": 2,
+    "m": 6,
+    "r": 2,
+    "L": 161,
+    "num_input_strings": 9,
+    "total_generated": 117,
+    "duplicates_removed": 0,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 20.0,
+      "min": 20,
+      "max": 20,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 204.577617,
+      "min": 204.577617,
+      "max": 204.577617,
+      "std": 0
+    }
+  },
+  "genetic_stochastic_2_6_2_161_square": {
+    "algorithm": "genetic_stochastic",
+    "case_name": "2_6_2_161",
+    "objective_type": "square",
+    "tiles": 117,
+    "n": 2,
+    "m": 6,
+    "r": 2,
+    "L": 161,
+    "num_input_strings": 9,
+    "total_generated": 117,
+    "duplicates_removed": 0,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 20.0,
+      "min": 20,
+      "max": 20,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 221.511515,
+      "min": 221.511515,
+      "max": 221.511515,
+      "std": 0
+    }
+  },
+  "genetic_greedy_2_7_3_239_area": {
+    "algorithm": "genetic_greedy",
+    "case_name": "2_7_3_239",
+    "objective_type": "area",
+    "tiles": 149,
+    "n": 2,
+    "m": 7,
+    "r": 3,
+    "L": 239,
+    "num_input_strings": 10,
+    "total_generated": 150,
+    "duplicates_removed": 1,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 354.0,
+      "min": 354,
+      "max": 354,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 507.692102048,
+      "min": 507.692102048,
+      "max": 507.692102048,
+      "std": 0
+    }
+  },
+  "genetic_stochastic_2_7_3_239_area": {
+    "algorithm": "genetic_stochastic",
+    "case_name": "2_7_3_239",
+    "objective_type": "area",
+    "tiles": 149,
+    "n": 2,
+    "m": 7,
+    "r": 3,
+    "L": 239,
+    "num_input_strings": 10,
+    "total_generated": 150,
+    "duplicates_removed": 1,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 352.0,
+      "min": 352,
+      "max": 352,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 693.710514597,
+      "min": 693.710514597,
+      "max": 693.710514597,
+      "std": 0
+    }
+  },
+  "genetic_greedy_2_7_3_239_square": {
+    "algorithm": "genetic_greedy",
+    "case_name": "2_7_3_239",
+    "objective_type": "square",
+    "tiles": 149,
+    "n": 2,
+    "m": 7,
+    "r": 3,
+    "L": 239,
+    "num_input_strings": 10,
+    "total_generated": 150,
+    "duplicates_removed": 1,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 23.0,
+      "min": 23,
+      "max": 23,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 540.746826,
+      "min": 540.746826,
+      "max": 540.746826,
+      "std": 0
+    }
+  },
+  "genetic_stochastic_2_7_3_239_square": {
+    "algorithm": "genetic_stochastic",
+    "case_name": "2_7_3_239",
+    "objective_type": "square",
+    "tiles": 149,
+    "n": 2,
+    "m": 7,
+    "r": 3,
+    "L": 239,
+    "num_input_strings": 10,
+    "total_generated": 150,
+    "duplicates_removed": 1,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 22.0,
+      "min": 22,
+      "max": 22,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 556.217967,
+      "min": 556.217967,
+      "max": 556.217967,
+      "std": 0
+    }
+  },
+  "genetic_greedy_3_3_1_102_area": {
+    "algorithm": "genetic_greedy",
+    "case_name": "3_3_1_102",
+    "objective_type": "area",
+    "tiles": 67,
+    "n": 3,
+    "m": 3,
+    "r": 1,
+    "L": 102,
+    "num_input_strings": 8,
+    "total_generated": 80,
+    "duplicates_removed": 13,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 210.0,
+      "min": 210,
+      "max": 210,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 32.019286687,
+      "min": 32.019286687,
+      "max": 32.019286687,
+      "std": 0
+    }
+  },
+  "genetic_stochastic_3_3_1_102_area": {
+    "algorithm": "genetic_stochastic",
+    "case_name": "3_3_1_102",
+    "objective_type": "area",
+    "tiles": 67,
+    "n": 3,
+    "m": 3,
+    "r": 1,
+    "L": 102,
+    "num_input_strings": 8,
+    "total_generated": 80,
+    "duplicates_removed": 13,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 196.0,
+      "min": 196,
+      "max": 196,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 46.016412711,
+      "min": 46.016412711,
+      "max": 46.016412711,
+      "std": 0
+    }
+  },
+  "genetic_greedy_3_3_1_102_square": {
+    "algorithm": "genetic_greedy",
+    "case_name": "3_3_1_102",
+    "objective_type": "square",
+    "tiles": 67,
+    "n": 3,
+    "m": 3,
+    "r": 1,
+    "L": 102,
+    "num_input_strings": 8,
+    "total_generated": 80,
+    "duplicates_removed": 13,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 14.0,
+      "min": 14,
+      "max": 14,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 29.155215,
+      "min": 29.155215,
+      "max": 29.155215,
+      "std": 0
+    }
+  },
+  "genetic_stochastic_3_3_1_102_square": {
+    "algorithm": "genetic_stochastic",
+    "case_name": "3_3_1_102",
+    "objective_type": "square",
+    "tiles": 67,
+    "n": 3,
+    "m": 3,
+    "r": 1,
+    "L": 102,
+    "num_input_strings": 8,
+    "total_generated": 80,
+    "duplicates_removed": 13,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 14.0,
+      "min": 14,
+      "max": 14,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 32.842832,
+      "min": 32.842832,
+      "max": 32.842832,
+      "std": 0
+    }
+  },
+  "genetic_greedy_3_4_2_161_area": {
+    "algorithm": "genetic_greedy",
+    "case_name": "3_4_2_161",
+    "objective_type": "area",
+    "tiles": 117,
+    "n": 3,
+    "m": 4,
+    "r": 2,
+    "L": 161,
+    "num_input_strings": 9,
+    "total_generated": 117,
+    "duplicates_removed": 0,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 384.0,
+      "min": 384,
+      "max": 384,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 239.735592404,
+      "min": 239.735592404,
+      "max": 239.735592404,
+      "std": 0
+    }
+  },
+  "genetic_stochastic_3_4_2_161_area": {
+    "algorithm": "genetic_stochastic",
+    "case_name": "3_4_2_161",
+    "objective_type": "area",
+    "tiles": 117,
+    "n": 3,
+    "m": 4,
+    "r": 2,
+    "L": 161,
+    "num_input_strings": 9,
+    "total_generated": 117,
+    "duplicates_removed": 0,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 378.0,
+      "min": 378,
+      "max": 378,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 461.048877212,
+      "min": 461.048877212,
+      "max": 461.048877212,
+      "std": 0
+    }
+  },
+  "genetic_greedy_3_4_2_161_square": {
+    "algorithm": "genetic_greedy",
+    "case_name": "3_4_2_161",
+    "objective_type": "square",
+    "tiles": 117,
+    "n": 3,
+    "m": 4,
+    "r": 2,
+    "L": 161,
+    "num_input_strings": 9,
+    "total_generated": 117,
+    "duplicates_removed": 0,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 19.0,
+      "min": 19,
+      "max": 19,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 151.587152,
+      "min": 151.587152,
+      "max": 151.587152,
+      "std": 0
+    }
+  },
+  "genetic_stochastic_3_4_2_161_square": {
+    "algorithm": "genetic_stochastic",
+    "case_name": "3_4_2_161",
+    "objective_type": "square",
+    "tiles": 117,
+    "n": 3,
+    "m": 4,
+    "r": 2,
+    "L": 161,
+    "num_input_strings": 9,
+    "total_generated": 117,
+    "duplicates_removed": 0,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 20.0,
+      "min": 20,
+      "max": 20,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 211.243369,
+      "min": 211.243369,
+      "max": 211.243369,
+      "std": 0
+    }
+  },
+  "genetic_greedy_3_5_3_406_area": {
+    "algorithm": "genetic_greedy",
+    "case_name": "3_5_3_406",
+    "objective_type": "area",
+    "tiles": 150,
+    "n": 3,
+    "m": 5,
+    "r": 3,
+    "L": 406,
+    "num_input_strings": 10,
+    "total_generated": 150,
+    "duplicates_removed": 0,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 510.0,
+      "min": 510,
+      "max": 510,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 924.870714003,
+      "min": 924.870714003,
+      "max": 924.870714003,
+      "std": 0
+    }
+  },
+  "genetic_stochastic_3_5_3_406_area": {
+    "algorithm": "genetic_stochastic",
+    "case_name": "3_5_3_406",
+    "objective_type": "area",
+    "tiles": 150,
+    "n": 3,
+    "m": 5,
+    "r": 3,
+    "L": 406,
+    "num_input_strings": 10,
+    "total_generated": 150,
+    "duplicates_removed": 0,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 507.0,
+      "min": 507,
+      "max": 507,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 677.127716007,
+      "min": 677.127716007,
+      "max": 677.127716007,
+      "std": 0
+    }
+  },
+  "genetic_greedy_3_5_3_406_square": {
+    "algorithm": "genetic_greedy",
+    "case_name": "3_5_3_406",
+    "objective_type": "square",
+    "tiles": 150,
+    "n": 3,
+    "m": 5,
+    "r": 3,
+    "L": 406,
+    "num_input_strings": 10,
+    "total_generated": 150,
+    "duplicates_removed": 0,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 22.0,
+      "min": 22,
+      "max": 22,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 498.212959,
+      "min": 498.212959,
+      "max": 498.212959,
+      "std": 0
+    }
+  },
+  "genetic_stochastic_3_5_3_406_square": {
+    "algorithm": "genetic_stochastic",
+    "case_name": "3_5_3_406",
+    "objective_type": "square",
+    "tiles": 150,
+    "n": 3,
+    "m": 5,
+    "r": 3,
+    "L": 406,
+    "num_input_strings": 10,
+    "total_generated": 150,
+    "duplicates_removed": 0,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 24.0,
+      "min": 24,
+      "max": 24,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 607.166256,
+      "min": 607.166256,
+      "max": 607.166256,
+      "std": 0
+    }
+  }
+}

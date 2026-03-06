@@ -1,0 +1,34 @@
+
+
+
+
+DeepACO:
+total duration:  127.48442697525024
+T=1, average obj. is 5.081987380981445.
+T=10, average obj. is 4.84982967376709.
+T=50, average obj. is 4.803032398223877.
+T=100, average obj. is 4.793013095855713.
+
+
+FACO:
+total duration:  47.424360513687134
+T=1, average obj. is 5.162539958953857.
+T=10, average obj. is 4.6413373947143555.
+T=50, average obj. is 4.599864482879639.
+T=100, average obj. is 4.595750331878662.
+
+ACO:
+total duration:  171.05191326141357
+T=1, average obj. is 7.774835586547852.
+T=10, average obj. is 6.798616409301758.
+T=50, average obj. is 6.529243469238281.
+T=100, average obj. is 6.519017219543457.
+
+
+
+NFACO?
+total duration:  40.62490463256836
+T=1, average obj. is 5.252025604248047.
+T=10, average obj. is 4.728388786315918.
+T=50, average obj. is 4.613602638244629.
+T=100, average obj. is 4.6063032150268555.

@@ -1,0 +1,16 @@
+{
+  "input": {
+    "T": 10,
+    "n": 4,
+    "m": 6,
+    "seed": 242,
+    "objective_type": "area"
+  },
+  "results": [
+    {
+      "algorithm": "cplex",
+      "status": "failed",
+      "error": "infeasible"
+    }
+  ]
+}

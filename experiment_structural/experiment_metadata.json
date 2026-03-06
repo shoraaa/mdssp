@@ -1,0 +1,69 @@
+{
+  "timestamp": "2025-12-26T01:55:41.966490",
+  "scales": [
+    "structured"
+  ],
+  "base_seed": 42,
+  "resume_mode": true,
+  "configurations": {
+    "structured": {
+      "source_sizes": [
+        [
+          14,
+          14
+        ],
+        [
+          36,
+          36
+        ],
+        [
+          64,
+          64
+        ]
+      ],
+      "tile_size": [
+        [
+          3,
+          3
+        ],
+        [
+          5,
+          5
+        ]
+      ],
+      "num_tiles": [
+        50
+      ],
+      "patterns": [
+        "qrcode",
+        "random",
+        "checkerboard",
+        "stripes_h",
+        "stripes_v",
+        "diagonal",
+        "blocks",
+        "gradient",
+        "sparse",
+        "dense"
+      ],
+      "structured": true,
+      "runs": 1,
+      "algorithms": [
+        "merge_greedy",
+        "greedy",
+        "stochastic_greedy",
+        "genetic_greedy",
+        "genetic_stochastic",
+        "beam_search"
+      ],
+      "pop_size": 150,
+      "generations": 300,
+      "beam_width": 15,
+      "sa_max_iter": 15000,
+      "cplex_time_limit": 600,
+      "objective_type": "square",
+      "alphabet_size": 2,
+      "description": "Structured/Reassembly: Can algorithm reconstruct source bitmap from overlapping subarray extractions?"
+    }
+  }
+}

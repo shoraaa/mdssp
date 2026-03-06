@@ -1,0 +1,277 @@
+{
+  "input": {
+    "dataset_file": "experiment_structural/structured/gradient/src36x36_T50_n3_m3_a64/dataset_run1_a64.json",
+    "source": "dataset"
+  },
+  "results": [
+    {
+      "algorithm": "genetic_greedy",
+      "bbox_area": 400,
+      "bbox_height": 20,
+      "bbox_width": 20,
+      "canvas": ". . . . . . . f e e B A @ . . . . R Q P\n. Z Y X J I H e e d @ @ ? . k i i Q Q P\n. Y Y X J I G e d c ? ? > = j i h P O O\n. X W W I G F Z Y X X > = < i h h . . .\n. W V V . . Z Y X X W = < ; . = = ; : 9\n. W V U U T Y X W V V < < ; . < ; ; : 9\n. . V U T S X W V V V U ; 9 9 < ; : 9 8\n. . U T S R Q . . U T T : 9 7 F F E . .\n. V U S R Q P P N U T S 8 8 7 F E D . .\n. U T S R P O O N . . . K J I E D C . .\n. T S R Q P O N M L K J J I H F E Y X W\n. . Q Q O O N M L K K I H H G F E X W V\n. . P P O . L L K J I H H G F E D W V V\n. . O N N . K J J J H H G F E D ` _ _ .\n. E D C B B J J I H H G E E D D _ _ ^ .\n. D C B B A I I G H G F E E D C _ ^ ] .\n. C B A A @ H H F m l k b b a . ^ ] \\ .\nd d c f e e H F F l k j b a ` . \\ \\ [ .\nd b b e e d . . . k j i a ` _ . . . . .\nb b a d d c . . . . . . . . . . . . . .",
+      "completion_rate": 0.046222629022037595,
+      "crossovers_needing_completion": 1313,
+      "num_tiles_placed": 50,
+      "objective": 20,
+      "objective_type": "square",
+      "placements": [
+        {
+          "tile_id": 25,
+          "x": 14,
+          "y": -17
+        },
+        {
+          "tile_id": 9,
+          "x": 11,
+          "y": -16
+        },
+        {
+          "tile_id": 20,
+          "x": 8,
+          "y": -15
+        },
+        {
+          "tile_id": 36,
+          "x": 7,
+          "y": -17
+        },
+        {
+          "tile_id": 45,
+          "x": 7,
+          "y": -17
+        },
+        {
+          "tile_id": 15,
+          "x": 4,
+          "y": -17
+        },
+        {
+          "tile_id": 11,
+          "x": 12,
+          "y": -13
+        },
+        {
+          "tile_id": 48,
+          "x": 14,
+          "y": -13
+        },
+        {
+          "tile_id": 31,
+          "x": -2,
+          "y": -16
+        },
+        {
+          "tile_id": 3,
+          "x": 8,
+          "y": -14
+        },
+        {
+          "tile_id": 32,
+          "x": 4,
+          "y": -14
+        },
+        {
+          "tile_id": 43,
+          "x": 5,
+          "y": -14
+        },
+        {
+          "tile_id": 1,
+          "x": 4,
+          "y": -13
+        },
+        {
+          "tile_id": 7,
+          "x": 1,
+          "y": -16
+        },
+        {
+          "tile_id": 29,
+          "x": 14,
+          "y": -7
+        },
+        {
+          "tile_id": 5,
+          "x": 9,
+          "y": -11
+        },
+        {
+          "tile_id": 12,
+          "x": 12,
+          "y": -10
+        },
+        {
+          "tile_id": 13,
+          "x": -2,
+          "y": -14
+        },
+        {
+          "tile_id": 38,
+          "x": 6,
+          "y": -11
+        },
+        {
+          "tile_id": 0,
+          "x": 3,
+          "y": -13
+        },
+        {
+          "tile_id": 27,
+          "x": 3,
+          "y": -13
+        },
+        {
+          "tile_id": 10,
+          "x": 4,
+          "y": -7
+        },
+        {
+          "tile_id": 39,
+          "x": 9,
+          "y": -4
+        },
+        {
+          "tile_id": 46,
+          "x": -1,
+          "y": -6
+        },
+        {
+          "tile_id": 17,
+          "x": 13,
+          "y": -4
+        },
+        {
+          "tile_id": 42,
+          "x": 3,
+          "y": -3
+        },
+        {
+          "tile_id": 19,
+          "x": 6,
+          "y": -1
+        },
+        {
+          "tile_id": 22,
+          "x": 9,
+          "y": -1
+        },
+        {
+          "tile_id": 35,
+          "x": 0,
+          "y": -3
+        },
+        {
+          "tile_id": 6,
+          "x": 0,
+          "y": -11
+        },
+        {
+          "tile_id": 14,
+          "x": 1,
+          "y": -8
+        },
+        {
+          "tile_id": 40,
+          "x": 3,
+          "y": -2
+        },
+        {
+          "tile_id": 28,
+          "x": 6,
+          "y": -4
+        },
+        {
+          "tile_id": 2,
+          "x": 3,
+          "y": -5
+        },
+        {
+          "tile_id": 41,
+          "x": -3,
+          "y": 0
+        },
+        {
+          "tile_id": 8,
+          "x": -2,
+          "y": -3
+        },
+        {
+          "tile_id": 37,
+          "x": -2,
+          "y": -9
+        },
+        {
+          "tile_id": 47,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "tile_id": 18,
+          "x": 10,
+          "y": -4
+        },
+        {
+          "tile_id": 34,
+          "x": 6,
+          "y": -6
+        },
+        {
+          "tile_id": 23,
+          "x": 7,
+          "y": -7
+        },
+        {
+          "tile_id": 16,
+          "x": 8,
+          "y": -5
+        },
+        {
+          "tile_id": 30,
+          "x": 1,
+          "y": -10
+        },
+        {
+          "tile_id": 24,
+          "x": 3,
+          "y": -9
+        },
+        {
+          "tile_id": 44,
+          "x": 9,
+          "y": -8
+        },
+        {
+          "tile_id": 33,
+          "x": 11,
+          "y": -7
+        },
+        {
+          "tile_id": 4,
+          "x": -1,
+          "y": -12
+        },
+        {
+          "tile_id": 49,
+          "x": 0,
+          "y": -12
+        },
+        {
+          "tile_id": 26,
+          "x": 0,
+          "y": -12
+        },
+        {
+          "tile_id": 21,
+          "x": 13,
+          "y": -2
+        }
+      ],
+      "runtime_seconds": 36.211188892,
+      "status": "success",
+      "total_crossovers": 28406,
+      "total_tiles_completed": 55651,
+      "verified": true
+    }
+  ]
+}

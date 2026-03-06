@@ -1,0 +1,73 @@
+{
+  "input": {
+    "T": 10,
+    "n": 1,
+    "m": 8,
+    "seed": 742,
+    "objective_type": "area"
+  },
+  "results": [
+    {
+      "algorithm": "merge_greedy_py",
+      "status": "heuristic",
+      "objective": 39,
+      "runtime_seconds": 0.0006032220117049292,
+      "bbox_width": 39,
+      "bbox_height": 1,
+      "num_tiles_placed": 10,
+      "superstring": "000100110110001010000111011110010100011",
+      "placements": [
+        {
+          "tile_id": 0,
+          "x": 9,
+          "y": 0
+        },
+        {
+          "tile_id": 1,
+          "x": 31,
+          "y": 0
+        },
+        {
+          "tile_id": 2,
+          "x": 26,
+          "y": 0
+        },
+        {
+          "tile_id": 3,
+          "x": 5,
+          "y": 0
+        },
+        {
+          "tile_id": 4,
+          "x": 17,
+          "y": 0
+        },
+        {
+          "tile_id": 5,
+          "x": 6,
+          "y": 0
+        },
+        {
+          "tile_id": 6,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "tile_id": 7,
+          "x": 25,
+          "y": 0
+        },
+        {
+          "tile_id": 8,
+          "x": 19,
+          "y": 0
+        },
+        {
+          "tile_id": 9,
+          "x": 30,
+          "y": 0
+        }
+      ]
+    }
+  ]
+}

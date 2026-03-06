@@ -1,0 +1,277 @@
+{
+  "input": {
+    "dataset_file": "experiment_structural/structured/random/src64x64_T50_n3_m3_a26/dataset_run1_a26.json",
+    "source": "dataset"
+  },
+  "results": [
+    {
+      "algorithm": "genetic_greedy",
+      "bbox_area": 484,
+      "bbox_height": 22,
+      "bbox_width": 22,
+      "canvas": ". 7 8 A . 1 9 I . 9 F ? . . < ? < . = 2 3 .\n. = : F . ? 0 C A : D 2 . . A 2 4 . 6 6 8 .\n. G > D ? > 2 E 6 D 6 H B D E 0 2 H A F D .\nH H 1 : F 2 . @ 7 C 4 : 0 : D . ? I = < < ;\n8 H D F G E B A 4 4 5 5 < B 3 ? F G I D B 7\nH G F 2 H C 2 E E @ 4 = 4 7 I 4 A . . 3 5 4\nA 4 = 4 8 9 1 4 @ 6 2 H G 1 E < 2 < G E 3 B\n; D @ ; 3 B . . 3 6 9 H 7 E B D 4 H H = 5 G\n= E < . . . 8 5 B = 9 5 F F > > ? @ 4 9 7 <\nG 5 D . . . F 5 9 . 9 5 5 @ ; 0 . . . . . .\nG E A 9 ; C 7 B < 8 2 F 1 B A . C 2 = E B .\n7 < B 1 A > E . 5 > 0 . 4 G D . C 6 F : 6 .\nE D 2 A < 7 7 . E D ; 5 H 8 9 I I 5 = 0 5 .\nI E = I 6 4 A H A @ ? 2 . . 4 1 9 . . B E 1\n2 G ? D 8 H C 2 7 3 ; I : 4 @ I @ 5 A C 9 I\nC C G 0 < : B 9 D E 1 I > 7 . . F I 9 9 8 ?\n? > = ? 6 A . . 8 I I F D : E ? H 7 9 7 9 .\nA @ ; 5 < 0 . . 8 5 B I 7 ? 6 6 . . ? 3 E .\n. . . 7 8 < C > . 2 3 H 7 9 1 0 . . 8 F 5 .\nG @ A . . H 4 4 . > G F > @ < @ = 4 > H C 1\n= > 7 . . 6 3 3 . > 3 8 . G C H E < < = 0 >\nE 4 : . . . . . . . . . . F 6 F > B C 2 5 H",
+      "completion_rate": 0.015596880623875225,
+      "crossovers_needing_completion": 442,
+      "num_tiles_placed": 50,
+      "objective": 22,
+      "objective_type": "square",
+      "placements": [
+        {
+          "tile_id": 38,
+          "x": -18,
+          "y": -19
+        },
+        {
+          "tile_id": 29,
+          "x": -19,
+          "y": -16
+        },
+        {
+          "tile_id": 33,
+          "x": -14,
+          "y": -19
+        },
+        {
+          "tile_id": 35,
+          "x": -19,
+          "y": -13
+        },
+        {
+          "tile_id": 3,
+          "x": -16,
+          "y": -14
+        },
+        {
+          "tile_id": 11,
+          "x": -16,
+          "y": -17
+        },
+        {
+          "tile_id": 24,
+          "x": -12,
+          "y": -18
+        },
+        {
+          "tile_id": 32,
+          "x": -1,
+          "y": -19
+        },
+        {
+          "tile_id": 16,
+          "x": 0,
+          "y": -16
+        },
+        {
+          "tile_id": 34,
+          "x": -10,
+          "y": -19
+        },
+        {
+          "tile_id": 9,
+          "x": -5,
+          "y": -19
+        },
+        {
+          "tile_id": 30,
+          "x": -14,
+          "y": -1
+        },
+        {
+          "tile_id": 27,
+          "x": -19,
+          "y": 0
+        },
+        {
+          "tile_id": 36,
+          "x": -19,
+          "y": -10
+        },
+        {
+          "tile_id": 40,
+          "x": -13,
+          "y": -15
+        },
+        {
+          "tile_id": 20,
+          "x": 0,
+          "y": -13
+        },
+        {
+          "tile_id": 10,
+          "x": -10,
+          "y": -16
+        },
+        {
+          "tile_id": 39,
+          "x": -3,
+          "y": -17
+        },
+        {
+          "tile_id": 2,
+          "x": -7,
+          "y": -17
+        },
+        {
+          "tile_id": 13,
+          "x": -16,
+          "y": -3
+        },
+        {
+          "tile_id": 37,
+          "x": -19,
+          "y": -7
+        },
+        {
+          "tile_id": 14,
+          "x": -11,
+          "y": -4
+        },
+        {
+          "tile_id": 43,
+          "x": -5,
+          "y": -7
+        },
+        {
+          "tile_id": 49,
+          "x": -10,
+          "y": -1
+        },
+        {
+          "tile_id": 25,
+          "x": -1,
+          "y": -9
+        },
+        {
+          "tile_id": 18,
+          "x": -8,
+          "y": -5
+        },
+        {
+          "tile_id": 47,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "tile_id": 31,
+          "x": -6,
+          "y": -3
+        },
+        {
+          "tile_id": 44,
+          "x": -9,
+          "y": -2
+        },
+        {
+          "tile_id": 15,
+          "x": -7,
+          "y": -9
+        },
+        {
+          "tile_id": 17,
+          "x": -3,
+          "y": -5
+        },
+        {
+          "tile_id": 46,
+          "x": -16,
+          "y": -9
+        },
+        {
+          "tile_id": 26,
+          "x": 0,
+          "y": -6
+        },
+        {
+          "tile_id": 42,
+          "x": -6,
+          "y": 0
+        },
+        {
+          "tile_id": 48,
+          "x": -1,
+          "y": -3
+        },
+        {
+          "tile_id": 19,
+          "x": -15,
+          "y": -9
+        },
+        {
+          "tile_id": 45,
+          "x": -3,
+          "y": 0
+        },
+        {
+          "tile_id": 21,
+          "x": -3,
+          "y": -9
+        },
+        {
+          "tile_id": 22,
+          "x": -10,
+          "y": -7
+        },
+        {
+          "tile_id": 8,
+          "x": -13,
+          "y": -6
+        },
+        {
+          "tile_id": 4,
+          "x": -6,
+          "y": -12
+        },
+        {
+          "tile_id": 23,
+          "x": -9,
+          "y": -11
+        },
+        {
+          "tile_id": 12,
+          "x": -11,
+          "y": -9
+        },
+        {
+          "tile_id": 41,
+          "x": -19,
+          "y": -4
+        },
+        {
+          "tile_id": 6,
+          "x": -16,
+          "y": -6
+        },
+        {
+          "tile_id": 28,
+          "x": -5,
+          "y": -15
+        },
+        {
+          "tile_id": 1,
+          "x": -8,
+          "y": -14
+        },
+        {
+          "tile_id": 7,
+          "x": -3,
+          "y": -13
+        },
+        {
+          "tile_id": 0,
+          "x": -11,
+          "y": -13
+        },
+        {
+          "tile_id": 5,
+          "x": -13,
+          "y": -11
+        }
+      ],
+      "runtime_seconds": 15.056086607,
+      "status": "success",
+      "total_crossovers": 28339,
+      "total_tiles_completed": 18954,
+      "verified": true
+    }
+  ]
+}

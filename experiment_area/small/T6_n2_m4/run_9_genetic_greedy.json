@@ -1,0 +1,147 @@
+{
+  "input": {
+    "T": 6,
+    "m": 4,
+    "n": 2,
+    "p": 0.5,
+    "seed": 842,
+    "source": "generated",
+    "tiles": [
+      [
+        [
+          1,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          1,
+          0,
+          0
+        ]
+      ],
+      [
+        [
+          1,
+          0,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      [
+        [
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0
+        ]
+      ],
+      [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          0,
+          0
+        ]
+      ],
+      [
+        [
+          1,
+          0,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          0,
+          0
+        ]
+      ],
+      [
+        [
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ]
+      ]
+    ]
+  },
+  "results": [
+    {
+      "algorithm": "genetic_greedy",
+      "bbox_area": 38,
+      "bbox_height": 2,
+      "bbox_width": 19,
+      "canvas": "1 0 1 1 0 0 0 0 1 0 1 1 0 0 1 0 1 0 0\n1 1 0 0 1 1 0 0 1 1 1 1 1 0 0 0 0 1 0",
+      "completion_rate": 0.023860483551327784,
+      "crossovers_needing_completion": 301,
+      "num_tiles_placed": 6,
+      "objective": 38,
+      "objective_type": "area",
+      "placements": [
+        {
+          "tile_id": 5,
+          "x": 15,
+          "y": 0
+        },
+        {
+          "tile_id": 0,
+          "x": 11,
+          "y": 0
+        },
+        {
+          "tile_id": 2,
+          "x": 12,
+          "y": 0
+        },
+        {
+          "tile_id": 1,
+          "x": 8,
+          "y": 0
+        },
+        {
+          "tile_id": 3,
+          "x": 4,
+          "y": 0
+        },
+        {
+          "tile_id": 4,
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "runtime_seconds": 0.128432712,
+      "status": "success",
+      "total_crossovers": 12615,
+      "total_tiles_completed": 528,
+      "verified": true
+    }
+  ]
+}

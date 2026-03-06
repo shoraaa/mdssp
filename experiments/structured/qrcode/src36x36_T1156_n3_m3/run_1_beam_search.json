@@ -1,0 +1,18 @@
+{
+  "input": {
+    "source_height": 36,
+    "source_width": 36,
+    "T": 1156,
+    "n": 3,
+    "m": 3,
+    "seed": 42,
+    "objective_type": "square"
+  },
+  "results": [
+    {
+      "algorithm": "beam_search",
+      "status": "failed",
+      "error": "timeout"
+    }
+  ]
+}

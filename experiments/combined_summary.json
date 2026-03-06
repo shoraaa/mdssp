@@ -1,0 +1,18 @@
+{
+  "timestamp": "2025-12-27T20:19:52.424955",
+  "total_experiments": 28,
+  "by_scale": {
+    "2d_covering_original": {
+      "genetic_greedy": {
+        "num_runs": 14,
+        "avg_objective": 176.85714285714286,
+        "avg_runtime": 319.96261124164283
+      },
+      "genetic_stochastic": {
+        "num_runs": 14,
+        "avg_objective": 174.5,
+        "avg_runtime": 375.37425917571426
+      }
+    }
+  }
+}

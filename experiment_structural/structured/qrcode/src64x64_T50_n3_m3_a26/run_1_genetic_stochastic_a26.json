@@ -1,0 +1,277 @@
+{
+  "input": {
+    "dataset_file": "experiment_structural/structured/qrcode/src64x64_T50_n3_m3_a26/dataset_run1_a26.json",
+    "source": "dataset"
+  },
+  "results": [
+    {
+      "algorithm": "genetic_stochastic",
+      "bbox_area": 529,
+      "bbox_height": 23,
+      "bbox_width": 23,
+      "canvas": ". . ; A I . 1 0 6 . . . . . @ I @ F : < . . .\n. . ? D 6 . < 9 G . . . . . H D 6 G 1 9 1 9 ?\n. . H 6 5 . @ 2 9 . . 1 D A E D < : 5 ; H A 6\n7 6 F A 3 < 4 I A . . 2 E 7 B @ 6 D ; 9 < = E\n: 0 D A 7 E 3 4 1 . 7 E 3 4 B C 2 4 G A G 6 :\n0 2 ; 5 I E B 6 2 B B 8 1 . E I ; @ 4 7 4 I B\n. 2 : C 9 : ; E < : A 0 9 A 0 E . E ? 4 D B E\n. 5 = > I = 6 G 6 : H 2 > 7 1 7 . A < : . . .\n. 6 > 3 0 < 8 9 > 2 7 8 > 0 2 F 2 0 I > . . .\n. . . . 4 A 1 ; 1 1 < G 5 F 7 @ B 0 I ; A ; .\n. @ F E < : 8 ? @ > : D F 4 7 3 5 0 I 1 E 2 .\n. 6 F B : < F @ 0 C > 9 E G 1 > ; < = 0 > 2 .\n. 0 D 8 . . . 7 7 2 D 1 9 I 7 . 6 3 3 . . . .\n. . 7 8 6 B 6 F G H 5 ? @ 5 E . 8 I I . 6 = I\n. . 9 8 ; I : < . A ; H 9 G F > 2 = A G 5 I F\n. . A ? 5 > @ 8 . G 1 B E 1 H 5 ? D 1 H : A >\n. . . ? < 7 . 6 A : E = 5 E ? 3 0 @ D : . . .\n. ; @ A 2 4 . D 8 G ? 9 = < H A 9 < F @ B 7 .\n. < 1 B E 0 ; I ? 5 G . . = ? ? C G C 5 I 4 .\n. B 9 ? . @ 9 > . . B 7 B 1 4 @ 8 > 7 E 9 9 .\n. . ; 6 E 9 ; 3 : 7 8 4 < . 6 5 C B F : 8 : 9\n. . G A A . . A 6 ; 8 9 8 . D 6 : G 3 E 1 A @\n. . > 0 G . . 0 ; : . . . . 4 C F B 2 2 ; < >",
+      "completion_rate": 0.08965104405084687,
+      "crossovers_needing_completion": 2546,
+      "num_tiles_placed": 50,
+      "objective": 23,
+      "objective_type": "square",
+      "placements": [
+        {
+          "tile_id": 36,
+          "x": 20,
+          "y": 17
+        },
+        {
+          "tile_id": 15,
+          "x": 20,
+          "y": -2
+        },
+        {
+          "tile_id": 30,
+          "x": 17,
+          "y": 17
+        },
+        {
+          "tile_id": 34,
+          "x": 19,
+          "y": 14
+        },
+        {
+          "tile_id": 45,
+          "x": 20,
+          "y": 10
+        },
+        {
+          "tile_id": 5,
+          "x": 20,
+          "y": 1
+        },
+        {
+          "tile_id": 43,
+          "x": 14,
+          "y": 17
+        },
+        {
+          "tile_id": 48,
+          "x": 7,
+          "y": 17
+        },
+        {
+          "tile_id": 29,
+          "x": 2,
+          "y": 17
+        },
+        {
+          "tile_id": 7,
+          "x": 17,
+          "y": -3
+        },
+        {
+          "tile_id": 3,
+          "x": 17,
+          "y": 0
+        },
+        {
+          "tile_id": 42,
+          "x": 16,
+          "y": 14
+        },
+        {
+          "tile_id": 0,
+          "x": 17,
+          "y": 11
+        },
+        {
+          "tile_id": 4,
+          "x": 19,
+          "y": 6
+        },
+        {
+          "tile_id": 33,
+          "x": 17,
+          "y": 3
+        },
+        {
+          "tile_id": 27,
+          "x": 10,
+          "y": 16
+        },
+        {
+          "tile_id": 1,
+          "x": 13,
+          "y": 14
+        },
+        {
+          "tile_id": 47,
+          "x": 5,
+          "y": 15
+        },
+        {
+          "tile_id": 38,
+          "x": 1,
+          "y": 14
+        },
+        {
+          "tile_id": 23,
+          "x": 14,
+          "y": -3
+        },
+        {
+          "tile_id": 11,
+          "x": 14,
+          "y": 0
+        },
+        {
+          "tile_id": 24,
+          "x": 10,
+          "y": 7
+        },
+        {
+          "tile_id": 13,
+          "x": 7,
+          "y": 8
+        },
+        {
+          "tile_id": 44,
+          "x": 1,
+          "y": 7
+        },
+        {
+          "tile_id": 31,
+          "x": 7,
+          "y": 5
+        },
+        {
+          "tile_id": 2,
+          "x": 11,
+          "y": 12
+        },
+        {
+          "tile_id": 28,
+          "x": 6,
+          "y": 0
+        },
+        {
+          "tile_id": 21,
+          "x": 4,
+          "y": 3
+        },
+        {
+          "tile_id": 22,
+          "x": 3,
+          "y": 0
+        },
+        {
+          "tile_id": 6,
+          "x": 4,
+          "y": 6
+        },
+        {
+          "tile_id": 35,
+          "x": 11,
+          "y": -1
+        },
+        {
+          "tile_id": 32,
+          "x": 1,
+          "y": 3
+        },
+        {
+          "tile_id": 14,
+          "x": 7,
+          "y": 2
+        },
+        {
+          "tile_id": 40,
+          "x": 2,
+          "y": -3
+        },
+        {
+          "tile_id": 10,
+          "x": 6,
+          "y": -3
+        },
+        {
+          "tile_id": 39,
+          "x": 13,
+          "y": 3
+        },
+        {
+          "tile_id": 49,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "tile_id": 20,
+          "x": 10,
+          "y": 4
+        },
+        {
+          "tile_id": 9,
+          "x": 10,
+          "y": 1
+        },
+        {
+          "tile_id": 26,
+          "x": 2,
+          "y": 10
+        },
+        {
+          "tile_id": 37,
+          "x": 5,
+          "y": 10
+        },
+        {
+          "tile_id": 8,
+          "x": 14,
+          "y": 11
+        },
+        {
+          "tile_id": 16,
+          "x": 9,
+          "y": 10
+        },
+        {
+          "tile_id": 18,
+          "x": 13,
+          "y": 6
+        },
+        {
+          "tile_id": 17,
+          "x": 12,
+          "y": 9
+        },
+        {
+          "tile_id": 46,
+          "x": 7,
+          "y": 13
+        },
+        {
+          "tile_id": 41,
+          "x": 3,
+          "y": 13
+        },
+        {
+          "tile_id": 12,
+          "x": 16,
+          "y": 5
+        },
+        {
+          "tile_id": 19,
+          "x": 8,
+          "y": 13
+        },
+        {
+          "tile_id": 25,
+          "x": 16,
+          "y": 8
+        }
+      ],
+      "runtime_seconds": 49.957288955,
+      "status": "success",
+      "total_crossovers": 28399,
+      "total_tiles_completed": 97901,
+      "verified": true
+    }
+  ]
+}

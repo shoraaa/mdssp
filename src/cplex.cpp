@@ -257,7 +257,8 @@ CplexResult solve_cplex(const Matrices& matrices, int time_limit, ObjectiveType 
         
         // Different settings for different objective types
         if (obj_type == ObjectiveType::RECTANGLE_AREA) {
-            // For area minimization, balance between finding good solutions and proving optimality
+            // For MIQP area minimization (quadratic objective with integer variables)
+            // Configure CPLEX for non-convex quadratic optimization
             cplex.setParam(IloCplex::Param::MIP::Tolerances::MIPGap, 0.001);  // Allow 0.1% gap
             cplex.setParam(IloCplex::Param::Emphasis::MIP, 0);  // Balanced approach
             cplex.setParam(IloCplex::Param::MIP::Strategy::Search, 0);  // Automatic search strategy
@@ -265,6 +266,10 @@ CplexResult solve_cplex(const Matrices& matrices, int time_limit, ObjectiveType 
             cplex.setParam(IloCplex::Param::MIP::Cuts::Gomory, 0);  // Automatic Gomory cuts
             cplex.setParam(IloCplex::Param::MIP::Cuts::Covers, 0);  // Automatic cover cuts
             cplex.setParam(IloCplex::Param::MIP::Strategy::VariableSelect, 3);  // Strong branching
+            
+            // MIQP-specific settings
+            // OptimalityTarget = 3 means search for global optimum (required for non-convex QP)
+            cplex.setParam(IloCplex::Param::OptimalityTarget, 3);
         } else {
             // For square minimization, can use looser gap
             cplex.setParam(IloCplex::Param::MIP::Tolerances::MIPGap, 0.01);
@@ -389,105 +394,18 @@ CplexResult solve_cplex(const Matrices& matrices, int time_limit, ObjectiveType 
             model.add(L >= H);
             model.add(IloMinimize(env, L));
         } else {
-            // Minimize W * H (area) using linearization
-            // Create an auxiliary variable for the area
-            IloIntVar Area(env, 0, M * M, "Area");
+            // Minimize W * H (area) using MIQP (Mixed-Integer Quadratic Programming)
+            // CPLEX can handle quadratic objectives directly with OptimalityTarget=3
+            // which searches for global optimum of non-convex quadratic problems
             
-            // Use complete bilinear discretization to linearize Area = W * H
-            // This discretizes both W and H and creates binary variables for each possible value
+            // Create quadratic objective: minimize W * H
+            IloExpr quadratic_obj(env);
+            quadratic_obj = W * H;
             
-            int W_min = max_tile_width;
-            int H_min = max_tile_height;
-            int W_max = std::min(M, total_area);
-            int H_max = std::min(M, total_area);
+            model.add(IloMinimize(env, quadratic_obj));
+            quadratic_obj.end();
             
-            int W_range = W_max - W_min + 1;
-            int H_range = H_max - H_min + 1;
-            
-            // Use complete bilinear discretization for reasonable-sized instances
-            if (W_range * H_range <= 10000) {
-                // Binary variables for W and H values
-                std::vector<IloBoolVar> x_w;
-                std::vector<IloBoolVar> y_h;
-                
-                for (int w = W_min; w <= W_max; ++w) {
-                    x_w.push_back(IloBoolVar(env, ("x_w_" + std::to_string(w)).c_str()));
-                }
-                for (int h = H_min; h <= H_max; ++h) {
-                    y_h.push_back(IloBoolVar(env, ("y_h_" + std::to_string(h)).c_str()));
-                }
-                
-                // Exactly one x_w and one y_h must be selected
-                IloExpr sum_x(env);
-                for (size_t i = 0; i < x_w.size(); ++i) {
-                    sum_x += x_w[i];
-                }
-                model.add(sum_x == 1);
-                sum_x.end();
-                
-                IloExpr sum_y(env);
-                for (size_t i = 0; i < y_h.size(); ++i) {
-                    sum_y += y_h[i];
-                }
-                model.add(sum_y == 1);
-                sum_y.end();
-                
-                // W = sum_{w} w * x_w
-                IloExpr W_expr(env);
-                for (int w = W_min; w <= W_max; ++w) {
-                    W_expr += w * x_w[w - W_min];
-                }
-                model.add(W == W_expr);
-                W_expr.end();
-                
-                // H = sum_{h} h * y_h
-                IloExpr H_expr(env);
-                for (int h = H_min; h <= H_max; ++h) {
-                    H_expr += h * y_h[h - H_min];
-                }
-                model.add(H == H_expr);
-                H_expr.end();
-                
-                // Area = sum_{w,h} w * h * z_{w,h}
-                // z_{w,h} represents x_w AND y_h (product of binary variables)
-                IloExpr area_expr(env);
-                for (int w = W_min; w <= W_max; ++w) {
-                    for (int h = H_min; h <= H_max; ++h) {
-                        IloBoolVar z_wh(env, ("z_" + std::to_string(w) + "_" + std::to_string(h)).c_str());
-                        
-                        // Linearize z_wh = x_w AND y_h
-                        model.add(z_wh <= x_w[w - W_min]);
-                        model.add(z_wh <= y_h[h - H_min]);
-                        model.add(z_wh >= x_w[w - W_min] + y_h[h - H_min] - 1);
-                        
-                        // Add the product coefficient (w * h is a constant)
-                        area_expr += (w * h) * z_wh;
-                    }
-                }
-                
-                // Link Area variable to the expression
-                model.add(Area == area_expr);
-                area_expr.end();
-                
-                // Minimize the Area variable (linear objective)
-                model.add(IloMinimize(env, Area));
-                
-            } else {
-                // For larger instances, use McCormick envelope relaxation
-                // This provides a convex relaxation of the bilinear term
-                // Area >= W * H_min + H * W_min - W_min * H_min (lower bound 1)
-                // Area >= W * H_max + H * W_max - W_max * H_max (lower bound 2)
-                // Area <= W * H_min + H * W_max - W_min * H_max (upper bound 1)
-                // Area <= W * H_max + H * W_min - W_max * H_min (upper bound 2)
-                
-                model.add(Area >= W_min * H + H_min * W - W_min * H_min);
-                model.add(Area >= W_max * H + H_max * W - W_max * H_max);
-                model.add(Area <= W_min * H + H_max * W - W_min * H_max);
-                model.add(Area <= W_max * H + H_min * W - W_max * H_min);
-                
-                // Minimize the Area variable (linear objective)
-                model.add(IloMinimize(env, Area));
-            }
+            std::cerr << "[CPLEX] Using MIQP formulation for area minimization" << std::endl;
         }
         
         // ====================================================================

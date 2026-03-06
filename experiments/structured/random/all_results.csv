@@ -1,0 +1,13 @@
+scale,source_height,source_width,optimal_area,tiles,n,m,run,seed,algorithm,objective_type,pattern,status,objective,runtime,bbox_width,bbox_height,num_tiles,compression_ratio
+structured,20,20,400,50,5,5,1,42,simulated_annealing,square,random,success,24,1.007908,24,23,50,16.666666666666668
+structured,20,20,400,100,5,5,1,42,simulated_annealing,square,random,success,20,2.919021,20,20,100,20.0
+structured,20,20,400,50,7,7,1,42,simulated_annealing,square,random,success,20,2.529964,19,20,50,20.0
+structured,20,20,400,100,7,7,1,42,simulated_annealing,square,random,success,20,8.182878,20,20,100,20.0
+structured,30,30,900,50,5,5,1,42,simulated_annealing,square,random,success,32,1.054621,31,32,50,28.125
+structured,30,30,900,100,5,5,1,42,simulated_annealing,square,random,success,41,3.228699,41,41,100,21.951219512195124
+structured,30,30,900,50,7,7,1,42,simulated_annealing,square,random,success,39,2.669309,38,39,50,23.076923076923077
+structured,30,30,900,100,7,7,1,42,simulated_annealing,square,random,success,38,8.317961,38,38,100,23.68421052631579
+structured,40,40,1600,50,5,5,1,42,simulated_annealing,square,random,success,33,1.071558,33,33,50,48.484848484848484
+structured,40,40,1600,100,5,5,1,42,simulated_annealing,square,random,success,45,3.339412,45,45,100,35.55555555555556
+structured,40,40,1600,50,7,7,1,42,simulated_annealing,square,random,success,47,2.799564,47,46,50,34.04255319148936
+structured,40,40,1600,100,7,7,1,42,simulated_annealing,square,random,success,54,8.817872,53,54,100,29.62962962962963

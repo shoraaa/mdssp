@@ -115,46 +115,46 @@
     {
       "algorithm": "cplex",
       "bbox_area": 35,
-      "bbox_height": 5,
-      "bbox_width": 7,
-      "canvas": "1 1 1 0 0 0 .\n0 1 0 1 0 1 .\n1 0 0 1 1 0 0\n1 0 1 1 1 1 1\n1 0 0 1 0 1 0",
+      "bbox_height": 7,
+      "bbox_width": 5,
+      "canvas": "1 0 0 1 1\n1 0 1 1 1\n1 0 0 1 0\n1 1 1 0 0\n0 1 0 0 0\n0 1 1 0 1\n1 1 1 1 0",
       "num_tiles_placed": 6,
       "objective": 35,
       "objective_type": "area",
       "placements": [
         {
           "tile_id": 0,
-          "x": 3,
-          "y": 1
+          "x": 9,
+          "y": 6
         },
         {
           "tile_id": 1,
-          "x": 1,
-          "y": -1
+          "x": 9,
+          "y": 7
         },
         {
           "tile_id": 2,
-          "x": 5,
-          "y": 1
+          "x": 7,
+          "y": 8
         },
         {
           "tile_id": 3,
-          "x": 1,
-          "y": 1
+          "x": 7,
+          "y": 6
         },
         {
           "tile_id": 4,
-          "x": 3,
-          "y": 0
+          "x": 7,
+          "y": 10
         },
         {
           "tile_id": 5,
-          "x": 4,
-          "y": -1
+          "x": 9,
+          "y": 10
         }
       ],
-      "runtime_seconds": 33.151875463,
-      "status": "optimal",
+      "runtime_seconds": 300.228852581,
+      "status": "feasible",
       "verified": true
     }
   ]

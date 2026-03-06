@@ -1,0 +1,1010 @@
+{
+  "merge_greedy_src14x14_T50_n3_m3": {
+    "algorithm": "merge_greedy",
+    "source_height": 14,
+    "source_width": 14,
+    "optimal_area": 196,
+    "tiles": 50,
+    "n": 3,
+    "m": 3,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 17.0,
+      "min": 17,
+      "max": 17,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 1.169528,
+      "min": 1.169528,
+      "max": 1.169528,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 11.529411764705882,
+      "min": 11.529411764705882,
+      "max": 11.529411764705882
+    }
+  },
+  "greedy_src14x14_T50_n3_m3": {
+    "algorithm": "greedy",
+    "source_height": 14,
+    "source_width": 14,
+    "optimal_area": 196,
+    "tiles": 50,
+    "n": 3,
+    "m": 3,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 11.0,
+      "min": 11,
+      "max": 11,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 0.00384,
+      "min": 0.00384,
+      "max": 0.00384,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 17.818181818181817,
+      "min": 17.818181818181817,
+      "max": 17.818181818181817
+    }
+  },
+  "stochastic_greedy_src14x14_T50_n3_m3": {
+    "algorithm": "stochastic_greedy",
+    "source_height": 14,
+    "source_width": 14,
+    "optimal_area": 196,
+    "tiles": 50,
+    "n": 3,
+    "m": 3,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 10.0,
+      "min": 10,
+      "max": 10,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 0.003795,
+      "min": 0.003795,
+      "max": 0.003795,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 19.6,
+      "min": 19.6,
+      "max": 19.6
+    }
+  },
+  "genetic_greedy_src14x14_T50_n3_m3": {
+    "algorithm": "genetic_greedy",
+    "source_height": 14,
+    "source_width": 14,
+    "optimal_area": 196,
+    "tiles": 50,
+    "n": 3,
+    "m": 3,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 10.0,
+      "min": 10,
+      "max": 10,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 5.446928,
+      "min": 5.446928,
+      "max": 5.446928,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 19.6,
+      "min": 19.6,
+      "max": 19.6
+    }
+  },
+  "genetic_stochastic_src14x14_T50_n3_m3": {
+    "algorithm": "genetic_stochastic",
+    "source_height": 14,
+    "source_width": 14,
+    "optimal_area": 196,
+    "tiles": 50,
+    "n": 3,
+    "m": 3,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 9.0,
+      "min": 9,
+      "max": 9,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 4.936217,
+      "min": 4.936217,
+      "max": 4.936217,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 21.77777777777778,
+      "min": 21.77777777777778,
+      "max": 21.77777777777778
+    }
+  },
+  "beam_search_src14x14_T50_n3_m3": {
+    "algorithm": "beam_search",
+    "source_height": 14,
+    "source_width": 14,
+    "optimal_area": 196,
+    "tiles": 50,
+    "n": 3,
+    "m": 3,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 10.0,
+      "min": 10,
+      "max": 10,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 24.171375,
+      "min": 24.171375,
+      "max": 24.171375,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 19.6,
+      "min": 19.6,
+      "max": 19.6
+    }
+  },
+  "merge_greedy_src14x14_T50_n5_m5": {
+    "algorithm": "merge_greedy",
+    "source_height": 14,
+    "source_width": 14,
+    "optimal_area": 196,
+    "tiles": 50,
+    "n": 5,
+    "m": 5,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 20.0,
+      "min": 20,
+      "max": 20,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 5.615251,
+      "min": 5.615251,
+      "max": 5.615251,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 9.8,
+      "min": 9.8,
+      "max": 9.8
+    }
+  },
+  "greedy_src14x14_T50_n5_m5": {
+    "algorithm": "greedy",
+    "source_height": 14,
+    "source_width": 14,
+    "optimal_area": 196,
+    "tiles": 50,
+    "n": 5,
+    "m": 5,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 13.0,
+      "min": 13,
+      "max": 13,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 0.00662,
+      "min": 0.00662,
+      "max": 0.00662,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 15.076923076923077,
+      "min": 15.076923076923077,
+      "max": 15.076923076923077
+    }
+  },
+  "stochastic_greedy_src14x14_T50_n5_m5": {
+    "algorithm": "stochastic_greedy",
+    "source_height": 14,
+    "source_width": 14,
+    "optimal_area": 196,
+    "tiles": 50,
+    "n": 5,
+    "m": 5,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 13.0,
+      "min": 13,
+      "max": 13,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 0.005321,
+      "min": 0.005321,
+      "max": 0.005321,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 15.076923076923077,
+      "min": 15.076923076923077,
+      "max": 15.076923076923077
+    }
+  },
+  "genetic_greedy_src14x14_T50_n5_m5": {
+    "algorithm": "genetic_greedy",
+    "source_height": 14,
+    "source_width": 14,
+    "optimal_area": 196,
+    "tiles": 50,
+    "n": 5,
+    "m": 5,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 12.0,
+      "min": 12,
+      "max": 12,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 11.33718,
+      "min": 11.33718,
+      "max": 11.33718,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 16.333333333333332,
+      "min": 16.333333333333332,
+      "max": 16.333333333333332
+    }
+  },
+  "genetic_stochastic_src14x14_T50_n5_m5": {
+    "algorithm": "genetic_stochastic",
+    "source_height": 14,
+    "source_width": 14,
+    "optimal_area": 196,
+    "tiles": 50,
+    "n": 5,
+    "m": 5,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 12.0,
+      "min": 12,
+      "max": 12,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 24.316104,
+      "min": 24.316104,
+      "max": 24.316104,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 16.333333333333332,
+      "min": 16.333333333333332,
+      "max": 16.333333333333332
+    }
+  },
+  "beam_search_src14x14_T50_n5_m5": {
+    "algorithm": "beam_search",
+    "source_height": 14,
+    "source_width": 14,
+    "optimal_area": 196,
+    "tiles": 50,
+    "n": 5,
+    "m": 5,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 13.0,
+      "min": 13,
+      "max": 13,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 131.939908,
+      "min": 131.939908,
+      "max": 131.939908,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 15.076923076923077,
+      "min": 15.076923076923077,
+      "max": 15.076923076923077
+    }
+  },
+  "merge_greedy_src36x36_T50_n3_m3": {
+    "algorithm": "merge_greedy",
+    "source_height": 36,
+    "source_width": 36,
+    "optimal_area": 1296,
+    "tiles": 50,
+    "n": 3,
+    "m": 3,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 21.0,
+      "min": 21,
+      "max": 21,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 1.879075,
+      "min": 1.879075,
+      "max": 1.879075,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 61.714285714285715,
+      "min": 61.714285714285715,
+      "max": 61.714285714285715
+    }
+  },
+  "greedy_src36x36_T50_n3_m3": {
+    "algorithm": "greedy",
+    "source_height": 36,
+    "source_width": 36,
+    "optimal_area": 1296,
+    "tiles": 50,
+    "n": 3,
+    "m": 3,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 15.0,
+      "min": 15,
+      "max": 15,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 0.004571,
+      "min": 0.004571,
+      "max": 0.004571,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 86.4,
+      "min": 86.4,
+      "max": 86.4
+    }
+  },
+  "stochastic_greedy_src36x36_T50_n3_m3": {
+    "algorithm": "stochastic_greedy",
+    "source_height": 36,
+    "source_width": 36,
+    "optimal_area": 1296,
+    "tiles": 50,
+    "n": 3,
+    "m": 3,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 17.0,
+      "min": 17,
+      "max": 17,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 0.005386,
+      "min": 0.005386,
+      "max": 0.005386,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 76.23529411764706,
+      "min": 76.23529411764706,
+      "max": 76.23529411764706
+    }
+  },
+  "genetic_greedy_src36x36_T50_n3_m3": {
+    "algorithm": "genetic_greedy",
+    "source_height": 36,
+    "source_width": 36,
+    "optimal_area": 1296,
+    "tiles": 50,
+    "n": 3,
+    "m": 3,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 15.0,
+      "min": 15,
+      "max": 15,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 10.729648,
+      "min": 10.729648,
+      "max": 10.729648,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 86.4,
+      "min": 86.4,
+      "max": 86.4
+    }
+  },
+  "genetic_stochastic_src36x36_T50_n3_m3": {
+    "algorithm": "genetic_stochastic",
+    "source_height": 36,
+    "source_width": 36,
+    "optimal_area": 1296,
+    "tiles": 50,
+    "n": 3,
+    "m": 3,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 15.0,
+      "min": 15,
+      "max": 15,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 16.771583,
+      "min": 16.771583,
+      "max": 16.771583,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 86.4,
+      "min": 86.4,
+      "max": 86.4
+    }
+  },
+  "beam_search_src36x36_T50_n3_m3": {
+    "algorithm": "beam_search",
+    "source_height": 36,
+    "source_width": 36,
+    "optimal_area": 1296,
+    "tiles": 50,
+    "n": 3,
+    "m": 3,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 15.0,
+      "min": 15,
+      "max": 15,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 20.706149,
+      "min": 20.706149,
+      "max": 20.706149,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 86.4,
+      "min": 86.4,
+      "max": 86.4
+    }
+  },
+  "merge_greedy_src36x36_T50_n5_m5": {
+    "algorithm": "merge_greedy",
+    "source_height": 36,
+    "source_width": 36,
+    "optimal_area": 1296,
+    "tiles": 50,
+    "n": 5,
+    "m": 5,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 24.0,
+      "min": 24,
+      "max": 24,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 7.818956,
+      "min": 7.818956,
+      "max": 7.818956,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 54.0,
+      "min": 54.0,
+      "max": 54.0
+    }
+  },
+  "greedy_src36x36_T50_n5_m5": {
+    "algorithm": "greedy",
+    "source_height": 36,
+    "source_width": 36,
+    "optimal_area": 1296,
+    "tiles": 50,
+    "n": 5,
+    "m": 5,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 23.0,
+      "min": 23,
+      "max": 23,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 0.01402,
+      "min": 0.01402,
+      "max": 0.01402,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 56.34782608695652,
+      "min": 56.34782608695652,
+      "max": 56.34782608695652
+    }
+  },
+  "stochastic_greedy_src36x36_T50_n5_m5": {
+    "algorithm": "stochastic_greedy",
+    "source_height": 36,
+    "source_width": 36,
+    "optimal_area": 1296,
+    "tiles": 50,
+    "n": 5,
+    "m": 5,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 22.0,
+      "min": 22,
+      "max": 22,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 0.017011,
+      "min": 0.017011,
+      "max": 0.017011,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 58.90909090909091,
+      "min": 58.90909090909091,
+      "max": 58.90909090909091
+    }
+  },
+  "genetic_greedy_src36x36_T50_n5_m5": {
+    "algorithm": "genetic_greedy",
+    "source_height": 36,
+    "source_width": 36,
+    "optimal_area": 1296,
+    "tiles": 50,
+    "n": 5,
+    "m": 5,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 20.0,
+      "min": 20,
+      "max": 20,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 34.36872,
+      "min": 34.36872,
+      "max": 34.36872,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 64.8,
+      "min": 64.8,
+      "max": 64.8
+    }
+  },
+  "genetic_stochastic_src36x36_T50_n5_m5": {
+    "algorithm": "genetic_stochastic",
+    "source_height": 36,
+    "source_width": 36,
+    "optimal_area": 1296,
+    "tiles": 50,
+    "n": 5,
+    "m": 5,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 19.0,
+      "min": 19,
+      "max": 19,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 84.279554,
+      "min": 84.279554,
+      "max": 84.279554,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 68.21052631578948,
+      "min": 68.21052631578948,
+      "max": 68.21052631578948
+    }
+  },
+  "beam_search_src36x36_T50_n5_m5": {
+    "algorithm": "beam_search",
+    "source_height": 36,
+    "source_width": 36,
+    "optimal_area": 1296,
+    "tiles": 50,
+    "n": 5,
+    "m": 5,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 22.0,
+      "min": 22,
+      "max": 22,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 100.764215,
+      "min": 100.764215,
+      "max": 100.764215,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 58.90909090909091,
+      "min": 58.90909090909091,
+      "max": 58.90909090909091
+    }
+  },
+  "merge_greedy_src64x64_T50_n3_m3": {
+    "algorithm": "merge_greedy",
+    "source_height": 64,
+    "source_width": 64,
+    "optimal_area": 4096,
+    "tiles": 50,
+    "n": 3,
+    "m": 3,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 23.0,
+      "min": 23,
+      "max": 23,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 1.816565,
+      "min": 1.816565,
+      "max": 1.816565,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 178.08695652173913,
+      "min": 178.08695652173913,
+      "max": 178.08695652173913
+    }
+  },
+  "greedy_src64x64_T50_n3_m3": {
+    "algorithm": "greedy",
+    "source_height": 64,
+    "source_width": 64,
+    "optimal_area": 4096,
+    "tiles": 50,
+    "n": 3,
+    "m": 3,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 17.0,
+      "min": 17,
+      "max": 17,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 0.004821,
+      "min": 0.004821,
+      "max": 0.004821,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 240.94117647058823,
+      "min": 240.94117647058823,
+      "max": 240.94117647058823
+    }
+  },
+  "stochastic_greedy_src64x64_T50_n3_m3": {
+    "algorithm": "stochastic_greedy",
+    "source_height": 64,
+    "source_width": 64,
+    "optimal_area": 4096,
+    "tiles": 50,
+    "n": 3,
+    "m": 3,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 18.0,
+      "min": 18,
+      "max": 18,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 0.006406,
+      "min": 0.006406,
+      "max": 0.006406,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 227.55555555555554,
+      "min": 227.55555555555554,
+      "max": 227.55555555555554
+    }
+  },
+  "genetic_greedy_src64x64_T50_n3_m3": {
+    "algorithm": "genetic_greedy",
+    "source_height": 64,
+    "source_width": 64,
+    "optimal_area": 4096,
+    "tiles": 50,
+    "n": 3,
+    "m": 3,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 16.0,
+      "min": 16,
+      "max": 16,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 17.342427,
+      "min": 17.342427,
+      "max": 17.342427,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 256.0,
+      "min": 256.0,
+      "max": 256.0
+    }
+  },
+  "genetic_stochastic_src64x64_T50_n3_m3": {
+    "algorithm": "genetic_stochastic",
+    "source_height": 64,
+    "source_width": 64,
+    "optimal_area": 4096,
+    "tiles": 50,
+    "n": 3,
+    "m": 3,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 15.0,
+      "min": 15,
+      "max": 15,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 11.612551,
+      "min": 11.612551,
+      "max": 11.612551,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 273.06666666666666,
+      "min": 273.06666666666666,
+      "max": 273.06666666666666
+    }
+  },
+  "beam_search_src64x64_T50_n3_m3": {
+    "algorithm": "beam_search",
+    "source_height": 64,
+    "source_width": 64,
+    "optimal_area": 4096,
+    "tiles": 50,
+    "n": 3,
+    "m": 3,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 15.0,
+      "min": 15,
+      "max": 15,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 22.476545,
+      "min": 22.476545,
+      "max": 22.476545,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 273.06666666666666,
+      "min": 273.06666666666666,
+      "max": 273.06666666666666
+    }
+  },
+  "merge_greedy_src64x64_T50_n5_m5": {
+    "algorithm": "merge_greedy",
+    "source_height": 64,
+    "source_width": 64,
+    "optimal_area": 4096,
+    "tiles": 50,
+    "n": 5,
+    "m": 5,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 20.0,
+      "min": 20,
+      "max": 20,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 6.793323,
+      "min": 6.793323,
+      "max": 6.793323,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 204.8,
+      "min": 204.8,
+      "max": 204.8
+    }
+  },
+  "greedy_src64x64_T50_n5_m5": {
+    "algorithm": "greedy",
+    "source_height": 64,
+    "source_width": 64,
+    "optimal_area": 4096,
+    "tiles": 50,
+    "n": 5,
+    "m": 5,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 20.0,
+      "min": 20,
+      "max": 20,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 0.014425,
+      "min": 0.014425,
+      "max": 0.014425,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 204.8,
+      "min": 204.8,
+      "max": 204.8
+    }
+  },
+  "stochastic_greedy_src64x64_T50_n5_m5": {
+    "algorithm": "stochastic_greedy",
+    "source_height": 64,
+    "source_width": 64,
+    "optimal_area": 4096,
+    "tiles": 50,
+    "n": 5,
+    "m": 5,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 22.0,
+      "min": 22,
+      "max": 22,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 0.014658,
+      "min": 0.014658,
+      "max": 0.014658,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 186.1818181818182,
+      "min": 186.1818181818182,
+      "max": 186.1818181818182
+    }
+  },
+  "genetic_greedy_src64x64_T50_n5_m5": {
+    "algorithm": "genetic_greedy",
+    "source_height": 64,
+    "source_width": 64,
+    "optimal_area": 4096,
+    "tiles": 50,
+    "n": 5,
+    "m": 5,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 20.0,
+      "min": 20,
+      "max": 20,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 57.429417,
+      "min": 57.429417,
+      "max": 57.429417,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 204.8,
+      "min": 204.8,
+      "max": 204.8
+    }
+  },
+  "genetic_stochastic_src64x64_T50_n5_m5": {
+    "algorithm": "genetic_stochastic",
+    "source_height": 64,
+    "source_width": 64,
+    "optimal_area": 4096,
+    "tiles": 50,
+    "n": 5,
+    "m": 5,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 19.0,
+      "min": 19,
+      "max": 19,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 70.609287,
+      "min": 70.609287,
+      "max": 70.609287,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 215.57894736842104,
+      "min": 215.57894736842104,
+      "max": 215.57894736842104
+    }
+  },
+  "beam_search_src64x64_T50_n5_m5": {
+    "algorithm": "beam_search",
+    "source_height": 64,
+    "source_width": 64,
+    "optimal_area": 4096,
+    "tiles": 50,
+    "n": 5,
+    "m": 5,
+    "num_runs": 1,
+    "successful_runs": 1,
+    "objective": {
+      "mean": 20.0,
+      "min": 20,
+      "max": 20,
+      "std": 0
+    },
+    "runtime": {
+      "mean": 95.772163,
+      "min": 95.772163,
+      "max": 95.772163,
+      "std": 0
+    },
+    "compression_ratio": {
+      "mean": 204.8,
+      "min": 204.8,
+      "max": 204.8
+    }
+  }
+}

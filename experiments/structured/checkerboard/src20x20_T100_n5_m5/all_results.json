@@ -1,0 +1,23 @@
+[
+  {
+    "scale": "structured",
+    "source_height": 20,
+    "source_width": 20,
+    "optimal_area": 400,
+    "tiles": 100,
+    "n": 5,
+    "m": 5,
+    "run": 1,
+    "seed": 42,
+    "algorithm": "simulated_annealing",
+    "objective_type": "square",
+    "pattern": "checkerboard",
+    "status": "success",
+    "objective": 6,
+    "runtime": 2.605975,
+    "bbox_width": 6,
+    "bbox_height": 6,
+    "num_tiles": 100,
+    "compression_ratio": 66.66666666666667
+  }
+]

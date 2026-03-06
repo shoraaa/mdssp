@@ -65,6 +65,8 @@ public:
 
 std::vector<Tile> tiles_from_binary_matrices(const Matrices& matrices);
 Matrices generate_binary_matrices(int T, int n, int m, double p, unsigned int seed);
+Matrices generate_matrices(int T, int n, int m, int alphabet_size, unsigned int seed);
 std::vector<Tile> generate_instance(int T, int n, int m, double p, unsigned int seed);
+std::vector<Tile> generate_instance(int T, int n, int m, int alphabet_size, unsigned int seed);
 
 #endif // MDSSP_COMMON_HPP

@@ -1,0 +1,19 @@
+{
+  "input": {
+    "case_id": 9,
+    "T": 565,
+    "n": 2,
+    "m": 6,
+    "r": 1,
+    "L": 597,
+    "seed": 42,
+    "objective_type": "area"
+  },
+  "results": [
+    {
+      "algorithm": "genetic_greedy",
+      "status": "failed",
+      "error": "timeout"
+    }
+  ]
+}

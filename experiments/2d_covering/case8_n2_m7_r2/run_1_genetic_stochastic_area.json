@@ -1,0 +1,19 @@
+{
+  "input": {
+    "case_id": 8,
+    "T": 488,
+    "n": 2,
+    "m": 7,
+    "r": 2,
+    "L": 525,
+    "seed": 42,
+    "objective_type": "area"
+  },
+  "results": [
+    {
+      "algorithm": "genetic_stochastic",
+      "status": "failed",
+      "error": "timeout"
+    }
+  ]
+}

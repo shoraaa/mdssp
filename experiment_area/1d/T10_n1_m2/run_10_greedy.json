@@ -1,0 +1,139 @@
+{
+  "input": {
+    "T": 10,
+    "m": 2,
+    "n": 1,
+    "p": 0.5,
+    "seed": 942,
+    "source": "generated",
+    "tiles": [
+      [
+        [
+          1,
+          1
+        ]
+      ],
+      [
+        [
+          0,
+          0
+        ]
+      ],
+      [
+        [
+          1,
+          1
+        ]
+      ],
+      [
+        [
+          1,
+          0
+        ]
+      ],
+      [
+        [
+          0,
+          0
+        ]
+      ],
+      [
+        [
+          1,
+          0
+        ]
+      ],
+      [
+        [
+          1,
+          0
+        ]
+      ],
+      [
+        [
+          1,
+          1
+        ]
+      ],
+      [
+        [
+          1,
+          1
+        ]
+      ],
+      [
+        [
+          1,
+          0
+        ]
+      ]
+    ]
+  },
+  "results": [
+    {
+      "algorithm": "greedy",
+      "bbox_area": 4,
+      "bbox_height": 1,
+      "bbox_width": 4,
+      "canvas": "1 1 0 0",
+      "num_tiles_placed": 10,
+      "objective": 4,
+      "objective_type": "area",
+      "placements": [
+        {
+          "tile_id": 0,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "tile_id": 7,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "tile_id": 2,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "tile_id": 8,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "tile_id": 3,
+          "x": 1,
+          "y": 0
+        },
+        {
+          "tile_id": 5,
+          "x": 1,
+          "y": 0
+        },
+        {
+          "tile_id": 6,
+          "x": 1,
+          "y": 0
+        },
+        {
+          "tile_id": 9,
+          "x": 1,
+          "y": 0
+        },
+        {
+          "tile_id": 1,
+          "x": 2,
+          "y": 0
+        },
+        {
+          "tile_id": 4,
+          "x": 2,
+          "y": 0
+        }
+      ],
+      "runtime_seconds": 0.000727611,
+      "status": "success",
+      "verified": true
+    }
+  ]
+}

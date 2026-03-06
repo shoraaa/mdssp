@@ -1,0 +1,26 @@
+[
+  {
+    "scale": "2d_covering",
+    "case_id": 7,
+    "tiles": 376,
+    "n": 3,
+    "m": 5,
+    "r": 3,
+    "L": 406,
+    "total_generated": 406,
+    "duplicates_removed": 30,
+    "run": 1,
+    "seed": 42,
+    "algorithm": "genetic_greedy",
+    "objective_type": "area",
+    "status": "success",
+    "objective": 1156,
+    "runtime": 5040.31607204,
+    "bbox_width": 34,
+    "bbox_height": 34,
+    "num_tiles": 376,
+    "total_crossovers": 82618,
+    "crossovers_needing_completion": 2554,
+    "total_tiles_completed": 764855
+  }
+]
