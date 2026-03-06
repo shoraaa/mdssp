@@ -74,9 +74,9 @@
       "std": 0
     },
     "runtime": {
-      "mean": 438.178425,
-      "min": 438.178425,
-      "max": 438.178425,
+      "mean": 438.178424914,
+      "min": 438.178424914,
+      "max": 438.178424914,
       "std": 0
     }
   },
@@ -101,9 +101,9 @@
       "std": 0
     },
     "runtime": {
-      "mean": 297.425105,
-      "min": 297.425105,
-      "max": 297.425105,
+      "mean": 297.425105267,
+      "min": 297.425105267,
+      "max": 297.425105267,
       "std": 0
     }
   },
@@ -182,9 +182,9 @@
       "std": 0
     },
     "runtime": {
-      "mean": 293.086163,
-      "min": 293.086163,
-      "max": 293.086163,
+      "mean": 293.086163136,
+      "min": 293.086163136,
+      "max": 293.086163136,
       "std": 0
     }
   },
@@ -209,9 +209,9 @@
       "std": 0
     },
     "runtime": {
-      "mean": 270.028792,
-      "min": 270.028792,
-      "max": 270.028792,
+      "mean": 270.02879196,
+      "min": 270.02879196,
+      "max": 270.02879196,
       "std": 0
     }
   },
@@ -290,9 +290,9 @@
       "std": 0
     },
     "runtime": {
-      "mean": 204.577617,
-      "min": 204.577617,
-      "max": 204.577617,
+      "mean": 204.577616562,
+      "min": 204.577616562,
+      "max": 204.577616562,
       "std": 0
     }
   },
@@ -317,9 +317,9 @@
       "std": 0
     },
     "runtime": {
-      "mean": 221.511515,
-      "min": 221.511515,
-      "max": 221.511515,
+      "mean": 221.51151525,
+      "min": 221.51151525,
+      "max": 221.51151525,
       "std": 0
     }
   },
@@ -398,9 +398,9 @@
       "std": 0
     },
     "runtime": {
-      "mean": 540.746826,
-      "min": 540.746826,
-      "max": 540.746826,
+      "mean": 540.746825869,
+      "min": 540.746825869,
+      "max": 540.746825869,
       "std": 0
     }
   },
@@ -425,9 +425,9 @@
       "std": 0
     },
     "runtime": {
-      "mean": 556.217967,
-      "min": 556.217967,
-      "max": 556.217967,
+      "mean": 556.217967188,
+      "min": 556.217967188,
+      "max": 556.217967188,
       "std": 0
     }
   },
@@ -506,9 +506,9 @@
       "std": 0
     },
     "runtime": {
-      "mean": 29.155215,
-      "min": 29.155215,
-      "max": 29.155215,
+      "mean": 29.155215029,
+      "min": 29.155215029,
+      "max": 29.155215029,
       "std": 0
     }
   },
@@ -533,9 +533,9 @@
       "std": 0
     },
     "runtime": {
-      "mean": 32.842832,
-      "min": 32.842832,
-      "max": 32.842832,
+      "mean": 32.842831769,
+      "min": 32.842831769,
+      "max": 32.842831769,
       "std": 0
     }
   },
@@ -614,9 +614,9 @@
       "std": 0
     },
     "runtime": {
-      "mean": 151.587152,
-      "min": 151.587152,
-      "max": 151.587152,
+      "mean": 151.587152017,
+      "min": 151.587152017,
+      "max": 151.587152017,
       "std": 0
     }
   },
@@ -641,117 +641,9 @@
       "std": 0
     },
     "runtime": {
-      "mean": 211.243369,
-      "min": 211.243369,
-      "max": 211.243369,
-      "std": 0
-    }
-  },
-  "genetic_greedy_3_5_3_406_area": {
-    "algorithm": "genetic_greedy",
-    "case_name": "3_5_3_406",
-    "objective_type": "area",
-    "tiles": 150,
-    "n": 3,
-    "m": 5,
-    "r": 3,
-    "L": 406,
-    "num_input_strings": 10,
-    "total_generated": 150,
-    "duplicates_removed": 0,
-    "num_runs": 1,
-    "successful_runs": 1,
-    "objective": {
-      "mean": 510.0,
-      "min": 510,
-      "max": 510,
-      "std": 0
-    },
-    "runtime": {
-      "mean": 924.870714003,
-      "min": 924.870714003,
-      "max": 924.870714003,
-      "std": 0
-    }
-  },
-  "genetic_stochastic_3_5_3_406_area": {
-    "algorithm": "genetic_stochastic",
-    "case_name": "3_5_3_406",
-    "objective_type": "area",
-    "tiles": 150,
-    "n": 3,
-    "m": 5,
-    "r": 3,
-    "L": 406,
-    "num_input_strings": 10,
-    "total_generated": 150,
-    "duplicates_removed": 0,
-    "num_runs": 1,
-    "successful_runs": 1,
-    "objective": {
-      "mean": 507.0,
-      "min": 507,
-      "max": 507,
-      "std": 0
-    },
-    "runtime": {
-      "mean": 677.127716007,
-      "min": 677.127716007,
-      "max": 677.127716007,
-      "std": 0
-    }
-  },
-  "genetic_greedy_3_5_3_406_square": {
-    "algorithm": "genetic_greedy",
-    "case_name": "3_5_3_406",
-    "objective_type": "square",
-    "tiles": 150,
-    "n": 3,
-    "m": 5,
-    "r": 3,
-    "L": 406,
-    "num_input_strings": 10,
-    "total_generated": 150,
-    "duplicates_removed": 0,
-    "num_runs": 1,
-    "successful_runs": 1,
-    "objective": {
-      "mean": 22.0,
-      "min": 22,
-      "max": 22,
-      "std": 0
-    },
-    "runtime": {
-      "mean": 498.212959,
-      "min": 498.212959,
-      "max": 498.212959,
-      "std": 0
-    }
-  },
-  "genetic_stochastic_3_5_3_406_square": {
-    "algorithm": "genetic_stochastic",
-    "case_name": "3_5_3_406",
-    "objective_type": "square",
-    "tiles": 150,
-    "n": 3,
-    "m": 5,
-    "r": 3,
-    "L": 406,
-    "num_input_strings": 10,
-    "total_generated": 150,
-    "duplicates_removed": 0,
-    "num_runs": 1,
-    "successful_runs": 1,
-    "objective": {
-      "mean": 24.0,
-      "min": 24,
-      "max": 24,
-      "std": 0
-    },
-    "runtime": {
-      "mean": 607.166256,
-      "min": 607.166256,
-      "max": 607.166256,
+      "mean": 211.24336872,
+      "min": 211.24336872,
+      "max": 211.24336872,
       "std": 0
     }
   }

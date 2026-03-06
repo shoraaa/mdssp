@@ -60,7 +60,7 @@
     "objective_type": "square",
     "status": "success",
     "objective": 20,
-    "runtime": 204.577617,
+    "runtime": 204.577616562,
     "bbox_width": 20,
     "bbox_height": 20,
     "num_tiles_placed": 117
@@ -82,7 +82,7 @@
     "objective_type": "square",
     "status": "success",
     "objective": 20,
-    "runtime": 221.511515,
+    "runtime": 221.51151525,
     "bbox_width": 20,
     "bbox_height": 20,
     "num_tiles_placed": 117

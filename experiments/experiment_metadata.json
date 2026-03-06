@@ -1,65 +1,29 @@
 {
-  "timestamp": "2025-12-28T14:03:03.645249",
+  "timestamp": "2026-03-06T18:08:36.914954",
   "scales": [
-    "structured"
+    "2d_covering_original"
   ],
   "base_seed": 42,
   "resume_mode": true,
   "configurations": {
-    "structured": {
-      "source_sizes": [
-        [
-          14,
-          14
-        ],
-        [
-          36,
-          36
-        ],
-        [
-          64,
-          64
-        ]
-      ],
-      "tile_size": [
-        [
-          3,
-          3
-        ]
-      ],
-      "use_pregenerated_datasets": true,
-      "datasets_dir": "experiment_structural/datasets",
-      "full_coverage": true,
-      "patterns": [
-        "qrcode",
-        "random",
-        "checkerboard",
-        "stripes_h",
-        "stripes_v",
-        "diagonal",
-        "blocks",
-        "gradient",
-        "sparse",
-        "dense"
-      ],
-      "structured": true,
-      "runs": 1,
+    "2d_covering_original": {
+      "data_dir": "2d_covering_dataset",
       "algorithms": [
-        "merge_greedy",
-        "greedy",
-        "stochastic_greedy",
         "genetic_greedy",
-        "genetic_stochastic",
-        "beam_search"
+        "genetic_stochastic"
       ],
-      "pop_size": 150,
-      "generations": 300,
-      "beam_width": 15,
-      "sa_max_iter": 15000,
+      "pop_size": 256,
+      "generations": 512,
+      "beam_width": 20,
+      "sa_max_iter": 20000,
       "cplex_time_limit": 600,
-      "objective_type": "square",
+      "objective_types": [
+        "area",
+        "square"
+      ],
       "alphabet_size": 2,
-      "description": "Structured/Reassembly: Can algorithm reconstruct source bitmap from overlapping subarray extractions?"
+      "runs": 1,
+      "description": "2D Covering Original: Multiple input strings parsed from [str1], [str2], ... format"
     }
   }
 }

@@ -169,40 +169,6 @@
       }
     }
   },
-  "T150_n3_m5": {
-    "area": {
-      "genetic_greedy": {
-        "num_runs": 1,
-        "avg_cost": 510.0,
-        "stdev_cost": 0,
-        "avg_runtime": 924.8707,
-        "stdev_runtime": 0
-      },
-      "genetic_stochastic": {
-        "num_runs": 1,
-        "avg_cost": 507.0,
-        "stdev_cost": 0,
-        "avg_runtime": 677.1277,
-        "stdev_runtime": 0
-      }
-    },
-    "square": {
-      "genetic_greedy": {
-        "num_runs": 1,
-        "avg_cost": 22.0,
-        "stdev_cost": 0,
-        "avg_runtime": 498.213,
-        "stdev_runtime": 0
-      },
-      "genetic_stochastic": {
-        "num_runs": 1,
-        "avg_cost": 24.0,
-        "stdev_cost": 0,
-        "avg_runtime": 607.1663,
-        "stdev_runtime": 0
-      }
-    }
-  },
   "T67_n3_m3": {
     "area": {
       "genetic_greedy": {

@@ -1,0 +1,149 @@
+Found 28 runs to verify.
+
+[experiments/2d_covering_original\2_5_1_175\run_1_genetic_greedy_area.json]
+  Algo: genetic_greedy - Actual Area: 302 (Reported: 302)
+    Solution Valid: True (Missing: 0)
+    Hypothesis Valid: True (Covered all 1024 with R=1)
+
+[experiments/2d_covering_original\2_5_1_175\run_1_genetic_greedy_square.json]
+  Algo: genetic_greedy - Actual Area: 441 (Reported: 441)
+    Solution Valid: True (Missing: 0)
+    Hypothesis Valid: True (Covered all 1024 with R=1)
+
+[experiments/2d_covering_original\2_5_1_175\run_1_genetic_stochastic_area.json]
+  Algo: genetic_stochastic - Actual Area: 298 (Reported: 298)
+    Solution Valid: True (Missing: 0)
+    Hypothesis Valid: True (Covered all 1024 with R=1)
+
+[experiments/2d_covering_original\2_5_1_175\run_1_genetic_stochastic_square.json]
+  Algo: genetic_stochastic - Actual Area: 441 (Reported: 441)
+    Solution Valid: True (Missing: 0)
+    Hypothesis Valid: True (Covered all 1024 with R=1)
+
+[experiments/2d_covering_original\2_5_1_177\run_1_genetic_greedy_area.json]
+  Algo: genetic_greedy - Actual Area: 306 (Reported: 306)
+    Solution Valid: True (Missing: 0)
+    Hypothesis Valid: True (Covered all 1024 with R=1)
+
+[experiments/2d_covering_original\2_5_1_177\run_1_genetic_greedy_square.json]
+  Algo: genetic_greedy - Actual Area: 441 (Reported: 441)
+    Solution Valid: True (Missing: 0)
+    Hypothesis Valid: True (Covered all 1024 with R=1)
+
+[experiments/2d_covering_original\2_5_1_177\run_1_genetic_stochastic_area.json]
+  Algo: genetic_stochastic - Actual Area: 302 (Reported: 302)
+    Solution Valid: True (Missing: 0)
+    Hypothesis Valid: True (Covered all 1024 with R=1)
+
+[experiments/2d_covering_original\2_5_1_177\run_1_genetic_stochastic_square.json]
+  Algo: genetic_stochastic - Actual Area: 441 (Reported: 441)
+    Solution Valid: True (Missing: 0)
+    Hypothesis Valid: True (Covered all 1024 with R=1)
+
+[experiments/2d_covering_original\2_6_2_161\run_1_genetic_greedy_area.json]
+  Algo: genetic_greedy - Actual Area: 270 (Reported: 270)
+    Solution Valid: True (Missing: 0)
+    Hypothesis Valid: True (Covered all 4096 with R=2)
+
+[experiments/2d_covering_original\2_6_2_161\run_1_genetic_greedy_square.json]
+  Algo: genetic_greedy - Actual Area: 400 (Reported: 400)
+    Solution Valid: True (Missing: 0)
+    Hypothesis Valid: True (Covered all 4096 with R=2)
+
+[experiments/2d_covering_original\2_6_2_161\run_1_genetic_stochastic_area.json]
+  Algo: genetic_stochastic - Actual Area: 268 (Reported: 268)
+    Solution Valid: True (Missing: 0)
+    Hypothesis Valid: True (Covered all 4096 with R=2)
+
+[experiments/2d_covering_original\2_6_2_161\run_1_genetic_stochastic_square.json]
+  Algo: genetic_stochastic - Actual Area: 400 (Reported: 400)
+    Solution Valid: True (Missing: 0)
+    Hypothesis Valid: True (Covered all 4096 with R=2)
+
+[experiments/2d_covering_original\2_7_3_239\run_1_genetic_greedy_area.json]
+  Algo: genetic_greedy - Actual Area: 354 (Reported: 354)
+    Solution Valid: True (Missing: 0)
+    Hypothesis Valid: True (Covered all 16384 with R=3)
+
+[experiments/2d_covering_original\2_7_3_239\run_1_genetic_greedy_square.json]
+  Algo: genetic_greedy - Actual Area: 529 (Reported: 529)
+    Solution Valid: True (Missing: 0)
+    Hypothesis Valid: True (Covered all 16384 with R=3)
+
+[experiments/2d_covering_original\2_7_3_239\run_1_genetic_stochastic_area.json]
+  Algo: genetic_stochastic - Actual Area: 352 (Reported: 352)
+    Solution Valid: True (Missing: 0)
+    Hypothesis Valid: True (Covered all 16384 with R=3)
+
+[experiments/2d_covering_original\2_7_3_239\run_1_genetic_stochastic_square.json]
+  Algo: genetic_stochastic - Actual Area: 484 (Reported: 484)
+    Solution Valid: True (Missing: 0)
+    Hypothesis Valid: True (Covered all 16384 with R=3)
+
+[experiments/2d_covering_original\3_3_1_102\run_1_genetic_greedy_area.json]
+  Algo: genetic_greedy - Actual Area: 210 (Reported: 210)
+    Solution Valid: True (Missing: 0)
+    Hypothesis Valid: True (Covered all 512 with R=1)
+
+[experiments/2d_covering_original\3_3_1_102\run_1_genetic_greedy_square.json]
+  Algo: genetic_greedy - Actual Area: 196 (Reported: 196)
+    Solution Valid: True (Missing: 0)
+    Hypothesis Valid: True (Covered all 512 with R=1)
+
+[experiments/2d_covering_original\3_3_1_102\run_1_genetic_stochastic_area.json]
+  Algo: genetic_stochastic - Actual Area: 196 (Reported: 196)
+    Solution Valid: True (Missing: 0)
+    Hypothesis Valid: True (Covered all 512 with R=1)
+
+[experiments/2d_covering_original\3_3_1_102\run_1_genetic_stochastic_square.json]
+  Algo: genetic_stochastic - Actual Area: 196 (Reported: 196)
+    Solution Valid: True (Missing: 0)
+    Hypothesis Valid: True (Covered all 512 with R=1)
+
+[experiments/2d_covering_original\3_4_2_161\run_1_genetic_greedy_area.json]
+  Algo: genetic_greedy - Actual Area: 384 (Reported: 384)
+    Solution Valid: True (Missing: 0)
+    Hypothesis Valid: True (Covered all 4096 with R=2)
+
+[experiments/2d_covering_original\3_4_2_161\run_1_genetic_greedy_square.json]
+  Algo: genetic_greedy - Actual Area: 361 (Reported: 361)
+    Solution Valid: True (Missing: 0)
+    Hypothesis Valid: True (Covered all 4096 with R=2)
+
+[experiments/2d_covering_original\3_4_2_161\run_1_genetic_stochastic_area.json]
+  Algo: genetic_stochastic - Actual Area: 378 (Reported: 378)
+    Solution Valid: True (Missing: 0)
+    Hypothesis Valid: True (Covered all 4096 with R=2)
+
+[experiments/2d_covering_original\3_4_2_161\run_1_genetic_stochastic_square.json]
+  Algo: genetic_stochastic - Actual Area: 400 (Reported: 400)
+    Solution Valid: True (Missing: 0)
+    Hypothesis Valid: True (Covered all 4096 with R=2)
+
+[experiments/2d_covering_original\3_5_3_406\run_1_genetic_greedy_area.json]
+  Algo: genetic_greedy - Actual Area: 510 (Reported: 510)
+    Solution Valid: True (Missing: 0)
+    Hypothesis Valid: False (Missing 1745/32768 with R=3)
+
+[experiments/2d_covering_original\3_5_3_406\run_1_genetic_greedy_square.json]
+  Algo: genetic_greedy - Actual Area: 484 (Reported: 484)
+    Solution Valid: True (Missing: 0)
+    Hypothesis Valid: False (Missing 322/32768 with R=3)
+
+[experiments/2d_covering_original\3_5_3_406\run_1_genetic_stochastic_area.json]
+  Algo: genetic_stochastic - Actual Area: 507 (Reported: 507)
+    Solution Valid: True (Missing: 0)
+    Hypothesis Valid: False (Missing 1731/32768 with R=3)
+
+[experiments/2d_covering_original\3_5_3_406\run_1_genetic_stochastic_square.json]
+  Algo: genetic_stochastic - Actual Area: 552 (Reported: 552)
+    Solution Valid: True (Missing: 0)
+    Hypothesis Valid: False (Missing 342/32768 with R=3)
+
+========================================
+VERIFICATION SUMMARY
+========================================
+Total runs analyzed: 28
+Total errors:        0
+Solution Valid:      28 / 28
+Hypothesis Valid:    24 / 28
